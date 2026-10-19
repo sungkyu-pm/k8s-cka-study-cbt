@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="portal.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="portal.css?v=20261019_1535">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <!-- 상단 글로벌 고정 헤더 래퍼 -->
@@ -27,7 +27,7 @@
           <span class="status-indicator-dot online"></span>
           <span id="server-status-text">로컬 서버 모드 (8080)</span>
         </div>
-        <button class="nav-tab-btn highlight-cbt" data-tab="cbt">
+        <button class="nav-tab-btn highlight-cbt" data-tab="cbt" onclick="switchTab('cbt')">
           <span id="cbt-quick-btn-label">💻 실전 CBT 모의고사</span>
         </button>
       </div>
@@ -36,19 +36,19 @@
     <!-- 2. 자격증 트랙 선택 바 (CKA vs KCNA) -->
     <div class="cert-track-bar">
       <div class="track-container">
-        <button class="track-tab-btn active" data-track="cka" id="track-cka-btn">
+        <button class="track-tab-btn active" data-track="cka" id="track-cka-btn" onclick="switchCertTrack('cka')">
           <span class="track-icon">☸️</span>
           <div class="track-title-wrap">
             <span class="track-main-title">CKA 쿠버네티스 공인 관리자</span>
-            <span class="track-sub-title">Certified Kubernetes Administrator (실기형 핸즈온)</span>
+            <span class="track-sub-title">Certified Kubernetes Administrator (실기형 핸즈온 · 1,250문항)</span>
           </div>
           <span class="track-badge cka">실기 실습</span>
         </button>
-        <button class="track-tab-btn" data-track="kcna" id="track-kcna-btn">
+        <button class="track-tab-btn" data-track="kcna" id="track-kcna-btn" onclick="switchCertTrack('kcna')">
           <span class="track-icon">☁️</span>
           <div class="track-title-wrap">
             <span class="track-main-title">KCNA 클라우드 네이티브 어소시에이트</span>
-            <span class="track-sub-title">Kubernetes and Cloud Native Associate (CNCF 필기)</span>
+            <span class="track-sub-title">Kubernetes and Cloud Native Associate (CNCF 필기 · 260문항)</span>
           </div>
           <span class="track-badge kcna">필기 객관식</span>
         </button>
@@ -58,31 +58,31 @@
     <!-- 3. 서브 네비게이션 탭 바 (CKA 전용) -->
     <nav class="portal-nav track-nav-cka" id="nav-cka">
       <div class="nav-container">
-        <button class="nav-tab active" data-tab="overview">
+        <button class="nav-tab active" data-tab="overview" onclick="switchTab('overview')">
           <span class="tab-icon">🏠</span> CKA 개요 & 로드맵
         </button>
-        <button class="nav-tab" data-tab="glossary">
+        <button class="nav-tab" data-tab="glossary" onclick="switchTab('glossary')">
           <span class="tab-icon">🔤</span> 한·영 필수 용어사전
         </button>
-        <button class="nav-tab" data-tab="domain1">
+        <button class="nav-tab" data-tab="domain1" onclick="switchTab('domain1')">
           <span class="tab-icon">🏗️</span> 도메인 1: 아키텍처 & 설치 (25%)
         </button>
-        <button class="nav-tab" data-tab="domain2">
+        <button class="nav-tab" data-tab="domain2" onclick="switchTab('domain2')">
           <span class="tab-icon">📦</span> 도메인 2: 워크로드 & 스케줄링 (15%)
         </button>
-        <button class="nav-tab" data-tab="domain3">
+        <button class="nav-tab" data-tab="domain3" onclick="switchTab('domain3')">
           <span class="tab-icon">🌐</span> 도메인 3: 서비스 & 네트워크 (20%)
         </button>
-        <button class="nav-tab" data-tab="domain4">
+        <button class="nav-tab" data-tab="domain4" onclick="switchTab('domain4')">
           <span class="tab-icon">💾</span> 도메인 4: 스토리지 (10%)
         </button>
-        <button class="nav-tab" data-tab="domain5">
+        <button class="nav-tab" data-tab="domain5" onclick="switchTab('domain5')">
           <span class="tab-icon">🔧</span> 도메인 5: 문제 해결 (30%)
         </button>
-        <button class="nav-tab" data-tab="kubectl_cheat">
+        <button class="nav-tab" data-tab="kubectl_cheat" onclick="switchTab('kubectl_cheat')">
           <span class="tab-icon">⚡</span> Kubectl 치트시트
         </button>
-        <button class="nav-tab" data-tab="cbt">
+        <button class="nav-tab" data-tab="cbt" onclick="switchTab('cbt')">
           <span class="tab-icon">💻</span> CKA 실전 CBT
         </button>
       </div>
@@ -91,28 +91,28 @@
     <!-- 4. 서브 네비게이션 탭 바 (KCNA 전용, 초기 숨김) -->
     <nav class="portal-nav track-nav-kcna" id="nav-kcna" style="display: none;">
       <div class="nav-container">
-        <button class="nav-tab active" data-tab="kcna_overview">
+        <button class="nav-tab active" data-tab="kcna_overview" onclick="switchTab('kcna_overview')">
           <span class="tab-icon">🏠</span> KCNA 시험 안내 & 전략
         </button>
-        <button class="nav-tab" data-tab="kcna_glossary">
+        <button class="nav-tab" data-tab="kcna_glossary" onclick="switchTab('kcna_glossary')">
           <span class="tab-icon">🔤</span> CNCF & KCNA 용어사전
         </button>
-        <button class="nav-tab" data-tab="kcna_domain1">
+        <button class="nav-tab" data-tab="kcna_domain1" onclick="switchTab('kcna_domain1')">
           <span class="tab-icon">☁️</span> 영역 1: 클라우드 네이티브 아키텍처 (16%)
         </button>
-        <button class="nav-tab" data-tab="kcna_domain2">
+        <button class="nav-tab" data-tab="kcna_domain2" onclick="switchTab('kcna_domain2')">
           <span class="tab-icon">☸️</span> 영역 2: 쿠버네티스 기본 원리 (46%)
         </button>
-        <button class="nav-tab" data-tab="kcna_domain3">
+        <button class="nav-tab" data-tab="kcna_domain3" onclick="switchTab('kcna_domain3')">
           <span class="tab-icon">📦</span> 영역 3: 컨테이너 오케스트레이션 (22%)
         </button>
-        <button class="nav-tab" data-tab="kcna_domain4">
+        <button class="nav-tab" data-tab="kcna_domain4" onclick="switchTab('kcna_domain4')">
           <span class="tab-icon">📊</span> 영역 4: 관측 가능성 (8%)
         </button>
-        <button class="nav-tab" data-tab="kcna_domain5">
+        <button class="nav-tab" data-tab="kcna_domain5" onclick="switchTab('kcna_domain5')">
           <span class="tab-icon">🚀</span> 영역 5: 배포 & GitOps (8%)
         </button>
-        <button class="nav-tab" data-tab="cbt">
+        <button class="nav-tab" data-tab="cbt" onclick="switchTab('cbt')">
           <span class="tab-icon">💻</span> KCNA 실전 CBT
         </button>
       </div>
@@ -235,14 +235,14 @@
     <!-- ==================== 공통 CBT 가상 실습 탭 ==================== -->
     <section id="tab-cbt" class="tab-panel">
       <div class="cbt-frame-container">
-        <iframe id="cbt-iframe" class="cbt-iframe" src="cbt-app/index.html" title="K8S & KCNA CBT Simulator"></iframe>
+        <iframe id="cbt-iframe" class="cbt-iframe" src="cbt-app/index.html?v=20261019_1535" title="K8S & KCNA CBT Simulator"></iframe>
       </div>
     </section>
 
   </main>
 
-  <!-- 데이터 스크립트 로드 -->
-  <script src="portal-docs-data.js"></script>
-  <script src="portal.js"></script>
+  <!-- 데이터 스크립트 로드 (캐시 버스팅 적용) -->
+  <script src="portal-docs-data.js?v=20261019_1535"></script>
+  <script src="portal.js?v=20261019_1535"></script>
 </body>
 </html>

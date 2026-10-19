@@ -116,15 +116,30 @@ class K8sCBTSimulator {
   }
 
   switchTrack(track) {
-    this.currentTrack = track;
-    if (track === 'kcna') {
+    this.currentTrack = track === 'kcna' ? 'kcna' : 'cka';
+    if (this.currentTrack === 'kcna') {
       this.passingScorePct = 75;
       if (this.cbtCertKcna) this.cbtCertKcna.classList.add('active', 'kcna-active');
       if (this.cbtCertCka) this.cbtCertCka.classList.remove('active');
-      if (this.ckaScopeGroup) this.ckaScopeGroup.style.display = 'none';
-      if (this.kcnaScopeGroup) this.kcnaScopeGroup.style.display = 'block';
-      if (this.ckaCountGroup) this.ckaCountGroup.style.display = 'none';
-      if (this.kcnaCountGroup) this.kcnaCountGroup.style.display = 'block';
+
+      if (this.ckaScopeGroup) {
+        this.ckaScopeGroup.style.display = 'none';
+        this.ckaScopeGroup.querySelectorAll('input').forEach(i => i.disabled = true);
+      }
+      if (this.kcnaScopeGroup) {
+        this.kcnaScopeGroup.style.display = 'block';
+        this.kcnaScopeGroup.querySelectorAll('input').forEach(i => i.disabled = false);
+      }
+
+      if (this.ckaCountGroup) {
+        this.ckaCountGroup.style.display = 'none';
+        this.ckaCountGroup.querySelectorAll('input').forEach(i => i.disabled = true);
+      }
+      if (this.kcnaCountGroup) {
+        this.kcnaCountGroup.style.display = 'block';
+        this.kcnaCountGroup.querySelectorAll('input').forEach(i => i.disabled = false);
+      }
+
       if (this.cbtWelcomeTitle) this.cbtWelcomeTitle.textContent = 'Kubernetes and Cloud Native Associate (KCNA) CBT 실습';
       if (this.cbtWelcomeDesc) this.cbtWelcomeDesc.textContent = 'CNCF 공식 시험 기준 객관식 60문항 대비, 클라우드 네이티브 아키텍처와 쿠버네티스 원리를 완벽 마스터합니다.';
       if (this.scopeCardTitle) this.scopeCardTitle.textContent = '1. 학습 범위 선택 (KCNA 260문항 풀)';
@@ -138,10 +153,25 @@ class K8sCBTSimulator {
       this.passingScorePct = 66;
       if (this.cbtCertCka) this.cbtCertCka.classList.add('active');
       if (this.cbtCertKcna) this.cbtCertKcna.classList.remove('active', 'kcna-active');
-      if (this.ckaScopeGroup) this.ckaScopeGroup.style.display = 'block';
-      if (this.kcnaScopeGroup) this.kcnaScopeGroup.style.display = 'none';
-      if (this.ckaCountGroup) this.ckaCountGroup.style.display = 'block';
-      if (this.kcnaCountGroup) this.kcnaCountGroup.style.display = 'none';
+
+      if (this.ckaScopeGroup) {
+        this.ckaScopeGroup.style.display = 'block';
+        this.ckaScopeGroup.querySelectorAll('input').forEach(i => i.disabled = false);
+      }
+      if (this.kcnaScopeGroup) {
+        this.kcnaScopeGroup.style.display = 'none';
+        this.kcnaScopeGroup.querySelectorAll('input').forEach(i => i.disabled = true);
+      }
+
+      if (this.ckaCountGroup) {
+        this.ckaCountGroup.style.display = 'block';
+        this.ckaCountGroup.querySelectorAll('input').forEach(i => i.disabled = false);
+      }
+      if (this.kcnaCountGroup) {
+        this.kcnaCountGroup.style.display = 'none';
+        this.kcnaCountGroup.querySelectorAll('input').forEach(i => i.disabled = true);
+      }
+
       if (this.cbtWelcomeTitle) this.cbtWelcomeTitle.textContent = 'Kubernetes Certified Administrator (CKA) CBT 실습';
       if (this.cbtWelcomeDesc) this.cbtWelcomeDesc.textContent = '영어 원문 지문 및 실무 시나리오에 익숙해지면서 한국어 상세 해설로 CKA 실전 시험을 완벽 대비합니다.';
       if (this.scopeCardTitle) this.scopeCardTitle.textContent = '1. 학습 범위 선택 (CKA 1,250문항 풀)';
@@ -152,6 +182,7 @@ class K8sCBTSimulator {
       const firstCkaCount = this.ckaCountGroup ? this.ckaCountGroup.querySelector('input[value="25"]') : null;
       if (firstCkaCount) firstCkaCount.checked = true;
     }
+  }
 
   showStartScreen() {
     this.isReviewMode = false;
@@ -263,9 +294,9 @@ class K8sCBTSimulator {
   }
 
   async startExamFromSettings() {
-    const examSetRadio = document.querySelector('input[name="examSet"]:checked');
-    const examModeRadio = document.querySelector('input[name="examMode"]:checked');
-    const examCountRadio = document.querySelector('input[name="examCount"]:checked');
+    const examSetRadio = document.querySelector('input[name="examSet"]:checked:not(:disabled)') || document.querySelector('input[name="examSet"]:checked');
+    const examModeRadio = document.querySelector('input[name="examMode"]:checked:not(:disabled)') || document.querySelector('input[name="examMode"]:checked');
+    const examCountRadio = document.querySelector('input[name="examCount"]:checked:not(:disabled)') || document.querySelector('input[name="examCount"]:checked');
     const shuffleQCheck = document.getElementById('shuffle-questions-check');
     const shuffleOptCheck = document.getElementById('shuffle-options-check');
 
