@@ -99,3 +99,18 @@ spec:
 
 ### 2. Storage Object in Use Protection (Finalizer)
 파드가 사용 중인 PVC를 실수로 삭제(`kubectl delete pvc`)하더라도, `kubernetes.io/pvc-protection` Finalizer가 등록되어 있어 파드가 종료될 때까지 실제 삭제가 보류되고 `Terminating` 상태로 안전하게 대기합니다.
+
+## 4.5 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_domain4.json 250문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 필수 매니페스트 속성 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **PV & PVC 바인딩 3대 조건** | 1. `storageClassName` 일치<br>2. `accessModes` 호환<br>3. PV 용량 $\ge$ PVC 요청 용량 | • PVC 요청 용량이 PV보다 단 1바이트라도 크면 바인딩되지 않고 `Pending` 상태로 대기. |
+| **AccessModes 4대 유형** | • `ReadWriteOnce` (RWO): 단일 노드에서 읽기/쓰기<br>• `ReadOnlyMany` (ROX): 여러 노드에서 읽기 전용<br>• `ReadWriteMany` (RWX): 여러 노드에서 읽기/쓰기 (NFS, EFS)<br>• `ReadWriteOncePod` (RWOP): 단일 파드 전용 | • AWS EBS 볼륨은 물리적으로 단일 노드에만 연결되므로 RWX를 지원하지 않음 (RWO만 지원). |
+| **ReclaimPolicy 반환 정책** | • `Retain`: PVC 삭제 시 PV는 `Released` 상태가 되며 데이터 보존 (수동 정리 필요)<br>• `Delete`: PVC 삭제 시 PV 및 백엔드 물리 스토리지 자산까지 즉시 자동 삭제 | • `Released` 상태의 PV는 다른 PVC가 즉시 재바인딩할 수 없으며, `claimRef`를 수동 제거해야 `Available`로 복귀. |
+| **WaitForFirstConsumer** | `StorageClass`의 `volumeBindingMode: WaitForFirstConsumer` | • PVC 생성 즉시 볼륨을 생성하지 않고, 파드가 어느 노드에 스케줄링될지 확정된 후 볼륨을 프로비저닝하여 토폴로지 불일치 스케줄링 실패 방지. |
+| **온라인 볼륨 용량 확장** | `StorageClass`에 `allowVolumeExpansion: true` 설정 후, PVC의 `spec.resources.requests.storage`를 상향 편집 | • PVC 용량을 줄이는 축소(Shrink)는 쿠버네티스에서 절대 지원하지 않음 (오직 확장만 가능). |
+| **subPath 마운트 기법** | `volumeMounts[0].subPath: my-config.json` | • 볼륨 전체를 `/etc/config`에 마운트하면 해당 디렉토리의 기존 파일들이 모두 가려지므로, 단일 파일만 덮어쓸 때는 `subPath` 필수. |
+| **ConfigMap/Secret 권한 제어** | `volumes[0].configMap.defaultMode: 0400` (읽기 전용) | • 8진수 퍼미션 설정으로 컨테이너 내부 프로세스가 설정 파일을 위변조하지 못하도록 방어. |
+| **PVC Protection Finalizer** | `kubernetes.io/pvc-protection` | • 파드가 사용 중인 PVC를 삭제 시도하면 즉시 삭제되지 않고 `Terminating` 상태로 보류됨. 파드가 종료되어야 비로소 삭제 완료. |

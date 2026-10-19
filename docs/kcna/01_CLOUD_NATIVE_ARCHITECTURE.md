@@ -112,3 +112,16 @@ CNCF는 프로젝트의 생태계 채택도, 커뮤니티 건강성, 보안 감�
      - 패키지 관리: **Helm**
      - GitOps 지속적 배포: **Argo CD**
      - 정책 엔진: **Open Policy Agent (OPA)**
+
+## 1.6 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_kcna_domain1.json 50문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 CNCF 표준 정의 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **CNCF 클라우드 네이티브 정의** | 회복성(Resilient), 관리 용이성(Manageable), 관측 가능성(Observable)을 갖춘 시스템 구축. 선언적 API(Declarative APIs)와 자동화된 변경 지원 | • "하드웨어 비용 절감"이나 "모놀리식 단일 배포"는 CNCF 클라우드 네이티브의 핵심 정의가 아님. |
+| **12-Factor III: Config** | 환경마다 달라지는 설정(DB 주소, API 키 등)은 소스 코드와 엄격히 분리하여 실행 환경 변수로 주입 | • 설정을 코드에 하드코딩하거나 Git 저장소에 커밋하는 것은 12-Factor 위반. (Kubernetes에서는 ConfigMap/Secret 주입). |
+| **12-Factor IX: Disposability** | 빠른 시작(Fast Startup)과 우아한 종료(Graceful Shutdown - SIGTERM 대응)로 견고성 극대화 | • 장시간 기동 대기나 비정상 강제 종료는 폐기 가능성 위반. |
+| **불변 인프라 (Immutable Infra)** | 배포 후 서버를 직접 수정(패치, SSH 접속)하지 않고, 항상 새로운 이미지로 교체 배포 | • 운영 중인 컨테이너에 직접 들어가서 설정을 고치는 안티패턴 방지. |
+| **서버리스 & Knative** | 이벤트 기반 실행, 자동 스케일링 (0으로 축소되는 Scale-to-Zero), 인프라 관리 추상화 | • Knative Serving(Scale-to-Zero)과 Knative Eventing(CloudEvents 기반 이벤트 라우팅)의 역할 분담. |
+| **Envoy 프록시 & 서비스 메시** | 고성능 L7 프록시, 사이드카 배포를 통해 마이크로서비스 간 트래픽 제어, mTLS 상호 인증, 분산 관측성 제공 | • 애플리케이션 비즈니스 코드 수정 없이 인프라 계층에서 네트워크 기능 수행. |

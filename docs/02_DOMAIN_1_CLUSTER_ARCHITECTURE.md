@@ -211,3 +211,19 @@ kubectl get csr
 kubectl certificate approve <csr-name>
 kubectl certificate deny <csr-name>
 ```
+
+## 1.6 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_domain1.json 250문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 필수 명령어/파라미터 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **etcdctl snapshot save** | TLS 3종 플래그 필수 (`--cacert`, `--cert`, `--key`) 및 `--endpoints=https://127.0.0.1:2379`, `ETCDCTL_API=3` | • `kubectl snapshot`이나 `kubeadm backup` 같은 가짜 명령어를 고르지 말 것.<br>• 인증서 플래그가 누락된 선택지는 오답. |
+| **etcdctl snapshot restore** | `ETCDCTL_API=3 etcdctl snapshot restore <스냅샷> --data-dir=<새경로>` | • 복원 후 `/etc/kubernetes/manifests/etcd.yaml`의 `hostPath.path`를 반드시 새 경로로 수정해야 함.<br>• API 서버는 etcd 복원 완료 시까지 재시작하지 않음. |
+| **Role vs ClusterRole** | • **Role**: 단일 네임스페이스 한정 (`pods`, `deployments`, `jobs`)<br>• **ClusterRole**: 클러스터 전체 리소스 (`nodes`, `persistentvolumes`, `namespaces`) | • `nodes` 리소스는 네임스페이스가 없으므로 `Role`로 권한을 부여할 수 없으며 반드시 `ClusterRole`과 `ClusterRoleBinding` 필요. |
+| **kubectl auth can-i** | 권한 시뮬레이션: `kubectl auth can-i <verb> <resource> --as=<user> -n <ns>`<br>ServiceAccount: `--as=system:serviceaccount:<ns>:<sa-name>` | • SA 권한 확인 시 접두사 `system:serviceaccount:`가 생략되면 일반 유저로 취급되어 권한 불일치 발생. |
+| **kubeadm init & join** | • 초기화: `kubeadm init --pod-network-cidr=192.168.0.0/16`<br>• 토큰 재발급: `kubeadm token create --print-join-command` | • CNI(Calico/Flannel) 배포 전까지 노드는 `NotReady` 상태로 유지됨.<br>• 토큰 만료(기본 24시간) 시 새 토큰을 발급해야 조인 가능. |
+| **kubeadm 클러스터 업그레이드** | 1. 마스터: `drain` ➔ `kubeadm upgrade plan/apply` ➔ `kubelet/kubectl` 업그레이드 ➔ `restart kubelet` ➔ `uncordon`<br>2. 워커: `drain` ➔ `kubeadm upgrade node` ➔ `kubelet/kubectl` ➔ `uncordon` | • 워커 노드에서는 `kubeadm upgrade apply`가 아니라 반드시 `kubeadm upgrade node` 명령어를 사용해야 함.<br>• 마이너 버전 건너뛰기 불가 (`1.30 -> 1.32` 불가, `1.30 -> 1.31` 필수). |
+| **Static Pod 디렉토리** | kubelet 데몬이 `/etc/kubernetes/manifests` 내의 YAML을 inotify로 실시간 감시 | • API 서버나 스케줄러가 다운되어 있어도 kubelet이 직접 실행·관리함.<br>• `kubectl create`로 제어 평면 파드를 직접 만드는 것이 아님. |
+| **CSR 라이프사이클** | `kubectl get csr`, `kubectl certificate approve <name>`, `kubectl certificate deny <name>` | • 신규 유저/에이전트 인증서는 CSR 승인 후 `status.certificate`에서 base64 디코딩하여 추출. |
+| **Kubeconfig Context** | `kubectl config get-contexts`, `kubectl config use-context <name>`, `kubectl config set-context --current --namespace=<ns>` | • `current-context` 필드가 현재 활성화된 클러스터-사용자-네임스페이스 튜플을 결정. |

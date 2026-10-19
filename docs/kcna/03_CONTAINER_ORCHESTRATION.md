@@ -91,3 +91,16 @@
 - **Readiness Probe**: 트래픽을 받을 준비가 되었는지 감지. 실패 시 Service의 **EndpointSlice에서 해당 파드 IP를 일시 제외**.
 - **Startup Probe**: 부팅 시간이 오래 걸리는 레거시 애플리케이션의 초기화 동안 Liveness/Readiness의 실패 카운트를 일시 정지.
 - **Pod Disruption Budget (PDB)**: 노드 업그레이드나 유지보수(Drain) 시 동시에 다운될 수 있는 파드의 최대 허용 수량을 지정하여 서비스 가용성 보장.
+
+## 3.6 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_kcna_domain3.json 50문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 표준 인터페이스 정의 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **CRI (Container Runtime Interface)** | kubelet과 컨테이너 런타임(containerd, CRI-O) 간의 gRPC 통신 사양 | • 쿠버네티스 1.24에서 레거시 dockershim이 완전히 제거되어 containerd 직접 통신 표준화. |
+| **OCI (Open Container Initiative)** | 컨테이너 런타임 표준(runtime-spec, runc) 및 이미지 포맷 표준(image-spec) | • 특정 벤더(Docker)에 종속되지 않고 어떤 OCI 호환 런타임에서도 동일하게 컨테이너 실행 보장. |
+| **CNI (Container Network Interface)** | 파드에 IP 주소를 할당하고 파드 간 오버레이 네트워크 통신을 구성하는 플러그인 사양 (Calico, Flannel, Cilium) | • CNI 플러그인이 미설치되면 클러스터의 모든 워커 노드는 `NotReady` 상태로 유지됨. |
+| **CSI (Container Storage Interface)** | 서드파티 스토리지 벤더가 쿠버네티스 코어 코드 수정 없이 플러그인 형태로 볼륨을 연동할 수 있게 해주는 외부(Out-of-tree) 사양 | • In-tree 스토리지 플러그인 방식의 유지보수 한계를 극복하기 위해 제정됨. |
+| **Namespaces vs cgroups (Linux)** | • **Namespaces**: 프로세스 간 격리 (PID, Mount, Network, IPC, UTS, User)<br>• **cgroups**: CPU, Memory, I/O 등 시스템 자원 사용량 제한 및 계측 | • 격리(Isolation)는 Namespaces가 담당하고, 자원 제한(Resource Limits)은 cgroups가 담당함 (혼동 금지). |
+| **3대 컨테이너 프로브** | • **StartupProbe**: 애플리케이션 초기 기동 완료 대기<br>• **LivenessProbe**: 컨테이너 멈춤(Hang) 감지 시 강제 재시작<br>• **ReadinessProbe**: 준비 미완료 시 서비스 엔드포인트에서 트래픽만 격리 | • Liveness 실패는 파드를 재시작시키지만, Readiness 실패는 파드를 죽이지 않고 트래픽 인입만 차단함. |

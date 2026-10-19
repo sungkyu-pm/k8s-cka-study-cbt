@@ -170,3 +170,19 @@ spec:
     - protocol: TCP
       port: 80
 ```
+
+## 3.5 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_domain3.json 250문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 필수 매니페스트 속성 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **3대 포트 체계 구분** | • `port`: Service 가상 IP(VIP)에서 수신하는 포트<br>• `targetPort`: 백엔드 Pod 컨테이너에서 실제 리스닝 중인 포트<br>• `nodePort`: 모든 워커 노드 물리 IP로 노출되는 외부 포트 (30000~32767) | • 클러스터 내부 파드가 서비스로 호출할 때는 `port`로 요청해야 하며, `targetPort`로 직접 쏘면 연결 실패. |
+| **셀렉터 없는 Service & Endpoints** | 외부에 있는 레거시 DB나 서드파티 서비스를 내부 쿠버네티스 서비스 이름으로 참조할 때 수동 Endpoints 매핑 | • Service의 `spec.selector`를 비워두고, 동일한 `metadata.name`을 가진 `Endpoints` 리소스를 수동 생성해야 함. |
+| **Headless Service DNS** | `spec.clusterIP: None` 설정 시 단일 가상 IP를 생성하지 않고, DNS 질의 시 백엔드 파드 IP 목록을 직접 반환 | • StatefulSet과 필수 결합하여 개별 파드 `<pod-name>.<svc>.<ns>.svc.cluster.local` A-레코드 해석 제공. |
+| **Ingress pathType & Rewrite** | • `pathType: Prefix` (하위 경로 매칭) vs `Exact` (정확 매칭)<br>• Nginx rewrite: `nginx.ingress.kubernetes.io/rewrite-target: /$2` | • rewrite 어노테이션 누락 시 `/app` 경로 요청이 백엔드 컨테이너의 `/app`으로 그대로 전달되어 404 발생. |
+| **Ingress TLS 인증서 바인딩** | `spec.tls[0].hosts` 목록 및 `spec.tls[0].secretName`에 `kubernetes.io/tls` 타입 Secret 매핑 | • Secret 내부 키 이름은 반드시 `tls.crt`와 `tls.key`여야 함. |
+| **CoreDNS FQDN 표준** | 서비스: `<service-name>.<namespace>.svc.cluster.local`<br>파드: `<ip-하이픈-대체>.<namespace>.pod.cluster.local` | • 동일 네임스페이스 내에서는 `<service-name>` 단축어로 접근 가능.<br>• 타 네임스페이스 접근 시 `<svc>.<ns>` 필수. |
+| **NetworkPolicy 트래픽 격리** | • CNI(Calico/Cilium) 지원 필수 (Flannel 단독 사용 시 동작 안 함)<br>• `policyTypes: ["Ingress", "Egress"]` 명시 | • `podSelector: {}`: 해당 네임스페이스의 모든 파드 대상.<br>• 규칙 미지정 시 기본 완전 차단(Default Deny). |
+| **NetworkPolicy AND vs OR** | • **AND**: 동일 배열 요소 내에 `podSelector`와 `namespaceSelector`가 함께 있는 경우<br>• **OR**: `- namespaceSelector:` 와 `- podSelector:` 가 별도 대시(-)로 나뉜 경우 | • 특정 네임스페이스의 특정 파드만 허용하려면 반드시 단일 블록(AND)으로 작성해야 함. |
+| **Egress CoreDNS 필수 허용** | 모든 Egress를 차단했을 때 DNS 질의가 막히므로, 포트 53(UDP/TCP) Egress 허용 규칙을 반드시 포함해야 함 | • `ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]` 누락 시 서비스 이름 해석 불가. |

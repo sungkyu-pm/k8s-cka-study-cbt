@@ -127,8 +127,9 @@ window.switchCertTrack = function(track, shouldUpdateHistory = true) {
   const navKcna = document.getElementById('nav-kcna');
   const cbtIframe = document.getElementById('cbt-iframe');
   const cbtQuickBtnLabel = document.getElementById('cbt-quick-btn-label');
-  const portalTitle = document.getElementById('portal-title');
-  const portalSubtitle = document.getElementById('portal-subtitle');
+  const cbtFullscreenLink = document.getElementById('cbt-fullscreen-link');
+  const cbtToolbarTitle = document.getElementById('cbt-toolbar-title');
+  const cbtToolbarDesc = document.getElementById('cbt-toolbar-desc');
 
   if (activeTrack === 'kcna') {
     // 버튼 상태
@@ -148,9 +149,13 @@ window.switchCertTrack = function(track, shouldUpdateHistory = true) {
     if (portalSubtitle) portalSubtitle.textContent = 'CNCF 공식 필기 가이드 (5대 영역 심층 학습 & 260문항 CBT)';
     if (cbtQuickBtnLabel) cbtQuickBtnLabel.textContent = '💻 KCNA 실전 CBT (260문항)';
 
+    if (cbtToolbarTitle) cbtToolbarTitle.textContent = 'KCNA 클라우드 네이티브 어소시에이트 실전 CBT 시뮬레이터';
+    if (cbtToolbarDesc) cbtToolbarDesc.textContent = 'CNCF 공식 출제 기준 260문항 풀 · 90분 타이머 · 75% 합격 기준 · 실시간 한/영 번역 및 개념 해설';
+    if (cbtFullscreenLink) cbtFullscreenLink.href = `./cbt-app/index.html?track=kcna&v=20261019_1545`;
+
     // KCNA 첫 번째 탭 열기 (만약 현재 탭이 cbt가 아니면)
     if (activeTab === 'cbt') {
-      if (cbtIframe) cbtIframe.src = `cbt-app/index.html?track=kcna&v=20261019_1535`;
+      if (cbtIframe) cbtIframe.src = `./cbt-app/index.html?track=kcna&v=20261019_1545`;
     } else {
       switchTab('kcna_overview');
     }
@@ -172,9 +177,13 @@ window.switchCertTrack = function(track, shouldUpdateHistory = true) {
     if (portalSubtitle) portalSubtitle.textContent = 'Linux Foundation & CNCF 공식 실기 대비 (1,250문항 CBT & 5대 도메인 심층 가이드)';
     if (cbtQuickBtnLabel) cbtQuickBtnLabel.textContent = '💻 CKA 실전 CBT (1,250문항)';
 
+    if (cbtToolbarTitle) cbtToolbarTitle.textContent = 'CKA 쿠버네티스 공인 관리자 실전 CBT 시뮬레이터';
+    if (cbtToolbarDesc) cbtToolbarDesc.textContent = '5대 도메인 1,250문항 풀 · 120분 타이머 · 66% 합격 기준 · 실기 시나리오 중심 무작위 추출';
+    if (cbtFullscreenLink) cbtFullscreenLink.href = `./cbt-app/index.html?track=cka&v=20261019_1545`;
+
     // CKA 첫 번째 탭 열기 (만약 현재 탭이 cbt가 아니면)
     if (activeTab === 'cbt') {
-      if (cbtIframe) cbtIframe.src = `cbt-app/index.html?track=cka&v=20261019_1535`;
+      if (cbtIframe) cbtIframe.src = `./cbt-app/index.html?track=cka&v=20261019_1545`;
     } else {
       switchTab('overview');
     }
@@ -182,7 +191,7 @@ window.switchCertTrack = function(track, shouldUpdateHistory = true) {
 
   // CBT Iframe src 동기화
   if (cbtIframe && activeTab !== 'cbt') {
-    cbtIframe.src = `cbt-app/index.html?track=${activeTrack}&v=20261019_1535`;
+    cbtIframe.src = `./cbt-app/index.html?track=${activeTrack}&v=20261019_1545`;
   }
 };
 
@@ -227,7 +236,7 @@ window.switchTab = function(tabId) {
     // CBT iframe 동기화
     const cbtIframe = document.getElementById('cbt-iframe');
     if (cbtIframe) {
-      const expectedSrc = `cbt-app/index.html?track=${activeTrack}&v=20261019_1535`;
+      const expectedSrc = `./cbt-app/index.html?track=${activeTrack}&v=20261019_1545`;
       if (!cbtIframe.src || !cbtIframe.src.includes(`track=${activeTrack}`)) {
         cbtIframe.src = expectedSrc;
       }

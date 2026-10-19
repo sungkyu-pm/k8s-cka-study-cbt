@@ -76,3 +76,14 @@ my-chart/
    - **Trivy**: 컨테이너 OS 패키지 및 애플리케이션 종속성(CVE)의 보안 결함을 탐지.
 3. **디지털 서명 및 검증 (Image Signing)**:
    - **Cosign (Sigstore)** / **Notary**: 배포 전 이미지가 변조되지 않았음을 암호화 서명으로 증명하고 Admission Controller(Kyverno, OPA Gatekeeper)에서 검증.
+
+## 5.5 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_kcna_domain5.json 30문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 GitOps/배포 표준 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **GitOps 핵심 원칙** | • **단일 진실의 원천 (Single Source of Truth)**: Git 저장소가 전체 시스템의 원하는 상태(Desired State)를 보관<br>• 선언적 명세, 자동 동기화, 드리프트(Drift) 자동 감지 및 치유 | • 개발자가 클러스터 터미널에 직접 `kubectl apply`를 실행하는 것은 GitOps 원칙에 위배됨. 모든 변경은 Git PR을 통해 수행. |
+| **GitOps 대표 도구** | • **Argo CD**: 쿠버네티스 전용 선언적 GitOps CD 도구 (웹 UI, Application CRD)<br>• **Flux**: 모듈식 GitOps 툴킷 | • Jenkins나 GitLab CI는 주로 CI(빌드/테스트) 단계에 사용되며, 클러스터 내부 동기화는 Argo CD/Flux가 담당. |
+| **Helm 차트 표준 구조** | • `Chart.yaml`: 차트 메타데이터 (이름, 버전)<br>• `values.yaml`: 기본 설정 값 정의<br>• `templates/`: 매니페스트 템플릿 디렉토리 | • Helm은 쿠버네티스의 패키지 관리자로, 템플릿과 값을 결합하여 릴리스(Release)를 배포하고 손쉬운 롤백 지원. |
+| **Harbor & Trivy 보안** | • **Harbor**: CNCF 졸업 오픈소스 프라이빗 컨테이너 레지스트리 (RBAC, 이미지 복제)<br>• **Trivy**: 취약점 스캐너 (CVE 취약점 및 설정 오류 사전 차단) | • 빌드된 컨테이너 이미지를 배포하기 전에 취약점 스캔을 통과해야 배포되도록 파이프라인 구성. |

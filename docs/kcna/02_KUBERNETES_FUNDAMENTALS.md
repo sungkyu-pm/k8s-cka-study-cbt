@@ -147,3 +147,15 @@
 - **RoleBinding vs ClusterRoleBinding**:
   - `RoleBinding`: 정의된 Role(또는 ClusterRole)을 특정 네임스페이스 내의 사용자/그룹/ServiceAccount에 바인딩.
   - `ClusterRoleBinding`: ClusterRole을 클러스터 전체 범위에서 바인딩.
+
+## 2.6 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_kcna_domain2.json 100문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 쿠버네티스 원리 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **Control Plane 컴포넌트 분담** | • **kube-apiserver**: 유일하게 etcd와 직접 통신하는 관문 REST API<br>• **etcd**: 분산 합의(Raft) 기반 고가용성 키-값 저장소<br>• **kube-scheduler**: 노드 리소스 평가 후 파드 배치 결정<br>• **kube-controller-manager**: Desired State 수렴 제어 루프 | • kube-scheduler는 파드를 직접 실행하는 프로세스가 아님 (실행은 워커 노드의 kubelet이 담당).<br>• etcd와 직접 통신할 수 있는 컴포넌트는 오직 apiserver뿐임. |
+| **Worker Node 에이전트** | • **kubelet**: 노드 데몬, PodSpec 기반 컨테이너 구동/상태 보고<br>• **kube-proxy**: 서비스 가상 IP 포워딩 (iptables/IPVS)<br>• **CRI**: 컨테이너 런타임(containerd) | • kubelet은 쿠버네티스 파드로 뜨지 않고 노드 OS의 systemd 데몬으로 직접 실행됨. |
+| **워크로드 컨트롤러 5종 비교** | • **Deployment**: 무상태 롤링 업데이트<br>• **DaemonSet**: 모든 노드 1개씩 실행 (로깅/모니터링)<br>• **StatefulSet**: 고유 식별자, 순차 배포, Headless 연계, DB<br>• **Job**: 1회성 완료 작업<br>• **CronJob**: 주기적 스케줄링 | • 모니터링 데몬 배포에 Deployment를 쓰면 특정 노드에 몰릴 수 있으므로 반드시 DaemonSet 사용. |
+| **서비스 4대 타입** | `ClusterIP`(내부), `NodePort`(외부 30000~32767), `LoadBalancer`(클라우드 LB), `ExternalName`(CNAME) | • Headless 서비스는 `spec.clusterIP: None`으로 설정하여 DNS 직접 질의 지원. |
+| **RBAC 인가 체계** | `Role` & `RoleBinding` (네임스페이스 단위) vs `ClusterRole` & `ClusterRoleBinding` (클러스터 전역) | • 노드(`nodes`)나 네임스페이스 자체는 비네임스페이스 리소스이므로 RoleBinding이 아닌 ClusterRoleBinding 필요. |

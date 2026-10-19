@@ -256,3 +256,20 @@ spec:
       name: app-config
       defaultMode: 0400    # 읽기 전용 권한 설정
 ```
+
+## 2.7 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_domain2.json 250문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 필수 매니페스트 속성 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **Deployment 롤링 업데이트** | • `strategy.rollingUpdate.maxSurge`: 동시 초과 허용 파드 수/비율<br>• `strategy.rollingUpdate.maxUnavailable`: 동시 불능 허용 파드 수/비율 | • 즉시 롤백: `kubectl rollout undo deployment/<name> --to-revision=1`<br>• 히스토리 기록 확인: `kubectl rollout history deployment/<name>` |
+| **DaemonSet 스케줄링** | 클러스터 모든 노드에 파드 1개 보장, 마스터 노드 배포 시 Toleration 필수:<br>`key: node-role.kubernetes.io/control-plane, operator: Exists, effect: NoSchedule` | • `replicas` 필드가 없음 (DaemonSet에 replicas를 지정하면 YAML 에러 발생).<br>• 마스터 노드에 CNI나 모니터링 데몬 배포 시 toleration 누락 주의. |
+| **StatefulSet & Headless Service** | • `serviceName: <headless-svc>` 명시<br>• `volumeClaimTemplates`로 파드마다 고유 PVC 자동 생성<br>• 파드명: `web-0`, `web-1` 고유 서수 인덱스 | • 일반 ClusterIP 서비스와 결합하면 안 되며 반드시 `spec.clusterIP: None`인 Headless Service와 결합해야 개별 파드 도메인 해석 가능. |
+| **CronJob 동시성 제어** | `concurrencyPolicy`: `Allow`(기본), `Forbid`(이전 잡 미완료 시 새 잡 건너뜀), `Replace`(기존 잡 취소 후 새 잡 실행) | • `restartPolicy`는 Job/CronJob 파드에서 절대로 `Always`를 쓸 수 없음 (`OnFailure` 또는 `Never` 필수). |
+| **멀티 컨테이너 & 사이드카** | 메인 컨테이너와 사이드카 컨테이너가 `emptyDir` 볼륨을 공유하여 로그 수집/프록시 수행 | • 컨테이너 간 통신은 `localhost`로 가능 (동일 네트워크 네임스페이스 및 IP 공유). |
+| **Init Container 수명주기** | 메인 컨테이너 기동 전 1개씩 순차 완료되어야 함. 실패 시 메인 컨테이너는 절대 실행되지 않음 | • DB 준비 상태 대기: `until nc -z db 3306; do sleep 2; done`<br>• 리소스는 init 컨테이너 중 최댓값으로 평가됨. |
+| **NodeAffinity Hard vs Soft** | • Hard: `requiredDuringSchedulingIgnoredDuringExecution`<br>• Soft: `preferredDuringSchedulingIgnoredDuringExecution` | • Hard 규칙 조건 미충족 시 파드는 `Pending` 상태로 머묾.<br>• Soft 규칙은 미충족 시에도 다른 노드에 스케줄링됨. |
+| **Taints & Tolerations** | • 노드 테인트: `kubectl taint nodes node-1 env=prod:NoSchedule`<br>• 테인트 제거: `kubectl taint nodes node-1 env=prod:NoSchedule-` | • Toleration은 파드가 노드를 선택하는 것이 아니라, 노드의 Taint를 견디는(tolerate) 허가증임. |
+| **securityContext 보안 제약** | `securityContext.runAsNonRoot: true`, `readOnlyRootFilesystem: true`, `capabilities.add: ["NET_ADMIN"]` | • root 사용자로 실행 시 파드가 즉시 에러로 중단됨.<br>• 파드 레벨 vs 컨테이너 레벨 설정 범위 구별. |
+| **리소스 QoS 3대 등급** | • **Guaranteed**: CPU/Memory의 requests와 limits가 정확히 일치<br>• **Burstable**: requests < limits<br>• **BestEffort**: requests/limits 모두 미지정 | • 노드 메모리 고갈 시 OOM 킬러 퇴거 1순위는 `BestEffort`, 마지막 보호 대상은 `Guaranteed`. |

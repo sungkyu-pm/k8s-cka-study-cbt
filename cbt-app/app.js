@@ -308,23 +308,13 @@ class K8sCBTSimulator {
 
     // 문제 데이터 로드
     let questionList = [];
+    const isGitHubPages = window.location.hostname.includes('github.io');
 
-    // 1차: 로컬 서버 API 시도
-    try {
-      const res = await fetch(`/api/questions?set=${this.selectedExamSet}&limit=${examCount}&shuffle=${shouldShuffleQuestions}`);
-      if (res.ok) {
-        const json = await res.json();
-        questionList = json.questions;
-      }
-    } catch (e) {
-      // 오프라인 폴백
-    }
-
-    // 2차: window.EXAM_DATA 폴백 (GitHub Pages 또는 로컬 오프라인 모드)
-    if (!questionList || questionList.length === 0) {
+    // 1순위: window.EXAM_DATA 가 로드되어 있는 경우 즉시 번들에서 추출 (0ms 지연 없이 오픈)
+    if (window.EXAM_DATA) {
       if (this.selectedExamSet === 'mock_random' || this.selectedExamSet === 'mock1' || this.selectedExamSet === 'kcna_mock_random' || this.selectedExamSet === 'kcna_mock1') {
         questionList = this.sampleMockExam(examCount);
-      } else if (window.EXAM_DATA && window.EXAM_DATA[this.selectedExamSet]) {
+      } else if (window.EXAM_DATA[this.selectedExamSet]) {
         let pool = [...window.EXAM_DATA[this.selectedExamSet]];
         if (shouldShuffleQuestions) {
           pool = this.shuffleArray(pool);
@@ -335,6 +325,19 @@ class K8sCBTSimulator {
         } else {
           questionList = pool;
         }
+      }
+    }
+
+    // 2순위: 번들 미존재 시 로컬 서버 API 시도
+    if ((!questionList || questionList.length === 0) && !isGitHubPages) {
+      try {
+        const res = await fetch(`/api/questions?set=${this.selectedExamSet}&limit=${examCount}&shuffle=${shouldShuffleQuestions}`);
+        if (res.ok) {
+          const json = await res.json();
+          questionList = json.questions;
+        }
+      } catch (e) {
+        // 오프라인 폴백
       }
     }
 
@@ -601,8 +604,61 @@ class K8sCBTSimulator {
     this.feedbackBadge.style.color = '#ffffff';
     this.feedbackBadge.textContent = isCorrect ? '✅ 정답입니다!' : `❌ 오답 (정답: ${q.correct_answer})`;
 
-    this.feedbackKeyConcept.textContent = q.key_concept ? `핵심 개념: ${q.key_concept}` : '';
+    this.feedbackKeyConcept.textContent = q.key_concept ? `📌 핵심 개념: ${q.key_concept}` : '';
     this.feedbackExplanation.textContent = q.explanation_kr || '해설이 준비되어 있지 않습니다.';
+
+    // 학습 가이드 연계 바로가기 배너
+    let guideLinkEl = document.getElementById('feedback-guide-link');
+    if (!guideLinkEl) {
+      guideLinkEl = document.createElement('div');
+      guideLinkEl.id = 'feedback-guide-link';
+      guideLinkEl.style.marginTop = '1rem';
+      guideLinkEl.style.padding = '0.75rem 1rem';
+      guideLinkEl.style.borderRadius = '8px';
+      guideLinkEl.style.backgroundColor = 'rgba(50, 108, 229, 0.08)';
+      guideLinkEl.style.border = '1px solid rgba(50, 108, 229, 0.25)';
+      guideLinkEl.style.display = 'flex';
+      guideLinkEl.style.alignItems = 'center';
+      guideLinkEl.style.justifyContent = 'space-between';
+      this.studyFeedbackBox.appendChild(guideLinkEl);
+    }
+
+    const domainKey = this.getDomainDocKey(q);
+    guideLinkEl.innerHTML = `
+      <div style="font-size: 0.85rem; color: #1e293b; font-weight: 600;">
+        📖 <strong style="color: #326ce5;">${q.domain_name || '해당 영역'}</strong> 심층 학습 가이드
+      </div>
+      <button type="button" onclick="window.cbtApp.openParentDoc('${domainKey}')" style="background: #326ce5; color: white; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; cursor: pointer;">
+        가이드 원문 열기 ↗
+      </button>
+    `;
+  }
+
+  getDomainDocKey(q) {
+    const d = (q.domain || '').toLowerCase();
+    if (this.currentTrack === 'kcna') {
+      if (d.includes('1')) return 'kcna_domain1';
+      if (d.includes('2')) return 'kcna_domain2';
+      if (d.includes('3')) return 'kcna_domain3';
+      if (d.includes('4')) return 'kcna_domain4';
+      if (d.includes('5')) return 'kcna_domain5';
+      return 'kcna_overview';
+    } else {
+      if (d.includes('1')) return 'domain1';
+      if (d.includes('2')) return 'domain2';
+      if (d.includes('3')) return 'domain3';
+      if (d.includes('4')) return 'domain4';
+      if (d.includes('5')) return 'domain5';
+      return 'overview';
+    }
+  }
+
+  openParentDoc(docKey) {
+    if (window.parent && window.parent !== window && typeof window.parent.switchTab === 'function') {
+      window.parent.switchTab(docKey);
+    } else {
+      window.open(`../#${docKey}`, '_blank');
+    }
   }
 
   navigateQuestion(delta) {

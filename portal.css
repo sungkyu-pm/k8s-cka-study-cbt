@@ -497,21 +497,81 @@ body {
 }
 
 /* ==========================================================================
-   CBT 아이프레임 탭
+   CBT 아이프레임 탭 및 툴바
    ========================================================================== */
+.cbt-top-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  padding: 1.25rem 1.75rem;
+  border-radius: 12px 12px 0 0;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+}
+
+.cbt-live-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.15);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.35rem;
+}
+
+.cbt-toolbar-info h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: #f8fafc;
+}
+
+.cbt-toolbar-desc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.btn-fullscreen-cbt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #326ce5 0%, #1d4ed8 100%);
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(50, 108, 229, 0.35);
+  white-space: nowrap;
+}
+
+.btn-fullscreen-cbt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(50, 108, 229, 0.5);
+}
+
 .cbt-frame-container {
   width: 100%;
-  min-height: 850px;
-  border: none;
-  border-radius: 12px;
+  min-height: 920px;
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 12px 12px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
+  background-color: var(--surface);
 }
 
 .cbt-iframe {
   width: 100%;
-  height: 850px;
+  height: 950px;
   border: none;
+  display: block;
 }
 
 /* ==========================================================================

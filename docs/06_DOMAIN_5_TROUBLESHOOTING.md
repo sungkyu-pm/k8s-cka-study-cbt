@@ -123,3 +123,18 @@ kubectl run net-debug --image=curlimages/curl --rm -it --restart=Never -- curl -
 # 3. 전체 네임스페이스의 경고(Warning) 이벤트 실시간 감시
 kubectl get events -A --field-selector type=Warning --sort-by='.metadata.creationTimestamp'
 ```
+
+## 5.5 🎯 실전 CBT 문제 은행 핵심 출제 포인트 & 해설 매핑 (Questions & Key Concepts)
+
+이 섹션은 CBT 문제 은행(**questions_domain5.json 250문항**)의 모든 핵심 개념(`key_concept`), 정답 해설 및 빈출 함정 키워드와 1:1로 일치하도록 정리된 요약본입니다.
+
+| 출제 핵심 개념 (Key Concept) | 공식 출제 의도 및 필수 트러블슈팅 절차 | CBT 대표 오답 함정 & 판별 포인트 |
+| :--- | :--- | :--- |
+| **CrashLoopBackOff 분석** | • 컨테이너 프로세스가 기동 후 비정상 종료(Exit Code 1, 2 등) 반복<br>• 직전 컨테이너 종료 로그: `kubectl logs <pod> -c <container> -p` | • 실행 중인 파드 로그(`kubectl logs`)에는 에러가 없고 재시작만 반복될 수 있으므로 반드시 `-p`(--previous) 플래그로 직전 크래시 원인 확인. |
+| **OOMKilled (Exit Code 137)** | 컨테이너 메모리 사용량이 `resources.limits.memory` 한도를 초과하여 리눅스 커널 OOM Killer에 의해 SIGKILL(9 + 128 = 137)됨 | • CPU 초과는 프로세스를 강제 종료하지 않고 Throttling(지연)을 발생시키지만, 메모리 초과는 즉시 OOMKilled 강제 종료됨. 해결책: limit 상향. |
+| **ImagePullBackOff / ErrImagePull** | 1. 이미지 이름 또는 태그 오탈자<br>2. 프라이빗 레지스트리 인증 시크릿(`imagePullSecrets`) 누락<br>3. 네트워크 DNS 차단 | • `kubectl describe pod`의 맨 아래 Events 섹션에서 정확한 에러 메시지(401 Unauthorized vs 404 Not Found) 확인. |
+| **Pod Pending 상태 해결** | 1. 노드 CPU/메모리 자원 부족<br>2. 노드의 Taint를 파드가 견디지 못함 (Toleration 누락)<br>3. `nodeSelector` 라벨과 일치하는 노드가 없음 | • 스케줄러 다운 시에도 모든 신규 파드가 Pending 상태가 됨 (`kubectl get pods -n kube-system` 확인). |
+| **Node NotReady 긴급 복구** | 1. 워커 노드 SSH 접속<br>2. `systemctl status kubelet`, `journalctl -u kubelet -n 100 --no-pager`<br>3. CNI 플러그인 인터페이스 및 설정 확인 | • `/var/lib/kubelet/config.yaml`의 문법 오탈자나 인증서 만료 확인.<br>• kubelet 데몬이 꺼져 있으면 컨테이너 런타임이 살아 있어도 노드는 NotReady. |
+| **제어 평면 다운 디버깅** | API 서버가 다운되면 `kubectl` 명령어 자체가 작동하지 않음! | • 노드 로컬에서 컨테이너 런타임 CLI 사용: `crictl ps -a`, `crictl logs <id>`<br>• `/etc/kubernetes/manifests` 내의 Static Pod YAML 오탈자 복구. |
+| **서비스 통신 타임아웃** | 서비스 VIP로는 핑이 가지 않으며 정상 동작함. 통신 실패 시 `kubectl get ep <svc>`로 백엔드 파드 IP 바인딩 확인 | • 라벨 셀렉터 불일치 또는 파드의 `readinessProbe` 실패로 인해 파드가 서비스 엔드포인트에서 제외된 것이 주원인. |
+| **파드 강제 삭제** | 노드 다운 등으로 파드가 `Terminating` 상태에서 멈춘 경우:<br>`kubectl delete pod <name> --force --grace-period=0` | • 정상 상태에서는 `--grace-period=0`을 남용하지 말고 정상 종료를 대기해야 함. |
