@@ -318,5 +318,485 @@
     "correct_answer": "B",
     "explanation_kr": "정답은 B입니다.\n\n• 컨트롤 플레인(마스터) 노드에서는 `kubeadm upgrade apply v<버전>` 명령을 사용하지만,\n• 워커 노드에서는 컨트롤 플레인 설정을 건드리지 않고 로컬 kubelet 구성을 갱신하기 위해 `kubeadm upgrade node` 명령어를 사용합니다. (CKA 시험 필수 구분 포인트!)",
     "key_concept": "kubeadm upgrade node vs kubeadm upgrade apply"
+  },
+  {
+    "id": "D1-Q11",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to generate a new join token and print the full kubeadm join command line with CA cert hash to join a new worker node to an existing cluster. Which command accomplishes this?",
+    "question_kr": "기존 클러스터에 새 워커 노드를 조인시키기 위해, CA 인증서 해시가 포함된 전체 kubeadm join 커맨드라인을 새로 생성하고 출력해야 합니다. 이 작업을 수행하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubeadm token create --print-join-command",
+        "text_kr": "kubeadm token create --print-join-command"
+      },
+      {
+        "key": "B",
+        "text_en": "kubeadm join generate-token --all-nodes",
+        "text_kr": "kubeadm join generate-token --all-nodes"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl create join-token --worker",
+        "text_kr": "kubectl create join-token --worker"
+      },
+      {
+        "key": "D",
+        "text_en": "kubeadm cluster token get --hash",
+        "text_kr": "kubeadm cluster token get --hash"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubeadm token create --print-join-command 명령을 실행하면 새 토큰을 발급함과 동시에 --discovery-token-ca-cert-hash가 포함된 즉시 실행 가능한 완전한 kubeadm join 명령어를 터미널에 출력해줍니다.",
+    "key_concept": "kubeadm token create --print-join-command, Worker Node Join"
+  },
+  {
+    "id": "D1-Q12",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "An administrator submitted a CertificateSigningRequest (CSR) named 'developer-bob'. Which command approves this certificate request so that the client certificate can be issued?",
+    "question_kr": "관리자가 'developer-bob'이라는 이름의 CSR(CertificateSigningRequest)을 제출했습니다. 클라이언트 인증서가 발급될 수 있도록 이 인증서 요청을 승인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl certificate approve developer-bob",
+        "text_kr": "kubectl certificate approve developer-bob"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl csr sign developer-bob --allow",
+        "text_kr": "kubectl csr sign developer-bob --allow"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl approve csr developer-bob",
+        "text_kr": "kubectl approve csr developer-bob"
+      },
+      {
+        "key": "D",
+        "text_en": "kubeadm certs approve developer-bob",
+        "text_kr": "kubeadm certs approve developer-bob"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스에서 대기 중인 CSR을 승인할 때는 kubectl certificate approve <CSR이름>을 사용합니다.\n• 거부할 때는 kubectl certificate deny <CSR이름>을 사용합니다.",
+    "key_concept": "CertificateSigningRequest (CSR), kubectl certificate approve"
+  },
+  {
+    "id": "D1-Q13",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "In a kubeconfig file, which section links a specific user identity to a specific cluster and optional namespace?",
+    "question_kr": "kubeconfig 파일에서 특정 사용자 자격 증명(User)과 특정 클러스터(Cluster), 그리고 선택적 네임스페이스를 연결해주는 섹션은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "contexts",
+        "text_kr": "contexts"
+      },
+      {
+        "key": "B",
+        "text_en": "bindings",
+        "text_kr": "bindings"
+      },
+      {
+        "key": "C",
+        "text_en": "preferences",
+        "text_kr": "preferences"
+      },
+      {
+        "key": "D",
+        "text_en": "mappings",
+        "text_kr": "mappings"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubeconfig의 contexts 항목은 cluster, user, namespace의 3가지 요소를 하나로 묶어 정의합니다.\n• 사용자는 kubectl config use-context <컨텍스트명>으로 손쉽게 대상 클러스터와 권한을 전환할 수 있습니다.",
+    "key_concept": "kubeconfig Contexts, Context Switching"
+  },
+  {
+    "id": "D1-Q14",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to create a new ServiceAccount named 'deploy-sa' in the 'prod' namespace. Which command creates it using kubectl imperatively?",
+    "question_kr": "'prod' 네임스페이스에 'deploy-sa'라는 새 ServiceAccount를 생성해야 합니다. 명령형 커맨드로 이를 생성하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl create serviceaccount deploy-sa -n prod",
+        "text_kr": "kubectl create serviceaccount deploy-sa -n prod"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl generate sa deploy-sa --namespace=prod",
+        "text_kr": "kubectl generate sa deploy-sa --namespace=prod"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl add user deploy-sa -n prod",
+        "text_kr": "kubectl add user deploy-sa -n prod"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl new serviceaccount deploy-sa -n prod",
+        "text_kr": "kubectl new serviceaccount deploy-sa -n prod"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl create serviceaccount <이름> [-n <네임스페이스>] (또는 create sa) 명령으로 즉시 서비스어카운트를 생성할 수 있습니다.",
+    "key_concept": "kubectl create serviceaccount, ServiceAccount Creation"
+  },
+  {
+    "id": "D1-Q15",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to check the remaining validity period and expiration dates of all control plane certificates generated by kubeadm. Which command provides this information?",
+    "question_kr": "kubeadm으로 생성된 모든 컨트롤 플레인 내부 인증서의 잔여 유효 기간 및 만료 일자를 확인해야 합니다. 이 정보를 제공하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubeadm certs check-expiration",
+        "text_kr": "kubeadm certs check-expiration"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl get certificates --all-namespaces",
+        "text_kr": "kubectl get certificates --all-namespaces"
+      },
+      {
+        "key": "C",
+        "text_en": "openssl check /etc/kubernetes/pki/*",
+        "text_kr": "openssl check /etc/kubernetes/pki/*"
+      },
+      {
+        "key": "D",
+        "text_en": "kubeadm token list --certs",
+        "text_kr": "kubeadm token list --certs"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubeadm certs check-expiration 명령은 /etc/kubernetes/pki 디렉토리와 kubeconfig 파일에 포함된 클라이언트/서버 인증서들의 잔여 일수와 만료 시점을 한눈에 보여줍니다.",
+    "key_concept": "kubeadm certs check-expiration, Certificate Lifecycle"
+  },
+  {
+    "id": "D1-Q16",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "How can you renew all expiring control plane certificates using kubeadm in a single command?",
+    "question_kr": "만료가 임박한 모든 컨트롤 플레인 인증서를 kubeadm 명령 하나로 일괄 갱신하려면 어떤 명령을 실행해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubeadm certs renew all",
+        "text_kr": "kubeadm certs renew all"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl renew certificates --all",
+        "text_kr": "kubectl renew certificates --all"
+      },
+      {
+        "key": "C",
+        "text_en": "kubeadm upgrade certificates",
+        "text_kr": "kubeadm upgrade certificates"
+      },
+      {
+        "key": "D",
+        "text_en": "systemctl restart kube-certificates",
+        "text_kr": "systemctl restart kube-certificates"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubeadm certs renew all을 실행하면 /etc/kubernetes/pki 내부의 모든 제어 평면 인증서가 1년 유효기간으로 일괄 갱신됩니다. 갱신 후에는 정적 파드들이 새 인증서를 로드하도록 컨테이너 런타임이나 노드를 재시작해야 합니다.",
+    "key_concept": "kubeadm certs renew all, Certificate Renewal"
+  },
+  {
+    "id": "D1-Q17",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "A cluster administrator needs to grant the 'monitoring' ServiceAccount permission to view nodes across the entire cluster. Which RBAC resource pairing must be created?",
+    "question_kr": "클러스터 관리자가 'monitoring' ServiceAccount에 클러스터 전체 노드(nodes)를 조회할 수 있는 권한을 부여해야 합니다. 생성해야 하는 RBAC 리소스 쌍은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A ClusterRole granting 'get, list' on 'nodes' and a ClusterRoleBinding binding it to the ServiceAccount.",
+        "text_kr": "'nodes'에 'get, list'를 부여하는 ClusterRole과 이를 해당 ServiceAccount에 연결하는 ClusterRoleBinding."
+      },
+      {
+        "key": "B",
+        "text_en": "A Role in the kube-system namespace and a RoleBinding.",
+        "text_kr": "kube-system 네임스페이스의 Role과 RoleBinding."
+      },
+      {
+        "key": "C",
+        "text_en": "A NodePolicy with action Allow.",
+        "text_kr": "액션 Allow가 지정된 NodePolicy."
+      },
+      {
+        "key": "D",
+        "text_en": "A ClusterRole with an empty verbs array.",
+        "text_kr": "verbs 배열이 비어 있는 ClusterRole."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• nodes는 특정 네임스페이스에 속하지 않는 클러스터 전역 리소스(Non-namespaced resource)입니다.\n• 따라서 네임스페이스 범위의 Role로는 권한을 줄 수 없으며, 반드시 ClusterRole과 ClusterRoleBinding을 사용해야 합니다.",
+    "key_concept": "Non-namespaced Resources RBAC, ClusterRole and ClusterRoleBinding"
+  },
+  {
+    "id": "D1-Q18",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "Which flag in kubelet configuration file defines the directory where kubelet monitors and runs static pods?",
+    "question_kr": "kubelet 설정 파일에서 스태틱 파드를 모니터링하고 실행할 디렉토리 경로를 지정하는 설정 필드는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "staticPodPath",
+        "text_kr": "staticPodPath"
+      },
+      {
+        "key": "B",
+        "text_en": "manifestDirectory",
+        "text_kr": "manifestDirectory"
+      },
+      {
+        "key": "C",
+        "text_en": "podManifestLocation",
+        "text_kr": "podManifestLocation"
+      },
+      {
+        "key": "D",
+        "text_en": "systemPodRoot",
+        "text_kr": "systemPodRoot"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubelet 설정 파일(/var/lib/kubelet/config.yaml)에서 staticPodPath: /etc/kubernetes/manifests로 지정됩니다. 이 경로에 위치한 모든 YAML 파일은 kubelet에 의해 스태틱 파드로 직접 실행됩니다.",
+    "key_concept": "kubelet configuration staticPodPath"
+  },
+  {
+    "id": "D1-Q19",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "What is the consequence of having an even number of etcd members (e.g., 4 members) compared to an odd number (3 members)?",
+    "question_kr": "홀수 개(3개)의 etcd 멤버로 구성하는 것에 비해 짝수 개(4개)의 멤버로 구성할 때 발생하는 단점 및 결과는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It does not increase fault tolerance (both tolerate only 1 failure) while increasing network communication overhead and risk of quorum loss.",
+        "text_kr": "허용 가능한 노드 장애 대수는 1대로 동일하면서, 네트워크 오버헤드와 쿼럼 상실 위험만 증가합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "etcd refuses to start with an even number of members.",
+        "text_kr": "etcd는 짝수 개의 멤버일 경우 기동을 거부합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "The cluster doubles its write throughput.",
+        "text_kr": "클러스터의 쓰기 처리량이 2배로 증가합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Encryption at rest is automatically disabled.",
+        "text_kr": "저장 데이터 암호화가 자동으로 비활성화됩니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 3대 클러스터의 쿼럼은 2대이며 최대 1대 장애를 견딥니다.\n• 4대 클러스터의 쿼럼은 3대이며 역시 최대 1대 장애만 견딜 수 있습니다.\n• 즉, 짝수 노드는 가용성 이득 없이 네트워크 동기화 비용과 스플릿 브레인 취약성만 유발하므로 etcd는 반드시 홀수(3, 5개)로 구성해야 합니다.",
+    "key_concept": "etcd Quorum Characteristics (Odd vs Even Members)"
+  },
+  {
+    "id": "D1-Q20",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "Which command switches the current active context in ~/.kube/config to 'prod-cluster'?",
+    "question_kr": "~/.kube/config 파일에서 현재 활성화된 컨텍스트를 'prod-cluster'로 전환하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl config use-context prod-cluster",
+        "text_kr": "kubectl config use-context prod-cluster"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl set context prod-cluster",
+        "text_kr": "kubectl set context prod-cluster"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl switch cluster prod-cluster",
+        "text_kr": "kubectl switch cluster prod-cluster"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl context activate prod-cluster",
+        "text_kr": "kubectl context activate prod-cluster"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl config use-context <컨텍스트이름>은 CKA 시험의 모든 문제 풀이 시작 시 필수적으로 실행하는 컨텍스트 스위칭 커맨드입니다.",
+    "key_concept": "kubectl config use-context, Context Switching"
+  },
+  {
+    "id": "D1-Q21",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to drain a worker node for maintenance. Some pods on the node use emptyDir volumes. What flag must be added to the kubectl drain command to proceed with pod eviction?",
+    "question_kr": "유지보수를 위해 워커 노드를 drain해야 합니다. 해당 노드의 일부 파드가 emptyDir 볼륨을 사용하고 있습니다. 파드 축출을 계속 진행하기 위해 kubectl drain 명령에 반드시 추가해야 하는 플래그는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "--delete-emptydir-data",
+        "text_kr": "--delete-emptydir-data"
+      },
+      {
+        "key": "B",
+        "text_en": "--force-emptydir",
+        "text_kr": "--force-emptydir"
+      },
+      {
+        "key": "C",
+        "text_en": "--purge-local-storage",
+        "text_kr": "--purge-local-storage"
+      },
+      {
+        "key": "D",
+        "text_en": "--allow-data-loss",
+        "text_kr": "--allow-data-loss"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• emptyDir을 사용하는 파드는 노드 퇴거 시 로컬 데이터가 삭제되므로, drain 명령이 기본적으로 작업을 거부합니다.\n• 관리자가 데이터 삭제를 인지하고 있음을 명시하기 위해 --delete-emptydir-data 플래그를 추가해야 합니다.",
+    "key_concept": "kubectl drain --delete-emptydir-data"
+  },
+  {
+    "id": "D1-Q22",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "Which command creates a ClusterRole named 'deployment-admin' that allows all verbs on deployments in the apps API group?",
+    "question_kr": "apps API 그룹의 deployments 리소스에 대해 모든 동사(*) 권한을 허용하는 'deployment-admin'이라는 ClusterRole을 생성하는 명령형 커맨드는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl create clusterrole deployment-admin --verb=* --resource=deployments.apps",
+        "text_kr": "kubectl create clusterrole deployment-admin --verb=* --resource=deployments.apps"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl create role deployment-admin --all-verbs --cluster",
+        "text_kr": "kubectl create role deployment-admin --all-verbs --cluster"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl add clusterrole deployment-admin deployments.apps:all",
+        "text_kr": "kubectl add clusterrole deployment-admin deployments.apps:all"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl make clusterrole deployment-admin -r deployments",
+        "text_kr": "kubectl make clusterrole deployment-admin -r deployments"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl create clusterrole <이름> --verb=* --resource=deployments.apps 명령으로 API 그룹과 와일드카드 동사를 지정하여 생성할 수 있습니다.",
+    "key_concept": "kubectl create clusterrole imperative command"
+  },
+  {
+    "id": "D1-Q23",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "Where does kubelet store its default PKI client certificates and keys on a worker node after successfully joining the cluster?",
+    "question_kr": "워커 노드가 클러스터에 성공적으로 조인한 후, kubelet이 자체 PKI 클라이언트 인증서와 키를 저장하는 기본 디렉토리 경로는 어디입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "/var/lib/kubelet/pki",
+        "text_kr": "/var/lib/kubelet/pki"
+      },
+      {
+        "key": "B",
+        "text_en": "/etc/kubernetes/pki/worker",
+        "text_kr": "/etc/kubernetes/pki/worker"
+      },
+      {
+        "key": "C",
+        "text_en": "/root/.kube/certs",
+        "text_kr": "/root/.kube/certs"
+      },
+      {
+        "key": "D",
+        "text_en": "/opt/cni/bin/pki",
+        "text_kr": "/opt/cni/bin/pki"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 워커 노드의 kubelet 인증서(kubelet-client-current.pem 등)는 /var/lib/kubelet/pki에 저장됩니다.",
+    "key_concept": "kubelet PKI Directory (/var/lib/kubelet/pki)"
+  },
+  {
+    "id": "D1-Q24",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "During cluster initialization with kubeadm init, what flag specifies the IP address range for Pod networking (CIDR)?",
+    "question_kr": "kubeadm init으로 클러스터를 초기화할 때, 파드 네트워크에 할당할 IP 대역(CIDR)을 지정하는 플래그는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "--pod-network-cidr",
+        "text_kr": "--pod-network-cidr"
+      },
+      {
+        "key": "B",
+        "text_en": "--cluster-cidr-range",
+        "text_kr": "--cluster-cidr-range"
+      },
+      {
+        "key": "C",
+        "text_en": "--pod-ip-pool",
+        "text_kr": "--pod-ip-pool"
+      },
+      {
+        "key": "D",
+        "text_en": "--cni-subnet",
+        "text_kr": "--cni-subnet"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubeadm init --pod-network-cidr=192.168.0.0/16 (또는 CNI 권장 대역) 플래그를 설정해야 CNI 플러그인이 정상적으로 파드에 IP를 라우팅할 수 있습니다.",
+    "key_concept": "kubeadm init --pod-network-cidr"
+  },
+  {
+    "id": "D1-Q25",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to grant 'jane' the ability to view secrets in the 'finance' namespace, but prevent her from creating or modifying them. Which verbs should be specified in the Role?",
+    "question_kr": "'finance' 네임스페이스에서 'jane'에게 Secret을 조회할 수 있는 권한을 주되, 생성이나 수정은 방지하고자 합니다. Role의 verbs에 지정해야 하는 값은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "verbs: ['get', 'list']",
+        "text_kr": "verbs: ['get', 'list']"
+      },
+      {
+        "key": "B",
+        "text_en": "verbs: ['read', 'write']",
+        "text_kr": "verbs: ['read', 'write']"
+      },
+      {
+        "key": "C",
+        "text_en": "verbs: ['view']",
+        "text_kr": "verbs: ['view']"
+      },
+      {
+        "key": "D",
+        "text_en": "verbs: ['describe', 'inspect']",
+        "text_kr": "verbs: ['describe', 'inspect']"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 RBAC에서 읽기 전용 권한은 get, list, watch입니다. describe나 view는 유효한 API 동사가 아닙니다.",
+    "key_concept": "RBAC Read-only Verbs (get, list, watch)"
   }
 ]

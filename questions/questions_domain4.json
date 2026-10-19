@@ -318,5 +318,485 @@
     "correct_answer": "A",
     "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스의 **Storage Object in Use Protection** 기능(Finalizer: `kubernetes.io/pvc-protection`)으로 인해, 실행 중인 파드가 마운트 중인 PVC는 즉시 삭제되지 않고 `Terminating` 상태로 머물며 안전하게 데이터와 파드를 보호합니다.",
     "key_concept": "Storage Object in Use Protection, Finalizers"
+  },
+  {
+    "id": "D4-Q11",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What happens to the actual physical storage volume if a PersistentVolume's reclaim policy is set to 'Delete' and its bound PVC is deleted?",
+    "question_kr": "PersistentVolume의 reclaim policy가 'Delete'로 설정되어 있을 때 바인딩된 PVC가 삭제되면 기본 물리적 스토리지 볼륨은 어떻게 됩니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Both the PersistentVolume object and the associated storage asset in the external infrastructure are automatically deleted.",
+        "text_kr": "쿠버네티스의 PersistentVolume 오브젝트와 외부 인프라의 실제 스토리지 에셋이 모두 자동 삭제됩니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The PV transitions to Released state and data remains intact.",
+        "text_kr": "PV가 Released 상태로 변경되고 데이터는 그대로 보존됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "The PV is formatted and recycled for a new pod.",
+        "text_kr": "PV가 포맷되고 새 파드를 위해 재활용(recycle)됩니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The deletion is blocked until manual admin approval.",
+        "text_kr": "관리자의 수동 승인이 있을 때까지 삭제가 차단됩니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Delete 정책은 클라우드 디스크(AWS EBS, GCE PD 등)를 자동으로 프로비저닝 해제(삭제)하여 미사용 스토리지 비용이 청구되는 것을 방지합니다.",
+    "key_concept": "Reclaim Policy: Delete"
+  },
+  {
+    "id": "D4-Q12",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Which AccessMode is supported by single-pod block storage volumes like AWS EBS gp3?",
+    "question_kr": "AWS EBS gp3와 같은 일반적인 단일 노드 블록 스토리지 볼륨이 지원하는 유효한 AccessMode는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReadWriteOnce (RWO)",
+        "text_kr": "ReadWriteOnce (RWO)"
+      },
+      {
+        "key": "B",
+        "text_en": "ReadWriteMany (RWX)",
+        "text_kr": "ReadWriteMany (RWX)"
+      },
+      {
+        "key": "C",
+        "text_en": "ReadOnlyMany (ROX)",
+        "text_kr": "ReadOnlyMany (ROX)"
+      },
+      {
+        "key": "D",
+        "text_en": "ReadWriteMultiNode",
+        "text_kr": "ReadWriteMultiNode"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 블록 스토리지는 하드웨어 특성상 하나의 인스턴스(노드)에만 어태치될 수 있으므로 ReadWriteOnce(RWO) 모드로만 동작합니다.",
+    "key_concept": "Block Storage AccessMode: ReadWriteOnce"
+  },
+  {
+    "id": "D4-Q13",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "How can you mark a StorageClass as the default storage class for all PVCs that omit `spec.storageClassName`?",
+    "question_kr": "`spec.storageClassName`을 생략한 모든 PVC에 대해 특정 StorageClass가 기본값(Default)으로 적용되도록 지정하는 어노테이션은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "storageclass.kubernetes.io/is-default-class: 'true'",
+        "text_kr": "storageclass.kubernetes.io/is-default-class: 'true'"
+      },
+      {
+        "key": "B",
+        "text_en": "k8s.io/default-storage: 'true'",
+        "text_kr": "k8s.io/default-storage: 'true'"
+      },
+      {
+        "key": "C",
+        "text_en": "storage.alpha.kubernetes.io/default: 'true'",
+        "text_kr": "storage.alpha.kubernetes.io/default: 'true'"
+      },
+      {
+        "key": "D",
+        "text_en": "spec.default: true",
+        "text_kr": "spec.default: true"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StorageClass의 metadata.annotations에 storageclass.kubernetes.io/is-default-class: 'true'를 추가하면 기본 스토리지클래스로 등록됩니다.",
+    "key_concept": "Default StorageClass Annotation"
+  },
+  {
+    "id": "D4-Q14",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "A user created a PVC without specifying `storageClassName`. The PVC is bound to an unexpected PV. How can a PVC explicitly request static binding to PVs that have no storage class assigned?",
+    "question_kr": "사용자가 storageClassName을 지정하지 않고 PVC를 생성했더니 예상치 못한 기본 StorageClass에 의해 바인딩되었습니다. 스토리지클래스가 없는 수동(static) PV에만 바인딩되도록 강제하려면 PVC에서 어떻게 지정해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Set `storageClassName: ''` (empty string)",
+        "text_kr": "`storageClassName: ''` (빈 문자열)로 설정"
+      },
+      {
+        "key": "B",
+        "text_en": "Set `storageClassName: none`",
+        "text_kr": "`storageClassName: none`으로 설정"
+      },
+      {
+        "key": "C",
+        "text_en": "Set `storageClassName: manual-only`",
+        "text_kr": "`storageClassName: manual-only`로 설정"
+      },
+      {
+        "key": "D",
+        "text_en": "Omit the resources block",
+        "text_kr": "resources 블록을 생략"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• storageClassName을 아예 생략하면 기본 스토리지클래스가 적용됩니다. 동적 프로비저닝을 비활성화하고 클래스 없는 PV에만 정적 바인딩하려면 storageClassName: '' (빈 문자열)을 명시해야 합니다.",
+    "key_concept": "storageClassName: '' for Disabling Dynamic Provisioning"
+  },
+  {
+    "id": "D4-Q15",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Which property in a ConfigMap volume mount allows you to specify custom Linux file permissions (e.g., 0400 for read-only by owner)?",
+    "question_kr": "ConfigMap 볼륨 마운트에서 특정 리눅스 파일 권한(예: 소유자 읽기 전용 0400)을 지정할 수 있게 해주는 속성은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "defaultMode: 0400",
+        "text_kr": "defaultMode: 0400"
+      },
+      {
+        "key": "B",
+        "text_en": "filePermissions: '0400'",
+        "text_kr": "filePermissions: '0400'"
+      },
+      {
+        "key": "C",
+        "text_en": "chmod: '400'",
+        "text_kr": "chmod: '400'"
+      },
+      {
+        "key": "D",
+        "text_en": "accessLevel: readOnlyOwner",
+        "text_kr": "accessLevel: readOnlyOwner"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• volumes.configMap 또는 secret 블록 하위에 defaultMode: 0400 (또는 0644)을 지정하여 마운트된 파일의 리눅스 퍼미션을 제어할 수 있습니다.",
+    "key_concept": "ConfigMap/Secret Volume defaultMode"
+  },
+  {
+    "id": "D4-Q16",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What is the primary difference between `hostPath` and `local` persistent volumes?",
+    "question_kr": "`hostPath` 볼륨과 `local` PersistentVolume의 가장 중요한 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "local PVs support node affinity so the scheduler understands which node the volume is tied to, whereas hostPath does not.",
+        "text_kr": "local PV는 노드 어피니티를 지원하여 스케줄러가 볼륨이 묶여 있는 노드를 인식하지만, hostPath는 스케줄러 인식 기능이 없습니다."
+      },
+      {
+        "key": "B",
+        "text_en": "hostPath is stored on a remote NFS server.",
+        "text_kr": "hostPath는 원격 NFS 서버에 저장됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "local PVs are deleted when the pod restarts.",
+        "text_kr": "local PV는 파드 재시작 시 자동 삭제됩니다."
+      },
+      {
+        "key": "D",
+        "text_en": "hostPath requires an external CSI plugin.",
+        "text_kr": "hostPath는 외부 CSI 플러그인을 필수로 요구합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• local PV는 spec.nodeAffinity를 필수로 포함하여 스케줄러가 파드를 해당 로컬 디스크가 있는 노드로 정확히 스케줄링할 수 있도록 보장합니다.",
+    "key_concept": "local PV vs hostPath Volume"
+  },
+  {
+    "id": "D4-Q17",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What command allows you to view the list of all PersistentVolumes and their status, capacity, and reclaim policies?",
+    "question_kr": "모든 PersistentVolume의 목록과 상태(Status), 용량(Capacity), 반환 정책(Reclaim Policy)을 조회하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl get pv",
+        "text_kr": "kubectl get pv"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl show storage volumes",
+        "text_kr": "kubectl show storage volumes"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl list persistent-disks",
+        "text_kr": "kubectl list persistent-disks"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl get storage --all",
+        "text_kr": "kubectl get storage --all"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl get pv 명령으로 클러스터의 모든 영구 볼륨 상태(Available, Bound, Released 등)를 한눈에 확인할 수 있습니다.",
+    "key_concept": "kubectl get pv"
+  },
+  {
+    "id": "D4-Q18",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What happens when you delete a Pod that was using an `emptyDir` volume?",
+    "question_kr": "`emptyDir` 볼륨을 사용하던 파드가 영구 삭제되면 해당 볼륨의 데이터는 어떻게 됩니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The data in the emptyDir volume is permanently deleted along with the Pod.",
+        "text_kr": "emptyDir 볼륨의 데이터는 파드와 함께 영구적으로 삭제됩니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The data is automatically archived to /var/log.",
+        "text_kr": "데이터가 /var/log 디렉토리로 자동 백업됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "The data is converted into a PersistentVolumeClaim.",
+        "text_kr": "데이터가 PersistentVolumeClaim으로 자동 변환됩니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The data remains on the node forever until reboot.",
+        "text_kr": "재부팅될 때까지 노드에 영구 보존됩니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• emptyDir은 파드의 수명 주기에 종속되는 임시 볼륨이므로 파드가 삭제되면 데이터도 완전히 삭제됩니다. 단, 컨테이너 크래시로 인한 컨테이너 재시작 시에는 데이터가 유지됩니다.",
+    "key_concept": "emptyDir Volume Lifecycle"
+  },
+  {
+    "id": "D4-Q19",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "How can you resize an existing PVC from 5Gi to 10Gi online, assuming the underlying StorageClass supports expansion?",
+    "question_kr": "스토리지클래스가 확장을 지원한다고 가정할 때, 기존 5Gi PVC의 용량을 10Gi로 온라인에서 확장하는 방법은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Edit the PVC (`kubectl edit pvc <name>`) and increase `spec.resources.requests.storage` to 10Gi.",
+        "text_kr": "PVC를 편집(`kubectl edit pvc <이름>`)하여 `spec.resources.requests.storage` 값을 10Gi로 증액합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Delete and recreate the PVC with 10Gi.",
+        "text_kr": "PVC를 삭제하고 10Gi로 다시 생성합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Run `kubectl resize pvc <name> --size=10Gi`.",
+        "text_kr": "`kubectl resize pvc <이름> --size=10Gi`를 실행합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Restart the StorageClass provisioner.",
+        "text_kr": "StorageClass 프로비저너를 재시작합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• allowVolumeExpansion: true가 적용된 경우, 기존 PVC 매니페스트의 spec.resources.requests.storage 값을 상향 수정하기만 하면 볼륨이 온라인으로 확장됩니다.",
+    "key_concept": "Online PVC Expansion via kubectl edit"
+  },
+  {
+    "id": "D4-Q20",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What is the role of a CSI Node Plugin deployed as a DaemonSet in Kubernetes?",
+    "question_kr": "쿠버네티스에서 DaemonSet으로 배포되는 CSI 노드 플러그인(CSI Node Plugin)의 핵심 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It runs on every worker node to mount, format, and attach the storage device to the target container path (NodeStageVolume / NodePublishVolume).",
+        "text_kr": "각 워커 노드에서 실행되며 스토리지를 포맷하고 대상 컨테이너 디렉토리에 마운트(NodeStage / NodePublish)하는 작업을 수행합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "It creates external storage cloud snapshots only.",
+        "text_kr": "외부 스토리지 클라우드 스냅샷만 생성합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "It monitors etcd memory usage.",
+        "text_kr": "etcd 메모리 사용량을 모니터링합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "It encrypts kube-apiserver network traffic.",
+        "text_kr": "kube-apiserver 네트워크 트래픽을 암호화합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• CSI 아키텍처에서 Controller 플러그인은 클라우드 볼륨 생성/삭제를 담당하고, Node 플러그인은 각 노드에 마운트/포맷하는 작업을 담당합니다.",
+    "key_concept": "CSI Node Plugin Responsibilities"
+  },
+  {
+    "id": "D4-Q21",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Can you reduce (shrink) the storage capacity of an existing PersistentVolumeClaim in Kubernetes?",
+    "question_kr": "쿠버네티스에서 기존 PersistentVolumeClaim의 스토리지 용량을 더 작은 크기로 축소(Shrink)할 수 있습니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "No, Kubernetes only supports expanding PVC volume size, shrinking is not supported.",
+        "text_kr": "아니오, 쿠버네티스는 볼륨 크기 확장만 지원하며 축소는 지원하지 않습니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Yes, by passing --allow-shrink flag to kubectl.",
+        "text_kr": "예, kubectl에 --allow-shrink 플래그를 넘기면 가능합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Yes, if the reclaim policy is Recycle.",
+        "text_kr": "예, reclaim policy가 Recycle이면 가능합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Yes, if volumeBindingMode is Immediate.",
+        "text_kr": "예, volumeBindingMode가 Immediate이면 가능합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 파일시스템 손상 및 데이터 유실 위험으로 인해 쿠버네티스는 PVC 용량 축소를 엄격히 금지합니다. 더 작은 크기가 필요하면 새 PVC를 만들고 데이터를 마이그레이션해야 합니다.",
+    "key_concept": "PVC Shrinking Unsupported"
+  },
+  {
+    "id": "D4-Q22",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "In a Pod with two containers, can both containers mount the exact same PVC simultaneously if they are scheduled on the same node using ReadWriteOnce (RWO)?",
+    "question_kr": "동일 노드에 스케줄링된 파드 내부의 두 컨테이너가 ReadWriteOnce(RWO) 모드의 동일한 PVC를 동시에 마운트할 수 있습니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Yes, ReadWriteOnce allows multiple containers on the same single node to access the volume.",
+        "text_kr": "예, ReadWriteOnce는 단일 노드 내부의 여러 컨테이너가 볼륨에 동시 접근하는 것을 허용합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "No, RWO allows only one container in the entire cluster.",
+        "text_kr": "아니오, RWO는 클러스터 전체에서 단 하나의 컨테이너만 허용합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "No, unless ReadWriteOncePod is explicitly set.",
+        "text_kr": "아니오, ReadWriteOncePod가 설정되어야 합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Only if one container is an init container.",
+        "text_kr": "하나가 초기화 컨테이너인 경우에만 가능합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 'ReadWriteOnce'의 'Once'는 '단일 노드'를 의미합니다. 따라서 동일한 노드 내에서 실행되는 파드나 컨테이너들은 문제없이 볼륨을 공유할 수 있습니다.",
+    "key_concept": "ReadWriteOnce Node Scope Definition"
+  },
+  {
+    "id": "D4-Q23",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What is the finalizer used by Kubernetes to prevent accidental deletion of a PVC currently in use by a Pod?",
+    "question_kr": "파드가 현재 사용 중인 PVC가 실수로 즉시 삭제되는 것을 방지하기 위해 쿠버네티스가 등록하는 Finalizer 이름은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubernetes.io/pvc-protection",
+        "text_kr": "kubernetes.io/pvc-protection"
+      },
+      {
+        "key": "B",
+        "text_en": "storage.k8s.io/safe-delete",
+        "text_kr": "storage.k8s.io/safe-delete"
+      },
+      {
+        "key": "C",
+        "text_en": "volume.finalizer/prevent-loss",
+        "text_kr": "volume.finalizer/prevent-loss"
+      },
+      {
+        "key": "D",
+        "text_en": "pvc.guard/lock",
+        "text_kr": "pvc.guard/lock"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubernetes.io/pvc-protection finalizer가 파드가 종료될 때까지 삭제를 지연시키고 Terminating 상태로 유지합니다.",
+    "key_concept": "kubernetes.io/pvc-protection finalizer"
+  },
+  {
+    "id": "D4-Q24",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What is the difference between `volumeMode: Filesystem` and `volumeMode: Block` on a PersistentVolume?",
+    "question_kr": "PersistentVolume에서 `volumeMode: Filesystem`과 `volumeMode: Block`의 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Filesystem mounts the volume as a formatted directory, while Block presents it as a raw block storage device without a filesystem.",
+        "text_kr": "Filesystem은 포맷된 디렉토리로 마운트하고, Block은 파일시스템 없이 원시(raw) 블록 디바이스로 파드에 제공합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Block is only for temporary emptyDir storage.",
+        "text_kr": "Block은 오직 임시 emptyDir 전용입니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Filesystem volumes cannot be expanded.",
+        "text_kr": "Filesystem 볼륨은 확장이 불가합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Block mode requires NFS.",
+        "text_kr": "Block 모드는 NFS를 요구합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 고성능 DB 워크로드나 Ceph, 특수 스토리지 엔진은 파일시스템 레이어의 오버헤드를 피하기 위해 raw block device (volumeMode: Block)를 직접 다룹니다.",
+    "key_concept": "volumeMode: Filesystem vs Block"
+  },
+  {
+    "id": "D4-Q25",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Which command describes the storage parameters and provisioner of a StorageClass named 'fast'?",
+    "question_kr": "'fast'라는 이름의 StorageClass의 스토리지 파라미터와 프로비저너를 상세 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl describe storageclass fast",
+        "text_kr": "kubectl describe storageclass fast"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl inspect sc fast",
+        "text_kr": "kubectl inspect sc fast"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl get sc fast --parameters",
+        "text_kr": "kubectl get sc fast --parameters"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl show provisioner fast",
+        "text_kr": "kubectl show provisioner fast"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl describe storageclass <이름> (또는 describe sc)을 실행하면 Provisioner, ReclaimPolicy, VolumeBindingMode, Parameters 등을 확인할 수 있습니다.",
+    "key_concept": "kubectl describe storageclass"
   }
 ]

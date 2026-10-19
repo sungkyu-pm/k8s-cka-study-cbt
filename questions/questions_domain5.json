@@ -318,5 +318,485 @@
     "correct_answer": "B",
     "explanation_kr": "정답은 B입니다.\n\n• 쿠버네티스에서 Taint를 제거할 때는 `kubectl taint nodes <노드이름> <키>-` 또는 `kubectl taint nodes <노드이름> <키>=<값>:<이펙트>-`처럼 맨 뒤에 대시(`-`) 기호를 붙여 제거합니다.\n• `tier-` 또는 `tier=backend:NoSchedule-` 형식이 올바릅니다.",
     "key_concept": "Removing Taints with kubectl taint nodes <node> <key>-"
+  },
+  {
+    "id": "D5-Q11",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod running an application displays `CrashLoopBackOff`. How can you inspect the previous container's exit code and termination reason using kubectl?",
+    "question_kr": "`CrashLoopBackOff` 상태인 파드에서 이전 컨테이너의 종료 코드(Exit Code)와 종료 사유(Reason)를 확인하기 위해 가장 적합한 kubectl 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl describe pod <pod-name> and look at the 'Last State' section under Containers",
+        "text_kr": "kubectl describe pod <파드명> 실행 후 Containers 하위의 'Last State' 섹션을 확인한다."
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl get pod <pod-name> --show-exit-codes",
+        "text_kr": "kubectl get pod <파드명> --show-exit-codes"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl logs <pod-name> --exit-code-only",
+        "text_kr": "kubectl logs <파드명> --exit-code-only"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl status pod <pod-name>",
+        "text_kr": "kubectl status pod <파드명>"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl describe pod의 Containers -> Last State 섹션에 Terminated 사유(Error, OOMKilled)와 구체적 Exit Code(1, 137 등)가 기록되어 장애 원인을 정확히 파악할 수 있습니다.",
+    "key_concept": "kubectl describe pod Last State inspection"
+  },
+  {
+    "id": "D5-Q12",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "After updating the kubelet systemd service configuration on a worker node, what command must be run before restarting the kubelet daemon to reload unit files?",
+    "question_kr": "워커 노드에서 kubelet systemd 서비스 설정 파일을 수정한 후, kubelet 데몬을 재시작하기 전에 unit 파일을 다시 읽어들이기 위해 실행해야 하는 필수 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "systemctl daemon-reload",
+        "text_kr": "systemctl daemon-reload"
+      },
+      {
+        "key": "B",
+        "text_en": "systemctl refresh-all",
+        "text_kr": "systemctl refresh-all"
+      },
+      {
+        "key": "C",
+        "text_en": "kubeadm reset-systemd",
+        "text_kr": "kubeadm reset-systemd"
+      },
+      {
+        "key": "D",
+        "text_en": "service kubelet update",
+        "text_kr": "service kubelet update"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• /etc/systemd/system/ 등의 서비스 드롭인 설정 변경 후에는 반드시 systemctl daemon-reload를 실행해야 systemd가 변경 사항을 인지합니다.",
+    "key_concept": "systemctl daemon-reload before kubelet restart"
+  },
+  {
+    "id": "D5-Q13",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod's readinessProbe fails repeatedly. What is the immediate effect on the Pod's traffic handling?",
+    "question_kr": "파드의 준비성 프로브(readinessProbe)가 지속적으로 실패할 경우, 해당 파드의 트래픽 처리에 미치는 즉각적인 영향은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Pod's IP address is removed from the Endpoints of all matching Services, receiving no incoming traffic.",
+        "text_kr": "해당 파드의 IP가 일치하는 모든 서비스의 Endpoints에서 즉시 제거되어 인입 트래픽을 받지 않습니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The Pod is terminated immediately and restarted by kubelet.",
+        "text_kr": "파드가 즉시 종료되고 kubelet에 의해 재시작됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "The Pod is migrated to another node.",
+        "text_kr": "파드가 다른 노드로 즉시 이주됩니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The entire Service is deleted.",
+        "text_kr": "전체 서비스가 삭제됩니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• readinessProbe 실패는 파드를 재시작시키지 않고, 서비스 엔드포인트에서만 파드 IP를 격리하여 준비될 때까지 사용자 요청이 전달되지 않도록 보호합니다. (재시작시키는 것은 livenessProbe)",
+    "key_concept": "readinessProbe Failure vs livenessProbe Failure"
+  },
+  {
+    "id": "D5-Q14",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A user complains that `kubectl get nodes` returns an error: 'Unable to connect to the server: x509: certificate has expired or is not yet valid'. What is the root cause and remedy?",
+    "question_kr": "`kubectl get nodes` 실행 시 'Unable to connect to the server: x509: certificate has expired or is not yet valid' 에러가 반환됩니다. 근본 원인과 해결책은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Control plane PKI client/server certificates have expired; renew them using `kubeadm certs renew all` and restart control plane static pods.",
+        "text_kr": "컨트롤 플레인의 PKI 인증서가 만료되었으므로, `kubeadm certs renew all`로 인증서를 갱신하고 제어 평면 스태틱 파드를 재시작해야 합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The user's local DNS is corrupted.",
+        "text_kr": "사용자의 로컬 DNS가 손상되었습니다."
+      },
+      {
+        "key": "C",
+        "text_en": "etcd disk is full.",
+        "text_kr": "etcd 디스크가 가득 찼습니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The CNI plugin was uninstalled.",
+        "text_kr": "CNI 플러그인이 삭제되었습니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• x509 인증서 만료 에러는 kubeadm으로 설치한 클러스터의 1년 주기 인증서가 만료되었을 때 발생합니다. kubeadm certs renew all로 갱신하여 해결합니다.",
+    "key_concept": "x509 Certificate Expiration Troubleshooting"
+  },
+  {
+    "id": "D5-Q15",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod cannot start and shows `ContainerCreating` for 10 minutes. Running `kubectl describe pod` shows: `MountVolume.SetUp failed for volume ... secret 'db-creds' not found`. What is the required fix?",
+    "question_kr": "파드가 10분째 시작되지 못하고 `ContainerCreating` 상태에 머물러 있습니다. `kubectl describe pod` 실행 결과 `MountVolume.SetUp failed for volume ... secret 'db-creds' not found` 에러가 표시됩니다. 필요한 조치는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Create the missing Secret named 'db-creds' in the exact same namespace as the Pod.",
+        "text_kr": "파드와 정확히 동일한 네임스페이스에 누락된 'db-creds' 시크릿을 생성합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Restart kube-scheduler.",
+        "text_kr": "kube-scheduler를 재시작합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Change the storage class to manual.",
+        "text_kr": "스토리지 클래스를 manual로 변경합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Add root privileges to the container.",
+        "text_kr": "컨테이너에 루트 권한을 부여합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 파드가 볼륨이나 envFrom으로 참조하는 Secret 또는 ConfigMap이 네임스페이스에 존재하지 않으면 컨테이너가 마운트 실패로 인해 기동되지 못합니다. 해당 리소스를 생성하면 파드가 자동으로 시작됩니다.",
+    "key_concept": "Missing Secret/ConfigMap MountVolume.SetUp Failure"
+  },
+  {
+    "id": "D5-Q16",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "How can you view the streaming live logs of all pods sharing the label `app=payment` across all namespaces?",
+    "question_kr": "모든 네임스페이스에 걸쳐 `app=payment` 라벨을 가진 모든 파드의 실시간 스트리밍 로그를 한 번에 조회하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl logs -l app=payment -A -f",
+        "text_kr": "kubectl logs -l app=payment -A -f"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl stream logs app=payment --all",
+        "text_kr": "kubectl stream logs app=payment --all"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl tail -l app=payment",
+        "text_kr": "kubectl tail -l app=payment"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl watch logs app=payment",
+        "text_kr": "kubectl watch logs app=payment"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl logs -l <라벨> -A -f 옵션을 조합하면 여러 파드의 로그를 멀티 스트리밍으로 실시간 모니터링할 수 있습니다.",
+    "key_concept": "kubectl logs -l <label> -A -f"
+  },
+  {
+    "id": "D5-Q17",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A static pod kube-scheduler is not running on the master node. You inspect `/etc/kubernetes/manifests/kube-scheduler.yaml` and discover a typo in the command arguments. What happens automatically after you fix the typo and save the file?",
+    "question_kr": "마스터 노드에서 스태틱 파드 kube-scheduler가 실행되지 않고 있습니다. `/etc/kubernetes/manifests/kube-scheduler.yaml` 파일을 검사하여 인자(argument) 오탈자를 발견했습니다. 오탈자를 수정하고 저장한 직후 자동으로 어떤 일이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubelet detects the file modification and automatically restarts the kube-scheduler static pod with the corrected configuration.",
+        "text_kr": "kubelet이 파일 변경을 자동 감지하고 올바른 설정으로 kube-scheduler 스태틱 파드를 즉시 재시작합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "You must manually run `kubeadm init` again.",
+        "text_kr": "`kubeadm init`을 수동으로 다시 실행해야 합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "You must reboot the Linux server.",
+        "text_kr": "리눅스 서버를 재부팅해야 합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The API server will reject the change.",
+        "text_kr": "API 서버가 변경 사항을 거부합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubelet은 staticPodPath 디렉토리를 지속적으로 감시(inotify)하므로 매니페스트 파일을 수정 저장하기만 하면 스태틱 파드가 자동으로 재기동됩니다.",
+    "key_concept": "Static Pod Manifest Inotify Automatic Restart by kubelet"
+  },
+  {
+    "id": "D5-Q18",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A pod is stuck in `Terminating` status for hours because the storage volume it was mounted to is no longer reachable. Which command forcefully terminates and removes this pod immediately?",
+    "question_kr": "스토리지 볼륨에 접근할 수 없어 파드가 수시간 동안 `Terminating` 상태에 멈춰 있습니다. 이 파드를 유예 시간 없이 즉시 강제 종료하고 제거하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl delete pod <pod-name> --force --grace-period=0",
+        "text_kr": "kubectl delete pod <파드명> --force --grace-period=0"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl kill pod <pod-name> -9",
+        "text_kr": "kubectl kill pod <파드명> -9"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl purge pod <pod-name>",
+        "text_kr": "kubectl purge pod <파드명>"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl stop pod <pod-name> --now",
+        "text_kr": "kubectl stop pod <파드명> --now"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `kubectl delete pod <이름> --force --grace-period=0` (시험용 alias: `k delete pod <이름> $now`)를 사용하면 API 서버가 노드의 정상 종료 확인을 기다리지 않고 etcd에서 파드 객체를 즉시 강제 제거합니다.",
+    "key_concept": "Force Delete Stuck Pod (--force --grace-period=0)"
+  },
+  {
+    "id": "D5-Q19",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "Running `kubectl cluster-info` returns 'Kubernetes control plane is running at https://127.0.0.1:6443', but `kubectl get pods` hangs indefinitely. What node component could be experiencing high CPU or lockups?",
+    "question_kr": "`kubectl cluster-info`는 정상 응답하지만 `kubectl get pods` 명령어가 무한 대기(hang) 상태에 빠집니다. 마스터 노드에서 과도한 부하 또는 잠금(lockup)이 발생했을 가능성이 가장 높은 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "etcd database experiencing slow disk I/O, leader election timeouts, or disk space exhaustion.",
+        "text_kr": "느린 디스크 I/O, 리더 선출 타임아웃, 또는 디스크 용량 고갈을 겪고 있는 etcd 데이터베이스."
+      },
+      {
+        "key": "B",
+        "text_en": "kube-proxy running on worker nodes.",
+        "text_kr": "워커 노드의 kube-proxy."
+      },
+      {
+        "key": "C",
+        "text_en": "CoreDNS deployment.",
+        "text_kr": "CoreDNS 디플로이먼트."
+      },
+      {
+        "key": "D",
+        "text_en": "Metrics Server.",
+        "text_kr": "Metrics Server."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• etcd의 디스크 I/O가 병목 상태이거나 쿼럼 통신이 지연되면 API 서버가 etcd로부터 데이터를 읽지 못해 요청이 무한 대기 상태에 빠집니다.",
+    "key_concept": "etcd Disk I/O Latency and Cluster Hang"
+  },
+  {
+    "id": "D5-Q20",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "You suspect that an iptables rule created by kube-proxy is blocking traffic. How can you check kube-proxy pod logs in the `kube-system` namespace?",
+    "question_kr": "kube-proxy에 의해 생성된 네트워크 규칙 오류로 트래픽이 차단되고 있다고 의심됩니다. `kube-system` 네임스페이스의 kube-proxy 파드 로그를 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl logs -n kube-system -l k8s-app=kube-proxy",
+        "text_kr": "kubectl logs -n kube-system -l k8s-app=kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl iptables logs -n kube-system",
+        "text_kr": "kubectl iptables logs -n kube-system"
+      },
+      {
+        "key": "C",
+        "text_en": "journalctl -u kube-proxy-service",
+        "text_kr": "journalctl -u kube-proxy-service"
+      },
+      {
+        "key": "D",
+        "text_en": "cat /var/log/kube-proxy.log",
+        "text_kr": "cat /var/log/kube-proxy.log"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kube-proxy는 일반적으로 kube-system 네임스페이스에 DaemonSet 파드로 구동되므로 kubectl logs -n kube-system -l k8s-app=kube-proxy 명령으로 로그를 점검합니다.",
+    "key_concept": "kube-proxy pod logs diagnosis"
+  },
+  {
+    "id": "D5-Q21",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod cannot communicate with another Pod across worker nodes, but communication on the same worker node succeeds. What cluster component is most likely failing or misconfigured?",
+    "question_kr": "동일 워커 노드에 있는 파드끼리는 정상 통신되지만, 서로 다른 워커 노드 간의 파드 통신은 실패합니다. 어떤 클러스터 컴포넌트가 장애이거나 오설정되었을 가능성이 가장 높습니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Container Network Interface (CNI) overlay network or cross-node routing rules (e.g., Calico/Flannel daemon failing or blocked inter-node UDP/BGP ports).",
+        "text_kr": "CNI 오버레이 네트워크 또는 노드 간 라우팅 규칙 (Calico/Flannel 데몬 장애 또는 노드 간 UDP/BGP 포트 차단)."
+      },
+      {
+        "key": "B",
+        "text_en": "kube-scheduler.",
+        "text_kr": "kube-scheduler."
+      },
+      {
+        "key": "C",
+        "text_en": "The Container Runtime Interface (containerd).",
+        "text_kr": "컨테이너 런타임 인터페이스 (containerd)."
+      },
+      {
+        "key": "D",
+        "text_en": "kube-controller-manager.",
+        "text_kr": "kube-controller-manager."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 동일 노드 파드 통신은 리눅스 가상 브릿지(cbr0 등)를 통해 로컬에서 처리되지만, 이종 노드 간 통신은 CNI의 오버레이(VXLAN, IP-in-IP, BGP) 터널링을 거치므로 CNI 에이전트 상태와 방화벽 포트 확인이 필수적입니다.",
+    "key_concept": "Cross-Node Pod Communication Failure (CNI Overlay)"
+  },
+  {
+    "id": "D5-Q22",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "How can you view all cluster events that occurred in the last 10 minutes sorted chronologically?",
+    "question_kr": "클러스터에서 발생한 모든 이벤트를 시간 순서대로 정렬하여 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl get events -A --sort-by='.metadata.creationTimestamp'",
+        "text_kr": "kubectl get events -A --sort-by='.metadata.creationTimestamp'"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl events --all --chronological",
+        "text_kr": "kubectl events --all --chronological"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl log cluster-events --recent",
+        "text_kr": "kubectl log cluster-events --recent"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl describe events --time-sort",
+        "text_kr": "kubectl describe events --time-sort"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl get events -A --sort-by='.metadata.creationTimestamp'를 사용하면 전체 네임스페이스의 최신 스케줄링 실패, 이미지 풀 실패, 노드 상태 변경 이벤트를 시간순으로 추적할 수 있습니다.",
+    "key_concept": "kubectl get events --sort-by creationTimestamp"
+  },
+  {
+    "id": "D5-Q23",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A container inside a pod keeps failing its HTTP livenessProbe with HTTP 500 status code. What will kubelet do in response?",
+    "question_kr": "파드 내부의 컨테이너가 HTTP 500 상태 코드를 반환하며 HTTP livenessProbe에 지속적으로 실패하고 있습니다. kubelet은 이에 대해 어떤 조치를 취합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubelet will kill the container and restart it according to the pod's restartPolicy.",
+        "text_kr": "kubelet이 해당 컨테이너를 강제 종료하고 파드의 restartPolicy에 따라 재시작시킵니다."
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet will ignore the failure if readinessProbe passes.",
+        "text_kr": "readinessProbe가 통과하면 실패를 무시합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "kubelet will unmount all volumes.",
+        "text_kr": "모든 볼륨을 언마운트합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet will drain the node.",
+        "text_kr": "노드를 drain합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• livenessProbe는 컨테이너의 생존 여부를 감시하므로 실패 횟수(failureThreshold)를 초과하면 kubelet이 컨테이너를 즉시 재시작(Restart)시킵니다.",
+    "key_concept": "livenessProbe failure handling by kubelet"
+  },
+  {
+    "id": "D5-Q24",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "You need to execute an interactive bash shell inside a running pod named 'debugger' with multiple containers, targeting the container named 'network-tool'. Which command should you execute?",
+    "question_kr": "여러 컨테이너가 실행 중인 'debugger' 파드에서 'network-tool'이라는 특정 컨테이너 내부로 진입하여 대화형 bash 셸을 실행하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl exec -it debugger -c network-tool -- /bin/bash",
+        "text_kr": "kubectl exec -it debugger -c network-tool -- /bin/bash"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl attach debugger:network-tool -i",
+        "text_kr": "kubectl attach debugger:network-tool -i"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl shell debugger -container network-tool",
+        "text_kr": "kubectl shell debugger -container network-tool"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl run bash inside debugger --container=network-tool",
+        "text_kr": "kubectl run bash inside debugger --container=network-tool"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 멀티 컨테이너 파드에서 특정 컨테이너를 지정할 때는 -c <컨테이너명> 옵션을 명시하여 진입합니다.",
+    "key_concept": "kubectl exec -it <pod> -c <container> -- /bin/bash"
+  },
+  {
+    "id": "D5-Q25",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "When a worker node is in 'NotReady' state, what command on the master node provides the node's Condition flags (OutOfDisk, MemoryPressure, DiskPressure, PIDPressure, Ready)?",
+    "question_kr": "워커 노드가 'NotReady' 상태일 때 마스터 노드에서 해당 노드의 상태 조건 플래그(MemoryPressure, DiskPressure, PIDPressure, Ready 등)를 상세히 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl describe node <node-name>",
+        "text_kr": "kubectl describe node <노드명>"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl get node-conditions <node-name>",
+        "text_kr": "kubectl get node-conditions <노드명>"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl audit node <node-name>",
+        "text_kr": "kubectl audit node <노드명>"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl check-health node <node-name>",
+        "text_kr": "kubectl check-health node <노드명>"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl describe node <노드명>의 Conditions 섹션에서 각 압박 조건과 kubelet의 마지막 하트비트 보고 시점을 상세히 확인할 수 있습니다.",
+    "key_concept": "kubectl describe node Conditions analysis"
   }
 ]

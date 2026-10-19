@@ -128,6 +128,38 @@
     "key_concept": "Static Pods, kubelet staticPodPath, Control Plane Bootstrap"
   },
   {
+    "id": "D1-Q05",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "An etcd cluster consists of 5 members. According to the Raft consensus algorithm, what is the minimum quorum required, and how many node failures can this cluster tolerate while remaining operational?",
+    "question_kr": "5개의 멤버로 구성된 etcd 클러스터가 있습니다. Raft 분산 합의 알고리즘에 따를 때, 필요한 최소 쿼럼(Quorum) 수와 정상 작동을 유지하면서 허용할 수 있는 최대 노드 장애 대수는 각각 얼마입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Quorum: 2, Tolerated Failures: 3",
+        "text_kr": "쿼럼: 2, 허용 장애 대수: 3"
+      },
+      {
+        "key": "B",
+        "text_en": "Quorum: 3, Tolerated Failures: 2",
+        "text_kr": "쿼럼: 3, 허용 장애 대수: 2"
+      },
+      {
+        "key": "C",
+        "text_en": "Quorum: 4, Tolerated Failures: 1",
+        "text_kr": "쿼럼: 4, 허용 장애 대수: 1"
+      },
+      {
+        "key": "D",
+        "text_en": "Quorum: 5, Tolerated Failures: 0",
+        "text_kr": "쿼럼: 5, 허용 장애 대수: 0"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• etcd의 쿼럼 공식은 $(N/2) + 1$ (과반수)입니다.\n• 5개 노드의 경우 과반수는 3개 노드입니다.\n• 따라서 $5 - 3 = 2$대의 노드가 다운되더라도 3대가 살아있으므로 정상적으로 쓰기 및 합의 작업이 가능합니다.",
+    "key_concept": "etcd Quorum, Raft Consensus, High Availability"
+  },
+  {
     "id": "D2-Q01",
     "domain": "Domain 2",
     "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
@@ -254,6 +286,38 @@
     "correct_answer": "B",
     "explanation_kr": "정답은 B입니다.\n\n• `requiredDuringSchedulingIgnoredDuringExecution`은 '하드 룰(Hard Rule)'로, 스케줄링 시점에 조건이 만족되지 않으면 파드가 Pending 상태로 남고 절대 배치되지 않습니다.\n• `preferredDuring...`은 '소프트 룰'로, 조건을 만족하는 노드가 없더라도 다른 일반 노드에 스케줄링됩니다.",
     "key_concept": "NodeAffinity Hard Rule vs Soft Rule"
+  },
+  {
+    "id": "D2-Q05",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "You want to run a monitoring agent pod on every single worker node in the cluster, automatically deploying to newly added nodes as well. Which Kubernetes workload resource is purpose-built for this requirement?",
+    "question_kr": "클러스터의 모든 단일 워커 노드마다 모니터링 에이전트 파드를 정확히 하나씩 실행하고, 향후 노드가 추가되더라도 자동으로 배포되도록 구성하고자 합니다. 이 요구사항에 맞춤 설계된 쿠버네티스 워크로드 리소스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "ReplicaSet with replicas: 0",
+        "text_kr": "replicas: 0 으로 설정된 ReplicaSet"
+      },
+      {
+        "key": "D",
+        "text_en": "CronJob with schedule: '@reboot'",
+        "text_kr": "schedule: '@reboot' 으로 설정된 CronJob"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• `DaemonSet`은 클러스터의 모든(또는 특정 조건을 만족하는) 노드에 파드의 복제본을 정확히 1개씩 실행하도록 보장하는 전용 컨트롤러입니다.\n• 모니터링 데몬(Prometheus Node Exporter)이나 로그 수집기(Fluentd, Logstash), 네트워크 CNI 에이전트에 주로 사용됩니다.",
+    "key_concept": "DaemonSet, Node-level Agent Deployment"
   },
   {
     "id": "D3-Q01",
@@ -384,6 +448,38 @@
     "key_concept": "Ingress Resource vs Ingress Controller"
   },
   {
+    "id": "D3-Q05",
+    "domain": "Domain 3",
+    "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+    "question_en": "Which NetworkPolicy configuration successfully blocks all incoming ingress traffic to all pods in the 'secure-zone' namespace, effectively creating a default-deny policy?",
+    "question_kr": "'secure-zone' 네임스페이스의 모든 파드로 들어오는 모든 인입(Ingress) 트래픽을 차단하여 완전한 기본 거부(default-deny) 상태를 만드는 올바른 NetworkPolicy 설정은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "spec.podSelector: {} with spec.policyTypes: ['Ingress'] and no ingress rules defined",
+        "text_kr": "spec.podSelector: {} 와 spec.policyTypes: ['Ingress'] 를 지정하고 ingress 규칙 목록을 비워둠"
+      },
+      {
+        "key": "B",
+        "text_en": "spec.podSelector: '*' with spec.ingress: [{action: 'Deny'}]",
+        "text_kr": "spec.podSelector: '*' 와 spec.ingress: [{action: 'Deny'}]"
+      },
+      {
+        "key": "C",
+        "text_en": "spec.ingress: [] with action: DropAll",
+        "text_kr": "spec.ingress: [] 와 action: DropAll"
+      },
+      {
+        "key": "D",
+        "text_en": "spec.policyTypes: ['DenyAll']",
+        "text_kr": "spec.policyTypes: ['DenyAll']"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `podSelector: {}`는 네임스페이스 내의 모든 파드를 대상으로 선택합니다.\n• `policyTypes: [Ingress]`를 선언하고 하위 `ingress:` 허용 목록을 전혀 제공하지 않으면, 모든 인입 트래픽이 거부(Default Deny)됩니다.",
+    "key_concept": "NetworkPolicy Default Deny All Ingress"
+  },
+  {
     "id": "D4-Q01",
     "domain": "Domain 4",
     "domain_name": "스토리지 (Storage)",
@@ -512,6 +608,38 @@
     "key_concept": "AccessModes: ReadWriteMany (RWX)"
   },
   {
+    "id": "D4-Q05",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "To enable dynamic expansion of PersistentVolumeClaim capacity in Kubernetes, what property must be explicitly set to `true` in the referenced StorageClass?",
+    "question_kr": "쿠버네티스에서 PersistentVolumeClaim의 용량을 동적으로 확장(Resize)할 수 있도록 허용하려면 참조하는 StorageClass에서 어떤 속성을 명시적으로 `true`로 설정해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "allowVolumeExpansion",
+        "text_kr": "allowVolumeExpansion"
+      },
+      {
+        "key": "B",
+        "text_en": "dynamicResizeEnabled",
+        "text_kr": "dynamicResizeEnabled"
+      },
+      {
+        "key": "C",
+        "text_en": "autoScaleStorage",
+        "text_kr": "autoScaleStorage"
+      },
+      {
+        "key": "D",
+        "text_en": "expandablePVC",
+        "text_kr": "expandablePVC"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `StorageClass` 매니페스트에 `allowVolumeExpansion: true`가 설정되어 있어야 사용자가 기존 PVC의 `spec.resources.requests.storage` 값을 더 큰 값으로 편집하여 볼륨을 온라인으로 확장할 수 있습니다.",
+    "key_concept": "StorageClass allowVolumeExpansion"
+  },
+  {
     "id": "D5-Q01",
     "domain": "Domain 5",
     "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
@@ -638,5 +766,37 @@
     "correct_answer": "A",
     "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 서비스는 `spec.selector`에 정의된 라벨과 일치하는 정상(Ready) 상태의 파드 IP들을 자동으로 수집하여 `Endpoints` 리소스를 구성합니다.\n• 엔드포인트가 `<none>`이라는 것은 서비스의 셀렉터와 파드의 라벨이 불일치(오탈자)하거나, 파드들의 준비성 프로브(Readiness Probe)가 실패하여 트래픽 대상에서 제외되었음을 의미합니다.",
     "key_concept": "Empty Endpoints (<none>), Service Selector Label Mismatch"
+  },
+  {
+    "id": "D5-Q05",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod stays in the `ImagePullBackOff` state. In `kubectl describe pod`, the Events section indicates `Failed to pull image ... repository does not exist or may require 'docker login'`. What is required to resolve this issue if the image is stored in a private container registry?",
+    "question_kr": "파드가 `ImagePullBackOff` 상태에 머물러 있습니다. `kubectl describe pod`의 Events 섹션에 `Failed to pull image ... repository does not exist or may require 'docker login'` 메시지가 나타납니다. 해당 이미지가 프라이빗 컨테이너 레지스트리에 저장되어 있는 경우 이 문제를 해결하기 위해 필요한 조치는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Create a docker-registry Secret containing authentication credentials and reference it in the Pod's `spec.imagePullSecrets`.",
+        "text_kr": "인증 자격 증명을 포함하는 docker-registry Secret을 생성하고 파드의 `spec.imagePullSecrets`에 참조합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Disable TLS verification in kubelet.",
+        "text_kr": "kubelet의 TLS 검증을 비활성화합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Change the image pull policy to Always.",
+        "text_kr": "이미지 풀 정책(imagePullPolicy)을 Always로 변경합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Grant cluster-admin permissions to the default ServiceAccount.",
+        "text_kr": "default ServiceAccount에 cluster-admin 권한을 부여합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 프라이빗 레지스트리 이미지를 가져오려면 `kubectl create secret docker-registry <이름> --docker-server=... --docker-username=... --docker-password=...`로 시크릿을 생성한 후,\n• 파드 스펙의 `spec.imagePullSecrets: [{name: <시크릿이름>}]`에 등록해야 정상적으로 인증 후 이미지를 풀(Pull)할 수 있습니다.",
+    "key_concept": "ImagePullBackOff, Private Registry Secret, imagePullSecrets"
   }
 ]

@@ -318,5 +318,485 @@
     "correct_answer": "A",
     "explanation_kr": "정답은 A입니다.\n\n• ConfigMap이나 Secret의 모든 키-값 항목을 한 번에 환경변수로 가져올 때는 `env` 대신 `envFrom` 블록의 `configMapRef` 또는 `secretRef`를 사용합니다.",
     "key_concept": "envFrom with configMapRef, Bulk Environment Variable Injection"
+  },
+  {
+    "id": "D2-Q11",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "How can you manually schedule a Pod onto a specific node named 'worker-2' without relying on kube-scheduler?",
+    "question_kr": "kube-scheduler의 개입 없이 'worker-2'라는 특정 노드에 파드를 수동으로 즉시 스케줄링하려면 PodSpec에서 어떤 필드를 지정해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "spec.nodeName: worker-2",
+        "text_kr": "spec.nodeName: worker-2"
+      },
+      {
+        "key": "B",
+        "text_en": "spec.schedulerName: manual",
+        "text_kr": "spec.schedulerName: manual"
+      },
+      {
+        "key": "C",
+        "text_en": "spec.assignedNode: worker-2",
+        "text_kr": "spec.assignedNode: worker-2"
+      },
+      {
+        "key": "D",
+        "text_en": "metadata.targetNode: worker-2",
+        "text_kr": "metadata.targetNode: worker-2"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• PodSpec의 spec.nodeName 필드에 노드 이름을 직접 기입하면 스케줄러를 완전히 우회하여 해당 노드의 kubelet이 파드를 즉시 바인딩 및 실행합니다.",
+    "key_concept": "spec.nodeName, Manual Pod Scheduling"
+  },
+  {
+    "id": "D2-Q12",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "Which command temporarily pauses a Deployment named 'web-deploy' so that multiple schema and container image changes can be made before triggering a new rollout?",
+    "question_kr": "새로운 롤아웃이 즉시 트리거되지 않도록 'web-deploy' 디플로이먼트를 일시 중지하여 여러 변경 사항을 한 번에 적용할 수 있게 해주는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl rollout pause deployment web-deploy",
+        "text_kr": "kubectl rollout pause deployment web-deploy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl stop deployment web-deploy --keep-pods",
+        "text_kr": "kubectl stop deployment web-deploy --keep-pods"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl deployment freeze web-deploy",
+        "text_kr": "kubectl deployment freeze web-deploy"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl scale deployment web-deploy --lock",
+        "text_kr": "kubectl scale deployment web-deploy --lock"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl rollout pause deployment <이름>을 실행하면 롤아웃이 일시 중지되어 여러 설정을 연달아 변경해도 파드가 재시작되지 않으며, 변경 완료 후 kubectl rollout resume으로 한 번에 적용합니다.",
+    "key_concept": "kubectl rollout pause and resume"
+  },
+  {
+    "id": "D2-Q13",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "A Pod needs a specific file mounted from a ConfigMap at `/etc/nginx/nginx.conf` without overwriting other existing files in `/etc/nginx/`. Which volumeMount property achieves this?",
+    "question_kr": "파드가 ConfigMap의 특정 파일을 /etc/nginx/nginx.conf 위치에 마운트하되, /etc/nginx/ 디렉토리 내의 다른 기존 파일들을 덮어쓰지 않고 보존하려면 어떤 volumeMount 속성을 사용해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "subPath: nginx.conf",
+        "text_kr": "subPath: nginx.conf"
+      },
+      {
+        "key": "B",
+        "text_en": "noOverwrite: true",
+        "text_kr": "noOverwrite: true"
+      },
+      {
+        "key": "C",
+        "text_en": "isolateFile: true",
+        "text_kr": "isolateFile: true"
+      },
+      {
+        "key": "D",
+        "text_en": "appendOnly: true",
+        "text_kr": "appendOnly: true"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 볼륨을 디렉토리에 마운트하면 기본적으로 해당 디렉토리의 기존 내용이 가려집니다. volumeMounts에 subPath 속성을 사용하면 특정 단일 파일만 해당 위치에 안전하게 마운트할 수 있습니다.",
+    "key_concept": "volumeMounts.subPath, Single File Mount"
+  },
+  {
+    "id": "D2-Q14",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "What is the key difference between PodAffinity and PodAntiAffinity?",
+    "question_kr": "PodAffinity와 PodAntiAffinity의 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PodAffinity co-locates pods with matching labels close together, while PodAntiAffinity spreads them apart across failure domains (e.g., nodes or zones).",
+        "text_kr": "PodAffinity는 일치하는 라벨을 가진 파드들을 가까이(같은 노드/존) 배치하고, PodAntiAffinity는 장애 분리를 위해 서로 다른 노드/존으로 분산 배치합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "PodAffinity applies only to DaemonSets.",
+        "text_kr": "PodAffinity는 오직 DaemonSet에만 적용됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "PodAntiAffinity prevents pods from using cluster storage.",
+        "text_kr": "PodAntiAffinity는 파드가 클러스터 스토리지를 사용하는 것을 차단합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "PodAffinity requires root privileges inside the container.",
+        "text_kr": "PodAffinity는 컨테이너 내부 루트 권한을 요구합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• PodAffinity: 통신 지연시간을 줄이기 위해 동일 서비스/캐시 파드끼리 같은 노드에 모으는 설정.\n• PodAntiAffinity: 고가용성(HA)을 위해 동일 서비스 복제본들이 단일 노드 장애로 동시 다운되지 않도록 분산 배치하는 설정.",
+    "key_concept": "PodAffinity vs PodAntiAffinity"
+  },
+  {
+    "id": "D2-Q15",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "Which restartPolicy options are valid for a standard Kubernetes Job?",
+    "question_kr": "표준 쿠버네티스 Job(배치 작업) 리소스에서 유효한 restartPolicy 옵션은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "OnFailure or Never",
+        "text_kr": "OnFailure 또는 Never"
+      },
+      {
+        "key": "B",
+        "text_en": "Always only",
+        "text_kr": "Always 만 가능"
+      },
+      {
+        "key": "C",
+        "text_en": "Always, OnFailure, and Never",
+        "text_kr": "Always, OnFailure, Never 모두 가능"
+      },
+      {
+        "key": "D",
+        "text_en": "Terminated",
+        "text_kr": "Terminated"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Job은 작업이 완료(Completed)되면 종료되어야 하므로 컨테이너가 무한 재시작되는 restartPolicy: Always를 허용하지 않습니다. 오직 OnFailure 또는 Never만 유효합니다.",
+    "key_concept": "Job restartPolicy (OnFailure, Never)"
+  },
+  {
+    "id": "D2-Q16",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "How can you view the rollout history of revisions for a deployment named 'api-service'?",
+    "question_kr": "'api-service' 디플로이먼트의 리비전 배포 히스토리를 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl rollout history deployment api-service",
+        "text_kr": "kubectl rollout history deployment api-service"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl get revisions deployment api-service",
+        "text_kr": "kubectl get revisions deployment api-service"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl describe history api-service",
+        "text_kr": "kubectl describe history api-service"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl list deployment-versions api-service",
+        "text_kr": "kubectl list deployment-versions api-service"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl rollout history deployment <이름> 명령을 통해 각 리비전 번호와 배포 이력을 조회할 수 있습니다.",
+    "key_concept": "kubectl rollout history"
+  },
+  {
+    "id": "D2-Q17",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "In a DaemonSet, how can you ensure its pods are scheduled onto control-plane nodes that have the master taint `node-role.kubernetes.io/control-plane:NoSchedule`?",
+    "question_kr": "DaemonSet 파드가 마스터 노드의 `node-role.kubernetes.io/control-plane:NoSchedule` 테인트를 무시하고 컨트롤 플레인 노드에도 배포되도록 보장하려면 어떻게 해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Add a toleration in the DaemonSet Pod template for the control-plane taint with operator: Exists.",
+        "text_kr": "DaemonSet의 파드 템플릿에 operator: Exists가 지정된 control-plane 테인트 toleration을 추가합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Set privileged: true in the container securityContext.",
+        "text_kr": "컨테이너 securityContext에 privileged: true를 설정합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Remove the kube-scheduler from the master node.",
+        "text_kr": "마스터 노드에서 kube-scheduler를 제거합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Add nodeName: master to every pod.",
+        "text_kr": "모든 파드에 nodeName: master를 추가합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 마스터 노드에 에이전트를 띄우려면 파드 스펙의 tolerations에 key: node-role.kubernetes.io/control-plane, operator: Exists, effect: NoSchedule을 명시해야 합니다.",
+    "key_concept": "DaemonSet Master Node Toleration"
+  },
+  {
+    "id": "D2-Q18",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "What is the primary characteristic of StatefulSet pod naming and ordering during scaling?",
+    "question_kr": "StatefulSet의 파드 명명 규칙 및 스케일링 시 순서에 대한 핵심적인 특징은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Pods are assigned a sticky, predictable ordinal index (e.g., web-0, web-1) and deployed or deleted sequentially.",
+        "text_kr": "파드에 예측 가능하고 고유한 서수 인덱스(예: web-0, web-1)가 부여되며, 순차적으로 배포 및 삭제됩니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Pods are given completely random hash suffixes like Deployments.",
+        "text_kr": "Deployment처럼 완전히 무작위 해시 접미사가 부여됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "All pods are created simultaneously in parallel by default.",
+        "text_kr": "모든 파드가 기본적으로 동시에 병렬 생성됩니다."
+      },
+      {
+        "key": "D",
+        "text_en": "StatefulSet pods cannot use persistent storage.",
+        "text_kr": "StatefulSet 파드는 영구 스토리지를 사용할 수 없습니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StatefulSet은 <이름>-<0부터 시작하는 서수> 형태로 고유 식별자가 유지되며, 0부터 순서대로 기동되고 축소 시에는 역순으로 종료됩니다.",
+    "key_concept": "StatefulSet Ordinal Indexing and Ordered Scaling"
+  },
+  {
+    "id": "D2-Q19",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "How can you inject a specific single key 'DB_URL' from a Secret named 'app-sec' as an environment variable 'DATABASE_URL' in a Pod container?",
+    "question_kr": "파드 컨테이너 내부의 환경변수 'DATABASE_URL'에 'app-sec' 시크릿의 'DB_URL' 단일 키 값을 주입하려면 어떤 문법을 사용해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "env: [{name: DATABASE_URL, valueFrom: {secretKeyRef: {name: app-sec, key: DB_URL}}}]",
+        "text_kr": "env: [{name: DATABASE_URL, valueFrom: {secretKeyRef: {name: app-sec, key: DB_URL}}}]"
+      },
+      {
+        "key": "B",
+        "text_en": "envFrom: [{secretRef: {name: app-sec, renameKey: DB_URL->DATABASE_URL}}]",
+        "text_kr": "envFrom: [{secretRef: {name: app-sec, renameKey: DB_URL->DATABASE_URL}}]"
+      },
+      {
+        "key": "C",
+        "text_en": "env: [{secretKey: app-sec/DB_URL, as: DATABASE_URL}]",
+        "text_kr": "env: [{secretKey: app-sec/DB_URL, as: DATABASE_URL}]"
+      },
+      {
+        "key": "D",
+        "text_en": "spec.secrets: [{bind: DATABASE_URL, source: app-sec.DB_URL}]",
+        "text_kr": "spec.secrets: [{bind: DATABASE_URL, source: app-sec.DB_URL}]"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 단일 키를 환경변수로 매핑할 때는 env 배열 내에서 name과 valueFrom.secretKeyRef (또는 configMapKeyRef)를 사용합니다.",
+    "key_concept": "valueFrom.secretKeyRef Environment Injection"
+  },
+  {
+    "id": "D2-Q20",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "Which command scales a deployment named 'order-processor' from 2 to 6 replicas immediately?",
+    "question_kr": "'order-processor' 디플로이먼트의 레플리카 수를 2개에서 6개로 즉시 스케일링하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl scale deployment order-processor --replicas=6",
+        "text_kr": "kubectl scale deployment order-processor --replicas=6"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl update deployment order-processor --count=6",
+        "text_kr": "kubectl update deployment order-processor --count=6"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl resize deployment order-processor -n 6",
+        "text_kr": "kubectl resize deployment order-processor -n 6"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl set replicas deployment/order-processor 6",
+        "text_kr": "kubectl set replicas deployment/order-processor 6"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• kubectl scale deployment <이름> --replicas=<개수> 커맨드를 통해 파드 수를 즉각적으로 변경할 수 있습니다.",
+    "key_concept": "kubectl scale deployment imperative command"
+  },
+  {
+    "id": "D2-Q21",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "A container specifies `resources.requests.cpu: '500m'`. What does '500m' represent in Kubernetes resource units?",
+    "question_kr": "컨테이너에 resources.requests.cpu가 '500m'으로 설정되어 있습니다. 쿠버네티스 리소스 단위에서 '500m'은 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "0.5 of a single CPU core (500 millicores)",
+        "text_kr": "단일 CPU 코어의 0.5 (500 밀리코어)"
+      },
+      {
+        "key": "B",
+        "text_en": "500 megabytes of CPU cache",
+        "text_kr": "500 메가바이트의 CPU 캐시"
+      },
+      {
+        "key": "C",
+        "text_en": "500 minutes of CPU execution time",
+        "text_kr": "500분의 CPU 실행 시간"
+      },
+      {
+        "key": "D",
+        "text_en": "500 MHz processor clock speed",
+        "text_kr": "500 MHz 프로세서 클록 주파수"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스에서 1개 CPU 코어는 1000m (밀리코어)입니다. 따라서 500m은 절반(0.5) 코어 용량을 뜻합니다.",
+    "key_concept": "CPU Resource Units (millicores / m)"
+  },
+  {
+    "id": "D2-Q22",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "You want to run a one-time database migration job that retries up to 4 times if the script fails before marking the Job as failed. Which Job specification field configures this retry count?",
+    "question_kr": "스크립트 실패 시 최대 4회까지 재시도한 후 최종 실패로 처리하는 1회성 DB 마이그레이션 Job을 실행하고자 합니다. 이 재시도 횟수를 설정하는 Job 사양 필드는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "spec.backoffLimit: 4",
+        "text_kr": "spec.backoffLimit: 4"
+      },
+      {
+        "key": "B",
+        "text_en": "spec.maxRetries: 4",
+        "text_kr": "spec.maxRetries: 4"
+      },
+      {
+        "key": "C",
+        "text_en": "spec.retryLimit: 4",
+        "text_kr": "spec.retryLimit: 4"
+      },
+      {
+        "key": "D",
+        "text_en": "spec.activeDeadlineSeconds: 4",
+        "text_kr": "spec.activeDeadlineSeconds: 4"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Job 리소스에서 실패 시 재시도 한도는 spec.backoffLimit (기본값: 6)으로 제어합니다.",
+    "key_concept": "Job spec.backoffLimit"
+  },
+  {
+    "id": "D2-Q23",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "Which Pod securityContext setting ensures that a container cannot run with root privileges (UID 0)?",
+    "question_kr": "컨테이너가 루트 권한(UID 0)으로 실행되는 것을 원천 차단하도록 보장하는 Pod securityContext 설정은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "runAsNonRoot: true",
+        "text_kr": "runAsNonRoot: true"
+      },
+      {
+        "key": "B",
+        "text_en": "allowPrivilegeEscalation: false",
+        "text_kr": "allowPrivilegeEscalation: false"
+      },
+      {
+        "key": "C",
+        "text_en": "readOnlyRootFilesystem: true",
+        "text_kr": "readOnlyRootFilesystem: true"
+      },
+      {
+        "key": "D",
+        "text_en": "dropCapabilities: ['ALL']",
+        "text_kr": "dropCapabilities: ['ALL']"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• runAsNonRoot: true로 설정하면 이미지나 컨테이너가 UID 0(root)으로 기동하려 할 때 kubelet이 컨테이너 실행을 즉시 거부(ContainerCannotRun)합니다.",
+    "key_concept": "securityContext.runAsNonRoot: true"
+  },
+  {
+    "id": "D2-Q24",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "What is the simplest way to direct a pod to nodes labeled with `topology.kubernetes.io/zone=us-east-1a` using basic node matching?",
+    "question_kr": "기본적인 노드 매칭 방식을 사용하여 `topology.kubernetes.io/zone=us-east-1a` 라벨을 가진 노드로 파드를 배치하는 가장 단순한 PodSpec 필드는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "spec.nodeSelector: {'topology.kubernetes.io/zone': 'us-east-1a'}",
+        "text_kr": "spec.nodeSelector: {'topology.kubernetes.io/zone': 'us-east-1a'}"
+      },
+      {
+        "key": "B",
+        "text_en": "spec.zoneSelector: us-east-1a",
+        "text_kr": "spec.zoneSelector: us-east-1a"
+      },
+      {
+        "key": "C",
+        "text_en": "spec.nodeTarget: us-east-1a",
+        "text_kr": "spec.nodeTarget: us-east-1a"
+      },
+      {
+        "key": "D",
+        "text_en": "metadata.labels.zone: us-east-1a",
+        "text_kr": "metadata.labels.zone: us-east-1a"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 복잡한 연산자(In, NotIn)가 필요 없는 단순 키-값 매칭에는 spec.nodeSelector가 가장 직관적이고 빠릅니다.",
+    "key_concept": "spec.nodeSelector, Basic Node Label Matching"
+  },
+  {
+    "id": "D2-Q25",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+    "question_en": "What happens if a CronJob schedule is set to `*/15 * * * *`?",
+    "question_kr": "CronJob의 schedule이 `*/15 * * * *`로 설정되어 있으면 해당 작업은 언제 실행됩니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Every 15 minutes",
+        "text_kr": "15분마다 (매시 0분, 15분, 30분, 45분)"
+      },
+      {
+        "key": "B",
+        "text_en": "Every day at 3:00 PM (15:00)",
+        "text_kr": "매일 오후 3시 (15:00)"
+      },
+      {
+        "key": "C",
+        "text_en": "On the 15th day of every month",
+        "text_kr": "매월 15일마다"
+      },
+      {
+        "key": "D",
+        "text_en": "Every 15 hours",
+        "text_kr": "15시간마다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 크론 표현식 5개 필드는 순서대로 '분 시 일 월 요일'입니다. 첫 번째 분 필드의 */15는 15분 간격 실행을 의미합니다.",
+    "key_concept": "CronJob schedule expression syntax"
   }
 ]

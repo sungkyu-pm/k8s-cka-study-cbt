@@ -51,13 +51,13 @@ K8S/
 │   ├── 06_DOMAIN_5_TROUBLESHOOTING.md        # 도메인 5: 문제 해결 및 장애 진단 (30%)
 │   └── 07_KUBECTL_CHEAT_SHEET.md             # 실전 합격 kubectl 명령형 커맨드 치트시트
 │
-├── questions/                                 # 📝 실전 수준 문제은행 (JSON 포맷)
-│   ├── questions_domain1.json                # 도메인 1 전용 문제 & 상세 한국어 해설
-│   ├── questions_domain2.json                # 도메인 2 전용 문제 & 상세 한국어 해설
-│   ├── questions_domain3.json                # 도메인 3 전용 문제 & 상세 한국어 해설
-│   ├── questions_domain4.json                # 도메인 4 전용 문제 & 상세 한국어 해설
-│   ├── questions_domain5.json                # 도메인 5 전용 문제 & 상세 한국어 해설
-│   └── mock_exam_1.json                      # 전 도메인 통합 실전 모의고사 세트 (20문항)
+├── questions/                                 # 📝 실전 수준 대규모 문제은행 (총 125문항 + 모의고사)
+│   ├── questions_domain1.json                # 도메인 1 전용 문제 & 상세 한국어 해설 (25문항)
+│   ├── questions_domain2.json                # 도메인 2 전용 문제 & 상세 한국어 해설 (25문항)
+│   ├── questions_domain3.json                # 도메인 3 전용 문제 & 상세 한국어 해설 (25문항)
+│   ├── questions_domain4.json                # 도메인 4 전용 문제 & 상세 한국어 해설 (25문항)
+│   ├── questions_domain5.json                # 도메인 5 전용 문제 & 상세 한국어 해설 (25문항)
+│   └── mock_exam_1.json                      # 전 도메인 통합 실전 모의고사 세트 (25문항)
 │
 ├── cbt-app/                                   # 💻 실전 CBT 가상 실습 웹 애플리케이션
 │   ├── index.html                            # CBT 웹앱 메인 화면

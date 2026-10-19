@@ -1,4 +1,5 @@
 // Kubernetes Certification (CKA / CKAD) Full Question Bank
+// Total 125 domain questions + 25 mock questions
 const EXAM_DATA = {
   "domain1": [
     {
@@ -320,6 +321,486 @@ const EXAM_DATA = {
       "correct_answer": "B",
       "explanation_kr": "정답은 B입니다.\n\n• 컨트롤 플레인(마스터) 노드에서는 `kubeadm upgrade apply v<버전>` 명령을 사용하지만,\n• 워커 노드에서는 컨트롤 플레인 설정을 건드리지 않고 로컬 kubelet 구성을 갱신하기 위해 `kubeadm upgrade node` 명령어를 사용합니다. (CKA 시험 필수 구분 포인트!)",
       "key_concept": "kubeadm upgrade node vs kubeadm upgrade apply"
+    },
+    {
+      "id": "D1-Q11",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "You need to generate a new join token and print the full kubeadm join command line with CA cert hash to join a new worker node to an existing cluster. Which command accomplishes this?",
+      "question_kr": "기존 클러스터에 새 워커 노드를 조인시키기 위해, CA 인증서 해시가 포함된 전체 kubeadm join 커맨드라인을 새로 생성하고 출력해야 합니다. 이 작업을 수행하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubeadm token create --print-join-command",
+          "text_kr": "kubeadm token create --print-join-command"
+        },
+        {
+          "key": "B",
+          "text_en": "kubeadm join generate-token --all-nodes",
+          "text_kr": "kubeadm join generate-token --all-nodes"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl create join-token --worker",
+          "text_kr": "kubectl create join-token --worker"
+        },
+        {
+          "key": "D",
+          "text_en": "kubeadm cluster token get --hash",
+          "text_kr": "kubeadm cluster token get --hash"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubeadm token create --print-join-command 명령을 실행하면 새 토큰을 발급함과 동시에 --discovery-token-ca-cert-hash가 포함된 즉시 실행 가능한 완전한 kubeadm join 명령어를 터미널에 출력해줍니다.",
+      "key_concept": "kubeadm token create --print-join-command, Worker Node Join"
+    },
+    {
+      "id": "D1-Q12",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "An administrator submitted a CertificateSigningRequest (CSR) named 'developer-bob'. Which command approves this certificate request so that the client certificate can be issued?",
+      "question_kr": "관리자가 'developer-bob'이라는 이름의 CSR(CertificateSigningRequest)을 제출했습니다. 클라이언트 인증서가 발급될 수 있도록 이 인증서 요청을 승인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl certificate approve developer-bob",
+          "text_kr": "kubectl certificate approve developer-bob"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl csr sign developer-bob --allow",
+          "text_kr": "kubectl csr sign developer-bob --allow"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl approve csr developer-bob",
+          "text_kr": "kubectl approve csr developer-bob"
+        },
+        {
+          "key": "D",
+          "text_en": "kubeadm certs approve developer-bob",
+          "text_kr": "kubeadm certs approve developer-bob"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스에서 대기 중인 CSR을 승인할 때는 kubectl certificate approve <CSR이름>을 사용합니다.\n• 거부할 때는 kubectl certificate deny <CSR이름>을 사용합니다.",
+      "key_concept": "CertificateSigningRequest (CSR), kubectl certificate approve"
+    },
+    {
+      "id": "D1-Q13",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "In a kubeconfig file, which section links a specific user identity to a specific cluster and optional namespace?",
+      "question_kr": "kubeconfig 파일에서 특정 사용자 자격 증명(User)과 특정 클러스터(Cluster), 그리고 선택적 네임스페이스를 연결해주는 섹션은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "contexts",
+          "text_kr": "contexts"
+        },
+        {
+          "key": "B",
+          "text_en": "bindings",
+          "text_kr": "bindings"
+        },
+        {
+          "key": "C",
+          "text_en": "preferences",
+          "text_kr": "preferences"
+        },
+        {
+          "key": "D",
+          "text_en": "mappings",
+          "text_kr": "mappings"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubeconfig의 contexts 항목은 cluster, user, namespace의 3가지 요소를 하나로 묶어 정의합니다.\n• 사용자는 kubectl config use-context <컨텍스트명>으로 손쉽게 대상 클러스터와 권한을 전환할 수 있습니다.",
+      "key_concept": "kubeconfig Contexts, Context Switching"
+    },
+    {
+      "id": "D1-Q14",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "You need to create a new ServiceAccount named 'deploy-sa' in the 'prod' namespace. Which command creates it using kubectl imperatively?",
+      "question_kr": "'prod' 네임스페이스에 'deploy-sa'라는 새 ServiceAccount를 생성해야 합니다. 명령형 커맨드로 이를 생성하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl create serviceaccount deploy-sa -n prod",
+          "text_kr": "kubectl create serviceaccount deploy-sa -n prod"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl generate sa deploy-sa --namespace=prod",
+          "text_kr": "kubectl generate sa deploy-sa --namespace=prod"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl add user deploy-sa -n prod",
+          "text_kr": "kubectl add user deploy-sa -n prod"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl new serviceaccount deploy-sa -n prod",
+          "text_kr": "kubectl new serviceaccount deploy-sa -n prod"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl create serviceaccount <이름> [-n <네임스페이스>] (또는 create sa) 명령으로 즉시 서비스어카운트를 생성할 수 있습니다.",
+      "key_concept": "kubectl create serviceaccount, ServiceAccount Creation"
+    },
+    {
+      "id": "D1-Q15",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "You need to check the remaining validity period and expiration dates of all control plane certificates generated by kubeadm. Which command provides this information?",
+      "question_kr": "kubeadm으로 생성된 모든 컨트롤 플레인 내부 인증서의 잔여 유효 기간 및 만료 일자를 확인해야 합니다. 이 정보를 제공하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubeadm certs check-expiration",
+          "text_kr": "kubeadm certs check-expiration"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl get certificates --all-namespaces",
+          "text_kr": "kubectl get certificates --all-namespaces"
+        },
+        {
+          "key": "C",
+          "text_en": "openssl check /etc/kubernetes/pki/*",
+          "text_kr": "openssl check /etc/kubernetes/pki/*"
+        },
+        {
+          "key": "D",
+          "text_en": "kubeadm token list --certs",
+          "text_kr": "kubeadm token list --certs"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubeadm certs check-expiration 명령은 /etc/kubernetes/pki 디렉토리와 kubeconfig 파일에 포함된 클라이언트/서버 인증서들의 잔여 일수와 만료 시점을 한눈에 보여줍니다.",
+      "key_concept": "kubeadm certs check-expiration, Certificate Lifecycle"
+    },
+    {
+      "id": "D1-Q16",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "How can you renew all expiring control plane certificates using kubeadm in a single command?",
+      "question_kr": "만료가 임박한 모든 컨트롤 플레인 인증서를 kubeadm 명령 하나로 일괄 갱신하려면 어떤 명령을 실행해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubeadm certs renew all",
+          "text_kr": "kubeadm certs renew all"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl renew certificates --all",
+          "text_kr": "kubectl renew certificates --all"
+        },
+        {
+          "key": "C",
+          "text_en": "kubeadm upgrade certificates",
+          "text_kr": "kubeadm upgrade certificates"
+        },
+        {
+          "key": "D",
+          "text_en": "systemctl restart kube-certificates",
+          "text_kr": "systemctl restart kube-certificates"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubeadm certs renew all을 실행하면 /etc/kubernetes/pki 내부의 모든 제어 평면 인증서가 1년 유효기간으로 일괄 갱신됩니다. 갱신 후에는 정적 파드들이 새 인증서를 로드하도록 컨테이너 런타임이나 노드를 재시작해야 합니다.",
+      "key_concept": "kubeadm certs renew all, Certificate Renewal"
+    },
+    {
+      "id": "D1-Q17",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "A cluster administrator needs to grant the 'monitoring' ServiceAccount permission to view nodes across the entire cluster. Which RBAC resource pairing must be created?",
+      "question_kr": "클러스터 관리자가 'monitoring' ServiceAccount에 클러스터 전체 노드(nodes)를 조회할 수 있는 권한을 부여해야 합니다. 생성해야 하는 RBAC 리소스 쌍은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "A ClusterRole granting 'get, list' on 'nodes' and a ClusterRoleBinding binding it to the ServiceAccount.",
+          "text_kr": "'nodes'에 'get, list'를 부여하는 ClusterRole과 이를 해당 ServiceAccount에 연결하는 ClusterRoleBinding."
+        },
+        {
+          "key": "B",
+          "text_en": "A Role in the kube-system namespace and a RoleBinding.",
+          "text_kr": "kube-system 네임스페이스의 Role과 RoleBinding."
+        },
+        {
+          "key": "C",
+          "text_en": "A NodePolicy with action Allow.",
+          "text_kr": "액션 Allow가 지정된 NodePolicy."
+        },
+        {
+          "key": "D",
+          "text_en": "A ClusterRole with an empty verbs array.",
+          "text_kr": "verbs 배열이 비어 있는 ClusterRole."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• nodes는 특정 네임스페이스에 속하지 않는 클러스터 전역 리소스(Non-namespaced resource)입니다.\n• 따라서 네임스페이스 범위의 Role로는 권한을 줄 수 없으며, 반드시 ClusterRole과 ClusterRoleBinding을 사용해야 합니다.",
+      "key_concept": "Non-namespaced Resources RBAC, ClusterRole and ClusterRoleBinding"
+    },
+    {
+      "id": "D1-Q18",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "Which flag in kubelet configuration file defines the directory where kubelet monitors and runs static pods?",
+      "question_kr": "kubelet 설정 파일에서 스태틱 파드를 모니터링하고 실행할 디렉토리 경로를 지정하는 설정 필드는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "staticPodPath",
+          "text_kr": "staticPodPath"
+        },
+        {
+          "key": "B",
+          "text_en": "manifestDirectory",
+          "text_kr": "manifestDirectory"
+        },
+        {
+          "key": "C",
+          "text_en": "podManifestLocation",
+          "text_kr": "podManifestLocation"
+        },
+        {
+          "key": "D",
+          "text_en": "systemPodRoot",
+          "text_kr": "systemPodRoot"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubelet 설정 파일(/var/lib/kubelet/config.yaml)에서 staticPodPath: /etc/kubernetes/manifests로 지정됩니다. 이 경로에 위치한 모든 YAML 파일은 kubelet에 의해 스태틱 파드로 직접 실행됩니다.",
+      "key_concept": "kubelet configuration staticPodPath"
+    },
+    {
+      "id": "D1-Q19",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "What is the consequence of having an even number of etcd members (e.g., 4 members) compared to an odd number (3 members)?",
+      "question_kr": "홀수 개(3개)의 etcd 멤버로 구성하는 것에 비해 짝수 개(4개)의 멤버로 구성할 때 발생하는 단점 및 결과는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "It does not increase fault tolerance (both tolerate only 1 failure) while increasing network communication overhead and risk of quorum loss.",
+          "text_kr": "허용 가능한 노드 장애 대수는 1대로 동일하면서, 네트워크 오버헤드와 쿼럼 상실 위험만 증가합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "etcd refuses to start with an even number of members.",
+          "text_kr": "etcd는 짝수 개의 멤버일 경우 기동을 거부합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "The cluster doubles its write throughput.",
+          "text_kr": "클러스터의 쓰기 처리량이 2배로 증가합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Encryption at rest is automatically disabled.",
+          "text_kr": "저장 데이터 암호화가 자동으로 비활성화됩니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 3대 클러스터의 쿼럼은 2대이며 최대 1대 장애를 견딥니다.\n• 4대 클러스터의 쿼럼은 3대이며 역시 최대 1대 장애만 견딜 수 있습니다.\n• 즉, 짝수 노드는 가용성 이득 없이 네트워크 동기화 비용과 스플릿 브레인 취약성만 유발하므로 etcd는 반드시 홀수(3, 5개)로 구성해야 합니다.",
+      "key_concept": "etcd Quorum Characteristics (Odd vs Even Members)"
+    },
+    {
+      "id": "D1-Q20",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "Which command switches the current active context in ~/.kube/config to 'prod-cluster'?",
+      "question_kr": "~/.kube/config 파일에서 현재 활성화된 컨텍스트를 'prod-cluster'로 전환하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl config use-context prod-cluster",
+          "text_kr": "kubectl config use-context prod-cluster"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl set context prod-cluster",
+          "text_kr": "kubectl set context prod-cluster"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl switch cluster prod-cluster",
+          "text_kr": "kubectl switch cluster prod-cluster"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl context activate prod-cluster",
+          "text_kr": "kubectl context activate prod-cluster"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl config use-context <컨텍스트이름>은 CKA 시험의 모든 문제 풀이 시작 시 필수적으로 실행하는 컨텍스트 스위칭 커맨드입니다.",
+      "key_concept": "kubectl config use-context, Context Switching"
+    },
+    {
+      "id": "D1-Q21",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "You need to drain a worker node for maintenance. Some pods on the node use emptyDir volumes. What flag must be added to the kubectl drain command to proceed with pod eviction?",
+      "question_kr": "유지보수를 위해 워커 노드를 drain해야 합니다. 해당 노드의 일부 파드가 emptyDir 볼륨을 사용하고 있습니다. 파드 축출을 계속 진행하기 위해 kubectl drain 명령에 반드시 추가해야 하는 플래그는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "--delete-emptydir-data",
+          "text_kr": "--delete-emptydir-data"
+        },
+        {
+          "key": "B",
+          "text_en": "--force-emptydir",
+          "text_kr": "--force-emptydir"
+        },
+        {
+          "key": "C",
+          "text_en": "--purge-local-storage",
+          "text_kr": "--purge-local-storage"
+        },
+        {
+          "key": "D",
+          "text_en": "--allow-data-loss",
+          "text_kr": "--allow-data-loss"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• emptyDir을 사용하는 파드는 노드 퇴거 시 로컬 데이터가 삭제되므로, drain 명령이 기본적으로 작업을 거부합니다.\n• 관리자가 데이터 삭제를 인지하고 있음을 명시하기 위해 --delete-emptydir-data 플래그를 추가해야 합니다.",
+      "key_concept": "kubectl drain --delete-emptydir-data"
+    },
+    {
+      "id": "D1-Q22",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "Which command creates a ClusterRole named 'deployment-admin' that allows all verbs on deployments in the apps API group?",
+      "question_kr": "apps API 그룹의 deployments 리소스에 대해 모든 동사(*) 권한을 허용하는 'deployment-admin'이라는 ClusterRole을 생성하는 명령형 커맨드는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl create clusterrole deployment-admin --verb=* --resource=deployments.apps",
+          "text_kr": "kubectl create clusterrole deployment-admin --verb=* --resource=deployments.apps"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl create role deployment-admin --all-verbs --cluster",
+          "text_kr": "kubectl create role deployment-admin --all-verbs --cluster"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl add clusterrole deployment-admin deployments.apps:all",
+          "text_kr": "kubectl add clusterrole deployment-admin deployments.apps:all"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl make clusterrole deployment-admin -r deployments",
+          "text_kr": "kubectl make clusterrole deployment-admin -r deployments"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl create clusterrole <이름> --verb=* --resource=deployments.apps 명령으로 API 그룹과 와일드카드 동사를 지정하여 생성할 수 있습니다.",
+      "key_concept": "kubectl create clusterrole imperative command"
+    },
+    {
+      "id": "D1-Q23",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "Where does kubelet store its default PKI client certificates and keys on a worker node after successfully joining the cluster?",
+      "question_kr": "워커 노드가 클러스터에 성공적으로 조인한 후, kubelet이 자체 PKI 클라이언트 인증서와 키를 저장하는 기본 디렉토리 경로는 어디입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "/var/lib/kubelet/pki",
+          "text_kr": "/var/lib/kubelet/pki"
+        },
+        {
+          "key": "B",
+          "text_en": "/etc/kubernetes/pki/worker",
+          "text_kr": "/etc/kubernetes/pki/worker"
+        },
+        {
+          "key": "C",
+          "text_en": "/root/.kube/certs",
+          "text_kr": "/root/.kube/certs"
+        },
+        {
+          "key": "D",
+          "text_en": "/opt/cni/bin/pki",
+          "text_kr": "/opt/cni/bin/pki"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 워커 노드의 kubelet 인증서(kubelet-client-current.pem 등)는 /var/lib/kubelet/pki에 저장됩니다.",
+      "key_concept": "kubelet PKI Directory (/var/lib/kubelet/pki)"
+    },
+    {
+      "id": "D1-Q24",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "During cluster initialization with kubeadm init, what flag specifies the IP address range for Pod networking (CIDR)?",
+      "question_kr": "kubeadm init으로 클러스터를 초기화할 때, 파드 네트워크에 할당할 IP 대역(CIDR)을 지정하는 플래그는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "--pod-network-cidr",
+          "text_kr": "--pod-network-cidr"
+        },
+        {
+          "key": "B",
+          "text_en": "--cluster-cidr-range",
+          "text_kr": "--cluster-cidr-range"
+        },
+        {
+          "key": "C",
+          "text_en": "--pod-ip-pool",
+          "text_kr": "--pod-ip-pool"
+        },
+        {
+          "key": "D",
+          "text_en": "--cni-subnet",
+          "text_kr": "--cni-subnet"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubeadm init --pod-network-cidr=192.168.0.0/16 (또는 CNI 권장 대역) 플래그를 설정해야 CNI 플러그인이 정상적으로 파드에 IP를 라우팅할 수 있습니다.",
+      "key_concept": "kubeadm init --pod-network-cidr"
+    },
+    {
+      "id": "D1-Q25",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "You need to grant 'jane' the ability to view secrets in the 'finance' namespace, but prevent her from creating or modifying them. Which verbs should be specified in the Role?",
+      "question_kr": "'finance' 네임스페이스에서 'jane'에게 Secret을 조회할 수 있는 권한을 주되, 생성이나 수정은 방지하고자 합니다. Role의 verbs에 지정해야 하는 값은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "verbs: ['get', 'list']",
+          "text_kr": "verbs: ['get', 'list']"
+        },
+        {
+          "key": "B",
+          "text_en": "verbs: ['read', 'write']",
+          "text_kr": "verbs: ['read', 'write']"
+        },
+        {
+          "key": "C",
+          "text_en": "verbs: ['view']",
+          "text_kr": "verbs: ['view']"
+        },
+        {
+          "key": "D",
+          "text_en": "verbs: ['describe', 'inspect']",
+          "text_kr": "verbs: ['describe', 'inspect']"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 RBAC에서 읽기 전용 권한은 get, list, watch입니다. describe나 view는 유효한 API 동사가 아닙니다.",
+      "key_concept": "RBAC Read-only Verbs (get, list, watch)"
     }
   ],
   "domain2": [
@@ -642,6 +1123,486 @@ const EXAM_DATA = {
       "correct_answer": "A",
       "explanation_kr": "정답은 A입니다.\n\n• ConfigMap이나 Secret의 모든 키-값 항목을 한 번에 환경변수로 가져올 때는 `env` 대신 `envFrom` 블록의 `configMapRef` 또는 `secretRef`를 사용합니다.",
       "key_concept": "envFrom with configMapRef, Bulk Environment Variable Injection"
+    },
+    {
+      "id": "D2-Q11",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "How can you manually schedule a Pod onto a specific node named 'worker-2' without relying on kube-scheduler?",
+      "question_kr": "kube-scheduler의 개입 없이 'worker-2'라는 특정 노드에 파드를 수동으로 즉시 스케줄링하려면 PodSpec에서 어떤 필드를 지정해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "spec.nodeName: worker-2",
+          "text_kr": "spec.nodeName: worker-2"
+        },
+        {
+          "key": "B",
+          "text_en": "spec.schedulerName: manual",
+          "text_kr": "spec.schedulerName: manual"
+        },
+        {
+          "key": "C",
+          "text_en": "spec.assignedNode: worker-2",
+          "text_kr": "spec.assignedNode: worker-2"
+        },
+        {
+          "key": "D",
+          "text_en": "metadata.targetNode: worker-2",
+          "text_kr": "metadata.targetNode: worker-2"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• PodSpec의 spec.nodeName 필드에 노드 이름을 직접 기입하면 스케줄러를 완전히 우회하여 해당 노드의 kubelet이 파드를 즉시 바인딩 및 실행합니다.",
+      "key_concept": "spec.nodeName, Manual Pod Scheduling"
+    },
+    {
+      "id": "D2-Q12",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "Which command temporarily pauses a Deployment named 'web-deploy' so that multiple schema and container image changes can be made before triggering a new rollout?",
+      "question_kr": "새로운 롤아웃이 즉시 트리거되지 않도록 'web-deploy' 디플로이먼트를 일시 중지하여 여러 변경 사항을 한 번에 적용할 수 있게 해주는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl rollout pause deployment web-deploy",
+          "text_kr": "kubectl rollout pause deployment web-deploy"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl stop deployment web-deploy --keep-pods",
+          "text_kr": "kubectl stop deployment web-deploy --keep-pods"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl deployment freeze web-deploy",
+          "text_kr": "kubectl deployment freeze web-deploy"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl scale deployment web-deploy --lock",
+          "text_kr": "kubectl scale deployment web-deploy --lock"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl rollout pause deployment <이름>을 실행하면 롤아웃이 일시 중지되어 여러 설정을 연달아 변경해도 파드가 재시작되지 않으며, 변경 완료 후 kubectl rollout resume으로 한 번에 적용합니다.",
+      "key_concept": "kubectl rollout pause and resume"
+    },
+    {
+      "id": "D2-Q13",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "A Pod needs a specific file mounted from a ConfigMap at `/etc/nginx/nginx.conf` without overwriting other existing files in `/etc/nginx/`. Which volumeMount property achieves this?",
+      "question_kr": "파드가 ConfigMap의 특정 파일을 /etc/nginx/nginx.conf 위치에 마운트하되, /etc/nginx/ 디렉토리 내의 다른 기존 파일들을 덮어쓰지 않고 보존하려면 어떤 volumeMount 속성을 사용해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "subPath: nginx.conf",
+          "text_kr": "subPath: nginx.conf"
+        },
+        {
+          "key": "B",
+          "text_en": "noOverwrite: true",
+          "text_kr": "noOverwrite: true"
+        },
+        {
+          "key": "C",
+          "text_en": "isolateFile: true",
+          "text_kr": "isolateFile: true"
+        },
+        {
+          "key": "D",
+          "text_en": "appendOnly: true",
+          "text_kr": "appendOnly: true"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 볼륨을 디렉토리에 마운트하면 기본적으로 해당 디렉토리의 기존 내용이 가려집니다. volumeMounts에 subPath 속성을 사용하면 특정 단일 파일만 해당 위치에 안전하게 마운트할 수 있습니다.",
+      "key_concept": "volumeMounts.subPath, Single File Mount"
+    },
+    {
+      "id": "D2-Q14",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "What is the key difference between PodAffinity and PodAntiAffinity?",
+      "question_kr": "PodAffinity와 PodAntiAffinity의 핵심적인 차이점은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "PodAffinity co-locates pods with matching labels close together, while PodAntiAffinity spreads them apart across failure domains (e.g., nodes or zones).",
+          "text_kr": "PodAffinity는 일치하는 라벨을 가진 파드들을 가까이(같은 노드/존) 배치하고, PodAntiAffinity는 장애 분리를 위해 서로 다른 노드/존으로 분산 배치합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "PodAffinity applies only to DaemonSets.",
+          "text_kr": "PodAffinity는 오직 DaemonSet에만 적용됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "PodAntiAffinity prevents pods from using cluster storage.",
+          "text_kr": "PodAntiAffinity는 파드가 클러스터 스토리지를 사용하는 것을 차단합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "PodAffinity requires root privileges inside the container.",
+          "text_kr": "PodAffinity는 컨테이너 내부 루트 권한을 요구합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• PodAffinity: 통신 지연시간을 줄이기 위해 동일 서비스/캐시 파드끼리 같은 노드에 모으는 설정.\n• PodAntiAffinity: 고가용성(HA)을 위해 동일 서비스 복제본들이 단일 노드 장애로 동시 다운되지 않도록 분산 배치하는 설정.",
+      "key_concept": "PodAffinity vs PodAntiAffinity"
+    },
+    {
+      "id": "D2-Q15",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "Which restartPolicy options are valid for a standard Kubernetes Job?",
+      "question_kr": "표준 쿠버네티스 Job(배치 작업) 리소스에서 유효한 restartPolicy 옵션은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "OnFailure or Never",
+          "text_kr": "OnFailure 또는 Never"
+        },
+        {
+          "key": "B",
+          "text_en": "Always only",
+          "text_kr": "Always 만 가능"
+        },
+        {
+          "key": "C",
+          "text_en": "Always, OnFailure, and Never",
+          "text_kr": "Always, OnFailure, Never 모두 가능"
+        },
+        {
+          "key": "D",
+          "text_en": "Terminated",
+          "text_kr": "Terminated"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• Job은 작업이 완료(Completed)되면 종료되어야 하므로 컨테이너가 무한 재시작되는 restartPolicy: Always를 허용하지 않습니다. 오직 OnFailure 또는 Never만 유효합니다.",
+      "key_concept": "Job restartPolicy (OnFailure, Never)"
+    },
+    {
+      "id": "D2-Q16",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "How can you view the rollout history of revisions for a deployment named 'api-service'?",
+      "question_kr": "'api-service' 디플로이먼트의 리비전 배포 히스토리를 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl rollout history deployment api-service",
+          "text_kr": "kubectl rollout history deployment api-service"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl get revisions deployment api-service",
+          "text_kr": "kubectl get revisions deployment api-service"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl describe history api-service",
+          "text_kr": "kubectl describe history api-service"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl list deployment-versions api-service",
+          "text_kr": "kubectl list deployment-versions api-service"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl rollout history deployment <이름> 명령을 통해 각 리비전 번호와 배포 이력을 조회할 수 있습니다.",
+      "key_concept": "kubectl rollout history"
+    },
+    {
+      "id": "D2-Q17",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "In a DaemonSet, how can you ensure its pods are scheduled onto control-plane nodes that have the master taint `node-role.kubernetes.io/control-plane:NoSchedule`?",
+      "question_kr": "DaemonSet 파드가 마스터 노드의 `node-role.kubernetes.io/control-plane:NoSchedule` 테인트를 무시하고 컨트롤 플레인 노드에도 배포되도록 보장하려면 어떻게 해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Add a toleration in the DaemonSet Pod template for the control-plane taint with operator: Exists.",
+          "text_kr": "DaemonSet의 파드 템플릿에 operator: Exists가 지정된 control-plane 테인트 toleration을 추가합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Set privileged: true in the container securityContext.",
+          "text_kr": "컨테이너 securityContext에 privileged: true를 설정합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Remove the kube-scheduler from the master node.",
+          "text_kr": "마스터 노드에서 kube-scheduler를 제거합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Add nodeName: master to every pod.",
+          "text_kr": "모든 파드에 nodeName: master를 추가합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 마스터 노드에 에이전트를 띄우려면 파드 스펙의 tolerations에 key: node-role.kubernetes.io/control-plane, operator: Exists, effect: NoSchedule을 명시해야 합니다.",
+      "key_concept": "DaemonSet Master Node Toleration"
+    },
+    {
+      "id": "D2-Q18",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "What is the primary characteristic of StatefulSet pod naming and ordering during scaling?",
+      "question_kr": "StatefulSet의 파드 명명 규칙 및 스케일링 시 순서에 대한 핵심적인 특징은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Pods are assigned a sticky, predictable ordinal index (e.g., web-0, web-1) and deployed or deleted sequentially.",
+          "text_kr": "파드에 예측 가능하고 고유한 서수 인덱스(예: web-0, web-1)가 부여되며, 순차적으로 배포 및 삭제됩니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Pods are given completely random hash suffixes like Deployments.",
+          "text_kr": "Deployment처럼 완전히 무작위 해시 접미사가 부여됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "All pods are created simultaneously in parallel by default.",
+          "text_kr": "모든 파드가 기본적으로 동시에 병렬 생성됩니다."
+        },
+        {
+          "key": "D",
+          "text_en": "StatefulSet pods cannot use persistent storage.",
+          "text_kr": "StatefulSet 파드는 영구 스토리지를 사용할 수 없습니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• StatefulSet은 <이름>-<0부터 시작하는 서수> 형태로 고유 식별자가 유지되며, 0부터 순서대로 기동되고 축소 시에는 역순으로 종료됩니다.",
+      "key_concept": "StatefulSet Ordinal Indexing and Ordered Scaling"
+    },
+    {
+      "id": "D2-Q19",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "How can you inject a specific single key 'DB_URL' from a Secret named 'app-sec' as an environment variable 'DATABASE_URL' in a Pod container?",
+      "question_kr": "파드 컨테이너 내부의 환경변수 'DATABASE_URL'에 'app-sec' 시크릿의 'DB_URL' 단일 키 값을 주입하려면 어떤 문법을 사용해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "env: [{name: DATABASE_URL, valueFrom: {secretKeyRef: {name: app-sec, key: DB_URL}}}]",
+          "text_kr": "env: [{name: DATABASE_URL, valueFrom: {secretKeyRef: {name: app-sec, key: DB_URL}}}]"
+        },
+        {
+          "key": "B",
+          "text_en": "envFrom: [{secretRef: {name: app-sec, renameKey: DB_URL->DATABASE_URL}}]",
+          "text_kr": "envFrom: [{secretRef: {name: app-sec, renameKey: DB_URL->DATABASE_URL}}]"
+        },
+        {
+          "key": "C",
+          "text_en": "env: [{secretKey: app-sec/DB_URL, as: DATABASE_URL}]",
+          "text_kr": "env: [{secretKey: app-sec/DB_URL, as: DATABASE_URL}]"
+        },
+        {
+          "key": "D",
+          "text_en": "spec.secrets: [{bind: DATABASE_URL, source: app-sec.DB_URL}]",
+          "text_kr": "spec.secrets: [{bind: DATABASE_URL, source: app-sec.DB_URL}]"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 단일 키를 환경변수로 매핑할 때는 env 배열 내에서 name과 valueFrom.secretKeyRef (또는 configMapKeyRef)를 사용합니다.",
+      "key_concept": "valueFrom.secretKeyRef Environment Injection"
+    },
+    {
+      "id": "D2-Q20",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "Which command scales a deployment named 'order-processor' from 2 to 6 replicas immediately?",
+      "question_kr": "'order-processor' 디플로이먼트의 레플리카 수를 2개에서 6개로 즉시 스케일링하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl scale deployment order-processor --replicas=6",
+          "text_kr": "kubectl scale deployment order-processor --replicas=6"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl update deployment order-processor --count=6",
+          "text_kr": "kubectl update deployment order-processor --count=6"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl resize deployment order-processor -n 6",
+          "text_kr": "kubectl resize deployment order-processor -n 6"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl set replicas deployment/order-processor 6",
+          "text_kr": "kubectl set replicas deployment/order-processor 6"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl scale deployment <이름> --replicas=<개수> 커맨드를 통해 파드 수를 즉각적으로 변경할 수 있습니다.",
+      "key_concept": "kubectl scale deployment imperative command"
+    },
+    {
+      "id": "D2-Q21",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "A container specifies `resources.requests.cpu: '500m'`. What does '500m' represent in Kubernetes resource units?",
+      "question_kr": "컨테이너에 resources.requests.cpu가 '500m'으로 설정되어 있습니다. 쿠버네티스 리소스 단위에서 '500m'은 무엇을 의미합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "0.5 of a single CPU core (500 millicores)",
+          "text_kr": "단일 CPU 코어의 0.5 (500 밀리코어)"
+        },
+        {
+          "key": "B",
+          "text_en": "500 megabytes of CPU cache",
+          "text_kr": "500 메가바이트의 CPU 캐시"
+        },
+        {
+          "key": "C",
+          "text_en": "500 minutes of CPU execution time",
+          "text_kr": "500분의 CPU 실행 시간"
+        },
+        {
+          "key": "D",
+          "text_en": "500 MHz processor clock speed",
+          "text_kr": "500 MHz 프로세서 클록 주파수"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스에서 1개 CPU 코어는 1000m (밀리코어)입니다. 따라서 500m은 절반(0.5) 코어 용량을 뜻합니다.",
+      "key_concept": "CPU Resource Units (millicores / m)"
+    },
+    {
+      "id": "D2-Q22",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "You want to run a one-time database migration job that retries up to 4 times if the script fails before marking the Job as failed. Which Job specification field configures this retry count?",
+      "question_kr": "스크립트 실패 시 최대 4회까지 재시도한 후 최종 실패로 처리하는 1회성 DB 마이그레이션 Job을 실행하고자 합니다. 이 재시도 횟수를 설정하는 Job 사양 필드는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "spec.backoffLimit: 4",
+          "text_kr": "spec.backoffLimit: 4"
+        },
+        {
+          "key": "B",
+          "text_en": "spec.maxRetries: 4",
+          "text_kr": "spec.maxRetries: 4"
+        },
+        {
+          "key": "C",
+          "text_en": "spec.retryLimit: 4",
+          "text_kr": "spec.retryLimit: 4"
+        },
+        {
+          "key": "D",
+          "text_en": "spec.activeDeadlineSeconds: 4",
+          "text_kr": "spec.activeDeadlineSeconds: 4"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• Job 리소스에서 실패 시 재시도 한도는 spec.backoffLimit (기본값: 6)으로 제어합니다.",
+      "key_concept": "Job spec.backoffLimit"
+    },
+    {
+      "id": "D2-Q23",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "Which Pod securityContext setting ensures that a container cannot run with root privileges (UID 0)?",
+      "question_kr": "컨테이너가 루트 권한(UID 0)으로 실행되는 것을 원천 차단하도록 보장하는 Pod securityContext 설정은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "runAsNonRoot: true",
+          "text_kr": "runAsNonRoot: true"
+        },
+        {
+          "key": "B",
+          "text_en": "allowPrivilegeEscalation: false",
+          "text_kr": "allowPrivilegeEscalation: false"
+        },
+        {
+          "key": "C",
+          "text_en": "readOnlyRootFilesystem: true",
+          "text_kr": "readOnlyRootFilesystem: true"
+        },
+        {
+          "key": "D",
+          "text_en": "dropCapabilities: ['ALL']",
+          "text_kr": "dropCapabilities: ['ALL']"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• runAsNonRoot: true로 설정하면 이미지나 컨테이너가 UID 0(root)으로 기동하려 할 때 kubelet이 컨테이너 실행을 즉시 거부(ContainerCannotRun)합니다.",
+      "key_concept": "securityContext.runAsNonRoot: true"
+    },
+    {
+      "id": "D2-Q24",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "What is the simplest way to direct a pod to nodes labeled with `topology.kubernetes.io/zone=us-east-1a` using basic node matching?",
+      "question_kr": "기본적인 노드 매칭 방식을 사용하여 `topology.kubernetes.io/zone=us-east-1a` 라벨을 가진 노드로 파드를 배치하는 가장 단순한 PodSpec 필드는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "spec.nodeSelector: {'topology.kubernetes.io/zone': 'us-east-1a'}",
+          "text_kr": "spec.nodeSelector: {'topology.kubernetes.io/zone': 'us-east-1a'}"
+        },
+        {
+          "key": "B",
+          "text_en": "spec.zoneSelector: us-east-1a",
+          "text_kr": "spec.zoneSelector: us-east-1a"
+        },
+        {
+          "key": "C",
+          "text_en": "spec.nodeTarget: us-east-1a",
+          "text_kr": "spec.nodeTarget: us-east-1a"
+        },
+        {
+          "key": "D",
+          "text_en": "metadata.labels.zone: us-east-1a",
+          "text_kr": "metadata.labels.zone: us-east-1a"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 복잡한 연산자(In, NotIn)가 필요 없는 단순 키-값 매칭에는 spec.nodeSelector가 가장 직관적이고 빠릅니다.",
+      "key_concept": "spec.nodeSelector, Basic Node Label Matching"
+    },
+    {
+      "id": "D2-Q25",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "What happens if a CronJob schedule is set to `*/15 * * * *`?",
+      "question_kr": "CronJob의 schedule이 `*/15 * * * *`로 설정되어 있으면 해당 작업은 언제 실행됩니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Every 15 minutes",
+          "text_kr": "15분마다 (매시 0분, 15분, 30분, 45분)"
+        },
+        {
+          "key": "B",
+          "text_en": "Every day at 3:00 PM (15:00)",
+          "text_kr": "매일 오후 3시 (15:00)"
+        },
+        {
+          "key": "C",
+          "text_en": "On the 15th day of every month",
+          "text_kr": "매월 15일마다"
+        },
+        {
+          "key": "D",
+          "text_en": "Every 15 hours",
+          "text_kr": "15시간마다"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 크론 표현식 5개 필드는 순서대로 '분 시 일 월 요일'입니다. 첫 번째 분 필드의 */15는 15분 간격 실행을 의미합니다.",
+      "key_concept": "CronJob schedule expression syntax"
     }
   ],
   "domain3": [
@@ -964,6 +1925,486 @@ const EXAM_DATA = {
       "correct_answer": "A",
       "explanation_kr": "정답은 A입니다.\n\n• 파드에서 외부로 나가는 트래픽을 제어하려면 `policyTypes: [Egress]` 정책을 작성하여 허용할 목적지(`to:`)를 내부 네임스페이스나 내부 IP 블록으로 한정해야 합니다.",
       "key_concept": "NetworkPolicy Egress Traffic Filtering"
+    },
+    {
+      "id": "D3-Q11",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "Which Service type allows mapping a Kubernetes Service name to an external DNS CNAME record (such as my-db.external.company.com) without proxying traffic through kube-proxy?",
+      "question_kr": "kube-proxy를 통한 프록시 없이, 쿠버네티스 서비스 이름을 외부 DNS CNAME 레코드(예: my-db.external.company.com)로 직접 매핑해주는 서비스 타입은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "ExternalName",
+          "text_kr": "ExternalName"
+        },
+        {
+          "key": "B",
+          "text_en": "ClusterIP",
+          "text_kr": "ClusterIP"
+        },
+        {
+          "key": "C",
+          "text_en": "NodePort",
+          "text_kr": "NodePort"
+        },
+        {
+          "key": "D",
+          "text_en": "DNSForwarder",
+          "text_kr": "DNSForwarder"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• type: ExternalName은 셀렉터나 가상 IP를 생성하지 않고, CoreDNS가 CNAME 레코드 값을 직접 반환하도록 설정하는 특별한 서비스 타입입니다.",
+      "key_concept": "Service type: ExternalName"
+    },
+    {
+      "id": "D3-Q12",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "In an Ingress resource with Nginx Ingress Controller, which annotation rewrites the incoming URL path before forwarding the request to the upstream backend service?",
+      "question_kr": "Nginx 인그레스 컨트롤러를 사용하는 Ingress 리소스에서, 업스트림 백엔드 서비스로 요청을 전달하기 전에 인입 URL 경로를 재작성(Rewrite)해주는 핵심 어노테이션은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "nginx.ingress.kubernetes.io/rewrite-target: /",
+          "text_kr": "nginx.ingress.kubernetes.io/rewrite-target: /"
+        },
+        {
+          "key": "B",
+          "text_en": "ingress.k8s.io/path-rewrite: true",
+          "text_kr": "ingress.k8s.io/path-rewrite: true"
+        },
+        {
+          "key": "C",
+          "text_en": "nginx.org/redirect-url: /",
+          "text_kr": "nginx.org/redirect-url: /"
+        },
+        {
+          "key": "D",
+          "text_en": "ingress.kubernetes.io/url-strip: true",
+          "text_kr": "ingress.kubernetes.io/url-strip: true"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• nginx.ingress.kubernetes.io/rewrite-target 어노테이션을 사용하여 /api/v1 요청을 백엔드 파드의 루트(/)로 변경하여 전달할 수 있습니다. CKA 인그레스 문제 단골 출제 항목입니다.",
+      "key_concept": "nginx.ingress.kubernetes.io/rewrite-target"
+    },
+    {
+      "id": "D3-Q13",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "How can you configure TLS termination on an Ingress resource using a Secret named 'tls-secret' for host 'secure.example.com'?",
+      "question_kr": "호스트 'secure.example.com'에 대해 'tls-secret'이라는 시크릿을 사용하여 Ingress 리소스에서 TLS(HTTPS) 종료를 구성하려면 어떤 블록을 추가해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "spec.tls: [{hosts: ['secure.example.com'], secretName: 'tls-secret'}]",
+          "text_kr": "spec.tls: [{hosts: ['secure.example.com'], secretName: 'tls-secret'}]"
+        },
+        {
+          "key": "B",
+          "text_en": "spec.sslCertificate: {secret: tls-secret, domain: secure.example.com}",
+          "text_kr": "spec.sslCertificate: {secret: tls-secret, domain: secure.example.com}"
+        },
+        {
+          "key": "C",
+          "text_en": "metadata.annotations: {tlsSecret: tls-secret}",
+          "text_kr": "metadata.annotations: {tlsSecret: tls-secret}"
+        },
+        {
+          "key": "D",
+          "text_en": "spec.security: [{type: TLS, secret: tls-secret}]",
+          "text_kr": "spec.security: [{type: TLS, secret: tls-secret}]"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• Ingress 스펙의 spec.tls 배열 내에 hosts 목록과 tls 인증서가 저장된 secretName을 명시하면 인그레스 컨트롤러가 HTTPS 암호화를 처리합니다.",
+      "key_concept": "Ingress TLS Termination Specification (spec.tls)"
+    },
+    {
+      "id": "D3-Q14",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "What is the standard DNS resolution format for a Pod IP address 10.244.1.5 in the 'dev' namespace?",
+      "question_kr": "'dev' 네임스페이스에 위치한 파드 IP 10.244.1.5의 쿠버네티스 표준 DNS 해석 레코드 형식은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "10-244-1-5.dev.pod.cluster.local",
+          "text_kr": "10-244-1-5.dev.pod.cluster.local"
+        },
+        {
+          "key": "B",
+          "text_en": "10.244.1.5.dev.svc.cluster.local",
+          "text_kr": "10.244.1.5.dev.svc.cluster.local"
+        },
+        {
+          "key": "C",
+          "text_en": "pod-10-244-1-5.k8s.local",
+          "text_kr": "pod-10-244-1-5.k8s.local"
+        },
+        {
+          "key": "D",
+          "text_en": "dev.pod.10.244.1.5.cluster.local",
+          "text_kr": "dev.pod.10.244.1.5.cluster.local"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 파드의 A/AAAA 레코드는 점(.)을 하이픈(-)으로 바꾼 <ip-with-hyphens>.<namespace>.pod.cluster.local 형식으로 생성됩니다.",
+      "key_concept": "Pod DNS A Record Format (<ip>.namespace.pod.cluster.local)"
+    },
+    {
+      "id": "D3-Q15",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "In a NetworkPolicy `ingress.from` definition, what is the logical difference between defining namespaceSelector and podSelector in the same array item vs separate array items?",
+      "question_kr": "NetworkPolicy의 ingress.from 정의에서, 동일한 배열 항목({ }) 내에 namespaceSelector와 podSelector를 함께 넣는 것과 별개의 배열 항목([ { }, { } ])으로 분리하는 것의 논리적 차이는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Same item acts as a logical AND; separate items act as a logical OR.",
+          "text_kr": "동일 항목 내에서는 논리적 AND(교집합)로 동작하고, 분리된 배열 항목 간에는 논리적 OR(합집합)로 동작합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "There is no difference; both are always treated as AND.",
+          "text_kr": "차이가 없으며 둘 다 항상 AND로 처리됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Same item is invalid YAML syntax in Kubernetes.",
+          "text_kr": "동일 항목에 넣는 것은 유효하지 않은 YAML 문법입니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Separate items override previous rules.",
+          "text_kr": "별개의 항목은 이전 규칙을 덮어씁니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• CKA 시험 단골 함정: 동일 블록 { namespaceSelector: ..., podSelector: ... }은 '특정 네임스페이스의 특정 라벨을 가진 파드만'(AND) 허용하고, 하이픈으로 분리된 [ { namespaceSelector }, { podSelector } ]는 '해당 네임스페이스의 모든 파드' 또는 '모든 네임스페이스의 해당 라벨 파드'(OR)를 허용합니다.",
+      "key_concept": "NetworkPolicy Logical AND vs OR (Array Items)"
+    },
+    {
+      "id": "D3-Q16",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "Which command line quickly tests DNS resolution for service 'my-service' from a temporary interactive busybox container?",
+      "question_kr": "임시 대화형 busybox 컨테이너를 띄워 'my-service' 서비스의 DNS 해석을 신속하게 테스트하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl run dns-test --image=busybox:1.28 --rm -it --restart=Never -- nslookup my-service",
+          "text_kr": "kubectl run dns-test --image=busybox:1.28 --rm -it --restart=Never -- nslookup my-service"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl test dns my-service --interactive",
+          "text_kr": "kubectl test dns my-service --interactive"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl ping service my-service",
+          "text_kr": "kubectl ping service my-service"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl query dns my-service",
+          "text_kr": "kubectl query dns my-service"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• busybox:1.28 이미지를 활용해 nslookup을 즉시 실행하고 종료 후 파드가 자동 삭제(--rm)되도록 하는 디버깅 커맨드입니다.",
+      "key_concept": "DNS Debugging with temporary busybox pod"
+    },
+    {
+      "id": "D3-Q17",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "A NetworkPolicy restricts egress traffic. To ensure that pods can still resolve DNS names, which egress port must be explicitly allowed?",
+      "question_kr": "NetworkPolicy로 송출(egress) 트래픽을 제한하고 있습니다. 파드들이 여전히 클러스터 DNS 이름을 정상 해석할 수 있도록 보장하려면 어떤 egress 포트를 명시적으로 허용해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "UDP and TCP port 53",
+          "text_kr": "UDP 및 TCP 53번 포트"
+        },
+        {
+          "key": "B",
+          "text_en": "TCP port 443",
+          "text_kr": "TCP 443번 포트"
+        },
+        {
+          "key": "C",
+          "text_en": "TCP port 80",
+          "text_kr": "TCP 80번 포트"
+        },
+        {
+          "key": "D",
+          "text_en": "UDP port 67",
+          "text_kr": "UDP 67번 포트"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• Egress 제한 정책을 적용하면 기본적으로 CoreDNS(포트 53) 통신도 차단되므로, ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]을 열어주지 않으면 모든 도메인 조회가 실패합니다.",
+      "key_concept": "NetworkPolicy Egress DNS Allowance (Port 53)"
+    },
+    {
+      "id": "D3-Q18",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "In modern Kubernetes (v1.21+), what resource replaces the traditional Endpoints resource to scale service backend endpoints efficiently?",
+      "question_kr": "현대 쿠버네티스(v1.21+)에서 수천 개 이상의 대규모 파드 엔드포인트를 효율적으로 확장 처리하기 위해 기존 Endpoints 리소스를 보완 및 대체하는 리소스는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "EndpointSlice",
+          "text_kr": "EndpointSlice"
+        },
+        {
+          "key": "B",
+          "text_en": "ServiceMesh",
+          "text_kr": "ServiceMesh"
+        },
+        {
+          "key": "C",
+          "text_en": "VirtualIPPool",
+          "text_kr": "VirtualIPPool"
+        },
+        {
+          "key": "D",
+          "text_en": "ProxyRoute",
+          "text_kr": "ProxyRoute"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 기존 Endpoints는 단일 객체에 모든 IP를 담아 크기가 커질수록 네트워크 오버헤드가 발생했습니다. EndpointSlice는 100개 단위로 분할 관리하여 대규모 클러스터 성능을 대폭 개선합니다.",
+      "key_concept": "EndpointSlice Architecture"
+    },
+    {
+      "id": "D3-Q19",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "What is the purpose of `pathType: Prefix` in an Ingress path rule?",
+      "question_kr": "Ingress 경로 규칙에서 `pathType: Prefix`의 의미와 역할은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "It matches based on a URL path prefix split by `/` delimiter (e.g., `/foo` matches `/foo` and `/foo/bar`).",
+          "text_kr": "슬래시(/) 구분자로 분리된 URL 경로 접두사를 기준으로 매칭합니다 (예: `/foo`는 `/foo` 및 `/foo/bar`와 매칭됨)."
+        },
+        {
+          "key": "B",
+          "text_en": "It requires the exact full URL string to match.",
+          "text_kr": "전체 URL 문자열이 완전히 일치해야만 매칭됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "It matches based on regular expressions.",
+          "text_kr": "정규표현식을 기반으로 매칭합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "It redirects HTTP requests to HTTPS automatically.",
+          "text_kr": "HTTP 요청을 HTTPS로 자동 리다이렉트합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• networking.k8s.io/v1 Ingress 규격에서 pathType은 Exact, Prefix, ImplementationSpecific 세 가지가 있으며, Prefix는 경로 세그먼트 단위 접두사 일치를 처리합니다.",
+      "key_concept": "Ingress pathType: Prefix vs Exact"
+    },
+    {
+      "id": "D3-Q20",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "Which CNI plugin feature is required to enforce NetworkPolicy rules in a cluster?",
+      "question_kr": "클러스터에서 NetworkPolicy 규칙을 실제로 강제 적용하기 위해 CNI 플러그인이 반드시 지원해야 하는 기능은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Network policy enforcement capabilities (such as provided by Calico, Cilium, or WeaveNet).",
+          "text_kr": "네트워크 정책 적용 기능 (Calico, Cilium, WeaveNet 등에서 제공)."
+        },
+        {
+          "key": "B",
+          "text_en": "Hardware SR-IOV acceleration.",
+          "text_kr": "하드웨어 SR-IOV 가속."
+        },
+        {
+          "key": "C",
+          "text_en": "BGP route reflection only.",
+          "text_kr": "BGP 라우트 리플렉션."
+        },
+        {
+          "key": "D",
+          "text_en": "Static IP address reservation.",
+          "text_kr": "고정 IP 주소 예약."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• Flannel 등 단순 CNI는 NetworkPolicy를 지원하지 않아 정책 매니페스트를 올려도 무시됩니다. 정책 적용을 위해서는 Calico, Cilium 같은 정책 지원 CNI가 설치되어 있어야 합니다.",
+      "key_concept": "CNI Plugin NetworkPolicy Support Requirement"
+    },
+    {
+      "id": "D3-Q21",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "How can you view the detailed endpoints associated with a service named 'order-svc'?",
+      "question_kr": "'order-svc' 서비스와 연결된 상세 엔드포인트(파드 IP 및 포트)를 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl get endpoints order-svc",
+          "text_kr": "kubectl get endpoints order-svc"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl show routes order-svc",
+          "text_kr": "kubectl show routes order-svc"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl inspect target-ips order-svc",
+          "text_kr": "kubectl inspect target-ips order-svc"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl check-service order-svc",
+          "text_kr": "kubectl check-service order-svc"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl get endpoints <서비스명> (또는 get ep)을 실행하면 백엔드 파드들의 IP와 포트 목록을 즉시 확인할 수 있습니다.",
+      "key_concept": "kubectl get endpoints"
+    },
+    {
+      "id": "D3-Q22",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "In a NetworkPolicy, how do you allow ingress traffic from an external subnet `192.168.1.0/24` while excluding the single IP `192.168.1.50`?",
+      "question_kr": "NetworkPolicy에서 외부 서브넷 `192.168.1.0/24`의 트래픽을 허용하되, 특정 단일 IP `192.168.1.50/32`는 예외로 차단하도록 지정하는 문법은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "ipBlock: {cidr: '192.168.1.0/24', except: ['192.168.1.50/32']}",
+          "text_kr": "ipBlock: {cidr: '192.168.1.0/24', except: ['192.168.1.50/32']}"
+        },
+        {
+          "key": "B",
+          "text_en": "cidr: '192.168.1.0/24', exclude: '192.168.1.50'",
+          "text_kr": "cidr: '192.168.1.0/24', exclude: '192.168.1.50'"
+        },
+        {
+          "key": "C",
+          "text_en": "ipBlock: {range: '192.168.1.0/24', drop: '192.168.1.50'}",
+          "text_kr": "ipBlock: {range: '192.168.1.0/24', drop: '192.168.1.50'}"
+        },
+        {
+          "key": "D",
+          "text_en": "subnet: '192.168.1.0/24', blacklist: ['192.168.1.50']",
+          "text_kr": "subnet: '192.168.1.0/24', blacklist: ['192.168.1.50']"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• NetworkPolicy의 ipBlock에는 cidr과 함께 예외 IP/대역을 지정할 수 있는 except 배열 필드가 지원됩니다.",
+      "key_concept": "NetworkPolicy ipBlock with except"
+    },
+    {
+      "id": "D3-Q23",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "Which component on each worker node is responsible for implementing Service abstraction and translating Service ClusterIP traffic to actual Pod IP addresses?",
+      "question_kr": "각 워커 노드에서 실행되며 서비스 추상화를 구현하고 서비스 ClusterIP 트래픽을 실제 백엔드 파드 IP로 변환 및 포워딩하는 핵심 컴포넌트는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kube-proxy",
+          "text_kr": "kube-proxy"
+        },
+        {
+          "key": "B",
+          "text_en": "kube-apiserver",
+          "text_kr": "kube-apiserver"
+        },
+        {
+          "key": "C",
+          "text_en": "kube-scheduler",
+          "text_kr": "kube-scheduler"
+        },
+        {
+          "key": "D",
+          "text_en": "CoreDNS",
+          "text_kr": "CoreDNS"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kube-proxy가 iptables 또는 IPVS 모드로 동작하며 클러스터 가상 IP(VIP)에 대한 로드밸런싱 규칙을 노드 커널에 등록합니다.",
+      "key_concept": "kube-proxy role, iptables and IPVS"
+    },
+    {
+      "id": "D3-Q24",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "What is the result when an Ingress resource specifies `ingressClassName: nginx` in Kubernetes 1.20+?",
+      "question_kr": "쿠버네티스 1.20+에서 Ingress 리소스에 `ingressClassName: nginx`를 명시했을 때의 동작 결과는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "The Ingress is handled by the IngressClass controller configured with the name 'nginx'.",
+          "text_kr": "'nginx'라는 이름으로 구성된 IngressClass 컨트롤러가 해당 Ingress 리소스를 처리하도록 지정합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Kubernetes automatically downloads and runs nginx on the node.",
+          "text_kr": "쿠버네티스가 노드에 nginx를 자동 다운로드하여 실행합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "The Ingress becomes read-only.",
+          "text_kr": "해당 Ingress가 읽기 전용으로 잠깁니다."
+        },
+        {
+          "key": "D",
+          "text_en": "All SSL certificates are automatically generated by Let's Encrypt.",
+          "text_kr": "모든 SSL 인증서가 Let's Encrypt에서 자동 발급됩니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 과거의 deprecated된 kubernetes.io/ingress.class 어노테이션 대신 spec.ingressClassName 필드를 사용하여 특정 인그레스 컨트롤러 구현체를 지정합니다.",
+      "key_concept": "spec.ingressClassName"
+    },
+    {
+      "id": "D3-Q25",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "How can you view the CoreDNS configuration Corefile running inside the kube-system namespace?",
+      "question_kr": "kube-system 네임스페이스에서 실행 중인 CoreDNS의 설정 내용(Corefile)을 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl get configmap coredns -n kube-system -o yaml",
+          "text_kr": "kubectl get configmap coredns -n kube-system -o yaml"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl describe dns coredns",
+          "text_kr": "kubectl describe dns coredns"
+        },
+        {
+          "key": "C",
+          "text_en": "cat /etc/coredns.conf",
+          "text_kr": "cat /etc/coredns.conf"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl get coredns-rules",
+          "text_kr": "kubectl get coredns-rules"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• CoreDNS의 동작 규칙(Corefile)은 kube-system 네임스페이스의 'coredns' ConfigMap 데이터로 저장되어 관리됩니다.",
+      "key_concept": "CoreDNS ConfigMap in kube-system"
     }
   ],
   "domain4": [
@@ -1286,6 +2727,486 @@ const EXAM_DATA = {
       "correct_answer": "A",
       "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스의 **Storage Object in Use Protection** 기능(Finalizer: `kubernetes.io/pvc-protection`)으로 인해, 실행 중인 파드가 마운트 중인 PVC는 즉시 삭제되지 않고 `Terminating` 상태로 머물며 안전하게 데이터와 파드를 보호합니다.",
       "key_concept": "Storage Object in Use Protection, Finalizers"
+    },
+    {
+      "id": "D4-Q11",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What happens to the actual physical storage volume if a PersistentVolume's reclaim policy is set to 'Delete' and its bound PVC is deleted?",
+      "question_kr": "PersistentVolume의 reclaim policy가 'Delete'로 설정되어 있을 때 바인딩된 PVC가 삭제되면 기본 물리적 스토리지 볼륨은 어떻게 됩니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Both the PersistentVolume object and the associated storage asset in the external infrastructure are automatically deleted.",
+          "text_kr": "쿠버네티스의 PersistentVolume 오브젝트와 외부 인프라의 실제 스토리지 에셋이 모두 자동 삭제됩니다."
+        },
+        {
+          "key": "B",
+          "text_en": "The PV transitions to Released state and data remains intact.",
+          "text_kr": "PV가 Released 상태로 변경되고 데이터는 그대로 보존됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "The PV is formatted and recycled for a new pod.",
+          "text_kr": "PV가 포맷되고 새 파드를 위해 재활용(recycle)됩니다."
+        },
+        {
+          "key": "D",
+          "text_en": "The deletion is blocked until manual admin approval.",
+          "text_kr": "관리자의 수동 승인이 있을 때까지 삭제가 차단됩니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• Delete 정책은 클라우드 디스크(AWS EBS, GCE PD 등)를 자동으로 프로비저닝 해제(삭제)하여 미사용 스토리지 비용이 청구되는 것을 방지합니다.",
+      "key_concept": "Reclaim Policy: Delete"
+    },
+    {
+      "id": "D4-Q12",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "Which AccessMode is supported by single-pod block storage volumes like AWS EBS gp3?",
+      "question_kr": "AWS EBS gp3와 같은 일반적인 단일 노드 블록 스토리지 볼륨이 지원하는 유효한 AccessMode는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "ReadWriteOnce (RWO)",
+          "text_kr": "ReadWriteOnce (RWO)"
+        },
+        {
+          "key": "B",
+          "text_en": "ReadWriteMany (RWX)",
+          "text_kr": "ReadWriteMany (RWX)"
+        },
+        {
+          "key": "C",
+          "text_en": "ReadOnlyMany (ROX)",
+          "text_kr": "ReadOnlyMany (ROX)"
+        },
+        {
+          "key": "D",
+          "text_en": "ReadWriteMultiNode",
+          "text_kr": "ReadWriteMultiNode"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 블록 스토리지는 하드웨어 특성상 하나의 인스턴스(노드)에만 어태치될 수 있으므로 ReadWriteOnce(RWO) 모드로만 동작합니다.",
+      "key_concept": "Block Storage AccessMode: ReadWriteOnce"
+    },
+    {
+      "id": "D4-Q13",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "How can you mark a StorageClass as the default storage class for all PVCs that omit `spec.storageClassName`?",
+      "question_kr": "`spec.storageClassName`을 생략한 모든 PVC에 대해 특정 StorageClass가 기본값(Default)으로 적용되도록 지정하는 어노테이션은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "storageclass.kubernetes.io/is-default-class: 'true'",
+          "text_kr": "storageclass.kubernetes.io/is-default-class: 'true'"
+        },
+        {
+          "key": "B",
+          "text_en": "k8s.io/default-storage: 'true'",
+          "text_kr": "k8s.io/default-storage: 'true'"
+        },
+        {
+          "key": "C",
+          "text_en": "storage.alpha.kubernetes.io/default: 'true'",
+          "text_kr": "storage.alpha.kubernetes.io/default: 'true'"
+        },
+        {
+          "key": "D",
+          "text_en": "spec.default: true",
+          "text_kr": "spec.default: true"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• StorageClass의 metadata.annotations에 storageclass.kubernetes.io/is-default-class: 'true'를 추가하면 기본 스토리지클래스로 등록됩니다.",
+      "key_concept": "Default StorageClass Annotation"
+    },
+    {
+      "id": "D4-Q14",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "A user created a PVC without specifying `storageClassName`. The PVC is bound to an unexpected PV. How can a PVC explicitly request static binding to PVs that have no storage class assigned?",
+      "question_kr": "사용자가 storageClassName을 지정하지 않고 PVC를 생성했더니 예상치 못한 기본 StorageClass에 의해 바인딩되었습니다. 스토리지클래스가 없는 수동(static) PV에만 바인딩되도록 강제하려면 PVC에서 어떻게 지정해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Set `storageClassName: ''` (empty string)",
+          "text_kr": "`storageClassName: ''` (빈 문자열)로 설정"
+        },
+        {
+          "key": "B",
+          "text_en": "Set `storageClassName: none`",
+          "text_kr": "`storageClassName: none`으로 설정"
+        },
+        {
+          "key": "C",
+          "text_en": "Set `storageClassName: manual-only`",
+          "text_kr": "`storageClassName: manual-only`로 설정"
+        },
+        {
+          "key": "D",
+          "text_en": "Omit the resources block",
+          "text_kr": "resources 블록을 생략"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• storageClassName을 아예 생략하면 기본 스토리지클래스가 적용됩니다. 동적 프로비저닝을 비활성화하고 클래스 없는 PV에만 정적 바인딩하려면 storageClassName: '' (빈 문자열)을 명시해야 합니다.",
+      "key_concept": "storageClassName: '' for Disabling Dynamic Provisioning"
+    },
+    {
+      "id": "D4-Q15",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "Which property in a ConfigMap volume mount allows you to specify custom Linux file permissions (e.g., 0400 for read-only by owner)?",
+      "question_kr": "ConfigMap 볼륨 마운트에서 특정 리눅스 파일 권한(예: 소유자 읽기 전용 0400)을 지정할 수 있게 해주는 속성은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "defaultMode: 0400",
+          "text_kr": "defaultMode: 0400"
+        },
+        {
+          "key": "B",
+          "text_en": "filePermissions: '0400'",
+          "text_kr": "filePermissions: '0400'"
+        },
+        {
+          "key": "C",
+          "text_en": "chmod: '400'",
+          "text_kr": "chmod: '400'"
+        },
+        {
+          "key": "D",
+          "text_en": "accessLevel: readOnlyOwner",
+          "text_kr": "accessLevel: readOnlyOwner"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• volumes.configMap 또는 secret 블록 하위에 defaultMode: 0400 (또는 0644)을 지정하여 마운트된 파일의 리눅스 퍼미션을 제어할 수 있습니다.",
+      "key_concept": "ConfigMap/Secret Volume defaultMode"
+    },
+    {
+      "id": "D4-Q16",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What is the primary difference between `hostPath` and `local` persistent volumes?",
+      "question_kr": "`hostPath` 볼륨과 `local` PersistentVolume의 가장 중요한 차이점은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "local PVs support node affinity so the scheduler understands which node the volume is tied to, whereas hostPath does not.",
+          "text_kr": "local PV는 노드 어피니티를 지원하여 스케줄러가 볼륨이 묶여 있는 노드를 인식하지만, hostPath는 스케줄러 인식 기능이 없습니다."
+        },
+        {
+          "key": "B",
+          "text_en": "hostPath is stored on a remote NFS server.",
+          "text_kr": "hostPath는 원격 NFS 서버에 저장됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "local PVs are deleted when the pod restarts.",
+          "text_kr": "local PV는 파드 재시작 시 자동 삭제됩니다."
+        },
+        {
+          "key": "D",
+          "text_en": "hostPath requires an external CSI plugin.",
+          "text_kr": "hostPath는 외부 CSI 플러그인을 필수로 요구합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• local PV는 spec.nodeAffinity를 필수로 포함하여 스케줄러가 파드를 해당 로컬 디스크가 있는 노드로 정확히 스케줄링할 수 있도록 보장합니다.",
+      "key_concept": "local PV vs hostPath Volume"
+    },
+    {
+      "id": "D4-Q17",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What command allows you to view the list of all PersistentVolumes and their status, capacity, and reclaim policies?",
+      "question_kr": "모든 PersistentVolume의 목록과 상태(Status), 용량(Capacity), 반환 정책(Reclaim Policy)을 조회하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl get pv",
+          "text_kr": "kubectl get pv"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl show storage volumes",
+          "text_kr": "kubectl show storage volumes"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl list persistent-disks",
+          "text_kr": "kubectl list persistent-disks"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl get storage --all",
+          "text_kr": "kubectl get storage --all"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl get pv 명령으로 클러스터의 모든 영구 볼륨 상태(Available, Bound, Released 등)를 한눈에 확인할 수 있습니다.",
+      "key_concept": "kubectl get pv"
+    },
+    {
+      "id": "D4-Q18",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What happens when you delete a Pod that was using an `emptyDir` volume?",
+      "question_kr": "`emptyDir` 볼륨을 사용하던 파드가 영구 삭제되면 해당 볼륨의 데이터는 어떻게 됩니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "The data in the emptyDir volume is permanently deleted along with the Pod.",
+          "text_kr": "emptyDir 볼륨의 데이터는 파드와 함께 영구적으로 삭제됩니다."
+        },
+        {
+          "key": "B",
+          "text_en": "The data is automatically archived to /var/log.",
+          "text_kr": "데이터가 /var/log 디렉토리로 자동 백업됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "The data is converted into a PersistentVolumeClaim.",
+          "text_kr": "데이터가 PersistentVolumeClaim으로 자동 변환됩니다."
+        },
+        {
+          "key": "D",
+          "text_en": "The data remains on the node forever until reboot.",
+          "text_kr": "재부팅될 때까지 노드에 영구 보존됩니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• emptyDir은 파드의 수명 주기에 종속되는 임시 볼륨이므로 파드가 삭제되면 데이터도 완전히 삭제됩니다. 단, 컨테이너 크래시로 인한 컨테이너 재시작 시에는 데이터가 유지됩니다.",
+      "key_concept": "emptyDir Volume Lifecycle"
+    },
+    {
+      "id": "D4-Q19",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "How can you resize an existing PVC from 5Gi to 10Gi online, assuming the underlying StorageClass supports expansion?",
+      "question_kr": "스토리지클래스가 확장을 지원한다고 가정할 때, 기존 5Gi PVC의 용량을 10Gi로 온라인에서 확장하는 방법은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Edit the PVC (`kubectl edit pvc <name>`) and increase `spec.resources.requests.storage` to 10Gi.",
+          "text_kr": "PVC를 편집(`kubectl edit pvc <이름>`)하여 `spec.resources.requests.storage` 값을 10Gi로 증액합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Delete and recreate the PVC with 10Gi.",
+          "text_kr": "PVC를 삭제하고 10Gi로 다시 생성합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Run `kubectl resize pvc <name> --size=10Gi`.",
+          "text_kr": "`kubectl resize pvc <이름> --size=10Gi`를 실행합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Restart the StorageClass provisioner.",
+          "text_kr": "StorageClass 프로비저너를 재시작합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• allowVolumeExpansion: true가 적용된 경우, 기존 PVC 매니페스트의 spec.resources.requests.storage 값을 상향 수정하기만 하면 볼륨이 온라인으로 확장됩니다.",
+      "key_concept": "Online PVC Expansion via kubectl edit"
+    },
+    {
+      "id": "D4-Q20",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What is the role of a CSI Node Plugin deployed as a DaemonSet in Kubernetes?",
+      "question_kr": "쿠버네티스에서 DaemonSet으로 배포되는 CSI 노드 플러그인(CSI Node Plugin)의 핵심 역할은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "It runs on every worker node to mount, format, and attach the storage device to the target container path (NodeStageVolume / NodePublishVolume).",
+          "text_kr": "각 워커 노드에서 실행되며 스토리지를 포맷하고 대상 컨테이너 디렉토리에 마운트(NodeStage / NodePublish)하는 작업을 수행합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "It creates external storage cloud snapshots only.",
+          "text_kr": "외부 스토리지 클라우드 스냅샷만 생성합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "It monitors etcd memory usage.",
+          "text_kr": "etcd 메모리 사용량을 모니터링합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "It encrypts kube-apiserver network traffic.",
+          "text_kr": "kube-apiserver 네트워크 트래픽을 암호화합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• CSI 아키텍처에서 Controller 플러그인은 클라우드 볼륨 생성/삭제를 담당하고, Node 플러그인은 각 노드에 마운트/포맷하는 작업을 담당합니다.",
+      "key_concept": "CSI Node Plugin Responsibilities"
+    },
+    {
+      "id": "D4-Q21",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "Can you reduce (shrink) the storage capacity of an existing PersistentVolumeClaim in Kubernetes?",
+      "question_kr": "쿠버네티스에서 기존 PersistentVolumeClaim의 스토리지 용량을 더 작은 크기로 축소(Shrink)할 수 있습니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "No, Kubernetes only supports expanding PVC volume size, shrinking is not supported.",
+          "text_kr": "아니오, 쿠버네티스는 볼륨 크기 확장만 지원하며 축소는 지원하지 않습니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Yes, by passing --allow-shrink flag to kubectl.",
+          "text_kr": "예, kubectl에 --allow-shrink 플래그를 넘기면 가능합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Yes, if the reclaim policy is Recycle.",
+          "text_kr": "예, reclaim policy가 Recycle이면 가능합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Yes, if volumeBindingMode is Immediate.",
+          "text_kr": "예, volumeBindingMode가 Immediate이면 가능합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 파일시스템 손상 및 데이터 유실 위험으로 인해 쿠버네티스는 PVC 용량 축소를 엄격히 금지합니다. 더 작은 크기가 필요하면 새 PVC를 만들고 데이터를 마이그레이션해야 합니다.",
+      "key_concept": "PVC Shrinking Unsupported"
+    },
+    {
+      "id": "D4-Q22",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "In a Pod with two containers, can both containers mount the exact same PVC simultaneously if they are scheduled on the same node using ReadWriteOnce (RWO)?",
+      "question_kr": "동일 노드에 스케줄링된 파드 내부의 두 컨테이너가 ReadWriteOnce(RWO) 모드의 동일한 PVC를 동시에 마운트할 수 있습니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Yes, ReadWriteOnce allows multiple containers on the same single node to access the volume.",
+          "text_kr": "예, ReadWriteOnce는 단일 노드 내부의 여러 컨테이너가 볼륨에 동시 접근하는 것을 허용합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "No, RWO allows only one container in the entire cluster.",
+          "text_kr": "아니오, RWO는 클러스터 전체에서 단 하나의 컨테이너만 허용합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "No, unless ReadWriteOncePod is explicitly set.",
+          "text_kr": "아니오, ReadWriteOncePod가 설정되어야 합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Only if one container is an init container.",
+          "text_kr": "하나가 초기화 컨테이너인 경우에만 가능합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 'ReadWriteOnce'의 'Once'는 '단일 노드'를 의미합니다. 따라서 동일한 노드 내에서 실행되는 파드나 컨테이너들은 문제없이 볼륨을 공유할 수 있습니다.",
+      "key_concept": "ReadWriteOnce Node Scope Definition"
+    },
+    {
+      "id": "D4-Q23",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What is the finalizer used by Kubernetes to prevent accidental deletion of a PVC currently in use by a Pod?",
+      "question_kr": "파드가 현재 사용 중인 PVC가 실수로 즉시 삭제되는 것을 방지하기 위해 쿠버네티스가 등록하는 Finalizer 이름은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubernetes.io/pvc-protection",
+          "text_kr": "kubernetes.io/pvc-protection"
+        },
+        {
+          "key": "B",
+          "text_en": "storage.k8s.io/safe-delete",
+          "text_kr": "storage.k8s.io/safe-delete"
+        },
+        {
+          "key": "C",
+          "text_en": "volume.finalizer/prevent-loss",
+          "text_kr": "volume.finalizer/prevent-loss"
+        },
+        {
+          "key": "D",
+          "text_en": "pvc.guard/lock",
+          "text_kr": "pvc.guard/lock"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubernetes.io/pvc-protection finalizer가 파드가 종료될 때까지 삭제를 지연시키고 Terminating 상태로 유지합니다.",
+      "key_concept": "kubernetes.io/pvc-protection finalizer"
+    },
+    {
+      "id": "D4-Q24",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "What is the difference between `volumeMode: Filesystem` and `volumeMode: Block` on a PersistentVolume?",
+      "question_kr": "PersistentVolume에서 `volumeMode: Filesystem`과 `volumeMode: Block`의 차이점은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Filesystem mounts the volume as a formatted directory, while Block presents it as a raw block storage device without a filesystem.",
+          "text_kr": "Filesystem은 포맷된 디렉토리로 마운트하고, Block은 파일시스템 없이 원시(raw) 블록 디바이스로 파드에 제공합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Block is only for temporary emptyDir storage.",
+          "text_kr": "Block은 오직 임시 emptyDir 전용입니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Filesystem volumes cannot be expanded.",
+          "text_kr": "Filesystem 볼륨은 확장이 불가합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Block mode requires NFS.",
+          "text_kr": "Block 모드는 NFS를 요구합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 고성능 DB 워크로드나 Ceph, 특수 스토리지 엔진은 파일시스템 레이어의 오버헤드를 피하기 위해 raw block device (volumeMode: Block)를 직접 다룹니다.",
+      "key_concept": "volumeMode: Filesystem vs Block"
+    },
+    {
+      "id": "D4-Q25",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "Which command describes the storage parameters and provisioner of a StorageClass named 'fast'?",
+      "question_kr": "'fast'라는 이름의 StorageClass의 스토리지 파라미터와 프로비저너를 상세 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl describe storageclass fast",
+          "text_kr": "kubectl describe storageclass fast"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl inspect sc fast",
+          "text_kr": "kubectl inspect sc fast"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl get sc fast --parameters",
+          "text_kr": "kubectl get sc fast --parameters"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl show provisioner fast",
+          "text_kr": "kubectl show provisioner fast"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl describe storageclass <이름> (또는 describe sc)을 실행하면 Provisioner, ReclaimPolicy, VolumeBindingMode, Parameters 등을 확인할 수 있습니다.",
+      "key_concept": "kubectl describe storageclass"
     }
   ],
   "domain5": [
@@ -1608,6 +3529,486 @@ const EXAM_DATA = {
       "correct_answer": "B",
       "explanation_kr": "정답은 B입니다.\n\n• 쿠버네티스에서 Taint를 제거할 때는 `kubectl taint nodes <노드이름> <키>-` 또는 `kubectl taint nodes <노드이름> <키>=<값>:<이펙트>-`처럼 맨 뒤에 대시(`-`) 기호를 붙여 제거합니다.\n• `tier-` 또는 `tier=backend:NoSchedule-` 형식이 올바릅니다.",
       "key_concept": "Removing Taints with kubectl taint nodes <node> <key>-"
+    },
+    {
+      "id": "D5-Q11",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A Pod running an application displays `CrashLoopBackOff`. How can you inspect the previous container's exit code and termination reason using kubectl?",
+      "question_kr": "`CrashLoopBackOff` 상태인 파드에서 이전 컨테이너의 종료 코드(Exit Code)와 종료 사유(Reason)를 확인하기 위해 가장 적합한 kubectl 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl describe pod <pod-name> and look at the 'Last State' section under Containers",
+          "text_kr": "kubectl describe pod <파드명> 실행 후 Containers 하위의 'Last State' 섹션을 확인한다."
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl get pod <pod-name> --show-exit-codes",
+          "text_kr": "kubectl get pod <파드명> --show-exit-codes"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl logs <pod-name> --exit-code-only",
+          "text_kr": "kubectl logs <파드명> --exit-code-only"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl status pod <pod-name>",
+          "text_kr": "kubectl status pod <파드명>"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl describe pod의 Containers -> Last State 섹션에 Terminated 사유(Error, OOMKilled)와 구체적 Exit Code(1, 137 등)가 기록되어 장애 원인을 정확히 파악할 수 있습니다.",
+      "key_concept": "kubectl describe pod Last State inspection"
+    },
+    {
+      "id": "D5-Q12",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "After updating the kubelet systemd service configuration on a worker node, what command must be run before restarting the kubelet daemon to reload unit files?",
+      "question_kr": "워커 노드에서 kubelet systemd 서비스 설정 파일을 수정한 후, kubelet 데몬을 재시작하기 전에 unit 파일을 다시 읽어들이기 위해 실행해야 하는 필수 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "systemctl daemon-reload",
+          "text_kr": "systemctl daemon-reload"
+        },
+        {
+          "key": "B",
+          "text_en": "systemctl refresh-all",
+          "text_kr": "systemctl refresh-all"
+        },
+        {
+          "key": "C",
+          "text_en": "kubeadm reset-systemd",
+          "text_kr": "kubeadm reset-systemd"
+        },
+        {
+          "key": "D",
+          "text_en": "service kubelet update",
+          "text_kr": "service kubelet update"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• /etc/systemd/system/ 등의 서비스 드롭인 설정 변경 후에는 반드시 systemctl daemon-reload를 실행해야 systemd가 변경 사항을 인지합니다.",
+      "key_concept": "systemctl daemon-reload before kubelet restart"
+    },
+    {
+      "id": "D5-Q13",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A Pod's readinessProbe fails repeatedly. What is the immediate effect on the Pod's traffic handling?",
+      "question_kr": "파드의 준비성 프로브(readinessProbe)가 지속적으로 실패할 경우, 해당 파드의 트래픽 처리에 미치는 즉각적인 영향은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "The Pod's IP address is removed from the Endpoints of all matching Services, receiving no incoming traffic.",
+          "text_kr": "해당 파드의 IP가 일치하는 모든 서비스의 Endpoints에서 즉시 제거되어 인입 트래픽을 받지 않습니다."
+        },
+        {
+          "key": "B",
+          "text_en": "The Pod is terminated immediately and restarted by kubelet.",
+          "text_kr": "파드가 즉시 종료되고 kubelet에 의해 재시작됩니다."
+        },
+        {
+          "key": "C",
+          "text_en": "The Pod is migrated to another node.",
+          "text_kr": "파드가 다른 노드로 즉시 이주됩니다."
+        },
+        {
+          "key": "D",
+          "text_en": "The entire Service is deleted.",
+          "text_kr": "전체 서비스가 삭제됩니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• readinessProbe 실패는 파드를 재시작시키지 않고, 서비스 엔드포인트에서만 파드 IP를 격리하여 준비될 때까지 사용자 요청이 전달되지 않도록 보호합니다. (재시작시키는 것은 livenessProbe)",
+      "key_concept": "readinessProbe Failure vs livenessProbe Failure"
+    },
+    {
+      "id": "D5-Q14",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A user complains that `kubectl get nodes` returns an error: 'Unable to connect to the server: x509: certificate has expired or is not yet valid'. What is the root cause and remedy?",
+      "question_kr": "`kubectl get nodes` 실행 시 'Unable to connect to the server: x509: certificate has expired or is not yet valid' 에러가 반환됩니다. 근본 원인과 해결책은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Control plane PKI client/server certificates have expired; renew them using `kubeadm certs renew all` and restart control plane static pods.",
+          "text_kr": "컨트롤 플레인의 PKI 인증서가 만료되었으므로, `kubeadm certs renew all`로 인증서를 갱신하고 제어 평면 스태틱 파드를 재시작해야 합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "The user's local DNS is corrupted.",
+          "text_kr": "사용자의 로컬 DNS가 손상되었습니다."
+        },
+        {
+          "key": "C",
+          "text_en": "etcd disk is full.",
+          "text_kr": "etcd 디스크가 가득 찼습니다."
+        },
+        {
+          "key": "D",
+          "text_en": "The CNI plugin was uninstalled.",
+          "text_kr": "CNI 플러그인이 삭제되었습니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• x509 인증서 만료 에러는 kubeadm으로 설치한 클러스터의 1년 주기 인증서가 만료되었을 때 발생합니다. kubeadm certs renew all로 갱신하여 해결합니다.",
+      "key_concept": "x509 Certificate Expiration Troubleshooting"
+    },
+    {
+      "id": "D5-Q15",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A Pod cannot start and shows `ContainerCreating` for 10 minutes. Running `kubectl describe pod` shows: `MountVolume.SetUp failed for volume ... secret 'db-creds' not found`. What is the required fix?",
+      "question_kr": "파드가 10분째 시작되지 못하고 `ContainerCreating` 상태에 머물러 있습니다. `kubectl describe pod` 실행 결과 `MountVolume.SetUp failed for volume ... secret 'db-creds' not found` 에러가 표시됩니다. 필요한 조치는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Create the missing Secret named 'db-creds' in the exact same namespace as the Pod.",
+          "text_kr": "파드와 정확히 동일한 네임스페이스에 누락된 'db-creds' 시크릿을 생성합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Restart kube-scheduler.",
+          "text_kr": "kube-scheduler를 재시작합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Change the storage class to manual.",
+          "text_kr": "스토리지 클래스를 manual로 변경합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Add root privileges to the container.",
+          "text_kr": "컨테이너에 루트 권한을 부여합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 파드가 볼륨이나 envFrom으로 참조하는 Secret 또는 ConfigMap이 네임스페이스에 존재하지 않으면 컨테이너가 마운트 실패로 인해 기동되지 못합니다. 해당 리소스를 생성하면 파드가 자동으로 시작됩니다.",
+      "key_concept": "Missing Secret/ConfigMap MountVolume.SetUp Failure"
+    },
+    {
+      "id": "D5-Q16",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "How can you view the streaming live logs of all pods sharing the label `app=payment` across all namespaces?",
+      "question_kr": "모든 네임스페이스에 걸쳐 `app=payment` 라벨을 가진 모든 파드의 실시간 스트리밍 로그를 한 번에 조회하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl logs -l app=payment -A -f",
+          "text_kr": "kubectl logs -l app=payment -A -f"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl stream logs app=payment --all",
+          "text_kr": "kubectl stream logs app=payment --all"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl tail -l app=payment",
+          "text_kr": "kubectl tail -l app=payment"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl watch logs app=payment",
+          "text_kr": "kubectl watch logs app=payment"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl logs -l <라벨> -A -f 옵션을 조합하면 여러 파드의 로그를 멀티 스트리밍으로 실시간 모니터링할 수 있습니다.",
+      "key_concept": "kubectl logs -l <label> -A -f"
+    },
+    {
+      "id": "D5-Q17",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A static pod kube-scheduler is not running on the master node. You inspect `/etc/kubernetes/manifests/kube-scheduler.yaml` and discover a typo in the command arguments. What happens automatically after you fix the typo and save the file?",
+      "question_kr": "마스터 노드에서 스태틱 파드 kube-scheduler가 실행되지 않고 있습니다. `/etc/kubernetes/manifests/kube-scheduler.yaml` 파일을 검사하여 인자(argument) 오탈자를 발견했습니다. 오탈자를 수정하고 저장한 직후 자동으로 어떤 일이 발생합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubelet detects the file modification and automatically restarts the kube-scheduler static pod with the corrected configuration.",
+          "text_kr": "kubelet이 파일 변경을 자동 감지하고 올바른 설정으로 kube-scheduler 스태틱 파드를 즉시 재시작합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "You must manually run `kubeadm init` again.",
+          "text_kr": "`kubeadm init`을 수동으로 다시 실행해야 합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "You must reboot the Linux server.",
+          "text_kr": "리눅스 서버를 재부팅해야 합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "The API server will reject the change.",
+          "text_kr": "API 서버가 변경 사항을 거부합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubelet은 staticPodPath 디렉토리를 지속적으로 감시(inotify)하므로 매니페스트 파일을 수정 저장하기만 하면 스태틱 파드가 자동으로 재기동됩니다.",
+      "key_concept": "Static Pod Manifest Inotify Automatic Restart by kubelet"
+    },
+    {
+      "id": "D5-Q18",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A pod is stuck in `Terminating` status for hours because the storage volume it was mounted to is no longer reachable. Which command forcefully terminates and removes this pod immediately?",
+      "question_kr": "스토리지 볼륨에 접근할 수 없어 파드가 수시간 동안 `Terminating` 상태에 멈춰 있습니다. 이 파드를 유예 시간 없이 즉시 강제 종료하고 제거하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl delete pod <pod-name> --force --grace-period=0",
+          "text_kr": "kubectl delete pod <파드명> --force --grace-period=0"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl kill pod <pod-name> -9",
+          "text_kr": "kubectl kill pod <파드명> -9"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl purge pod <pod-name>",
+          "text_kr": "kubectl purge pod <파드명>"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl stop pod <pod-name> --now",
+          "text_kr": "kubectl stop pod <파드명> --now"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• `kubectl delete pod <이름> --force --grace-period=0` (시험용 alias: `k delete pod <이름> $now`)를 사용하면 API 서버가 노드의 정상 종료 확인을 기다리지 않고 etcd에서 파드 객체를 즉시 강제 제거합니다.",
+      "key_concept": "Force Delete Stuck Pod (--force --grace-period=0)"
+    },
+    {
+      "id": "D5-Q19",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "Running `kubectl cluster-info` returns 'Kubernetes control plane is running at https://127.0.0.1:6443', but `kubectl get pods` hangs indefinitely. What node component could be experiencing high CPU or lockups?",
+      "question_kr": "`kubectl cluster-info`는 정상 응답하지만 `kubectl get pods` 명령어가 무한 대기(hang) 상태에 빠집니다. 마스터 노드에서 과도한 부하 또는 잠금(lockup)이 발생했을 가능성이 가장 높은 컴포넌트는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "etcd database experiencing slow disk I/O, leader election timeouts, or disk space exhaustion.",
+          "text_kr": "느린 디스크 I/O, 리더 선출 타임아웃, 또는 디스크 용량 고갈을 겪고 있는 etcd 데이터베이스."
+        },
+        {
+          "key": "B",
+          "text_en": "kube-proxy running on worker nodes.",
+          "text_kr": "워커 노드의 kube-proxy."
+        },
+        {
+          "key": "C",
+          "text_en": "CoreDNS deployment.",
+          "text_kr": "CoreDNS 디플로이먼트."
+        },
+        {
+          "key": "D",
+          "text_en": "Metrics Server.",
+          "text_kr": "Metrics Server."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• etcd의 디스크 I/O가 병목 상태이거나 쿼럼 통신이 지연되면 API 서버가 etcd로부터 데이터를 읽지 못해 요청이 무한 대기 상태에 빠집니다.",
+      "key_concept": "etcd Disk I/O Latency and Cluster Hang"
+    },
+    {
+      "id": "D5-Q20",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "You suspect that an iptables rule created by kube-proxy is blocking traffic. How can you check kube-proxy pod logs in the `kube-system` namespace?",
+      "question_kr": "kube-proxy에 의해 생성된 네트워크 규칙 오류로 트래픽이 차단되고 있다고 의심됩니다. `kube-system` 네임스페이스의 kube-proxy 파드 로그를 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl logs -n kube-system -l k8s-app=kube-proxy",
+          "text_kr": "kubectl logs -n kube-system -l k8s-app=kube-proxy"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl iptables logs -n kube-system",
+          "text_kr": "kubectl iptables logs -n kube-system"
+        },
+        {
+          "key": "C",
+          "text_en": "journalctl -u kube-proxy-service",
+          "text_kr": "journalctl -u kube-proxy-service"
+        },
+        {
+          "key": "D",
+          "text_en": "cat /var/log/kube-proxy.log",
+          "text_kr": "cat /var/log/kube-proxy.log"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kube-proxy는 일반적으로 kube-system 네임스페이스에 DaemonSet 파드로 구동되므로 kubectl logs -n kube-system -l k8s-app=kube-proxy 명령으로 로그를 점검합니다.",
+      "key_concept": "kube-proxy pod logs diagnosis"
+    },
+    {
+      "id": "D5-Q21",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A Pod cannot communicate with another Pod across worker nodes, but communication on the same worker node succeeds. What cluster component is most likely failing or misconfigured?",
+      "question_kr": "동일 워커 노드에 있는 파드끼리는 정상 통신되지만, 서로 다른 워커 노드 간의 파드 통신은 실패합니다. 어떤 클러스터 컴포넌트가 장애이거나 오설정되었을 가능성이 가장 높습니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "The Container Network Interface (CNI) overlay network or cross-node routing rules (e.g., Calico/Flannel daemon failing or blocked inter-node UDP/BGP ports).",
+          "text_kr": "CNI 오버레이 네트워크 또는 노드 간 라우팅 규칙 (Calico/Flannel 데몬 장애 또는 노드 간 UDP/BGP 포트 차단)."
+        },
+        {
+          "key": "B",
+          "text_en": "kube-scheduler.",
+          "text_kr": "kube-scheduler."
+        },
+        {
+          "key": "C",
+          "text_en": "The Container Runtime Interface (containerd).",
+          "text_kr": "컨테이너 런타임 인터페이스 (containerd)."
+        },
+        {
+          "key": "D",
+          "text_en": "kube-controller-manager.",
+          "text_kr": "kube-controller-manager."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 동일 노드 파드 통신은 리눅스 가상 브릿지(cbr0 등)를 통해 로컬에서 처리되지만, 이종 노드 간 통신은 CNI의 오버레이(VXLAN, IP-in-IP, BGP) 터널링을 거치므로 CNI 에이전트 상태와 방화벽 포트 확인이 필수적입니다.",
+      "key_concept": "Cross-Node Pod Communication Failure (CNI Overlay)"
+    },
+    {
+      "id": "D5-Q22",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "How can you view all cluster events that occurred in the last 10 minutes sorted chronologically?",
+      "question_kr": "클러스터에서 발생한 모든 이벤트를 시간 순서대로 정렬하여 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl get events -A --sort-by='.metadata.creationTimestamp'",
+          "text_kr": "kubectl get events -A --sort-by='.metadata.creationTimestamp'"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl events --all --chronological",
+          "text_kr": "kubectl events --all --chronological"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl log cluster-events --recent",
+          "text_kr": "kubectl log cluster-events --recent"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl describe events --time-sort",
+          "text_kr": "kubectl describe events --time-sort"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl get events -A --sort-by='.metadata.creationTimestamp'를 사용하면 전체 네임스페이스의 최신 스케줄링 실패, 이미지 풀 실패, 노드 상태 변경 이벤트를 시간순으로 추적할 수 있습니다.",
+      "key_concept": "kubectl get events --sort-by creationTimestamp"
+    },
+    {
+      "id": "D5-Q23",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A container inside a pod keeps failing its HTTP livenessProbe with HTTP 500 status code. What will kubelet do in response?",
+      "question_kr": "파드 내부의 컨테이너가 HTTP 500 상태 코드를 반환하며 HTTP livenessProbe에 지속적으로 실패하고 있습니다. kubelet은 이에 대해 어떤 조치를 취합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubelet will kill the container and restart it according to the pod's restartPolicy.",
+          "text_kr": "kubelet이 해당 컨테이너를 강제 종료하고 파드의 restartPolicy에 따라 재시작시킵니다."
+        },
+        {
+          "key": "B",
+          "text_en": "kubelet will ignore the failure if readinessProbe passes.",
+          "text_kr": "readinessProbe가 통과하면 실패를 무시합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "kubelet will unmount all volumes.",
+          "text_kr": "모든 볼륨을 언마운트합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "kubelet will drain the node.",
+          "text_kr": "노드를 drain합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• livenessProbe는 컨테이너의 생존 여부를 감시하므로 실패 횟수(failureThreshold)를 초과하면 kubelet이 컨테이너를 즉시 재시작(Restart)시킵니다.",
+      "key_concept": "livenessProbe failure handling by kubelet"
+    },
+    {
+      "id": "D5-Q24",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "You need to execute an interactive bash shell inside a running pod named 'debugger' with multiple containers, targeting the container named 'network-tool'. Which command should you execute?",
+      "question_kr": "여러 컨테이너가 실행 중인 'debugger' 파드에서 'network-tool'이라는 특정 컨테이너 내부로 진입하여 대화형 bash 셸을 실행하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl exec -it debugger -c network-tool -- /bin/bash",
+          "text_kr": "kubectl exec -it debugger -c network-tool -- /bin/bash"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl attach debugger:network-tool -i",
+          "text_kr": "kubectl attach debugger:network-tool -i"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl shell debugger -container network-tool",
+          "text_kr": "kubectl shell debugger -container network-tool"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl run bash inside debugger --container=network-tool",
+          "text_kr": "kubectl run bash inside debugger --container=network-tool"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 멀티 컨테이너 파드에서 특정 컨테이너를 지정할 때는 -c <컨테이너명> 옵션을 명시하여 진입합니다.",
+      "key_concept": "kubectl exec -it <pod> -c <container> -- /bin/bash"
+    },
+    {
+      "id": "D5-Q25",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "When a worker node is in 'NotReady' state, what command on the master node provides the node's Condition flags (OutOfDisk, MemoryPressure, DiskPressure, PIDPressure, Ready)?",
+      "question_kr": "워커 노드가 'NotReady' 상태일 때 마스터 노드에서 해당 노드의 상태 조건 플래그(MemoryPressure, DiskPressure, PIDPressure, Ready 등)를 상세히 확인하는 명령어는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "kubectl describe node <node-name>",
+          "text_kr": "kubectl describe node <노드명>"
+        },
+        {
+          "key": "B",
+          "text_en": "kubectl get node-conditions <node-name>",
+          "text_kr": "kubectl get node-conditions <노드명>"
+        },
+        {
+          "key": "C",
+          "text_en": "kubectl audit node <node-name>",
+          "text_kr": "kubectl audit node <노드명>"
+        },
+        {
+          "key": "D",
+          "text_en": "kubectl check-health node <node-name>",
+          "text_kr": "kubectl check-health node <노드명>"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• kubectl describe node <노드명>의 Conditions 섹션에서 각 압박 조건과 kubelet의 마지막 하트비트 보고 시점을 상세히 확인할 수 있습니다.",
+      "key_concept": "kubectl describe node Conditions analysis"
     }
   ],
   "mock1": [
@@ -1740,6 +4141,38 @@ const EXAM_DATA = {
       "key_concept": "Static Pods, kubelet staticPodPath, Control Plane Bootstrap"
     },
     {
+      "id": "D1-Q05",
+      "domain": "Domain 1",
+      "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+      "question_en": "An etcd cluster consists of 5 members. According to the Raft consensus algorithm, what is the minimum quorum required, and how many node failures can this cluster tolerate while remaining operational?",
+      "question_kr": "5개의 멤버로 구성된 etcd 클러스터가 있습니다. Raft 분산 합의 알고리즘에 따를 때, 필요한 최소 쿼럼(Quorum) 수와 정상 작동을 유지하면서 허용할 수 있는 최대 노드 장애 대수는 각각 얼마입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Quorum: 2, Tolerated Failures: 3",
+          "text_kr": "쿼럼: 2, 허용 장애 대수: 3"
+        },
+        {
+          "key": "B",
+          "text_en": "Quorum: 3, Tolerated Failures: 2",
+          "text_kr": "쿼럼: 3, 허용 장애 대수: 2"
+        },
+        {
+          "key": "C",
+          "text_en": "Quorum: 4, Tolerated Failures: 1",
+          "text_kr": "쿼럼: 4, 허용 장애 대수: 1"
+        },
+        {
+          "key": "D",
+          "text_en": "Quorum: 5, Tolerated Failures: 0",
+          "text_kr": "쿼럼: 5, 허용 장애 대수: 0"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation_kr": "정답은 B입니다.\n\n• etcd의 쿼럼 공식은 $(N/2) + 1$ (과반수)입니다.\n• 5개 노드의 경우 과반수는 3개 노드입니다.\n• 따라서 $5 - 3 = 2$대의 노드가 다운되더라도 3대가 살아있으므로 정상적으로 쓰기 및 합의 작업이 가능합니다.",
+      "key_concept": "etcd Quorum, Raft Consensus, High Availability"
+    },
+    {
       "id": "D2-Q01",
       "domain": "Domain 2",
       "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
@@ -1866,6 +4299,38 @@ const EXAM_DATA = {
       "correct_answer": "B",
       "explanation_kr": "정답은 B입니다.\n\n• `requiredDuringSchedulingIgnoredDuringExecution`은 '하드 룰(Hard Rule)'로, 스케줄링 시점에 조건이 만족되지 않으면 파드가 Pending 상태로 남고 절대 배치되지 않습니다.\n• `preferredDuring...`은 '소프트 룰'로, 조건을 만족하는 노드가 없더라도 다른 일반 노드에 스케줄링됩니다.",
       "key_concept": "NodeAffinity Hard Rule vs Soft Rule"
+    },
+    {
+      "id": "D2-Q05",
+      "domain": "Domain 2",
+      "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
+      "question_en": "You want to run a monitoring agent pod on every single worker node in the cluster, automatically deploying to newly added nodes as well. Which Kubernetes workload resource is purpose-built for this requirement?",
+      "question_kr": "클러스터의 모든 단일 워커 노드마다 모니터링 에이전트 파드를 정확히 하나씩 실행하고, 향후 노드가 추가되더라도 자동으로 배포되도록 구성하고자 합니다. 이 요구사항에 맞춤 설계된 쿠버네티스 워크로드 리소스는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "StatefulSet",
+          "text_kr": "StatefulSet"
+        },
+        {
+          "key": "B",
+          "text_en": "DaemonSet",
+          "text_kr": "DaemonSet"
+        },
+        {
+          "key": "C",
+          "text_en": "ReplicaSet with replicas: 0",
+          "text_kr": "replicas: 0 으로 설정된 ReplicaSet"
+        },
+        {
+          "key": "D",
+          "text_en": "CronJob with schedule: '@reboot'",
+          "text_kr": "schedule: '@reboot' 으로 설정된 CronJob"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation_kr": "정답은 B입니다.\n\n• `DaemonSet`은 클러스터의 모든(또는 특정 조건을 만족하는) 노드에 파드의 복제본을 정확히 1개씩 실행하도록 보장하는 전용 컨트롤러입니다.\n• 모니터링 데몬(Prometheus Node Exporter)이나 로그 수집기(Fluentd, Logstash), 네트워크 CNI 에이전트에 주로 사용됩니다.",
+      "key_concept": "DaemonSet, Node-level Agent Deployment"
     },
     {
       "id": "D3-Q01",
@@ -1996,6 +4461,38 @@ const EXAM_DATA = {
       "key_concept": "Ingress Resource vs Ingress Controller"
     },
     {
+      "id": "D3-Q05",
+      "domain": "Domain 3",
+      "domain_name": "서비스 및 네트워킹 (Services & Networking)",
+      "question_en": "Which NetworkPolicy configuration successfully blocks all incoming ingress traffic to all pods in the 'secure-zone' namespace, effectively creating a default-deny policy?",
+      "question_kr": "'secure-zone' 네임스페이스의 모든 파드로 들어오는 모든 인입(Ingress) 트래픽을 차단하여 완전한 기본 거부(default-deny) 상태를 만드는 올바른 NetworkPolicy 설정은 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "spec.podSelector: {} with spec.policyTypes: ['Ingress'] and no ingress rules defined",
+          "text_kr": "spec.podSelector: {} 와 spec.policyTypes: ['Ingress'] 를 지정하고 ingress 규칙 목록을 비워둠"
+        },
+        {
+          "key": "B",
+          "text_en": "spec.podSelector: '*' with spec.ingress: [{action: 'Deny'}]",
+          "text_kr": "spec.podSelector: '*' 와 spec.ingress: [{action: 'Deny'}]"
+        },
+        {
+          "key": "C",
+          "text_en": "spec.ingress: [] with action: DropAll",
+          "text_kr": "spec.ingress: [] 와 action: DropAll"
+        },
+        {
+          "key": "D",
+          "text_en": "spec.policyTypes: ['DenyAll']",
+          "text_kr": "spec.policyTypes: ['DenyAll']"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• `podSelector: {}`는 네임스페이스 내의 모든 파드를 대상으로 선택합니다.\n• `policyTypes: [Ingress]`를 선언하고 하위 `ingress:` 허용 목록을 전혀 제공하지 않으면, 모든 인입 트래픽이 거부(Default Deny)됩니다.",
+      "key_concept": "NetworkPolicy Default Deny All Ingress"
+    },
+    {
       "id": "D4-Q01",
       "domain": "Domain 4",
       "domain_name": "스토리지 (Storage)",
@@ -2124,6 +4621,38 @@ const EXAM_DATA = {
       "key_concept": "AccessModes: ReadWriteMany (RWX)"
     },
     {
+      "id": "D4-Q05",
+      "domain": "Domain 4",
+      "domain_name": "스토리지 (Storage)",
+      "question_en": "To enable dynamic expansion of PersistentVolumeClaim capacity in Kubernetes, what property must be explicitly set to `true` in the referenced StorageClass?",
+      "question_kr": "쿠버네티스에서 PersistentVolumeClaim의 용량을 동적으로 확장(Resize)할 수 있도록 허용하려면 참조하는 StorageClass에서 어떤 속성을 명시적으로 `true`로 설정해야 합니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "allowVolumeExpansion",
+          "text_kr": "allowVolumeExpansion"
+        },
+        {
+          "key": "B",
+          "text_en": "dynamicResizeEnabled",
+          "text_kr": "dynamicResizeEnabled"
+        },
+        {
+          "key": "C",
+          "text_en": "autoScaleStorage",
+          "text_kr": "autoScaleStorage"
+        },
+        {
+          "key": "D",
+          "text_en": "expandablePVC",
+          "text_kr": "expandablePVC"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• `StorageClass` 매니페스트에 `allowVolumeExpansion: true`가 설정되어 있어야 사용자가 기존 PVC의 `spec.resources.requests.storage` 값을 더 큰 값으로 편집하여 볼륨을 온라인으로 확장할 수 있습니다.",
+      "key_concept": "StorageClass allowVolumeExpansion"
+    },
+    {
       "id": "D5-Q01",
       "domain": "Domain 5",
       "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
@@ -2250,6 +4779,38 @@ const EXAM_DATA = {
       "correct_answer": "A",
       "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 서비스는 `spec.selector`에 정의된 라벨과 일치하는 정상(Ready) 상태의 파드 IP들을 자동으로 수집하여 `Endpoints` 리소스를 구성합니다.\n• 엔드포인트가 `<none>`이라는 것은 서비스의 셀렉터와 파드의 라벨이 불일치(오탈자)하거나, 파드들의 준비성 프로브(Readiness Probe)가 실패하여 트래픽 대상에서 제외되었음을 의미합니다.",
       "key_concept": "Empty Endpoints (<none>), Service Selector Label Mismatch"
+    },
+    {
+      "id": "D5-Q05",
+      "domain": "Domain 5",
+      "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+      "question_en": "A Pod stays in the `ImagePullBackOff` state. In `kubectl describe pod`, the Events section indicates `Failed to pull image ... repository does not exist or may require 'docker login'`. What is required to resolve this issue if the image is stored in a private container registry?",
+      "question_kr": "파드가 `ImagePullBackOff` 상태에 머물러 있습니다. `kubectl describe pod`의 Events 섹션에 `Failed to pull image ... repository does not exist or may require 'docker login'` 메시지가 나타납니다. 해당 이미지가 프라이빗 컨테이너 레지스트리에 저장되어 있는 경우 이 문제를 해결하기 위해 필요한 조치는 무엇입니까?",
+      "options": [
+        {
+          "key": "A",
+          "text_en": "Create a docker-registry Secret containing authentication credentials and reference it in the Pod's `spec.imagePullSecrets`.",
+          "text_kr": "인증 자격 증명을 포함하는 docker-registry Secret을 생성하고 파드의 `spec.imagePullSecrets`에 참조합니다."
+        },
+        {
+          "key": "B",
+          "text_en": "Disable TLS verification in kubelet.",
+          "text_kr": "kubelet의 TLS 검증을 비활성화합니다."
+        },
+        {
+          "key": "C",
+          "text_en": "Change the image pull policy to Always.",
+          "text_kr": "이미지 풀 정책(imagePullPolicy)을 Always로 변경합니다."
+        },
+        {
+          "key": "D",
+          "text_en": "Grant cluster-admin permissions to the default ServiceAccount.",
+          "text_kr": "default ServiceAccount에 cluster-admin 권한을 부여합니다."
+        }
+      ],
+      "correct_answer": "A",
+      "explanation_kr": "정답은 A입니다.\n\n• 프라이빗 레지스트리 이미지를 가져오려면 `kubectl create secret docker-registry <이름> --docker-server=... --docker-username=... --docker-password=...`로 시크릿을 생성한 후,\n• 파드 스펙의 `spec.imagePullSecrets: [{name: <시크릿이름>}]`에 등록해야 정상적으로 인증 후 이미지를 풀(Pull)할 수 있습니다.",
+      "key_concept": "ImagePullBackOff, Private Registry Secret, imagePullSecrets"
     }
   ]
 };
