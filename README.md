@@ -3,6 +3,8 @@
 > **한국어 사용자를 위한 CKA/CKAD 시험 대비 올인원(All-in-One) 학습 공간 및 실전 CBT 시뮬레이션 시스템**  
 > Linux Foundation & CNCF 공식 커리큘럼 기준 5대 도메인 완벽 반영 | 한·영 듀얼 트랙 학습 | 실전 CBT 모의고사 & Kubectl 치트시트 지원
 
+🌐 **온라인 실시간 포털 바로가기**: **[https://sungkyu-pm.github.io/k8s-cka-study-cbt/](https://sungkyu-pm.github.io/k8s-cka-study-cbt/)**
+
 ---
 
 ## 🔗 공식 시험 및 접수 링크 (Official Links)
@@ -16,7 +18,13 @@
 
 ## 🚀 빠른 시작 (Quick Start)
 
-### 💻 방법 1: 로컬 서버 실행 (추천)
+### 🌐 방법 1: 온라인 웹에서 바로 학습 (별도 설치 불필요)
+브라우저에서 바로 접속하여 모바일/PC 어디서나 시험 응시 및 학습이 가능합니다:  
+👉 **[https://sungkyu-pm.github.io/k8s-cka-study-cbt/](https://sungkyu-pm.github.io/k8s-cka-study-cbt/)**
+
+---
+
+### 💻 방법 2: 로컬 서버 실행 (추천)
 시험 응시 이력 저장, 실시간 채점, 오답 노트 누적 기록을 지원하는 전용 로컬 경량 백엔드 서버입니다 (추가 pip 라이브러리 설치 불필요).
 
 터미널에서 아래 명령어를 실행하면 서버가 켜지며 브라우저가 자동으로 열립니다:
