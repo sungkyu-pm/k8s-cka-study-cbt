@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "kcna-d3-001",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-002",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-003",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-004",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-005",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-006",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-007",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-008",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-009",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-010",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-011",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-012",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-013",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-014",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-015",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-016",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-017",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-018",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-019",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-020",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-021",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-022",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-023",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-024",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-025",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-026",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-027",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-028",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-029",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-030",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-031",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-032",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-033",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-034",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-035",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-036",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-037",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-038",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-039",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-040",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-041",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-042",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-043",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-044",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  },
+  {
+    "id": "kcna-d3-045",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
+    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To replace all local disks with cloud storage",
+        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+      },
+      {
+        "key": "B",
+        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
+        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+      },
+      {
+        "key": "C",
+        "text_en": "To speed up container image download times",
+        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PersistentVolumeClaims",
+        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CSI Out-of-tree Drivers",
+    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+  },
+  {
+    "id": "kcna-d3-046",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
+    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Namespaces",
+        "text_kr": "Namespaces (네임스페이스)"
+      },
+      {
+        "key": "B",
+        "text_en": "cgroups (Control Groups)",
+        "text_kr": "cgroups (컨트롤 그룹)"
+      },
+      {
+        "key": "C",
+        "text_en": "Chroot jail",
+        "text_kr": "Chroot jail"
+      },
+      {
+        "key": "D",
+        "text_en": "AppArmor profiles",
+        "text_kr": "AppArmor 프로필"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Linux cgroups",
+    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+  },
+  {
+    "id": "kcna-d3-047",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
+    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PID Namespace",
+        "text_kr": "PID 네임스페이스"
+      },
+      {
+        "key": "B",
+        "text_en": "Network (NET) Namespace",
+        "text_kr": "Network (NET) 네임스페이스"
+      },
+      {
+        "key": "C",
+        "text_en": "Mount (MNT) Namespace",
+        "text_kr": "Mount (MNT) 네임스페이스"
+      },
+      {
+        "key": "D",
+        "text_en": "IPC Namespace",
+        "text_kr": "IPC 네임스페이스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Network Namespace",
+    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+  },
+  {
+    "id": "kcna-d3-048",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
+    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To manage commercial cloud computing pricing models",
+        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+      },
+      {
+        "key": "B",
+        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
+        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+      },
+      {
+        "key": "C",
+        "text_en": "To develop the official Kubernetes documentation",
+        "text_kr": "쿠버네티스 공식 문서를 작성함"
+      },
+      {
+        "key": "D",
+        "text_en": "To certify cloud engineers for DevOps positions",
+        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OCI Standards",
+    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+  },
+  {
+    "id": "kcna-d3-049",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
+    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container Routing Interface",
+        "text_kr": "Container Routing Interface"
+      },
+      {
+        "key": "B",
+        "text_en": "Container Runtime Interface",
+        "text_kr": "Container Runtime Interface"
+      },
+      {
+        "key": "C",
+        "text_en": "Cluster Resource Indicator",
+        "text_kr": "Cluster Resource Indicator"
+      },
+      {
+        "key": "D",
+        "text_en": "Cloud Recovery Interface",
+        "text_kr": "Cloud Recovery Interface"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CRI Definition",
+    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+  },
+  {
+    "id": "kcna-d3-050",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
+    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CSI (Container Storage Interface)",
+        "text_kr": "CSI"
+      },
+      {
+        "key": "B",
+        "text_en": "CNI (Container Network Interface)",
+        "text_kr": "CNI"
+      },
+      {
+        "key": "C",
+        "text_en": "CRI (Container Runtime Interface)",
+        "text_kr": "CRI"
+      },
+      {
+        "key": "D",
+        "text_en": "CPI (Cloud Provider Interface)",
+        "text_kr": "CPI"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "CNI Responsibility",
+    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+  }
+]

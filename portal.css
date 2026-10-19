@@ -39,18 +39,119 @@ body {
 /* ==========================================================================
    글로벌 헤더 (Header)
    ========================================================================== */
-.portal-header {
-  background: linear-gradient(135deg, #1d263b 0%, #0f172a 100%);
-  color: #ffffff;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 3px solid var(--k8s-blue);
+.portal-header-wrapper {
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: var(--shadow-md);
+}
+
+.portal-header {
+  background: linear-gradient(135deg, #1d263b 0%, #0f172a 100%);
+  color: #ffffff;
+  padding: 0.85rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   자격증 트랙 선택 바 (CKA vs KCNA)
+   ========================================================================== */
+.cert-track-bar {
+  background-color: #0b1120;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 2rem;
+}
+
+.track-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+}
+
+.track-tab-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.track-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.track-tab-btn.active {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.track-tab-btn.active.kcna-active {
+  background: linear-gradient(135deg, #0e7490 0%, #0369a1 100%);
+  border-color: #06b6d4;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+}
+
+.track-icon {
+  font-size: 1.2rem;
+}
+
+.track-title-wrap {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.track-main-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.track-sub-title {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.track-tab-btn.active .track-sub-title {
+  color: #cbd5e1;
+}
+
+.track-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.track-badge.cka {
+  color: #93c5fd;
+}
+
+.track-badge.kcna {
+  color: #67e8f9;
+}
+
+/* ==========================================================================
+   글로벌 네비게이션 탭 (Nav Tabs)
+   ========================================================================== */
+.portal-nav {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
 }
 
 .header-left {

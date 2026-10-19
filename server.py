@@ -78,8 +78,19 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
     def handle_api_status(self):
         """서버 상태 및 데이터베이스 통계 정보 반환"""
         total_questions = 0
+        # CKA 문항 수
         for i in range(1, 6):
             q_file = os.path.join(QUESTIONS_DIR, f'questions_domain{i}.json')
+            if os.path.exists(q_file):
+                try:
+                    with open(q_file, 'r', encoding='utf-8') as f:
+                        total_questions += len(json.load(f))
+                except Exception:
+                    pass
+
+        # KCNA 문항 수
+        for i in range(1, 6):
+            q_file = os.path.join(QUESTIONS_DIR, 'kcna', f'questions_kcna_domain{i}.json')
             if os.path.exists(q_file):
                 try:
                     with open(q_file, 'r', encoding='utf-8') as f:
@@ -97,7 +108,7 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
 
         self.send_json_response({
             "status": "online",
-            "server": "K8S Certification Local Backend",
+            "server": "K8S & KCNA Certification Local Backend",
             "total_questions": total_questions,
             "total_exams_taken": exam_count,
             "port": PORT,
@@ -108,6 +119,7 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
         """docs 디렉토리의 마크다운 내용 실시간 반환"""
         doc_key = query.get('key', [None])[0]
         doc_mapping = {
+            # CKA
             'exam_guide': '00_CKA_EXAM_GUIDE.md',
             'glossary': '01_GLOSSARY_KR_EN.md',
             'domain1': '02_DOMAIN_1_CLUSTER_ARCHITECTURE.md',
@@ -115,7 +127,15 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             'domain3': '04_DOMAIN_3_SERVICES_NETWORKING.md',
             'domain4': '05_DOMAIN_4_STORAGE.md',
             'domain5': '06_DOMAIN_5_TROUBLESHOOTING.md',
-            'kubectl_cheat': '07_KUBECTL_CHEAT_SHEET.md'
+            'kubectl_cheat': '07_KUBECTL_CHEAT_SHEET.md',
+            # KCNA
+            'kcna_guide': 'kcna/00_KCNA_EXAM_GUIDE.md',
+            'kcna_domain1': 'kcna/01_CLOUD_NATIVE_ARCHITECTURE.md',
+            'kcna_domain2': 'kcna/02_KUBERNETES_FUNDAMENTALS.md',
+            'kcna_domain3': 'kcna/03_CONTAINER_ORCHESTRATION.md',
+            'kcna_domain4': 'kcna/04_OBSERVABILITY.md',
+            'kcna_domain5': 'kcna/05_APPLICATION_DELIVERY.md',
+            'kcna_glossary': 'kcna/06_KCNA_GLOSSARY.md'
         }
 
         if not doc_key or doc_key not in doc_mapping:
@@ -131,13 +151,58 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             self.send_json_response({"error": f"Doc file not found: {doc_mapping[doc_key]}"}, 404)
 
     def handle_api_questions(self, query):
-        """문제 세트 조회 (mock_random, mock1, 또는 domain1~5)"""
+        """문제 세트 조회 (CKA 및 KCNA 전체 지원)"""
         q_set = query.get('set', ['mock_random'])[0]
         limit = query.get('limit', [None])[0]
         should_shuffle = query.get('shuffle', ['true'])[0].lower() == 'true'
 
+        # KCNA 종합 랜덤 모의고사
+        if q_set in ['kcna_mock_random', 'kcna_all']:
+            kcna_pools = {}
+            for i in range(1, 6):
+                fpath = os.path.join(QUESTIONS_DIR, 'kcna', f'questions_kcna_domain{i}.json')
+                if os.path.exists(fpath):
+                    with open(fpath, 'r', encoding='utf-8') as f:
+                        kcna_pools[f'domain{i}'] = json.load(f)
+                else:
+                    kcna_pools[f'domain{i}'] = []
+
+            try:
+                target_count = int(limit) if limit and limit != 'all' else 60
+            except ValueError:
+                target_count = 60
+
+            if limit == 'all':
+                all_q = []
+                for pool in kcna_pools.values():
+                    all_q.extend(pool)
+                if should_shuffle:
+                    random.shuffle(all_q)
+                self.send_json_response({"set": q_set, "count": len(all_q), "questions": all_q})
+                return
+
+            # KCNA 공식 배점: D2: 46%, D3: 22%, D1: 16%, D4: 8%, D5: 8%
+            c2 = round(target_count * 0.46)
+            c3 = round(target_count * 0.22)
+            c1 = round(target_count * 0.16)
+            c4 = round(target_count * 0.08)
+            c5 = target_count - (c2 + c3 + c1 + c4)
+
+            selected = []
+            for d_name, cnt in [('domain1', c1), ('domain2', c2), ('domain3', c3), ('domain4', c4), ('domain5', c5)]:
+                pool = kcna_pools.get(d_name, [])
+                if pool:
+                    k = min(cnt, len(pool))
+                    selected.extend(random.sample(pool, k))
+
+            if should_shuffle:
+                random.shuffle(selected)
+
+            self.send_json_response({"set": q_set, "count": len(selected), "questions": selected})
+            return
+
+        # CKA 종합 랜덤 모의고사
         if q_set in ['mock_random', 'all']:
-            # 5개 도메인에서 가중치에 맞춰 랜덤 추출
             domain_pools = {}
             for i in range(1, 6):
                 fpath = os.path.join(QUESTIONS_DIR, f'questions_domain{i}.json')
@@ -147,14 +212,12 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
                 else:
                     domain_pools[f'domain{i}'] = []
 
-            # 목표 문항 수 결정
             try:
                 target_count = int(limit) if limit and limit != 'all' else 25
             except ValueError:
                 target_count = 25
 
             if limit == 'all':
-                # 전체 문항 반환 (1,250개)
                 all_q = []
                 for pool in domain_pools.values():
                     all_q.extend(pool)
@@ -163,7 +226,6 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({"set": q_set, "count": len(all_q), "questions": all_q})
                 return
 
-            # CKA 공식 비중에 맞춘 샘플링 (D1: 25%, D2: 15%, D3: 20%, D4: 10%, D5: 30%)
             c1 = round(target_count * 0.25)
             c2 = round(target_count * 0.15)
             c3 = round(target_count * 0.20)
@@ -184,16 +246,24 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             return
 
         file_map = {
-            'mock1': 'mock_exam_1.json',
-            'domain1': 'questions_domain1.json',
-            'domain2': 'questions_domain2.json',
-            'domain3': 'questions_domain3.json',
-            'domain4': 'questions_domain4.json',
-            'domain5': 'questions_domain5.json',
+            # CKA
+            'mock1': ('questions', 'mock_exam_1.json'),
+            'domain1': ('questions', 'questions_domain1.json'),
+            'domain2': ('questions', 'questions_domain2.json'),
+            'domain3': ('questions', 'questions_domain3.json'),
+            'domain4': ('questions', 'questions_domain4.json'),
+            'domain5': ('questions', 'questions_domain5.json'),
+            # KCNA
+            'kcna_mock1': ('questions/kcna', 'mock_kcna_1.json'),
+            'kcna_domain1': ('questions/kcna', 'questions_kcna_domain1.json'),
+            'kcna_domain2': ('questions/kcna', 'questions_kcna_domain2.json'),
+            'kcna_domain3': ('questions/kcna', 'questions_kcna_domain3.json'),
+            'kcna_domain4': ('questions/kcna', 'questions_kcna_domain4.json'),
+            'kcna_domain5': ('questions/kcna', 'questions_kcna_domain5.json'),
         }
 
-        filename = file_map.get(q_set, 'mock_exam_1.json')
-        file_path = os.path.join(QUESTIONS_DIR, filename)
+        entry = file_map.get(q_set, ('questions', 'mock_exam_1.json'))
+        file_path = os.path.join(BASE_DIR, entry[0], entry[1])
 
         if os.path.exists(file_path):
             with open(file_path, 'r', encoding='utf-8') as f:

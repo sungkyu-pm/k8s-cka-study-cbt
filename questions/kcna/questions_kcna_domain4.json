@@ -1,0 +1,962 @@
+[
+  {
+    "id": "kcna-d4-001",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-002",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-003",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-004",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-005",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-006",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-007",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-008",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-009",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-010",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-011",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-012",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-013",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-014",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-015",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-016",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-017",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-018",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-019",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-020",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-021",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-022",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-023",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-024",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-025",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-026",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  },
+  {
+    "id": "kcna-d4-027",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
+    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A cloud-based relational database engine",
+        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+      },
+      {
+        "key": "B",
+        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
+        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+      },
+      {
+        "key": "C",
+        "text_en": "A replacement for the Linux kernel network stack",
+        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+      },
+      {
+        "key": "D",
+        "text_en": "A container packaging tool similar to Docker buildx",
+        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "OpenTelemetry Scope",
+    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+  },
+  {
+    "id": "kcna-d4-028",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
+    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jaeger",
+        "text_kr": "Jaeger"
+      },
+      {
+        "key": "B",
+        "text_en": "Fluentd",
+        "text_kr": "Fluentd"
+      },
+      {
+        "key": "C",
+        "text_en": "Grafana",
+        "text_kr": "Grafana"
+      },
+      {
+        "key": "D",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Jaeger Distributed Tracing",
+    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+  },
+  {
+    "id": "kcna-d4-029",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
+    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Backups, Restores, and Snapshots",
+        "text_kr": "백업, 복원, 스냅샷"
+      },
+      {
+        "key": "B",
+        "text_en": "Metrics, Logs, and Traces",
+        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+      },
+      {
+        "key": "C",
+        "text_en": "CPU, RAM, and Disk Storage",
+        "text_kr": "CPU, RAM, 디스크 스토리지"
+      },
+      {
+        "key": "D",
+        "text_en": "Ingress, Service, and Egress",
+        "text_kr": "인그레스, 서비스, 이그레스"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Three Pillars of Observability",
+    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+  },
+  {
+    "id": "kcna-d4-030",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
+    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Push model (Targets send metrics to Prometheus)",
+        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
+        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+      },
+      {
+        "key": "C",
+        "text_en": "Database replication triggers",
+        "text_kr": "데이터베이스 복제 트리거"
+      },
+      {
+        "key": "D",
+        "text_en": "Log file tailing over SSH",
+        "text_kr": "SSH를 통한 로그 파일 테일링"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Prometheus Pull Model",
+    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+  }
+]

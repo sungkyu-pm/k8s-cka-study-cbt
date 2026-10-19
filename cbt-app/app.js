@@ -16,10 +16,13 @@ class K8sCBTSimulator {
     this.totalSeconds = 0;
     this.timeSpentSeconds = 0;
     this.isReviewMode = false;
-    this.selectedExamSet = 'mock1';
+    this.selectedExamSet = 'mock_random';
+    this.currentTrack = 'cka'; // 'cka' or 'kcna'
+    this.passingScorePct = 66; // 66% for CKA, 75% for KCNA
 
     this.initDOMElements();
     this.bindEvents();
+    this.checkInitialURLTrack();
   }
 
   initDOMElements() {
@@ -27,6 +30,18 @@ class K8sCBTSimulator {
     this.startScreen = document.getElementById('start-screen');
     this.examScreen = document.getElementById('exam-screen');
     this.resultScreen = document.getElementById('result-screen');
+
+    // 트랙 컨트롤
+    this.cbtCertCka = document.getElementById('cbt-cert-cka');
+    this.cbtCertKcna = document.getElementById('cbt-cert-kcna');
+    this.cbtWelcomeTitle = document.getElementById('cbt-welcome-title');
+    this.cbtWelcomeDesc = document.getElementById('cbt-welcome-desc');
+    this.scopeCardTitle = document.getElementById('scope-card-title');
+    this.ckaScopeGroup = document.getElementById('cka-scope-group');
+    this.kcnaScopeGroup = document.getElementById('kcna-scope-group');
+    this.ckaCountGroup = document.getElementById('cka-count-group');
+    this.kcnaCountGroup = document.getElementById('kcna-count-group');
+    this.examTitle = document.querySelector('.exam-title');
 
     // 헤더 컨트롤
     this.timerBox = document.getElementById('timer-box');
@@ -83,7 +98,60 @@ class K8sCBTSimulator {
     this.reviewWrongBtn.addEventListener('click', () => this.startWrongReviewMode());
     this.restartBtn.addEventListener('click', () => this.showStartScreen());
     this.modeToggleBtn.addEventListener('click', () => this.switchModeInExam());
+
+    if (this.cbtCertCka) {
+      this.cbtCertCka.addEventListener('click', () => this.switchTrack('cka'));
+    }
+    if (this.cbtCertKcna) {
+      this.cbtCertKcna.addEventListener('click', () => this.switchTrack('kcna'));
+    }
   }
+
+  checkInitialURLTrack() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const track = urlParams.get('track');
+    if (track === 'kcna') {
+      this.switchTrack('kcna');
+    }
+  }
+
+  switchTrack(track) {
+    this.currentTrack = track;
+    if (track === 'kcna') {
+      this.passingScorePct = 75;
+      if (this.cbtCertKcna) this.cbtCertKcna.classList.add('active', 'kcna-active');
+      if (this.cbtCertCka) this.cbtCertCka.classList.remove('active');
+      if (this.ckaScopeGroup) this.ckaScopeGroup.style.display = 'none';
+      if (this.kcnaScopeGroup) this.kcnaScopeGroup.style.display = 'block';
+      if (this.ckaCountGroup) this.ckaCountGroup.style.display = 'none';
+      if (this.kcnaCountGroup) this.kcnaCountGroup.style.display = 'block';
+      if (this.cbtWelcomeTitle) this.cbtWelcomeTitle.textContent = 'Kubernetes and Cloud Native Associate (KCNA) CBT 실습';
+      if (this.cbtWelcomeDesc) this.cbtWelcomeDesc.textContent = 'CNCF 공식 시험 기준 객관식 60문항 대비, 클라우드 네이티브 아키텍처와 쿠버네티스 원리를 완벽 마스터합니다.';
+      if (this.scopeCardTitle) this.scopeCardTitle.textContent = '1. 학습 범위 선택 (KCNA 260문항 풀)';
+      if (this.examTitle) this.examTitle.textContent = 'Cloud Native Associate (KCNA)';
+
+      const firstKcnaRadio = this.kcnaScopeGroup ? this.kcnaScopeGroup.querySelector('input[type="radio"]') : null;
+      if (firstKcnaRadio) firstKcnaRadio.checked = true;
+      const firstKcnaCount = this.kcnaCountGroup ? this.kcnaCountGroup.querySelector('input[value="60"]') : null;
+      if (firstKcnaCount) firstKcnaCount.checked = true;
+    } else {
+      this.passingScorePct = 66;
+      if (this.cbtCertCka) this.cbtCertCka.classList.add('active');
+      if (this.cbtCertKcna) this.cbtCertKcna.classList.remove('active', 'kcna-active');
+      if (this.ckaScopeGroup) this.ckaScopeGroup.style.display = 'block';
+      if (this.kcnaScopeGroup) this.kcnaScopeGroup.style.display = 'none';
+      if (this.ckaCountGroup) this.ckaCountGroup.style.display = 'block';
+      if (this.kcnaCountGroup) this.kcnaCountGroup.style.display = 'none';
+      if (this.cbtWelcomeTitle) this.cbtWelcomeTitle.textContent = 'Kubernetes Certified Administrator (CKA) CBT 실습';
+      if (this.cbtWelcomeDesc) this.cbtWelcomeDesc.textContent = '영어 원문 지문 및 실무 시나리오에 익숙해지면서 한국어 상세 해설로 CKA 실전 시험을 완벽 대비합니다.';
+      if (this.scopeCardTitle) this.scopeCardTitle.textContent = '1. 학습 범위 선택 (CKA 1,250문항 풀)';
+      if (this.examTitle) this.examTitle.textContent = 'Kubernetes Administrator (CKA)';
+
+      const firstCkaRadio = this.ckaScopeGroup ? this.ckaScopeGroup.querySelector('input[type="radio"]') : null;
+      if (firstCkaRadio) firstCkaRadio.checked = true;
+      const firstCkaCount = this.ckaCountGroup ? this.ckaCountGroup.querySelector('input[value="25"]') : null;
+      if (firstCkaCount) firstCkaCount.checked = true;
+    }
 
   showStartScreen() {
     this.isReviewMode = false;
@@ -138,6 +206,36 @@ class K8sCBTSimulator {
 
   sampleMockExam(examCount) {
     const data = window.EXAM_DATA || {};
+
+    // KCNA 샘플링 (D2: 46%, D3: 22%, D1: 16%, D4: 8%, D5: 8%)
+    if (this.currentTrack === 'kcna') {
+      const d1 = data.kcna_domain1 || [];
+      const d2 = data.kcna_domain2 || [];
+      const d3 = data.kcna_domain3 || [];
+      const d4 = data.kcna_domain4 || [];
+      const d5 = data.kcna_domain5 || [];
+
+      if (examCount === 'all') {
+        return [...d1, ...d2, ...d3, ...d4, ...d5];
+      }
+
+      const count = parseInt(examCount, 10) || 60;
+      const c2 = Math.round(count * 0.46);
+      const c3 = Math.round(count * 0.22);
+      const c1 = Math.round(count * 0.16);
+      const c4 = Math.round(count * 0.08);
+      const c5 = count - (c2 + c3 + c1 + c4);
+
+      const s1 = this.shuffleArray(d1).slice(0, c1);
+      const s2 = this.shuffleArray(d2).slice(0, c2);
+      const s3 = this.shuffleArray(d3).slice(0, c3);
+      const s4 = this.shuffleArray(d4).slice(0, c4);
+      const s5 = this.shuffleArray(d5).slice(0, c5);
+
+      return [...s1, ...s2, ...s3, ...s4, ...s5];
+    }
+
+    // CKA 샘플링 (D1: 25%, D2: 15%, D3: 20%, D4: 10%, D5: 30%)
     const d1 = data.domain1 || [];
     const d2 = data.domain2 || [];
     const d3 = data.domain3 || [];
@@ -171,9 +269,9 @@ class K8sCBTSimulator {
     const shuffleQCheck = document.getElementById('shuffle-questions-check');
     const shuffleOptCheck = document.getElementById('shuffle-options-check');
 
-    this.selectedExamSet = examSetRadio ? examSetRadio.value : 'mock_random';
+    this.selectedExamSet = examSetRadio ? examSetRadio.value : (this.currentTrack === 'kcna' ? 'kcna_mock_random' : 'mock_random');
     this.mode = examModeRadio ? examModeRadio.value : 'study';
-    const examCount = examCountRadio ? examCountRadio.value : '25';
+    const examCount = examCountRadio ? examCountRadio.value : (this.currentTrack === 'kcna' ? '60' : '25');
     const shouldShuffleQuestions = shuffleQCheck ? shuffleQCheck.checked : true;
     const shouldShuffleOptions = shuffleOptCheck ? shuffleOptCheck.checked : true;
 
@@ -193,7 +291,7 @@ class K8sCBTSimulator {
 
     // 2차: window.EXAM_DATA 폴백 (GitHub Pages 또는 로컬 오프라인 모드)
     if (!questionList || questionList.length === 0) {
-      if (this.selectedExamSet === 'mock_random' || this.selectedExamSet === 'mock1') {
+      if (this.selectedExamSet === 'mock_random' || this.selectedExamSet === 'mock1' || this.selectedExamSet === 'kcna_mock_random' || this.selectedExamSet === 'kcna_mock1') {
         questionList = this.sampleMockExam(examCount);
       } else if (window.EXAM_DATA && window.EXAM_DATA[this.selectedExamSet]) {
         let pool = [...window.EXAM_DATA[this.selectedExamSet]];
@@ -201,7 +299,7 @@ class K8sCBTSimulator {
           pool = this.shuffleArray(pool);
         }
         if (examCount !== 'all') {
-          const limit = parseInt(examCount, 10) || 25;
+          const limit = parseInt(examCount, 10) || (this.currentTrack === 'kcna' ? 60 : 25);
           questionList = pool.slice(0, limit);
         } else {
           questionList = pool;
@@ -233,10 +331,16 @@ class K8sCBTSimulator {
 
     this.updateModeUI();
 
-    // 타이머 설정 (실전 모드: 문항 수에 맞춤 계산)
+    // 타이머 설정 (실전 모드: 문항 수 및 트랙에 맞춤 계산)
     clearInterval(this.timerInterval);
     if (this.mode === 'exam') {
-      const totalMinutes = this.questions.length <= 25 ? 120 : (this.questions.length <= 50 ? 180 : 240);
+      let totalMinutes;
+      if (this.currentTrack === 'kcna') {
+        totalMinutes = this.questions.length <= 15 ? 25 : (this.questions.length <= 30 ? 45 : 90);
+      } else {
+        totalMinutes = this.questions.length <= 25 ? 120 : (this.questions.length <= 50 ? 180 : 240);
+      }
+
       this.totalSeconds = totalMinutes * 60;
       this.secondsRemaining = this.totalSeconds;
       this.timerBox.classList.remove('hidden');
@@ -516,11 +620,16 @@ class K8sCBTSimulator {
 
     const totalQuestions = this.questions.length;
     const scorePct = Math.round((correctCount / totalQuestions) * 100);
-    const passed = (scorePct >= 66); // CKA 공식 합격 기준: 66% 이상
+    const passed = (scorePct >= this.passingScorePct);
 
     // 결과 렌더링
     this.passFailBadge.className = `result-badge ${passed ? 'pass' : 'fail'}`;
     this.passFailBadge.textContent = passed ? '🎉 PASS (합격)' : '⚠️ FAIL (재응시 필요)';
+
+    const resultSubtitle = document.getElementById('result-subtitle');
+    if (resultSubtitle) {
+      resultSubtitle.textContent = `합격 기준: ${this.passingScorePct}% 이상 (${this.currentTrack.toUpperCase()})`;
+    }
 
     this.scorePercentage.textContent = `${scorePct}%`;
     this.scoreRaw.textContent = `${correctCount} / ${totalQuestions} 문항`;

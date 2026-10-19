@@ -1,0 +1,3202 @@
+[
+  {
+    "id": "kcna-d2-001",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-002",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-003",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-004",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-005",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-006",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-007",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-008",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-009",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-010",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-011",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-012",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-013",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-014",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-015",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-016",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-017",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-018",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-019",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-020",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-021",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-022",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-023",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-024",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-025",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-026",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-027",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-028",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-029",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-030",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-031",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-032",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-033",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-034",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-035",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-036",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-037",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-038",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-039",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-040",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-041",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-042",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-043",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-044",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-045",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-046",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-047",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-048",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-049",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-050",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-051",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-052",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-053",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-054",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-055",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-056",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-057",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-058",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-059",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-060",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-061",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-062",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-063",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-064",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-065",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-066",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-067",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-068",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-069",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-070",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-071",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-072",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-073",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-074",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-075",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-076",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-077",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-078",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-079",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-080",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-081",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-082",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-083",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-084",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-085",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-086",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-087",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-088",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-089",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-090",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  },
+  {
+    "id": "kcna-d2-091",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
+    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-scheduler",
+        "text_kr": "kube-scheduler"
+      },
+      {
+        "key": "B",
+        "text_en": "kube-controller-manager",
+        "text_kr": "kube-controller-manager"
+      },
+      {
+        "key": "C",
+        "text_en": "kube-apiserver",
+        "text_kr": "kube-apiserver"
+      },
+      {
+        "key": "D",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      }
+    ],
+    "correct_answer": "C",
+    "key_concept": "Control Plane Architecture",
+    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
+  },
+  {
+    "id": "kcna-d2-092",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
+    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Paxos",
+        "text_kr": "Paxos"
+      },
+      {
+        "key": "B",
+        "text_en": "Raft",
+        "text_kr": "Raft"
+      },
+      {
+        "key": "C",
+        "text_en": "Proof of Work",
+        "text_kr": "Proof of Work"
+      },
+      {
+        "key": "D",
+        "text_en": "Two-Phase Commit (2PC)",
+        "text_kr": "2단계 커밋 (2PC)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "etcd Consensus",
+    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+  },
+  {
+    "id": "kcna-d2-093",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the smallest deployable and manageable computing unit in Kubernetes?",
+    "question_kr": "쿠버네티스에서 생성 및 관리할 수 있는 가장 작은 배포 단위는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Container",
+        "text_kr": "컨테이너 (Container)"
+      },
+      {
+        "key": "B",
+        "text_en": "Pod",
+        "text_kr": "파드 (Pod)"
+      },
+      {
+        "key": "C",
+        "text_en": "Deployment",
+        "text_kr": "디프로이먼트 (Deployment)"
+      },
+      {
+        "key": "D",
+        "text_en": "Node",
+        "text_kr": "노드 (Node)"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Pod Abstraction",
+    "explanation_kr": "파드(Pod)는 쿠버네티스의 기본 실행 단위이며, 동일한 네트워크 네임스페이스와 IP, 볼륨을 공유하는 하나 이상의 컨테이너로 구성됩니다."
+  },
+  {
+    "id": "kcna-d2-094",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
+    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReplicaSet",
+        "text_kr": "ReplicaSet"
+      },
+      {
+        "key": "B",
+        "text_en": "DaemonSet",
+        "text_kr": "DaemonSet"
+      },
+      {
+        "key": "C",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "D",
+        "text_en": "Job",
+        "text_kr": "Job"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "DaemonSet Controller",
+    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+  },
+  {
+    "id": "kcna-d2-095",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
+    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Deployment",
+        "text_kr": "Deployment"
+      },
+      {
+        "key": "B",
+        "text_en": "StatefulSet",
+        "text_kr": "StatefulSet"
+      },
+      {
+        "key": "C",
+        "text_en": "CronJob",
+        "text_kr": "CronJob"
+      },
+      {
+        "key": "D",
+        "text_en": "ReplicationController",
+        "text_kr": "ReplicationController"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "StatefulSet Controller",
+    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+  },
+  {
+    "id": "kcna-d2-096",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
+    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NodePort",
+        "text_kr": "NodePort"
+      },
+      {
+        "key": "B",
+        "text_en": "ClusterIP",
+        "text_kr": "ClusterIP"
+      },
+      {
+        "key": "C",
+        "text_en": "LoadBalancer",
+        "text_kr": "LoadBalancer"
+      },
+      {
+        "key": "D",
+        "text_en": "ExternalName",
+        "text_kr": "ExternalName"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Service ClusterIP",
+    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+  },
+  {
+    "id": "kcna-d2-097",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
+    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service is deleted automatically",
+        "text_kr": "서비스가 자동으로 삭제됨"
+      },
+      {
+        "key": "B",
+        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
+        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
+      },
+      {
+        "key": "C",
+        "text_en": "The Service can only be accessed from outside the cluster",
+        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
+      },
+      {
+        "key": "D",
+        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
+        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Headless Service",
+    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
+  },
+  {
+    "id": "kcna-d2-098",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
+    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PersistentVolume (PV)",
+        "text_kr": "PersistentVolume (PV)"
+      },
+      {
+        "key": "B",
+        "text_en": "PersistentVolumeClaim (PVC)",
+        "text_kr": "PersistentVolumeClaim (PVC)"
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClass",
+        "text_kr": "StorageClass"
+      },
+      {
+        "key": "D",
+        "text_en": "VolumeAttachment",
+        "text_kr": "VolumeAttachment"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "PVC Concept",
+    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
+  },
+  {
+    "id": "kcna-d2-099",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
+    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
+        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
+      },
+      {
+        "key": "B",
+        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
+        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
+      },
+      {
+        "key": "C",
+        "text_en": "Role is for authentication, while ClusterRole is for encryption",
+        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
+        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "RBAC Scope",
+    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
+  },
+  {
+    "id": "kcna-d2-100",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
+    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kube-proxy",
+        "text_kr": "kube-proxy"
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet",
+        "text_kr": "kubelet"
+      },
+      {
+        "key": "C",
+        "text_en": "containerd-shim",
+        "text_kr": "containerd-shim"
+      },
+      {
+        "key": "D",
+        "text_en": "systemd-networkd",
+        "text_kr": "systemd-networkd"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "kubelet Role",
+    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
+  }
+]

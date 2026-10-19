@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kubernetes Certification (CKA / CKAD) 올인원 학습 & CBT 포털</title>
+  <title>Kubernetes & Cloud Native Certification (CKA & KCNA) 포털</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -11,70 +11,124 @@
   <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <!-- 상단 글로벌 헤더 -->
-  <header class="portal-header">
-    <div class="header-left">
-      <span class="badge-k8s">CNCF & K8S CERTIFIED</span>
-      <div class="title-group">
-        <h1>Kubernetes Administrator (CKA)</h1>
-        <span class="portal-subtitle">한·영 듀얼트랙 학습 & 실전 CBT 시뮬레이션 포털</span>
+  <!-- 상단 글로벌 고정 헤더 래퍼 -->
+  <div class="portal-header-wrapper">
+    <!-- 1. 최상단 브랜드 헤더 -->
+    <header class="portal-header">
+      <div class="header-left">
+        <span class="badge-k8s">CNCF & LINUX FOUNDATION</span>
+        <div class="title-group">
+          <h1 id="portal-title">Kubernetes & Cloud Native Certification Portal</h1>
+          <span class="portal-subtitle" id="portal-subtitle">한·영 듀얼트랙 학습 & 실전 CBT 시뮬레이션 포털</span>
+        </div>
       </div>
-    </div>
-    <div class="header-right">
-      <div id="server-status-box" class="server-status-box">
-        <span class="status-indicator-dot online"></span>
-        <span id="server-status-text">로컬 서버 모드 (8080)</span>
+      <div class="header-right">
+        <div id="server-status-box" class="server-status-box">
+          <span class="status-indicator-dot online"></span>
+          <span id="server-status-text">로컬 서버 모드 (8080)</span>
+        </div>
+        <button class="nav-tab-btn highlight-cbt" data-tab="cbt">
+          <span id="cbt-quick-btn-label">💻 실전 CBT 모의고사</span>
+        </button>
       </div>
-      <button class="nav-tab-btn highlight-cbt" data-tab="cbt">
-        <span>💻 실전 CBT 모의고사</span>
-      </button>
-    </div>
-  </header>
+    </header>
 
-  <!-- 메인 네비게이션 탭 바 -->
-  <nav class="portal-nav">
-    <div class="nav-container">
-      <button class="nav-tab active" data-tab="overview">
-        <span class="tab-icon">🏠</span> 시험 개요 & 로드맵
-      </button>
-      <button class="nav-tab" data-tab="glossary">
-        <span class="tab-icon">🔤</span> 한·영 필수 용어사전
-      </button>
-      <button class="nav-tab" data-tab="domain1">
-        <span class="tab-icon">🏗️</span> 도메인 1: 아키텍처 & 설치 (25%)
-      </button>
-      <button class="nav-tab" data-tab="domain2">
-        <span class="tab-icon">📦</span> 도메인 2: 워크로드 & 스케줄링 (15%)
-      </button>
-      <button class="nav-tab" data-tab="domain3">
-        <span class="tab-icon">🌐</span> 도메인 3: 서비스 & 네트워크 (20%)
-      </button>
-      <button class="nav-tab" data-tab="domain4">
-        <span class="tab-icon">💾</span> 도메인 4: 스토리지 (10%)
-      </button>
-      <button class="nav-tab" data-tab="domain5">
-        <span class="tab-icon">🔧</span> 도메인 5: 문제 해결 (30%)
-      </button>
-      <button class="nav-tab" data-tab="kubectl_cheat">
-        <span class="tab-icon">⚡</span> Kubectl 치트시트
-      </button>
-      <button class="nav-tab" data-tab="cbt">
-        <span class="tab-icon">💻</span> CBT 가상 실습
-      </button>
+    <!-- 2. 자격증 트랙 선택 바 (CKA vs KCNA) -->
+    <div class="cert-track-bar">
+      <div class="track-container">
+        <button class="track-tab-btn active" data-track="cka" id="track-cka-btn">
+          <span class="track-icon">☸️</span>
+          <div class="track-title-wrap">
+            <span class="track-main-title">CKA 쿠버네티스 공인 관리자</span>
+            <span class="track-sub-title">Certified Kubernetes Administrator (실기형 핸즈온)</span>
+          </div>
+          <span class="track-badge cka">실기 실습</span>
+        </button>
+        <button class="track-tab-btn" data-track="kcna" id="track-kcna-btn">
+          <span class="track-icon">☁️</span>
+          <div class="track-title-wrap">
+            <span class="track-main-title">KCNA 클라우드 네이티브 어소시에이트</span>
+            <span class="track-sub-title">Kubernetes and Cloud Native Associate (CNCF 필기)</span>
+          </div>
+          <span class="track-badge kcna">필기 객관식</span>
+        </button>
+      </div>
     </div>
-  </nav>
+
+    <!-- 3. 서브 네비게이션 탭 바 (CKA 전용) -->
+    <nav class="portal-nav track-nav-cka" id="nav-cka">
+      <div class="nav-container">
+        <button class="nav-tab active" data-tab="overview">
+          <span class="tab-icon">🏠</span> CKA 개요 & 로드맵
+        </button>
+        <button class="nav-tab" data-tab="glossary">
+          <span class="tab-icon">🔤</span> 한·영 필수 용어사전
+        </button>
+        <button class="nav-tab" data-tab="domain1">
+          <span class="tab-icon">🏗️</span> 도메인 1: 아키텍처 & 설치 (25%)
+        </button>
+        <button class="nav-tab" data-tab="domain2">
+          <span class="tab-icon">📦</span> 도메인 2: 워크로드 & 스케줄링 (15%)
+        </button>
+        <button class="nav-tab" data-tab="domain3">
+          <span class="tab-icon">🌐</span> 도메인 3: 서비스 & 네트워크 (20%)
+        </button>
+        <button class="nav-tab" data-tab="domain4">
+          <span class="tab-icon">💾</span> 도메인 4: 스토리지 (10%)
+        </button>
+        <button class="nav-tab" data-tab="domain5">
+          <span class="tab-icon">🔧</span> 도메인 5: 문제 해결 (30%)
+        </button>
+        <button class="nav-tab" data-tab="kubectl_cheat">
+          <span class="tab-icon">⚡</span> Kubectl 치트시트
+        </button>
+        <button class="nav-tab" data-tab="cbt">
+          <span class="tab-icon">💻</span> CKA 실전 CBT
+        </button>
+      </div>
+    </nav>
+
+    <!-- 4. 서브 네비게이션 탭 바 (KCNA 전용, 초기 숨김) -->
+    <nav class="portal-nav track-nav-kcna" id="nav-kcna" style="display: none;">
+      <div class="nav-container">
+        <button class="nav-tab active" data-tab="kcna_overview">
+          <span class="tab-icon">🏠</span> KCNA 시험 안내 & 전략
+        </button>
+        <button class="nav-tab" data-tab="kcna_glossary">
+          <span class="tab-icon">🔤</span> CNCF & KCNA 용어사전
+        </button>
+        <button class="nav-tab" data-tab="kcna_domain1">
+          <span class="tab-icon">☁️</span> 영역 1: 클라우드 네이티브 아키텍처 (16%)
+        </button>
+        <button class="nav-tab" data-tab="kcna_domain2">
+          <span class="tab-icon">☸️</span> 영역 2: 쿠버네티스 기본 원리 (46%)
+        </button>
+        <button class="nav-tab" data-tab="kcna_domain3">
+          <span class="tab-icon">📦</span> 영역 3: 컨테이너 오케스트레이션 (22%)
+        </button>
+        <button class="nav-tab" data-tab="kcna_domain4">
+          <span class="tab-icon">📊</span> 영역 4: 관측 가능성 (8%)
+        </button>
+        <button class="nav-tab" data-tab="kcna_domain5">
+          <span class="tab-icon">🚀</span> 영역 5: 배포 & GitOps (8%)
+        </button>
+        <button class="nav-tab" data-tab="cbt">
+          <span class="tab-icon">💻</span> KCNA 실전 CBT
+        </button>
+      </div>
+    </nav>
+  </div>
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="portal-content">
 
-    <!-- 1. 시험 개요 & 로드맵 탭 -->
+    <!-- ==================== CKA 패널들 ==================== -->
     <section id="tab-overview" class="tab-panel active">
       <div class="content-wrapper">
         <div id="overview-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 2. 한·영 필수 용어사전 탭 -->
     <section id="tab-glossary" class="tab-panel">
       <div class="content-wrapper">
         <div class="search-banner">
@@ -90,58 +144,104 @@
       </div>
     </section>
 
-    <!-- 3. 도메인 1 탭 -->
     <section id="tab-domain1" class="tab-panel">
       <div class="content-wrapper">
         <div id="domain1-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 4. 도메인 2 탭 -->
     <section id="tab-domain2" class="tab-panel">
       <div class="content-wrapper">
         <div id="domain2-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 5. 도메인 3 탭 -->
     <section id="tab-domain3" class="tab-panel">
       <div class="content-wrapper">
         <div id="domain3-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 6. 도메인 4 탭 -->
     <section id="tab-domain4" class="tab-panel">
       <div class="content-wrapper">
         <div id="domain4-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 7. 도메인 5 탭 -->
     <section id="tab-domain5" class="tab-panel">
       <div class="content-wrapper">
         <div id="domain5-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 8. Kubectl 치트시트 탭 -->
     <section id="tab-kubectl_cheat" class="tab-panel">
       <div class="content-wrapper">
         <div id="kubectl_cheat-content" class="markdown-body"></div>
       </div>
     </section>
 
-    <!-- 9. CBT 가상 실습 탭 -->
+    <!-- ==================== KCNA 패널들 ==================== -->
+    <section id="tab-kcna_overview" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kcna_overview-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <section id="tab-kcna_glossary" class="tab-panel">
+      <div class="content-wrapper">
+        <div class="search-banner">
+          <h2>🔤 CNCF & KCNA 클라우드 네이티브 용어사전</h2>
+          <p>KCNA 시험 지문과 CNCF 생태계 문서에서 다루어지는 표준 기술 용어들을 검색해보세요.</p>
+          <div class="search-input-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="kcna-glossary-search" placeholder="용어 검색 (예: 12-Factor, CRI, OCI, Prometheus, GitOps, Jaeger, Argo CD, Helm 등)...">
+            <button id="kcna-glossary-clear-btn" class="clear-btn">✕</button>
+          </div>
+        </div>
+        <div id="kcna_glossary-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <section id="tab-kcna_domain1" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kcna_domain1-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <section id="tab-kcna_domain2" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kcna_domain2-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <section id="tab-kcna_domain3" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kcna_domain3-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <section id="tab-kcna_domain4" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kcna_domain4-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <section id="tab-kcna_domain5" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kcna_domain5-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 공통 CBT 가상 실습 탭 ==================== -->
     <section id="tab-cbt" class="tab-panel">
       <div class="cbt-frame-container">
-        <iframe id="cbt-iframe" class="cbt-iframe" src="cbt-app/index.html" title="CKA CBT Simulator"></iframe>
+        <iframe id="cbt-iframe" class="cbt-iframe" src="cbt-app/index.html" title="K8S & KCNA CBT Simulator"></iframe>
       </div>
     </section>
 
   </main>
 
-  <!-- 데이터 스크립트 로드 (오프라인/정적 서빙 대비) -->
+  <!-- 데이터 스크립트 로드 -->
   <script src="portal-docs-data.js"></script>
   <script src="portal.js"></script>
 </body>

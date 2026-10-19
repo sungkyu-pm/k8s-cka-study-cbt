@@ -33,16 +33,37 @@
     <!-- 시작 대시보드 화면 -->
     <section id="start-screen" class="view-panel active">
       <div class="welcome-card">
-        <h2>Kubernetes Certified Administrator (CKA) CBT 실습</h2>
-        <p class="welcome-desc">
+        <!-- 상단 자격증 트랙 선택기 -->
+        <div class="cbt-cert-selector">
+          <button type="button" class="cbt-cert-btn active" data-cbt-track="cka" id="cbt-cert-cka">
+            <span class="cbt-cert-icon">☸️</span>
+            <div>
+              <strong>CKA 쿠버네티스 공인 관리자</strong>
+              <span>실기 시나리오 중심 (1,250문항 풀 · 120분 · 합격 66%)</span>
+            </div>
+          </button>
+          <button type="button" class="cbt-cert-btn" data-cbt-track="kcna" id="cbt-cert-kcna">
+            <span class="cbt-cert-icon">☁️</span>
+            <div>
+              <strong>KCNA 클라우드 네이티브 어소시에이트</strong>
+              <span>CNCF 필기 객관식 (260문항 풀 · 90분 · 합격 75%)</span>
+            </div>
+          </button>
+        </div>
+
+        <h2 id="cbt-welcome-title">Kubernetes Certified Administrator (CKA) CBT 실습</h2>
+        <p class="welcome-desc" id="cbt-welcome-desc">
           본 시뮬레이터는 영어 원문 시험 지문 및 실무 시나리오에 익숙해지면서, 한국어로 핵심 원리와 상세 해설을 체계적으로 학습할 수 있도록 설계되었습니다.
         </p>
 
         <div class="mode-selection-grid">
+          <!-- 1. 학습 범위 선택 -->
           <div class="card selection-card">
-            <h3>1. 학습 범위 선택 (총 1,250문항)</h3>
-            <div class="select-group">
-              <label><input type="radio" name="examSet" value="mock_random" checked> <strong>🎲 종합 실전 랜덤 모의고사</strong>
+            <h3 id="scope-card-title">1. 학습 범위 선택 (CKA 1,250문항 풀)</h3>
+            
+            <!-- CKA 범위 옵션 -->
+            <div class="select-group" id="cka-scope-group">
+              <label><input type="radio" name="examSet" value="mock_random" checked> <strong>🎲 CKA 종합 실전 랜덤 모의고사</strong>
                 <p class="mode-desc">5개 도메인 통합 1,250문항 풀에서 CKA 배점 비율에 맞게 무작위 추출</p>
               </label>
               <label><input type="radio" name="examSet" value="domain1"> <strong>🏗️ 도메인 1: 아키텍처 & 설치</strong> (풀 250문항)</label>
@@ -51,11 +72,26 @@
               <label><input type="radio" name="examSet" value="domain4"> <strong>💾 도메인 4: 스토리지</strong> (풀 250문항)</label>
               <label><input type="radio" name="examSet" value="domain5"> <strong>🔧 도메인 5: 문제 해결 & 트러블슈팅</strong> (풀 250문항)</label>
             </div>
+
+            <!-- KCNA 범위 옵션 (초기 숨김) -->
+            <div class="select-group" id="kcna-scope-group" style="display: none;">
+              <label><input type="radio" name="examSet" value="kcna_mock_random"> <strong>🎲 KCNA 종합 실전 랜덤 모의고사</strong>
+                <p class="mode-desc">5개 도메인 통합 260문항 풀에서 공식 KCNA 배점에 맞춰 무작위 추출</p>
+              </label>
+              <label><input type="radio" name="examSet" value="kcna_domain1"> <strong>☁️ 영역 1: 클라우드 네이티브 아키텍처</strong> (16%)</label>
+              <label><input type="radio" name="examSet" value="kcna_domain2"> <strong>☸️ 영역 2: 쿠버네티스 기본 원리</strong> (46%)</label>
+              <label><input type="radio" name="examSet" value="kcna_domain3"> <strong>📦 영역 3: 컨테이너 오케스트레이션</strong> (22%)</label>
+              <label><input type="radio" name="examSet" value="kcna_domain4"> <strong>📊 영역 4: 관측 가능성 & 모니터링</strong> (8%)</label>
+              <label><input type="radio" name="examSet" value="kcna_domain5"> <strong>🚀 영역 5: 배포 & GitOps</strong> (8%)</label>
+            </div>
           </div>
 
+          <!-- 2. 출제 문항 수 & 랜덤 셔플 -->
           <div class="card selection-card">
             <h3>2. 출제 문항 수 & 랜덤 셔플</h3>
-            <div class="select-group">
+            
+            <!-- CKA 문항 수 -->
+            <div class="select-group" id="cka-count-group">
               <label><input type="radio" name="examCount" value="25" checked> <strong>🎯 25문항 랜덤 추출</strong>
                 <p class="mode-desc">실제 CKA 시험 표준 분량 (권장: 120분 대비 실전 훈련)</p>
               </label>
@@ -66,15 +102,33 @@
                 <p class="mode-desc">주요 핵심 시나리오 집중 대비</p>
               </label>
               <label><input type="radio" name="examCount" value="all"> <strong>📚 전체 문항 정복 모드</strong>
-                <p class="mode-desc">선택한 도메인의 250개 전 문항을 순차/랜덤 학습</p>
+                <p class="mode-desc">선택한 도메인의 전 문항을 순차/랜덤 학습</p>
               </label>
             </div>
+
+            <!-- KCNA 문항 수 (초기 숨김) -->
+            <div class="select-group" id="kcna-count-group" style="display: none;">
+              <label><input type="radio" name="examCount" value="60"> <strong>🎯 60문항 실전 표준</strong>
+                <p class="mode-desc">실제 KCNA 시험 표준 분량 (권장: 90분 대비 실전 훈련)</p>
+              </label>
+              <label><input type="radio" name="examCount" value="30"> <strong>🚀 30문항 하프 모의고사</strong>
+                <p class="mode-desc">빠른 핵심 점검 및 취약 영역 트레이닝</p>
+              </label>
+              <label><input type="radio" name="examCount" value="15"> <strong>⚡ 15문항 쾌속 점검</strong>
+                <p class="mode-desc">출퇴근/자투리 시간 퀵 테스트</p>
+              </label>
+              <label><input type="radio" name="examCount" value="all"> <strong>📚 전체 문항 정복 모드</strong>
+                <p class="mode-desc">선택한 도메인의 전 문항 풀이</p>
+              </label>
+            </div>
+
             <div class="checkbox-option">
               <label><input type="checkbox" id="shuffle-questions-check" checked> <strong>🔀 문항 무작위 랜덤 셔플</strong></label>
               <label><input type="checkbox" id="shuffle-options-check" checked> <strong>🔀 보기(A~D) 순서 무작위 셔플</strong></label>
             </div>
           </div>
 
+          <!-- 3. 응시 모드 선택 -->
           <div class="card selection-card">
             <h3>3. 응시 모드 선택</h3>
             <div class="select-group">
@@ -86,7 +140,7 @@
               <label>
                 <input type="radio" name="examMode" value="exam">
                 <strong>⏱️ 실전 모드 (Exam Mode)</strong>
-                <p class="mode-desc">실제 시험과 동일하게 영문 지문 중심, 120분 타이머 작동, 시험 제출 후 최종 성적표 및 오답 노트를 제공합니다.</p>
+                <p class="mode-desc" id="exam-mode-desc">실제 시험과 동일하게 영문 지문 중심, 타이머 작동, 시험 제출 후 최종 성적표 및 오답 노트를 제공합니다.</p>
               </label>
             </div>
           </div>

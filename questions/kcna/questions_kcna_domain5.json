@@ -1,0 +1,962 @@
+[
+  {
+    "id": "kcna-d5-001",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-002",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-003",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-004",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-005",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-006",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-007",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-008",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-009",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-010",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-011",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-012",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-013",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-014",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-015",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-016",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-017",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-018",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-019",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-020",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-021",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-022",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-023",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-024",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-025",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-026",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  },
+  {
+    "id": "kcna-d5-027",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
+    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Jenkins and TravisCI",
+        "text_kr": "Jenkins 및 TravisCI"
+      },
+      {
+        "key": "B",
+        "text_en": "Argo CD and Flux",
+        "text_kr": "Argo CD 및 Flux"
+      },
+      {
+        "key": "C",
+        "text_en": "Prometheus and Thanos",
+        "text_kr": "Prometheus 및 Thanos"
+      },
+      {
+        "key": "D",
+        "text_en": "Calico and Flannel",
+        "text_kr": "Calico 및 Flannel"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Tools",
+    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
+  },
+  {
+    "id": "kcna-d5-028",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
+    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Harbor",
+        "text_kr": "Harbor"
+      },
+      {
+        "key": "B",
+        "text_en": "Trivy",
+        "text_kr": "Trivy"
+      },
+      {
+        "key": "C",
+        "text_en": "Helm",
+        "text_kr": "Helm"
+      },
+      {
+        "key": "D",
+        "text_en": "Envoy",
+        "text_kr": "Envoy"
+      }
+    ],
+    "correct_answer": "A",
+    "key_concept": "Harbor Registry",
+    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+  },
+  {
+    "id": "kcna-d5-029",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "In a GitOps workflow, what serves as the 'Single Source of Truth' for the desired state of the cluster and applications?",
+    "question_kr": "GitOps 워크플로우에서 클러스터와 애플리케이션의 원하는 상태(Desired State)에 대한 '단일 진실 공급원(Single Source of Truth)' 역할을 하는 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The local workstation of the lead developer",
+        "text_kr": "수석 개발자의 로컬 워크스테이션"
+      },
+      {
+        "key": "B",
+        "text_en": "A version-controlled Git repository containing declarative manifests",
+        "text_kr": "선언적 매니페스트가 버전 관리되는 Git 저장소"
+      },
+      {
+        "key": "C",
+        "text_en": "The running etcd cluster in memory",
+        "text_kr": "실행 중인 etcd 클러스터의 메모리"
+      },
+      {
+        "key": "D",
+        "text_en": "The Docker Hub container registry",
+        "text_kr": "Docker Hub 컨테이너 레지스트리"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "GitOps Single Source of Truth",
+    "explanation_kr": "GitOps의 첫 번째 원칙은 모든 인프라와 애플리케이션의 선언적 정의를 버전 관리되는 Git 저장소에 보관하여 단일 진실 공급원으로 사용하는 것입니다."
+  },
+  {
+    "id": "kcna-d5-030",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery & GitOps (8%)",
+    "question_en": "What are the primary files found inside a standard Helm Chart directory?",
+    "question_kr": "표준 헬름 차트(Helm Chart) 디렉토리 내에 위치하는 핵심 파일들은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "package.json, index.js, and node_modules/",
+        "text_kr": "package.json, index.js, node_modules/"
+      },
+      {
+        "key": "B",
+        "text_en": "Chart.yaml, values.yaml, and the templates/ directory",
+        "text_kr": "Chart.yaml, values.yaml 및 templates/ 디렉토리"
+      },
+      {
+        "key": "C",
+        "text_en": "Dockerfile, Makefile, and Vagrantfile",
+        "text_kr": "Dockerfile, Makefile, Vagrantfile"
+      },
+      {
+        "key": "D",
+        "text_en": "pom.xml, src/main/java, and target/",
+        "text_kr": "pom.xml, src/main/java, target/"
+      }
+    ],
+    "correct_answer": "B",
+    "key_concept": "Helm Chart Structure",
+    "explanation_kr": "Helm 차트는 차트 메타데이터를 담은 `Chart.yaml`, 주입할 파라미터 기본값인 `values.yaml`, 그리고 Go 템플릿 파일들이 위치하는 `templates/`로 구성됩니다."
+  }
+]
