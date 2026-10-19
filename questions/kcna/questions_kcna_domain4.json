@@ -3,960 +3,990 @@
     "id": "kcna-d4-001",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
   },
   {
     "id": "kcna-d4-002",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
   },
   {
     "id": "kcna-d4-003",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
   },
   {
     "id": "kcna-d4-004",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
   },
   {
     "id": "kcna-d4-005",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
   },
   {
     "id": "kcna-d4-006",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "prometheus_pull",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'Prometheus Pull Model'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'Prometheus Pull Model'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses periodically scrapes /metrics HTTP endpoints over a configured scrape_interval",
+        "text_kr": "periodically scrapes /metrics HTTP endpoints over a configured scrape_interval을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Prometheus Pull Model은(는) periodically scrapes /metrics HTTP endpoints over a configured scrape_interval 핵심 역할을 수행합니다.",
+    "key_concept": "Prometheus Pull Model"
   },
   {
     "id": "kcna-d4-007",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "prometheus_pull",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'Prometheus Pull Model'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'Prometheus Pull Model'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses periodically scrapes /metrics HTTP endpoints over a configured scrape_interval",
+        "text_kr": "periodically scrapes /metrics HTTP endpoints over a configured scrape_interval을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Prometheus Pull Model은(는) periodically scrapes /metrics HTTP endpoints over a configured scrape_interval 핵심 역할을 수행합니다.",
+    "key_concept": "Prometheus Pull Model"
   },
   {
     "id": "kcna-d4-008",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "prometheus_pull",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'Prometheus Pull Model'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'Prometheus Pull Model'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses periodically scrapes /metrics HTTP endpoints over a configured scrape_interval",
+        "text_kr": "periodically scrapes /metrics HTTP endpoints over a configured scrape_interval을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Prometheus Pull Model은(는) periodically scrapes /metrics HTTP endpoints over a configured scrape_interval 핵심 역할을 수행합니다.",
+    "key_concept": "Prometheus Pull Model"
   },
   {
     "id": "kcna-d4-009",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "prometheus_pull",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'Prometheus Pull Model'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'Prometheus Pull Model'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses periodically scrapes /metrics HTTP endpoints over a configured scrape_interval",
+        "text_kr": "periodically scrapes /metrics HTTP endpoints over a configured scrape_interval을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Prometheus Pull Model은(는) periodically scrapes /metrics HTTP endpoints over a configured scrape_interval 핵심 역할을 수행합니다.",
+    "key_concept": "Prometheus Pull Model"
   },
   {
     "id": "kcna-d4-010",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "prometheus_pull",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'Prometheus Pull Model'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'Prometheus Pull Model'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses periodically scrapes /metrics HTTP endpoints over a configured scrape_interval",
+        "text_kr": "periodically scrapes /metrics HTTP endpoints over a configured scrape_interval을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Prometheus Pull Model은(는) periodically scrapes /metrics HTTP endpoints over a configured scrape_interval 핵심 역할을 수행합니다.",
+    "key_concept": "Prometheus Pull Model"
   },
   {
     "id": "kcna-d4-011",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "opentelemetry_standard",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'OpenTelemetry (OTel)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'OpenTelemetry (OTel)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses vendor-neutral open standard for collecting, processing, and exporting telemetry data",
+        "text_kr": "vendor-neutral open standard for collecting, processing, and exporting telemetry data을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 OpenTelemetry (OTel)은(는) vendor-neutral open standard for collecting, processing, and exporting telemetry data 핵심 역할을 수행합니다.",
+    "key_concept": "OpenTelemetry (OTel)"
   },
   {
     "id": "kcna-d4-012",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "opentelemetry_standard",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'OpenTelemetry (OTel)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'OpenTelemetry (OTel)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses vendor-neutral open standard for collecting, processing, and exporting telemetry data",
+        "text_kr": "vendor-neutral open standard for collecting, processing, and exporting telemetry data을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 OpenTelemetry (OTel)은(는) vendor-neutral open standard for collecting, processing, and exporting telemetry data 핵심 역할을 수행합니다.",
+    "key_concept": "OpenTelemetry (OTel)"
   },
   {
     "id": "kcna-d4-013",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "opentelemetry_standard",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'OpenTelemetry (OTel)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'OpenTelemetry (OTel)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses vendor-neutral open standard for collecting, processing, and exporting telemetry data",
+        "text_kr": "vendor-neutral open standard for collecting, processing, and exporting telemetry data을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 OpenTelemetry (OTel)은(는) vendor-neutral open standard for collecting, processing, and exporting telemetry data 핵심 역할을 수행합니다.",
+    "key_concept": "OpenTelemetry (OTel)"
   },
   {
     "id": "kcna-d4-014",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "opentelemetry_standard",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'OpenTelemetry (OTel)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'OpenTelemetry (OTel)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses vendor-neutral open standard for collecting, processing, and exporting telemetry data",
+        "text_kr": "vendor-neutral open standard for collecting, processing, and exporting telemetry data을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 OpenTelemetry (OTel)은(는) vendor-neutral open standard for collecting, processing, and exporting telemetry data 핵심 역할을 수행합니다.",
+    "key_concept": "OpenTelemetry (OTel)"
   },
   {
     "id": "kcna-d4-015",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "opentelemetry_standard",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'OpenTelemetry (OTel)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'OpenTelemetry (OTel)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses vendor-neutral open standard for collecting, processing, and exporting telemetry data",
+        "text_kr": "vendor-neutral open standard for collecting, processing, and exporting telemetry data을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 OpenTelemetry (OTel)은(는) vendor-neutral open standard for collecting, processing, and exporting telemetry data 핵심 역할을 수행합니다.",
+    "key_concept": "OpenTelemetry (OTel)"
   },
   {
     "id": "kcna-d4-016",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "jaeger_tracing",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'Jaeger Distributed Tracing'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'Jaeger Distributed Tracing'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses visualizes latency, spans, and distributed transaction workflows across microservices",
+        "text_kr": "visualizes latency, spans, and distributed transaction workflows across microservices을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Jaeger Distributed Tracing은(는) visualizes latency, spans, and distributed transaction workflows across microservices 핵심 역할을 수행합니다.",
+    "key_concept": "Jaeger Distributed Tracing"
   },
   {
     "id": "kcna-d4-017",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "jaeger_tracing",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'Jaeger Distributed Tracing'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'Jaeger Distributed Tracing'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses visualizes latency, spans, and distributed transaction workflows across microservices",
+        "text_kr": "visualizes latency, spans, and distributed transaction workflows across microservices을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Jaeger Distributed Tracing은(는) visualizes latency, spans, and distributed transaction workflows across microservices 핵심 역할을 수행합니다.",
+    "key_concept": "Jaeger Distributed Tracing"
   },
   {
     "id": "kcna-d4-018",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "jaeger_tracing",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'Jaeger Distributed Tracing'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'Jaeger Distributed Tracing'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses visualizes latency, spans, and distributed transaction workflows across microservices",
+        "text_kr": "visualizes latency, spans, and distributed transaction workflows across microservices을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Jaeger Distributed Tracing은(는) visualizes latency, spans, and distributed transaction workflows across microservices 핵심 역할을 수행합니다.",
+    "key_concept": "Jaeger Distributed Tracing"
   },
   {
     "id": "kcna-d4-019",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "jaeger_tracing",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'Jaeger Distributed Tracing'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'Jaeger Distributed Tracing'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses visualizes latency, spans, and distributed transaction workflows across microservices",
+        "text_kr": "visualizes latency, spans, and distributed transaction workflows across microservices을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Jaeger Distributed Tracing은(는) visualizes latency, spans, and distributed transaction workflows across microservices 핵심 역할을 수행합니다.",
+    "key_concept": "Jaeger Distributed Tracing"
   },
   {
     "id": "kcna-d4-020",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "jaeger_tracing",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'Jaeger Distributed Tracing'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'Jaeger Distributed Tracing'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses visualizes latency, spans, and distributed transaction workflows across microservices",
+        "text_kr": "visualizes latency, spans, and distributed transaction workflows across microservices을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Jaeger Distributed Tracing은(는) visualizes latency, spans, and distributed transaction workflows across microservices 핵심 역할을 수행합니다.",
+    "key_concept": "Jaeger Distributed Tracing"
   },
   {
     "id": "kcna-d4-021",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "fluentd_loki_logging",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'Fluentd & Grafana Loki'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'Fluentd & Grafana Loki'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses centralized log collection, indexing, and aggregation pipelines",
+        "text_kr": "centralized log collection, indexing, and aggregation pipelines을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Fluentd & Grafana Loki은(는) centralized log collection, indexing, and aggregation pipelines 핵심 역할을 수행합니다.",
+    "key_concept": "Fluentd & Grafana Loki"
   },
   {
     "id": "kcna-d4-022",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "fluentd_loki_logging",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'Fluentd & Grafana Loki'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'Fluentd & Grafana Loki'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses centralized log collection, indexing, and aggregation pipelines",
+        "text_kr": "centralized log collection, indexing, and aggregation pipelines을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Fluentd & Grafana Loki은(는) centralized log collection, indexing, and aggregation pipelines 핵심 역할을 수행합니다.",
+    "key_concept": "Fluentd & Grafana Loki"
   },
   {
     "id": "kcna-d4-023",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "fluentd_loki_logging",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'Fluentd & Grafana Loki'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'Fluentd & Grafana Loki'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses centralized log collection, indexing, and aggregation pipelines",
+        "text_kr": "centralized log collection, indexing, and aggregation pipelines을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Fluentd & Grafana Loki은(는) centralized log collection, indexing, and aggregation pipelines 핵심 역할을 수행합니다.",
+    "key_concept": "Fluentd & Grafana Loki"
   },
   {
     "id": "kcna-d4-024",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "fluentd_loki_logging",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'Fluentd & Grafana Loki'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'Fluentd & Grafana Loki'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses centralized log collection, indexing, and aggregation pipelines",
+        "text_kr": "centralized log collection, indexing, and aggregation pipelines을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Fluentd & Grafana Loki은(는) centralized log collection, indexing, and aggregation pipelines 핵심 역할을 수행합니다.",
+    "key_concept": "Fluentd & Grafana Loki"
   },
   {
     "id": "kcna-d4-025",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "fluentd_loki_logging",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'Fluentd & Grafana Loki'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'Fluentd & Grafana Loki'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses centralized log collection, indexing, and aggregation pipelines",
+        "text_kr": "centralized log collection, indexing, and aggregation pipelines을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Fluentd & Grafana Loki은(는) centralized log collection, indexing, and aggregation pipelines 핵심 역할을 수행합니다.",
+    "key_concept": "Fluentd & Grafana Loki"
   },
   {
     "id": "kcna-d4-026",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "prometheus_promql",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'PromQL (Prometheus Query Language)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'PromQL (Prometheus Query Language)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses functional query language for evaluating dimensional time series metrics and alerts",
+        "text_kr": "functional query language for evaluating dimensional time series metrics and alerts을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 PromQL (Prometheus Query Language)은(는) functional query language for evaluating dimensional time series metrics and alerts 핵심 역할을 수행합니다.",
+    "key_concept": "PromQL (Prometheus Query Language)"
   },
   {
     "id": "kcna-d4-027",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
+    "sub_topic": "prometheus_promql",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'PromQL (Prometheus Query Language)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'PromQL (Prometheus Query Language)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
+        "text_en": "It encompasses functional query language for evaluating dimensional time series metrics and alerts",
+        "text_kr": "functional query language for evaluating dimensional time series metrics and alerts을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 PromQL (Prometheus Query Language)은(는) functional query language for evaluating dimensional time series metrics and alerts 핵심 역할을 수행합니다.",
+    "key_concept": "PromQL (Prometheus Query Language)"
   },
   {
     "id": "kcna-d4-028",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
+    "sub_topic": "prometheus_promql",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'PromQL (Prometheus Query Language)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'PromQL (Prometheus Query Language)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
+        "text_en": "It encompasses functional query language for evaluating dimensional time series metrics and alerts",
+        "text_kr": "functional query language for evaluating dimensional time series metrics and alerts을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 PromQL (Prometheus Query Language)은(는) functional query language for evaluating dimensional time series metrics and alerts 핵심 역할을 수행합니다.",
+    "key_concept": "PromQL (Prometheus Query Language)"
   },
   {
     "id": "kcna-d4-029",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What are commonly recognized as the 'Three Pillars of Observability' in modern cloud native architectures?",
-    "question_kr": "현대 클라우드 네이티브 아키텍처에서 공인되는 '관측 가능성의 3대 기둥'은 무엇입니까?",
+    "sub_topic": "prometheus_promql",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'PromQL (Prometheus Query Language)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'PromQL (Prometheus Query Language)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Backups, Restores, and Snapshots",
-        "text_kr": "백업, 복원, 스냅샷"
+        "text_en": "It encompasses functional query language for evaluating dimensional time series metrics and alerts",
+        "text_kr": "functional query language for evaluating dimensional time series metrics and alerts을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Metrics, Logs, and Traces",
-        "text_kr": "메트릭(Metrics), 로그(Logs), 분산 추적(Traces)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "CPU, RAM, and Disk Storage",
-        "text_kr": "CPU, RAM, 디스크 스토리지"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Ingress, Service, and Egress",
-        "text_kr": "인그레스, 서비스, 이그레스"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Three Pillars of Observability",
-    "explanation_kr": "관측 가능성의 3대 기둥은 시간별 수치 집계인 메트릭(Metrics), 개별 이벤트 기록인 로그(Logs), 전 구간 호출 흐름을 가시화하는 분산 추적(Traces)입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 PromQL (Prometheus Query Language)은(는) functional query language for evaluating dimensional time series metrics and alerts 핵심 역할을 수행합니다.",
+    "key_concept": "PromQL (Prometheus Query Language)"
   },
   {
     "id": "kcna-d4-030",
     "domain": "Domain 4",
     "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
+    "sub_topic": "prometheus_promql",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'PromQL (Prometheus Query Language)'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'PromQL (Prometheus Query Language)'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
+        "text_en": "It encompasses functional query language for evaluating dimensional time series metrics and alerts",
+        "text_kr": "functional query language for evaluating dimensional time series metrics and alerts을(를) 포괄한다"
       },
       {
         "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
       },
       {
         "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
       },
       {
         "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 PromQL (Prometheus Query Language)은(는) functional query language for evaluating dimensional time series metrics and alerts 핵심 역할을 수행합니다.",
+    "key_concept": "PromQL (Prometheus Query Language)"
   }
 ]

@@ -28,6 +28,61 @@ if not os.path.exists(HISTORY_FILE):
         json.dump([], f, ensure_ascii=False, indent=2)
 
 
+def sample_diverse_questions(pool, target_count):
+    """세부 문제 유형(sub_topic)별로 1문항씩 균등 분배 추출하여 질문/답 중복 출제 원천 차단"""
+    if not pool or target_count <= 0:
+        return []
+    if target_count == 'all' or len(pool) <= target_count:
+        res = list(pool)
+        random.shuffle(res)
+        return res
+
+    topic_map = {}
+    for q in pool:
+        topic = q.get('sub_topic') or q.get('key_concept') or 'general'
+        if topic not in topic_map:
+            topic_map[topic] = []
+        topic_map[topic].append(q)
+
+    for k in topic_map:
+        random.shuffle(topic_map[k])
+
+    topics = list(topic_map.keys())
+    random.shuffle(topics)
+
+    selected = []
+    seen_ids = set()
+    seen_texts = set()
+
+    round_idx = 0
+    while len(selected) < target_count:
+        added_in_round = 0
+        for topic in topics:
+            if len(selected) >= target_count:
+                break
+            q_list = topic_map[topic]
+            if len(q_list) > round_idx:
+                q = q_list[round_idx]
+                text_key = (q.get('question_en') or '').strip()
+                qid = q.get('id')
+                if qid not in seen_ids and text_key not in seen_texts:
+                    selected.append(q)
+                    seen_ids.add(qid)
+                    seen_texts.add(text_key)
+                    added_in_round += 1
+        round_idx += 1
+        if added_in_round == 0:
+            break
+
+    if len(selected) < target_count:
+        remaining = [q for q in pool if q.get('id') not in seen_ids and (q.get('question_en') or '').strip() not in seen_texts]
+        random.shuffle(remaining)
+        selected.extend(remaining[:target_count - len(selected)])
+
+    random.shuffle(selected)
+    return selected
+
+
 class K8sExamServerHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
@@ -191,9 +246,8 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             selected = []
             for d_name, cnt in [('domain1', c1), ('domain2', c2), ('domain3', c3), ('domain4', c4), ('domain5', c5)]:
                 pool = kcna_pools.get(d_name, [])
-                if pool:
-                    k = min(cnt, len(pool))
-                    selected.extend(random.sample(pool, k))
+                if pool and cnt > 0:
+                    selected.extend(sample_diverse_questions(pool, cnt))
 
             if should_shuffle:
                 random.shuffle(selected)
@@ -235,9 +289,8 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             selected = []
             for d_name, cnt in [('domain1', c1), ('domain2', c2), ('domain3', c3), ('domain4', c4), ('domain5', c5)]:
                 pool = domain_pools.get(d_name, [])
-                if pool:
-                    k = min(cnt, len(pool))
-                    selected.extend(random.sample(pool, k))
+                if pool and cnt > 0:
+                    selected.extend(sample_diverse_questions(pool, cnt))
 
             if should_shuffle:
                 random.shuffle(selected)
@@ -269,16 +322,17 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             with open(file_path, 'r', encoding='utf-8') as f:
                 questions = json.load(f)
 
-            if should_shuffle:
-                questions = list(questions)
-                random.shuffle(questions)
-
             if limit and limit != 'all':
                 try:
                     num_limit = int(limit)
-                    questions = questions[:num_limit]
+                    questions = sample_diverse_questions(questions, num_limit)
                 except ValueError:
-                    pass
+                    if should_shuffle:
+                        questions = list(questions)
+                        random.shuffle(questions)
+            elif should_shuffle:
+                questions = list(questions)
+                random.shuffle(questions)
 
             self.send_json_response({"set": q_set, "count": len(questions), "questions": questions})
         else:

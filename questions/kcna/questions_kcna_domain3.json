@@ -3,1600 +3,1650 @@
     "id": "kcna-d3-001",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
   },
   {
     "id": "kcna-d3-002",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
   },
   {
     "id": "kcna-d3-003",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
   },
   {
     "id": "kcna-d3-004",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
   },
   {
     "id": "kcna-d3-005",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
   },
   {
     "id": "kcna-d3-006",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
   },
   {
     "id": "kcna-d3-007",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
   },
   {
     "id": "kcna-d3-008",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
   },
   {
     "id": "kcna-d3-009",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
   },
   {
     "id": "kcna-d3-010",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
   },
   {
     "id": "kcna-d3-011",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
   },
   {
     "id": "kcna-d3-012",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
   },
   {
     "id": "kcna-d3-013",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
   },
   {
     "id": "kcna-d3-014",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
   },
   {
     "id": "kcna-d3-015",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
   },
   {
     "id": "kcna-d3-016",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "csi_storage",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Container Storage Interface (CSI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Container Storage Interface (CSI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides enables third-party storage vendors to build out-of-tree volume plugins",
+        "text_kr": "enables third-party storage vendors to build out-of-tree volume plugins 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Storage Interface (CSI)은(는) enables third-party storage vendors to build out-of-tree volume plugins 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Storage Interface (CSI)"
   },
   {
     "id": "kcna-d3-017",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "csi_storage",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Container Storage Interface (CSI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Container Storage Interface (CSI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides enables third-party storage vendors to build out-of-tree volume plugins",
+        "text_kr": "enables third-party storage vendors to build out-of-tree volume plugins 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Storage Interface (CSI)은(는) enables third-party storage vendors to build out-of-tree volume plugins 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Storage Interface (CSI)"
   },
   {
     "id": "kcna-d3-018",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "csi_storage",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Container Storage Interface (CSI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Container Storage Interface (CSI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides enables third-party storage vendors to build out-of-tree volume plugins",
+        "text_kr": "enables third-party storage vendors to build out-of-tree volume plugins 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Storage Interface (CSI)은(는) enables third-party storage vendors to build out-of-tree volume plugins 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Storage Interface (CSI)"
   },
   {
     "id": "kcna-d3-019",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "csi_storage",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Container Storage Interface (CSI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Container Storage Interface (CSI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides enables third-party storage vendors to build out-of-tree volume plugins",
+        "text_kr": "enables third-party storage vendors to build out-of-tree volume plugins 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Storage Interface (CSI)은(는) enables third-party storage vendors to build out-of-tree volume plugins 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Storage Interface (CSI)"
   },
   {
     "id": "kcna-d3-020",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "csi_storage",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Container Storage Interface (CSI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Container Storage Interface (CSI)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides enables third-party storage vendors to build out-of-tree volume plugins",
+        "text_kr": "enables third-party storage vendors to build out-of-tree volume plugins 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Storage Interface (CSI)은(는) enables third-party storage vendors to build out-of-tree volume plugins 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Storage Interface (CSI)"
   },
   {
     "id": "kcna-d3-021",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "linux_namespaces",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Linux Namespaces (Isolation)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Linux Namespaces (Isolation)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides provides process isolation for PID, Mount, Network, IPC, UTS, and User",
+        "text_kr": "provides process isolation for PID, Mount, Network, IPC, UTS, and User 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux Namespaces (Isolation)은(는) provides process isolation for PID, Mount, Network, IPC, UTS, and User 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux Namespaces (Isolation)"
   },
   {
     "id": "kcna-d3-022",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "linux_namespaces",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Linux Namespaces (Isolation)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Linux Namespaces (Isolation)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides provides process isolation for PID, Mount, Network, IPC, UTS, and User",
+        "text_kr": "provides process isolation for PID, Mount, Network, IPC, UTS, and User 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux Namespaces (Isolation)은(는) provides process isolation for PID, Mount, Network, IPC, UTS, and User 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux Namespaces (Isolation)"
   },
   {
     "id": "kcna-d3-023",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "linux_namespaces",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Linux Namespaces (Isolation)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Linux Namespaces (Isolation)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides provides process isolation for PID, Mount, Network, IPC, UTS, and User",
+        "text_kr": "provides process isolation for PID, Mount, Network, IPC, UTS, and User 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux Namespaces (Isolation)은(는) provides process isolation for PID, Mount, Network, IPC, UTS, and User 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux Namespaces (Isolation)"
   },
   {
     "id": "kcna-d3-024",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "linux_namespaces",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Linux Namespaces (Isolation)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Linux Namespaces (Isolation)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides provides process isolation for PID, Mount, Network, IPC, UTS, and User",
+        "text_kr": "provides process isolation for PID, Mount, Network, IPC, UTS, and User 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux Namespaces (Isolation)은(는) provides process isolation for PID, Mount, Network, IPC, UTS, and User 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux Namespaces (Isolation)"
   },
   {
     "id": "kcna-d3-025",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "linux_namespaces",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Linux Namespaces (Isolation)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Linux Namespaces (Isolation)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides provides process isolation for PID, Mount, Network, IPC, UTS, and User",
+        "text_kr": "provides process isolation for PID, Mount, Network, IPC, UTS, and User 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux Namespaces (Isolation)은(는) provides process isolation for PID, Mount, Network, IPC, UTS, and User 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux Namespaces (Isolation)"
   },
   {
     "id": "kcna-d3-026",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "linux_cgroups",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Linux cgroups (Control Groups)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Linux cgroups (Control Groups)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides enforces resource metering and limits for CPU, memory, and I/O",
+        "text_kr": "enforces resource metering and limits for CPU, memory, and I/O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux cgroups (Control Groups)은(는) enforces resource metering and limits for CPU, memory, and I/O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux cgroups (Control Groups)"
   },
   {
     "id": "kcna-d3-027",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "linux_cgroups",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Linux cgroups (Control Groups)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Linux cgroups (Control Groups)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides enforces resource metering and limits for CPU, memory, and I/O",
+        "text_kr": "enforces resource metering and limits for CPU, memory, and I/O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux cgroups (Control Groups)은(는) enforces resource metering and limits for CPU, memory, and I/O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux cgroups (Control Groups)"
   },
   {
     "id": "kcna-d3-028",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "linux_cgroups",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Linux cgroups (Control Groups)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Linux cgroups (Control Groups)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides enforces resource metering and limits for CPU, memory, and I/O",
+        "text_kr": "enforces resource metering and limits for CPU, memory, and I/O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux cgroups (Control Groups)은(는) enforces resource metering and limits for CPU, memory, and I/O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux cgroups (Control Groups)"
   },
   {
     "id": "kcna-d3-029",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "linux_cgroups",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Linux cgroups (Control Groups)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Linux cgroups (Control Groups)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides enforces resource metering and limits for CPU, memory, and I/O",
+        "text_kr": "enforces resource metering and limits for CPU, memory, and I/O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux cgroups (Control Groups)은(는) enforces resource metering and limits for CPU, memory, and I/O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux cgroups (Control Groups)"
   },
   {
     "id": "kcna-d3-030",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "linux_cgroups",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Linux cgroups (Control Groups)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Linux cgroups (Control Groups)'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides enforces resource metering and limits for CPU, memory, and I/O",
+        "text_kr": "enforces resource metering and limits for CPU, memory, and I/O 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Linux cgroups (Control Groups)은(는) enforces resource metering and limits for CPU, memory, and I/O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Linux cgroups (Control Groups)"
   },
   {
     "id": "kcna-d3-031",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "liveness_probe",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'LivenessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'LivenessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides detects container deadlock/hangs and triggers kubelet to restart the container",
+        "text_kr": "detects container deadlock/hangs and triggers kubelet to restart the container 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• LivenessProbe은(는) detects container deadlock/hangs and triggers kubelet to restart the container 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "LivenessProbe"
   },
   {
     "id": "kcna-d3-032",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "liveness_probe",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'LivenessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'LivenessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides detects container deadlock/hangs and triggers kubelet to restart the container",
+        "text_kr": "detects container deadlock/hangs and triggers kubelet to restart the container 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• LivenessProbe은(는) detects container deadlock/hangs and triggers kubelet to restart the container 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "LivenessProbe"
   },
   {
     "id": "kcna-d3-033",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "liveness_probe",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'LivenessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'LivenessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides detects container deadlock/hangs and triggers kubelet to restart the container",
+        "text_kr": "detects container deadlock/hangs and triggers kubelet to restart the container 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• LivenessProbe은(는) detects container deadlock/hangs and triggers kubelet to restart the container 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "LivenessProbe"
   },
   {
     "id": "kcna-d3-034",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "liveness_probe",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'LivenessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'LivenessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides detects container deadlock/hangs and triggers kubelet to restart the container",
+        "text_kr": "detects container deadlock/hangs and triggers kubelet to restart the container 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• LivenessProbe은(는) detects container deadlock/hangs and triggers kubelet to restart the container 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "LivenessProbe"
   },
   {
     "id": "kcna-d3-035",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "liveness_probe",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'LivenessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'LivenessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides detects container deadlock/hangs and triggers kubelet to restart the container",
+        "text_kr": "detects container deadlock/hangs and triggers kubelet to restart the container 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• LivenessProbe은(는) detects container deadlock/hangs and triggers kubelet to restart the container 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "LivenessProbe"
   },
   {
     "id": "kcna-d3-036",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "readiness_probe",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'ReadinessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'ReadinessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides detects if container is ready to accept traffic and removes it from Service endpoints if failing",
+        "text_kr": "detects if container is ready to accept traffic and removes it from Service endpoints if failing 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• ReadinessProbe은(는) detects if container is ready to accept traffic and removes it from Service endpoints if failing 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "ReadinessProbe"
   },
   {
     "id": "kcna-d3-037",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "readiness_probe",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'ReadinessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'ReadinessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides detects if container is ready to accept traffic and removes it from Service endpoints if failing",
+        "text_kr": "detects if container is ready to accept traffic and removes it from Service endpoints if failing 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• ReadinessProbe은(는) detects if container is ready to accept traffic and removes it from Service endpoints if failing 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "ReadinessProbe"
   },
   {
     "id": "kcna-d3-038",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "readiness_probe",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'ReadinessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'ReadinessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides detects if container is ready to accept traffic and removes it from Service endpoints if failing",
+        "text_kr": "detects if container is ready to accept traffic and removes it from Service endpoints if failing 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• ReadinessProbe은(는) detects if container is ready to accept traffic and removes it from Service endpoints if failing 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "ReadinessProbe"
   },
   {
     "id": "kcna-d3-039",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "readiness_probe",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'ReadinessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'ReadinessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides detects if container is ready to accept traffic and removes it from Service endpoints if failing",
+        "text_kr": "detects if container is ready to accept traffic and removes it from Service endpoints if failing 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• ReadinessProbe은(는) detects if container is ready to accept traffic and removes it from Service endpoints if failing 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "ReadinessProbe"
   },
   {
     "id": "kcna-d3-040",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "readiness_probe",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'ReadinessProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'ReadinessProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides detects if container is ready to accept traffic and removes it from Service endpoints if failing",
+        "text_kr": "detects if container is ready to accept traffic and removes it from Service endpoints if failing 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• ReadinessProbe은(는) detects if container is ready to accept traffic and removes it from Service endpoints if failing 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "ReadinessProbe"
   },
   {
     "id": "kcna-d3-041",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "startup_probe",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'StartupProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'StartupProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides disables liveness/readiness checks until slow-starting applications finish initial startup",
+        "text_kr": "disables liveness/readiness checks until slow-starting applications finish initial startup 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StartupProbe은(는) disables liveness/readiness checks until slow-starting applications finish initial startup 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "StartupProbe"
   },
   {
     "id": "kcna-d3-042",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "startup_probe",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'StartupProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'StartupProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides disables liveness/readiness checks until slow-starting applications finish initial startup",
+        "text_kr": "disables liveness/readiness checks until slow-starting applications finish initial startup 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StartupProbe은(는) disables liveness/readiness checks until slow-starting applications finish initial startup 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "StartupProbe"
   },
   {
     "id": "kcna-d3-043",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "startup_probe",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'StartupProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'StartupProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides disables liveness/readiness checks until slow-starting applications finish initial startup",
+        "text_kr": "disables liveness/readiness checks until slow-starting applications finish initial startup 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StartupProbe은(는) disables liveness/readiness checks until slow-starting applications finish initial startup 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "StartupProbe"
   },
   {
     "id": "kcna-d3-044",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "startup_probe",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'StartupProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'StartupProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides disables liveness/readiness checks until slow-starting applications finish initial startup",
+        "text_kr": "disables liveness/readiness checks until slow-starting applications finish initial startup 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StartupProbe은(는) disables liveness/readiness checks until slow-starting applications finish initial startup 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "StartupProbe"
   },
   {
     "id": "kcna-d3-045",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
+    "sub_topic": "startup_probe",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'StartupProbe'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'StartupProbe'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
+        "text_en": "It provides disables liveness/readiness checks until slow-starting applications finish initial startup",
+        "text_kr": "disables liveness/readiness checks until slow-starting applications finish initial startup 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• StartupProbe은(는) disables liveness/readiness checks until slow-starting applications finish initial startup 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "StartupProbe"
   },
   {
     "id": "kcna-d3-046",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
+    "sub_topic": "containerd_runtime",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'containerd Architecture'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'containerd Architecture'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
+        "text_en": "It provides lightweight core container runtime managing image transfer, execution, and storage",
+        "text_kr": "lightweight core container runtime managing image transfer, execution, and storage 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• containerd Architecture은(는) lightweight core container runtime managing image transfer, execution, and storage 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "containerd Architecture"
   },
   {
     "id": "kcna-d3-047",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
+    "sub_topic": "containerd_runtime",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'containerd Architecture'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'containerd Architecture'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
+        "text_en": "It provides lightweight core container runtime managing image transfer, execution, and storage",
+        "text_kr": "lightweight core container runtime managing image transfer, execution, and storage 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• containerd Architecture은(는) lightweight core container runtime managing image transfer, execution, and storage 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "containerd Architecture"
   },
   {
     "id": "kcna-d3-048",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "sub_topic": "containerd_runtime",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'containerd Architecture'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'containerd Architecture'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It provides lightweight core container runtime managing image transfer, execution, and storage",
+        "text_kr": "lightweight core container runtime managing image transfer, execution, and storage 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• containerd Architecture은(는) lightweight core container runtime managing image transfer, execution, and storage 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "containerd Architecture"
   },
   {
     "id": "kcna-d3-049",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
+    "sub_topic": "containerd_runtime",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'containerd Architecture'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'containerd Architecture'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
+        "text_en": "It provides lightweight core container runtime managing image transfer, execution, and storage",
+        "text_kr": "lightweight core container runtime managing image transfer, execution, and storage 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• containerd Architecture은(는) lightweight core container runtime managing image transfer, execution, and storage 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "containerd Architecture"
   },
   {
     "id": "kcna-d3-050",
     "domain": "Domain 3",
     "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "sub_topic": "containerd_runtime",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'containerd Architecture'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'containerd Architecture'의 주된 아키텍처 목적은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "It provides lightweight core container runtime managing image transfer, execution, and storage",
+        "text_kr": "lightweight core container runtime managing image transfer, execution, and storage 기능을 제공한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• containerd Architecture은(는) lightweight core container runtime managing image transfer, execution, and storage 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "containerd Architecture"
   }
 ]

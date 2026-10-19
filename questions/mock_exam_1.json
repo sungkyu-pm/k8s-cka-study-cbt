@@ -1,802 +1,827 @@
 [
   {
-    "id": "D1-Q01",
+    "id": "D1-Q001",
     "domain": "Domain 1",
     "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
-    "question_en": "You need to create a snapshot backup of an existing etcd instance running as a static pod. The etcd client certificates are located at /etc/kubernetes/pki/etcd/server.crt and /etc/kubernetes/pki/etcd/server.key, and the CA certificate is at /etc/kubernetes/pki/etcd/ca.crt. Which command correctly creates the snapshot at /var/lib/etcd-snapshot.db?",
-    "question_kr": "스태틱 파드로 실행 중인 기존 etcd 인스턴스의 스냅샷 백업을 생성해야 합니다. etcd 클라이언트 인증서는 /etc/kubernetes/pki/etcd/server.crt 및 server.key에 위치하고, CA 인증서는 ca.crt에 위치합니다. /var/lib/etcd-snapshot.db 경로에 스냅샷을 올바르게 생성하는 명령어는 무엇입니까?",
+    "sub_topic": "etcd_snapshot_save",
+    "question_en": "You are tasked with backing up the production etcd instance etcd cluster. The endpoint is 'https://127.0.0.1:2379' and the TLS certificates are stored in '/etc/kubernetes/pki/etcd'. Which command correctly saves the snapshot to '/var/lib/etcd-backup-prod.db'?",
+    "question_kr": "당신은 production etcd instance의 etcd 클러스터를 백업해야 합니다. 엔드포인트는 'https://127.0.0.1:2379'이고 TLS 인증서는 '/etc/kubernetes/pki/etcd'에 위치합니다. '/var/lib/etcd-backup-prod.db' 경로에 스냅샷을 올바르게 저장하는 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "etcdctl backup save --endpoints=https://127.0.0.1:2379 /var/lib/etcd-snapshot.db",
-        "text_kr": "etcdctl backup save --endpoints=https://127.0.0.1:2379 /var/lib/etcd-snapshot.db"
+        "text_en": "etcdctl snapshot save /var/lib/etcd-backup-prod.db --no-tls",
+        "text_kr": "etcdctl snapshot save /var/lib/etcd-backup-prod.db --no-tls"
       },
       {
         "key": "B",
-        "text_en": "ETCDCTL_API=3 etcdctl snapshot save /var/lib/etcd-snapshot.db --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key",
-        "text_kr": "ETCDCTL_API=3 etcdctl snapshot save /var/lib/etcd-snapshot.db --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key"
+        "text_en": "ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /var/lib/etcd-backup-prod.db",
+        "text_kr": "ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /var/lib/etcd-backup-prod.db"
       },
       {
         "key": "C",
-        "text_en": "kubectl snapshot etcd /var/lib/etcd-snapshot.db --all-certificates",
-        "text_kr": "kubectl snapshot etcd /var/lib/etcd-snapshot.db --all-certificates"
+        "text_en": "kubectl snapshot etcd /var/lib/etcd-backup-prod.db --endpoint=https://127.0.0.1:2379",
+        "text_kr": "kubectl snapshot etcd /var/lib/etcd-backup-prod.db --endpoint=https://127.0.0.1:2379"
       },
       {
         "key": "D",
-        "text_en": "kubeadm backup etcd --output=/var/lib/etcd-snapshot.db",
-        "text_kr": "kubeadm backup etcd --output=/var/lib/etcd-snapshot.db"
+        "text_en": "kubeadm backup etcd --output=/var/lib/etcd-backup-prod.db --endpoints=https://127.0.0.1:2379",
+        "text_kr": "kubeadm backup etcd --output=/var/lib/etcd-backup-prod.db --endpoints=https://127.0.0.1:2379"
       }
     ],
     "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API를 사용할 때는 환경변수 `ETCDCTL_API=3`을 지정해야 하며, `snapshot save <경로>` 명령어를 사용합니다.\n• 보안이 활성화된 etcd 클러스터 통신을 위해 `--cacert`, `--cert`, `--key` 옵션으로 유효한 인증서와 키를 반드시 함께 전달해야 합니다.\n• A는 인증서 플래그와 snapshot save 문법이 누락되었습니다.\n• C와 D는 존재하지 않는 명령어입니다.",
-    "key_concept": "etcdctl snapshot save, TLS Authentication Flags (--cacert, --cert, --key)"
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API 사용 시 환경변수 `ETCDCTL_API=3`이 필수이며, TLS 보안 연결을 위해 `--cacert`, `--cert`, `--key`, `--endpoints` 옵션이 명시되어야 합니다.\n• A는 TLS 인증서가 누락되었으며, C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save & TLS flags"
   },
   {
-    "id": "D1-Q02",
+    "id": "D1-Q002",
     "domain": "Domain 1",
     "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
-    "question_en": "You are tasked with upgrading the control plane node of a Kubernetes cluster using kubeadm from version 1.30.0 to 1.31.0. Before performing the package upgrade, what is the recommended procedure to ensure running workloads on the control plane node are safely evicted or ignored?",
-    "question_kr": "kubeadm을 사용하여 쿠버네티스 컨트롤 플레인 노드를 버전 1.30.0에서 1.31.0으로 업그레이드해야 합니다. 패키지 업그레이드를 수행하기 전에 컨트롤 플레인 노드에서 실행 중인 워크로드를 안전하게 퇴거하거나 무시하도록 조치하는 권장 절차는 무엇입니까?",
+    "sub_topic": "etcd_snapshot_save",
+    "question_en": "You are tasked with backing up the staging cluster etcd etcd cluster. The endpoint is 'https://10.0.0.10:2379' and the TLS certificates are stored in '/etc/kubernetes/pki/etcd'. Which command correctly saves the snapshot to '/tmp/backup-staging.db'?",
+    "question_kr": "당신은 staging cluster etcd의 etcd 클러스터를 백업해야 합니다. 엔드포인트는 'https://10.0.0.10:2379'이고 TLS 인증서는 '/etc/kubernetes/pki/etcd'에 위치합니다. '/tmp/backup-staging.db' 경로에 스냅샷을 올바르게 저장하는 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "kubectl delete node controlplane --force",
-        "text_kr": "kubectl delete node controlplane --force"
+        "text_en": "etcdctl snapshot save /tmp/backup-staging.db --no-tls",
+        "text_kr": "etcdctl snapshot save /tmp/backup-staging.db --no-tls"
       },
       {
         "key": "B",
-        "text_en": "kubectl drain controlplane --ignore-daemonsets",
-        "text_kr": "kubectl drain controlplane --ignore-daemonsets"
+        "text_en": "ETCDCTL_API=3 etcdctl --endpoints=https://10.0.0.10:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /tmp/backup-staging.db",
+        "text_kr": "ETCDCTL_API=3 etcdctl --endpoints=https://10.0.0.10:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /tmp/backup-staging.db"
       },
       {
         "key": "C",
-        "text_en": "kubectl cordon controlplane --delete-emptydir-data",
-        "text_kr": "kubectl cordon controlplane --delete-emptydir-data"
+        "text_en": "kubectl snapshot etcd /tmp/backup-staging.db --endpoint=https://10.0.0.10:2379",
+        "text_kr": "kubectl snapshot etcd /tmp/backup-staging.db --endpoint=https://10.0.0.10:2379"
       },
       {
         "key": "D",
-        "text_en": "kubeadm upgrade prepare controlplane",
-        "text_kr": "kubeadm upgrade prepare controlplane"
+        "text_en": "kubeadm backup etcd --output=/tmp/backup-staging.db --endpoints=https://10.0.0.10:2379",
+        "text_kr": "kubeadm backup etcd --output=/tmp/backup-staging.db --endpoints=https://10.0.0.10:2379"
       }
     ],
     "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• 노드 유지보수 및 업그레이드 전에는 `kubectl drain <노드이름> --ignore-daemonsets`를 실행하여 노드를 스케줄링 불능(cordon) 상태로 만들고 기존 파드들을 안전하게 다른 노드로 축출(evict)해야 합니다.\n• DaemonSet 파드는 노드에서 배출될 수 없으므로 `--ignore-daemonsets` 플래그를 붙여야 drain 명령이 정상 완료됩니다.\n• 업그레이드가 완료된 후에는 `kubectl uncordon <노드이름>`으로 복구합니다.",
-    "key_concept": "kubectl drain, Node Maintenance, Cluster Upgrade Procedure"
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API 사용 시 환경변수 `ETCDCTL_API=3`이 필수이며, TLS 보안 연결을 위해 `--cacert`, `--cert`, `--key`, `--endpoints` 옵션이 명시되어야 합니다.\n• A는 TLS 인증서가 누락되었으며, C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save & TLS flags"
   },
   {
-    "id": "D1-Q03",
+    "id": "D1-Q003",
     "domain": "Domain 1",
     "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
-    "question_en": "A junior administrator needs read-only access to view and list Pods only within the 'development' namespace. Which set of RBAC resources must be created to achieve this without granting cluster-wide permissions?",
-    "question_kr": "주니어 관리자가 'development' 네임스페이스 내에서만 파드를 조회(get)하고 목록화(list)할 수 있는 읽기 전용 권한이 필요합니다. 클러스터 전체 권한을 부여하지 않고 이를 달성하기 위해 생성해야 하는 RBAC 리소스 조합은 무엇입니까?",
+    "sub_topic": "etcd_snapshot_save",
+    "question_en": "You are tasked with backing up the HA control plane member 1 etcd cluster. The endpoint is 'https://192.168.1.11:2379' and the TLS certificates are stored in '/etc/kubernetes/pki/etcd'. Which command correctly saves the snapshot to '/opt/backups/etcd-node1.db'?",
+    "question_kr": "당신은 HA control plane member 1의 etcd 클러스터를 백업해야 합니다. 엔드포인트는 'https://192.168.1.11:2379'이고 TLS 인증서는 '/etc/kubernetes/pki/etcd'에 위치합니다. '/opt/backups/etcd-node1.db' 경로에 스냅샷을 올바르게 저장하는 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "A ClusterRole in the development namespace and a ClusterRoleBinding",
-        "text_kr": "development 네임스페이스의 ClusterRole 및 ClusterRoleBinding"
+        "text_en": "etcdctl snapshot save /opt/backups/etcd-node1.db --no-tls",
+        "text_kr": "etcdctl snapshot save /opt/backups/etcd-node1.db --no-tls"
       },
       {
         "key": "B",
-        "text_en": "A Role defined in the development namespace and a RoleBinding in the development namespace",
-        "text_kr": "development 네임스페이스에 정의된 Role과 development 네임스페이스의 RoleBinding"
+        "text_en": "ETCDCTL_API=3 etcdctl --endpoints=https://192.168.1.11:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /opt/backups/etcd-node1.db",
+        "text_kr": "ETCDCTL_API=3 etcdctl --endpoints=https://192.168.1.11:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /opt/backups/etcd-node1.db"
       },
       {
         "key": "C",
-        "text_en": "A ServiceAccount bound directly to the PodSpec without RBAC",
-        "text_kr": "RBAC 없이 PodSpec에 직접 바인딩된 ServiceAccount"
+        "text_en": "kubectl snapshot etcd /opt/backups/etcd-node1.db --endpoint=https://192.168.1.11:2379",
+        "text_kr": "kubectl snapshot etcd /opt/backups/etcd-node1.db --endpoint=https://192.168.1.11:2379"
       },
       {
         "key": "D",
-        "text_en": "A ClusterRoleBinding scoped with a namespace filter flag",
-        "text_kr": "네임스페이스 필터 플래그가 지정된 ClusterRoleBinding"
+        "text_en": "kubeadm backup etcd --output=/opt/backups/etcd-node1.db --endpoints=https://192.168.1.11:2379",
+        "text_kr": "kubeadm backup etcd --output=/opt/backups/etcd-node1.db --endpoints=https://192.168.1.11:2379"
       }
     ],
     "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• 특정 네임스페이스로 범위를 제한할 때는 반드시 네임스페이스 리소스인 `Role`과 `RoleBinding`을 해당 네임스페이스(`development`) 내에 생성해야 합니다.\n• ClusterRole은 클러스터 전역 범위이며, ClusterRoleBinding을 사용하면 모든 네임스페이스에 권한이 전파되므로 최소 권한 원칙(Principle of Least Privilege)에 위배됩니다.",
-    "key_concept": "RBAC Role vs ClusterRole, RoleBinding Scope"
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API 사용 시 환경변수 `ETCDCTL_API=3`이 필수이며, TLS 보안 연결을 위해 `--cacert`, `--cert`, `--key`, `--endpoints` 옵션이 명시되어야 합니다.\n• A는 TLS 인증서가 누락되었으며, C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save & TLS flags"
   },
   {
-    "id": "D1-Q04",
+    "id": "D1-Q004",
     "domain": "Domain 1",
     "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
-    "question_en": "How does kubelet know to start and manage static pods such as kube-apiserver and kube-controller-manager on a control plane node?",
-    "question_kr": "kubelet은 컨트롤 플레인 노드에서 kube-apiserver 및 kube-controller-manager와 같은 스태틱 파드(Static Pods)를 어떻게 인식하고 시작 및 관리합니까?",
+    "sub_topic": "etcd_snapshot_save",
+    "question_en": "You are tasked with backing up the dr disaster recovery drill etcd cluster. The endpoint is 'https://127.0.0.1:2379' and the TLS certificates are stored in '/etc/kubernetes/pki/etcd'. Which command correctly saves the snapshot to '/var/backup/etcd-dr-test.db'?",
+    "question_kr": "당신은 dr disaster recovery drill의 etcd 클러스터를 백업해야 합니다. 엔드포인트는 'https://127.0.0.1:2379'이고 TLS 인증서는 '/etc/kubernetes/pki/etcd'에 위치합니다. '/var/backup/etcd-dr-test.db' 경로에 스냅샷을 올바르게 저장하는 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "The API server sends a webhook request to kubelet on boot.",
-        "text_kr": "API 서버가 부팅 시 kubelet에 웹훅 요청을 보냅니다."
+        "text_en": "etcdctl snapshot save /var/backup/etcd-dr-test.db --no-tls",
+        "text_kr": "etcdctl snapshot save /var/backup/etcd-dr-test.db --no-tls"
       },
       {
         "key": "B",
-        "text_en": "kubelet watches the staticPodPath directory (default: /etc/kubernetes/manifests) defined in its configuration file.",
-        "text_kr": "kubelet이 설정 파일에 정의된 staticPodPath 디렉토리(기본값: /etc/kubernetes/manifests)를 직접 감시합니다."
+        "text_en": "ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /var/backup/etcd-dr-test.db",
+        "text_kr": "ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /var/backup/etcd-dr-test.db"
       },
       {
         "key": "C",
-        "text_en": "systemd launches static pods using docker run commands directly.",
-        "text_kr": "systemd가 docker run 명령어로 스태틱 파드를 직접 실행합니다."
+        "text_en": "kubectl snapshot etcd /var/backup/etcd-dr-test.db --endpoint=https://127.0.0.1:2379",
+        "text_kr": "kubectl snapshot etcd /var/backup/etcd-dr-test.db --endpoint=https://127.0.0.1:2379"
       },
       {
         "key": "D",
-        "text_en": "kube-scheduler assigns static pods to node-0 based on affinity.",
-        "text_kr": "kube-scheduler가 어피니티에 따라 스태틱 파드를 node-0에 할당합니다."
+        "text_en": "kubeadm backup etcd --output=/var/backup/etcd-dr-test.db --endpoints=https://127.0.0.1:2379",
+        "text_kr": "kubeadm backup etcd --output=/var/backup/etcd-dr-test.db --endpoints=https://127.0.0.1:2379"
       }
     ],
     "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• 스태틱 파드는 API 서버의 개입 없이 노드의 `kubelet` 데몬이 특정 로컬 디렉토리(기본: `/etc/kubernetes/manifests`)에 위치한 YAML 매니페스트 파일을 주기적으로 스캔하여 직접 띄우고 라이프사이클을 관리합니다.\n• 컨트롤 플레인의 핵심 컴포넌트(apiserver, etcd, scheduler, controller-manager)는 모두 스태틱 파드로 구동됩니다.",
-    "key_concept": "Static Pods, kubelet staticPodPath, Control Plane Bootstrap"
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API 사용 시 환경변수 `ETCDCTL_API=3`이 필수이며, TLS 보안 연결을 위해 `--cacert`, `--cert`, `--key`, `--endpoints` 옵션이 명시되어야 합니다.\n• A는 TLS 인증서가 누락되었으며, C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save & TLS flags"
   },
   {
-    "id": "D1-Q05",
+    "id": "D1-Q005",
     "domain": "Domain 1",
     "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
-    "question_en": "An etcd cluster consists of 5 members. According to the Raft consensus algorithm, what is the minimum quorum required, and how many node failures can this cluster tolerate while remaining operational?",
-    "question_kr": "5개의 멤버로 구성된 etcd 클러스터가 있습니다. Raft 분산 합의 알고리즘에 따를 때, 필요한 최소 쿼럼(Quorum) 수와 정상 작동을 유지하면서 허용할 수 있는 최대 노드 장애 대수는 각각 얼마입니까?",
+    "sub_topic": "etcd_snapshot_save",
+    "question_en": "You are tasked with backing up the nightly scheduled etcd snapshot etcd cluster. The endpoint is 'https://127.0.0.1:2379' and the TLS certificates are stored in '/etc/kubernetes/pki/etcd'. Which command correctly saves the snapshot to '/backups/nightly-etcd.db'?",
+    "question_kr": "당신은 nightly scheduled etcd snapshot의 etcd 클러스터를 백업해야 합니다. 엔드포인트는 'https://127.0.0.1:2379'이고 TLS 인증서는 '/etc/kubernetes/pki/etcd'에 위치합니다. '/backups/nightly-etcd.db' 경로에 스냅샷을 올바르게 저장하는 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Quorum: 2, Tolerated Failures: 3",
-        "text_kr": "쿼럼: 2, 허용 장애 대수: 3"
+        "text_en": "etcdctl snapshot save /backups/nightly-etcd.db --no-tls",
+        "text_kr": "etcdctl snapshot save /backups/nightly-etcd.db --no-tls"
       },
       {
         "key": "B",
-        "text_en": "Quorum: 3, Tolerated Failures: 2",
-        "text_kr": "쿼럼: 3, 허용 장애 대수: 2"
+        "text_en": "ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /backups/nightly-etcd.db",
+        "text_kr": "ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /backups/nightly-etcd.db"
       },
       {
         "key": "C",
-        "text_en": "Quorum: 4, Tolerated Failures: 1",
-        "text_kr": "쿼럼: 4, 허용 장애 대수: 1"
+        "text_en": "kubectl snapshot etcd /backups/nightly-etcd.db --endpoint=https://127.0.0.1:2379",
+        "text_kr": "kubectl snapshot etcd /backups/nightly-etcd.db --endpoint=https://127.0.0.1:2379"
       },
       {
         "key": "D",
-        "text_en": "Quorum: 5, Tolerated Failures: 0",
-        "text_kr": "쿼럼: 5, 허용 장애 대수: 0"
+        "text_en": "kubeadm backup etcd --output=/backups/nightly-etcd.db --endpoints=https://127.0.0.1:2379",
+        "text_kr": "kubeadm backup etcd --output=/backups/nightly-etcd.db --endpoints=https://127.0.0.1:2379"
       }
     ],
     "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• etcd의 쿼럼 공식은 $(N/2) + 1$ (과반수)입니다.\n• 5개 노드의 경우 과반수는 3개 노드입니다.\n• 따라서 $5 - 3 = 2$대의 노드가 다운되더라도 3대가 살아있으므로 정상적으로 쓰기 및 합의 작업이 가능합니다.",
-    "key_concept": "etcd Quorum, Raft Consensus, High Availability"
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API 사용 시 환경변수 `ETCDCTL_API=3`이 필수이며, TLS 보안 연결을 위해 `--cacert`, `--cert`, `--key`, `--endpoints` 옵션이 명시되어야 합니다.\n• A는 TLS 인증서가 누락되었으며, C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save & TLS flags"
   },
   {
-    "id": "D2-Q01",
-    "domain": "Domain 2",
-    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
-    "question_en": "A deployment named 'frontend-deploy' was updated to an unstable image version, causing pods to crash. You need to immediately roll back this deployment to its immediately preceding revision. Which command should you run?",
-    "question_kr": "'frontend-deploy'라는 이름의 디플로이먼트가 불안정한 이미지 버전으로 업데이트되어 파드들이 비정상 종료되고 있습니다. 이 디플로이먼트를 직전 리비전으로 즉시 롤백해야 합니다. 실행해야 하는 명령어는 무엇입니까?",
+    "id": "D1-Q006",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "sub_topic": "etcd_snapshot_save",
+    "question_en": "You are tasked with backing up the pre-upgrade snapshot safety etcd cluster. The endpoint is 'https://10.10.0.5:2379' and the TLS certificates are stored in '/etc/kubernetes/pki/etcd'. Which command correctly saves the snapshot to '/tmp/pre-upgrade-k8s.db'?",
+    "question_kr": "당신은 pre-upgrade snapshot safety의 etcd 클러스터를 백업해야 합니다. 엔드포인트는 'https://10.10.0.5:2379'이고 TLS 인증서는 '/etc/kubernetes/pki/etcd'에 위치합니다. '/tmp/pre-upgrade-k8s.db' 경로에 스냅샷을 올바르게 저장하는 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "kubectl rollout undo deployment frontend-deploy",
-        "text_kr": "kubectl rollout undo deployment frontend-deploy"
+        "text_en": "etcdctl snapshot save /tmp/pre-upgrade-k8s.db --no-tls",
+        "text_kr": "etcdctl snapshot save /tmp/pre-upgrade-k8s.db --no-tls"
       },
       {
         "key": "B",
-        "text_en": "kubectl revert deployment frontend-deploy --step=1",
-        "text_kr": "kubectl revert deployment frontend-deploy --step=1"
+        "text_en": "ETCDCTL_API=3 etcdctl --endpoints=https://10.10.0.5:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /tmp/pre-upgrade-k8s.db",
+        "text_kr": "ETCDCTL_API=3 etcdctl --endpoints=https://10.10.0.5:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /tmp/pre-upgrade-k8s.db"
       },
       {
         "key": "C",
-        "text_en": "kubectl rollout restart deployment frontend-deploy",
-        "text_kr": "kubectl rollout restart deployment frontend-deploy"
+        "text_en": "kubectl snapshot etcd /tmp/pre-upgrade-k8s.db --endpoint=https://10.10.0.5:2379",
+        "text_kr": "kubectl snapshot etcd /tmp/pre-upgrade-k8s.db --endpoint=https://10.10.0.5:2379"
       },
       {
         "key": "D",
-        "text_en": "kubectl set image deployment/frontend-deploy --previous",
-        "text_kr": "kubectl set image deployment/frontend-deploy --previous"
+        "text_en": "kubeadm backup etcd --output=/tmp/pre-upgrade-k8s.db --endpoints=https://10.10.0.5:2379",
+        "text_kr": "kubeadm backup etcd --output=/tmp/pre-upgrade-k8s.db --endpoints=https://10.10.0.5:2379"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API 사용 시 환경변수 `ETCDCTL_API=3`이 필수이며, TLS 보안 연결을 위해 `--cacert`, `--cert`, `--key`, `--endpoints` 옵션이 명시되어야 합니다.\n• A는 TLS 인증서가 누락되었으며, C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save & TLS flags"
+  },
+  {
+    "id": "D2-Q001",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 & 스케줄링 (Workloads & Scheduling)",
+    "sub_topic": "deploy_rolling_strategy",
+    "question_en": "A Deployment named 'web-frontend' has 'replicas: 4', 'maxSurge: 25%', and 'maxUnavailable: 25%'. When a rolling update is triggered, what are the maximum and minimum number of pods allowed during the rollout?",
+    "question_kr": "Deployment 'web-frontend'이(가) 'replicas: 4', 'maxSurge: 25%', 'maxUnavailable: 25%'로 구성되어 있습니다. 롤링 업데이트가 트리거되었을 때 롤아웃 도중 허용되는 최대 파드 수와 최소 가용 파드 수는 각각 얼마입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Max allowed is replicas + maxSurge, and min available is replicas - maxUnavailable",
+        "text_kr": "최대 허용 파드 수는 replicas + maxSurge 이며, 최소 가용 파드 수는 replicas - maxUnavailable 이다"
+      },
+      {
+        "key": "B",
+        "text_en": "All 4 pods are terminated first before creating new pods",
+        "text_kr": "신규 파드를 생성하기 전에 기존 4개의 파드가 모두 먼저 종료된다"
+      },
+      {
+        "key": "C",
+        "text_en": "The maximum number of pods is strictly fixed at 4 at all times",
+        "text_kr": "파드의 최대 개수는 항상 정확히 4개로 고정된다"
+      },
+      {
+        "key": "D",
+        "text_en": "maxUnavailable specifies the number of extra pods created in advance",
+        "text_kr": "maxUnavailable은 사전에 미리 초과 생성되는 파드의 개수를 지정한다"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• `kubectl rollout undo deployment <이름>`은 추가 옵션이 없을 때 직전 리비전(Revision)으로 즉시 롤백합니다.\n• 특정 리비전으로 롤백하려면 `--to-revision=<번호>` 옵션을 지정할 수 있습니다.",
-    "key_concept": "kubectl rollout undo, Deployment Rollback"
+    "explanation_kr": "정답은 A입니다.\n\n• `maxSurge`는 롤링 업데이트 도중 의도한 replicas 대비 초과하여 생성될 수 있는 최대 파드 수/비율입니다.\n• `maxUnavailable`은 롤링 업데이트 도중 일시적으로 사용할 수 없는 상태가 허용되는 최대 파드 수/비율입니다.",
+    "key_concept": "Deployment RollingUpdate maxSurge & maxUnavailable"
   },
   {
-    "id": "D2-Q02",
+    "id": "D2-Q002",
     "domain": "Domain 2",
-    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
-    "question_en": "You are creating a multi-container Pod where a logging container needs to read log files generated by the primary application container. What type of volume should be defined in the Pod spec so that both containers can share this directory without persisting data to a remote storage system?",
-    "question_kr": "로깅 컨테이너가 기본 애플리케이션 컨테이너에서 생성된 로그 파일을 읽어야 하는 멀티 컨테이너 파드를 생성하고 있습니다. 원격 스토리지 시스템에 데이터를 영구 저장하지 않고 두 컨테이너가 이 디렉토리를 공유할 수 있도록 Pod spec에 정의해야 하는 볼륨 유형은 무엇입니까?",
+    "domain_name": "워크로드 & 스케줄링 (Workloads & Scheduling)",
+    "sub_topic": "deploy_rolling_strategy",
+    "question_en": "A Deployment named 'api-gateway' has 'replicas: 8', 'maxSurge: 50%', and 'maxUnavailable: 0'. When a rolling update is triggered, what are the maximum and minimum number of pods allowed during the rollout?",
+    "question_kr": "Deployment 'api-gateway'이(가) 'replicas: 8', 'maxSurge: 50%', 'maxUnavailable: 0'로 구성되어 있습니다. 롤링 업데이트가 트리거되었을 때 롤아웃 도중 허용되는 최대 파드 수와 최소 가용 파드 수는 각각 얼마입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "persistentVolumeClaim",
-        "text_kr": "persistentVolumeClaim"
+        "text_en": "Max allowed is replicas + maxSurge, and min available is replicas - maxUnavailable",
+        "text_kr": "최대 허용 파드 수는 replicas + maxSurge 이며, 최소 가용 파드 수는 replicas - maxUnavailable 이다"
       },
       {
         "key": "B",
-        "text_en": "emptyDir",
-        "text_kr": "emptyDir"
+        "text_en": "All 8 pods are terminated first before creating new pods",
+        "text_kr": "신규 파드를 생성하기 전에 기존 8개의 파드가 모두 먼저 종료된다"
       },
       {
         "key": "C",
-        "text_en": "hostPath with type Socket",
-        "text_kr": "hostPath with type Socket"
+        "text_en": "The maximum number of pods is strictly fixed at 8 at all times",
+        "text_kr": "파드의 최대 개수는 항상 정확히 8개로 고정된다"
       },
       {
         "key": "D",
-        "text_en": "configMap",
-        "text_kr": "configMap"
-      }
-    ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• `emptyDir` 볼륨은 파드가 노드에 할당될 때 처음 생성되며, 해당 파드 내의 모든 컨테이너가 동일한 디렉토리를 읽고 쓸 수 있는 임시 공유 볼륨입니다.\n• 파드가 삭제되면 데이터도 함께 삭제되므로 사이드카 로깅 패턴이나 임시 작업 디렉토리에 가장 적합합니다.",
-    "key_concept": "emptyDir Volume, Multi-container Shared Storage"
-  },
-  {
-    "id": "D2-Q03",
-    "domain": "Domain 2",
-    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
-    "question_en": "A node named 'node-dedicated' has been tainted with `dedicated=analytics:NoSchedule`. You need to ensure a new pod can be scheduled on this node while other pods avoid it. What must be included in the Pod's specification?",
-    "question_kr": "'node-dedicated'라는 노드에 `dedicated=analytics:NoSchedule` 테인트가 적용되었습니다. 다른 일반 파드는 이 노드를 피하고, 특정 신규 파드만 이 노드에 스케줄링될 수 있도록 보장해야 합니다. 해당 파드의 Pod spec에 포함되어야 하는 설정은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "spec.nodeSelector with dedicated: analytics only",
-        "text_kr": "dedicated: analytics 가 지정된 spec.nodeSelector 만 포함"
-      },
-      {
-        "key": "B",
-        "text_en": "spec.tolerations with key 'dedicated', operator 'Equal', value 'analytics', and effect 'NoSchedule'",
-        "text_kr": "key 'dedicated', operator 'Equal', value 'analytics', effect 'NoSchedule' 이 정의된 spec.tolerations"
-      },
-      {
-        "key": "C",
-        "text_en": "spec.securityContext with privileged: true",
-        "text_kr": "privileged: true 로 설정된 spec.securityContext"
-      },
-      {
-        "key": "D",
-        "text_en": "metadata.annotations with taint.ignore=true",
-        "text_kr": "taint.ignore=true 가 정의된 metadata.annotations"
-      }
-    ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• 노드에 설정된 Taint(`NoSchedule`)는 기본적으로 파드가 스케줄링되는 것을 차단합니다.\n• 파드가 이 테인트를 무시하고 배정되려면 파드 스펙에 일치하는 `tolerations` 블록(key, value, effect)을 정의해야 합니다.",
-    "key_concept": "Taints and Tolerations, Pod Scheduling Specification"
-  },
-  {
-    "id": "D2-Q04",
-    "domain": "Domain 2",
-    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
-    "question_en": "Which NodeAffinity rule strictly mandates that a Pod must NEVER be scheduled on a node unless the node has the label `disktype=ssd`?",
-    "question_kr": "노드에 `disktype=ssd` 라벨이 존재하지 않는 한, 파드가 절대로 해당 노드에 스케줄링되어서는 안 된다고 엄격하게 강제하는 NodeAffinity 규칙은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "preferredDuringSchedulingIgnoredDuringExecution",
-        "text_kr": "preferredDuringSchedulingIgnoredDuringExecution"
-      },
-      {
-        "key": "B",
-        "text_en": "requiredDuringSchedulingIgnoredDuringExecution",
-        "text_kr": "requiredDuringSchedulingIgnoredDuringExecution"
-      },
-      {
-        "key": "C",
-        "text_en": "requiredDuringSchedulingRequiredDuringExecution",
-        "text_kr": "requiredDuringSchedulingRequiredDuringExecution"
-      },
-      {
-        "key": "D",
-        "text_en": "preferredDuringSchedulingRequiredDuringExecution",
-        "text_kr": "preferredDuringSchedulingRequiredDuringExecution"
-      }
-    ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• `requiredDuringSchedulingIgnoredDuringExecution`은 '하드 룰(Hard Rule)'로, 스케줄링 시점에 조건이 만족되지 않으면 파드가 Pending 상태로 남고 절대 배치되지 않습니다.\n• `preferredDuring...`은 '소프트 룰'로, 조건을 만족하는 노드가 없더라도 다른 일반 노드에 스케줄링됩니다.",
-    "key_concept": "NodeAffinity Hard Rule vs Soft Rule"
-  },
-  {
-    "id": "D2-Q05",
-    "domain": "Domain 2",
-    "domain_name": "워크로드 및 스케줄링 (Workloads & Scheduling)",
-    "question_en": "You want to run a monitoring agent pod on every single worker node in the cluster, automatically deploying to newly added nodes as well. Which Kubernetes workload resource is purpose-built for this requirement?",
-    "question_kr": "클러스터의 모든 단일 워커 노드마다 모니터링 에이전트 파드를 정확히 하나씩 실행하고, 향후 노드가 추가되더라도 자동으로 배포되도록 구성하고자 합니다. 이 요구사항에 맞춤 설계된 쿠버네티스 워크로드 리소스는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
-      },
-      {
-        "key": "B",
-        "text_en": "DaemonSet",
-        "text_kr": "DaemonSet"
-      },
-      {
-        "key": "C",
-        "text_en": "ReplicaSet with replicas: 0",
-        "text_kr": "replicas: 0 으로 설정된 ReplicaSet"
-      },
-      {
-        "key": "D",
-        "text_en": "CronJob with schedule: '@reboot'",
-        "text_kr": "schedule: '@reboot' 으로 설정된 CronJob"
-      }
-    ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• `DaemonSet`은 클러스터의 모든(또는 특정 조건을 만족하는) 노드에 파드의 복제본을 정확히 1개씩 실행하도록 보장하는 전용 컨트롤러입니다.\n• 모니터링 데몬(Prometheus Node Exporter)이나 로그 수집기(Fluentd, Logstash), 네트워크 CNI 에이전트에 주로 사용됩니다.",
-    "key_concept": "DaemonSet, Node-level Agent Deployment"
-  },
-  {
-    "id": "D3-Q01",
-    "domain": "Domain 3",
-    "domain_name": "서비스 및 네트워킹 (Services & Networking)",
-    "question_en": "In a Kubernetes Service definition of type NodePort, what does `targetPort` refer to?",
-    "question_kr": "NodePort 타입의 쿠버네티스 서비스 정의에서 `targetPort`는 무엇을 의미합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "The port on the worker node's external IP address.",
-        "text_kr": "워커 노드의 외부 IP 주소에 열리는 포트."
-      },
-      {
-        "key": "B",
-        "text_en": "The port on which the Service itself serves traffic inside the cluster.",
-        "text_kr": "클러스터 내부에서 서비스 가상 IP(VIP)가 트래픽을 수신하는 포트."
-      },
-      {
-        "key": "C",
-        "text_en": "The port on which the container inside the targeted Pod is listening.",
-        "text_kr": "대상이 되는 파드 내부의 컨테이너가 실제로 수신 대기(리스닝)하고 있는 포트."
-      },
-      {
-        "key": "D",
-        "text_en": "The port used by the Ingress Controller to route traffic.",
-        "text_kr": "인그레스 컨트롤러가 트래픽을 라우팅하기 위해 사용하는 포트."
-      }
-    ],
-    "correct_answer": "C",
-    "explanation_kr": "정답은 C입니다.\n\n• `port`: Service의 가상 IP가 클러스터 내부에서 노출하는 포트.\n• `targetPort`: 파드 내부의 컨테이너가 실제로 리스닝하고 있는 포트.\n• `nodePort`: 외부 클라이언트가 각 노드의 IP로 접근할 때 사용하는 포트 (30000~32767).",
-    "key_concept": "Service Port vs TargetPort vs NodePort"
-  },
-  {
-    "id": "D3-Q02",
-    "domain": "Domain 3",
-    "domain_name": "서비스 및 네트워킹 (Services & Networking)",
-    "question_en": "What is the primary characteristic of a 'Headless Service' created with `spec.clusterIP: None`?",
-    "question_kr": "`spec.clusterIP: None`으로 생성된 '헤드리스 서비스(Headless Service)'의 주요 특징은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "It does not allocate a cluster virtual IP and DNS queries return the individual IPs of the backend pods directly.",
-        "text_kr": "단일 가상 IP(VIP)를 할당하지 않으며, DNS 질의 시 백엔드 개별 파드들의 IP 목록을 직접 반환합니다."
-      },
-      {
-        "key": "B",
-        "text_en": "It does not allow any network traffic to reach the pods.",
-        "text_kr": "파드로의 모든 네트워크 트래픽 인입을 차단합니다."
-      },
-      {
-        "key": "C",
-        "text_en": "It can only be used with DaemonSets.",
-        "text_kr": "오직 DaemonSet과만 함께 사용할 수 있습니다."
-      },
-      {
-        "key": "D",
-        "text_en": "It automatically assigns a public Load Balancer IP.",
-        "text_kr": "퍼블릭 로드밸런서 IP를 자동으로 할당합니다."
+        "text_en": "maxUnavailable specifies the number of extra pods created in advance",
+        "text_kr": "maxUnavailable은 사전에 미리 초과 생성되는 파드의 개수를 지정한다"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• `clusterIP: None`으로 설정하면 kube-proxy가 프록시 작업을 수행하지 않고 VIP도 할당되지 않습니다.\n• 대신 CoreDNS에 질의했을 때 셀렉터와 일치하는 파드들의 실제 A 레코드(IP 목록)를 직접 반환하므로, StatefulSet 기반 데이터베이스 클러스터의 마스터-슬레이브 디스커버리에 주로 활용됩니다.",
-    "key_concept": "Headless Service (clusterIP: None), StatefulSet DNS"
+    "explanation_kr": "정답은 A입니다.\n\n• `maxSurge`는 롤링 업데이트 도중 의도한 replicas 대비 초과하여 생성될 수 있는 최대 파드 수/비율입니다.\n• `maxUnavailable`은 롤링 업데이트 도중 일시적으로 사용할 수 없는 상태가 허용되는 최대 파드 수/비율입니다.",
+    "key_concept": "Deployment RollingUpdate maxSurge & maxUnavailable"
   },
   {
-    "id": "D3-Q03",
-    "domain": "Domain 3",
-    "domain_name": "서비스 및 네트워킹 (Services & Networking)",
-    "question_en": "A pod in the 'staging' namespace needs to send an HTTP request to a service named 'inventory-svc' located in the 'production' namespace on port 80. What is the Fully Qualified Domain Name (FQDN) to resolve this service?",
-    "question_kr": "'staging' 네임스페이스의 파드가 'production' 네임스페이스에 있는 'inventory-svc' 서비스의 80번 포트로 HTTP 요청을 보내야 합니다. 이 서비스를 해석하기 위한 FQDN(전체 도메인 이름)은 무엇입니까?",
+    "id": "D2-Q003",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 & 스케줄링 (Workloads & Scheduling)",
+    "sub_topic": "deploy_rolling_strategy",
+    "question_en": "A Deployment named 'payment-srv' has 'replicas: 10', 'maxSurge: 1', and 'maxUnavailable: 1'. When a rolling update is triggered, what are the maximum and minimum number of pods allowed during the rollout?",
+    "question_kr": "Deployment 'payment-srv'이(가) 'replicas: 10', 'maxSurge: 1', 'maxUnavailable: 1'로 구성되어 있습니다. 롤링 업데이트가 트리거되었을 때 롤아웃 도중 허용되는 최대 파드 수와 최소 가용 파드 수는 각각 얼마입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "inventory-svc.staging.pod.cluster.local",
-        "text_kr": "inventory-svc.staging.pod.cluster.local"
+        "text_en": "Max allowed is replicas + maxSurge, and min available is replicas - maxUnavailable",
+        "text_kr": "최대 허용 파드 수는 replicas + maxSurge 이며, 최소 가용 파드 수는 replicas - maxUnavailable 이다"
       },
       {
         "key": "B",
-        "text_en": "inventory-svc.production.svc.cluster.local",
-        "text_kr": "inventory-svc.production.svc.cluster.local"
+        "text_en": "All 10 pods are terminated first before creating new pods",
+        "text_kr": "신규 파드를 생성하기 전에 기존 10개의 파드가 모두 먼저 종료된다"
       },
       {
         "key": "C",
-        "text_en": "production.inventory-svc.k8s.local",
-        "text_kr": "production.inventory-svc.k8s.local"
+        "text_en": "The maximum number of pods is strictly fixed at 10 at all times",
+        "text_kr": "파드의 최대 개수는 항상 정확히 10개로 고정된다"
       },
       {
         "key": "D",
-        "text_en": "http://inventory-svc:80/production",
-        "text_kr": "http://inventory-svc:80/production"
-      }
-    ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• 쿠버네티스 CoreDNS 표준 FQDN 형식은 `<서비스명>.<네임스페이스>.svc.cluster.local`입니다.\n• 따라서 'production' 네임스페이스의 'inventory-svc'는 `inventory-svc.production.svc.cluster.local`로 해석됩니다.",
-    "key_concept": "CoreDNS FQDN Resolution Pattern"
-  },
-  {
-    "id": "D3-Q04",
-    "domain": "Domain 3",
-    "domain_name": "서비스 및 네트워킹 (Services & Networking)",
-    "question_en": "You create an Ingress resource with path routing rules, but accessing the configured host returns a connection refused error or 404 from the node IP. What is the most likely cluster prerequisite missing?",
-    "question_kr": "경로 기반 라우팅 규칙이 포함된 Ingress 리소스를 생성했으나, 노드 IP로 해당 호스트에 접속하면 연결 거부 또는 404 에러가 발생합니다. 클러스터에 누락되었을 가능성이 가장 높은 필수 전제 조건은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "The cluster lacks an active Ingress Controller (such as ingress-nginx) to implement the Ingress specification.",
-        "text_kr": "Ingress 명세를 실제로 구현하고 트래픽을 처리할 활성화된 인그레스 컨트롤러(예: ingress-nginx)가 클러스터에 없습니다."
-      },
-      {
-        "key": "B",
-        "text_en": "NetworkPolicy does not permit ingress resources by default.",
-        "text_kr": "NetworkPolicy가 기본적으로 ingress 리소스를 허용하지 않기 때문입니다."
-      },
-      {
-        "key": "C",
-        "text_en": "Ingress resources require a commercial SSL certificate before passing any traffic.",
-        "text_kr": "Ingress 리소스는 트래픽을 전달하기 전에 상용 SSL 인증서가 반드시 필요합니다."
-      },
-      {
-        "key": "D",
-        "text_en": "CoreDNS must be reconfigured to register ingress paths.",
-        "text_kr": "CoreDNS가 인그레스 경로를 등록하도록 재설정되어야 합니다."
+        "text_en": "maxUnavailable specifies the number of extra pods created in advance",
+        "text_kr": "maxUnavailable은 사전에 미리 초과 생성되는 파드의 개수를 지정한다"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• Ingress 리소스는 단순한 '라우팅 규칙 설정 데이터'에 불과합니다.\n• 이 규칙을 감시하여 실제 리버스 프록시(Nginx, HAProxy, Envoy 등)를 구동하고 트래픽을 분기해줄 **Ingress Controller**가 클러스터에 실행 중이지 않으면 아무런 동작도 일어나지 않습니다.",
-    "key_concept": "Ingress Resource vs Ingress Controller"
+    "explanation_kr": "정답은 A입니다.\n\n• `maxSurge`는 롤링 업데이트 도중 의도한 replicas 대비 초과하여 생성될 수 있는 최대 파드 수/비율입니다.\n• `maxUnavailable`은 롤링 업데이트 도중 일시적으로 사용할 수 없는 상태가 허용되는 최대 파드 수/비율입니다.",
+    "key_concept": "Deployment RollingUpdate maxSurge & maxUnavailable"
   },
   {
-    "id": "D3-Q05",
-    "domain": "Domain 3",
-    "domain_name": "서비스 및 네트워킹 (Services & Networking)",
-    "question_en": "Which NetworkPolicy configuration successfully blocks all incoming ingress traffic to all pods in the 'secure-zone' namespace, effectively creating a default-deny policy?",
-    "question_kr": "'secure-zone' 네임스페이스의 모든 파드로 들어오는 모든 인입(Ingress) 트래픽을 차단하여 완전한 기본 거부(default-deny) 상태를 만드는 올바른 NetworkPolicy 설정은 무엇입니까?",
+    "id": "D2-Q004",
+    "domain": "Domain 2",
+    "domain_name": "워크로드 & 스케줄링 (Workloads & Scheduling)",
+    "sub_topic": "deploy_rolling_strategy",
+    "question_en": "A Deployment named 'auth-service' has 'replicas: 6', 'maxSurge: 20%', and 'maxUnavailable: 20%'. When a rolling update is triggered, what are the maximum and minimum number of pods allowed during the rollout?",
+    "question_kr": "Deployment 'auth-service'이(가) 'replicas: 6', 'maxSurge: 20%', 'maxUnavailable: 20%'로 구성되어 있습니다. 롤링 업데이트가 트리거되었을 때 롤아웃 도중 허용되는 최대 파드 수와 최소 가용 파드 수는 각각 얼마입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "spec.podSelector: {} with spec.policyTypes: ['Ingress'] and no ingress rules defined",
-        "text_kr": "spec.podSelector: {} 와 spec.policyTypes: ['Ingress'] 를 지정하고 ingress 규칙 목록을 비워둠"
+        "text_en": "Max allowed is replicas + maxSurge, and min available is replicas - maxUnavailable",
+        "text_kr": "최대 허용 파드 수는 replicas + maxSurge 이며, 최소 가용 파드 수는 replicas - maxUnavailable 이다"
       },
       {
         "key": "B",
-        "text_en": "spec.podSelector: '*' with spec.ingress: [{action: 'Deny'}]",
-        "text_kr": "spec.podSelector: '*' 와 spec.ingress: [{action: 'Deny'}]"
+        "text_en": "All 6 pods are terminated first before creating new pods",
+        "text_kr": "신규 파드를 생성하기 전에 기존 6개의 파드가 모두 먼저 종료된다"
       },
       {
         "key": "C",
-        "text_en": "spec.ingress: [] with action: DropAll",
-        "text_kr": "spec.ingress: [] 와 action: DropAll"
+        "text_en": "The maximum number of pods is strictly fixed at 6 at all times",
+        "text_kr": "파드의 최대 개수는 항상 정확히 6개로 고정된다"
       },
       {
         "key": "D",
-        "text_en": "spec.policyTypes: ['DenyAll']",
-        "text_kr": "spec.policyTypes: ['DenyAll']"
+        "text_en": "maxUnavailable specifies the number of extra pods created in advance",
+        "text_kr": "maxUnavailable은 사전에 미리 초과 생성되는 파드의 개수를 지정한다"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• `podSelector: {}`는 네임스페이스 내의 모든 파드를 대상으로 선택합니다.\n• `policyTypes: [Ingress]`를 선언하고 하위 `ingress:` 허용 목록을 전혀 제공하지 않으면, 모든 인입 트래픽이 거부(Default Deny)됩니다.",
-    "key_concept": "NetworkPolicy Default Deny All Ingress"
+    "explanation_kr": "정답은 A입니다.\n\n• `maxSurge`는 롤링 업데이트 도중 의도한 replicas 대비 초과하여 생성될 수 있는 최대 파드 수/비율입니다.\n• `maxUnavailable`은 롤링 업데이트 도중 일시적으로 사용할 수 없는 상태가 허용되는 최대 파드 수/비율입니다.",
+    "key_concept": "Deployment RollingUpdate maxSurge & maxUnavailable"
   },
   {
-    "id": "D4-Q01",
+    "id": "D3-Q001",
+    "domain": "Domain 3",
+    "domain_name": "서비스 & 네트워크 (Services & Networking)",
+    "sub_topic": "service_types_overview",
+    "question_en": "Regarding Service Types: ClusterIP vs NodePort vs LoadBalancer in Kubernetes, when managing 'web-svc', which statement accurately reflects the standard network architecture?",
+    "question_kr": "쿠버네티스 네트워킹에서 Service Types: ClusterIP vs NodePort vs LoadBalancer와 관련하여 'web-svc' 구성 시 공식 표준 동작을 가장 정확하게 설명한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It complies with the Kubernetes networking model for Service Types: ClusterIP vs NodePort vs LoadBalancer and routes traffic predictably",
+        "text_kr": "Service Types: ClusterIP vs NodePort vs LoadBalancer에 대한 쿠버네티스 네트워크 표준 모델을 준수하여 트래픽을 예측 가능하게 라우팅한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It requires disablement of CoreDNS and manual host file edits",
+        "text_kr": "CoreDNS를 비활성화하고 노드마다 수동 host 파일 편집이 필요하다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all TCP traffic into unencrypted UDP packets unconditionally",
+        "text_kr": "모든 TCP 트래픽을 무조건 암호화되지 않은 UDP 패킷으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It completely prevents all pods from communicating across nodes",
+        "text_kr": "모든 파드가 노드 간 통신을 수행하지 못하도록 완전히 차단한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 네트워크 모델은 모든 파드가 NAT 없이 서로 고유한 IP로 통신할 수 있는 플랫 네트워크(Flat Network)를 제공합니다.",
+    "key_concept": "Service Types: ClusterIP vs NodePort vs LoadBalancer"
+  },
+  {
+    "id": "D3-Q002",
+    "domain": "Domain 3",
+    "domain_name": "서비스 & 네트워크 (Services & Networking)",
+    "sub_topic": "service_types_overview",
+    "question_en": "Regarding Service Types: ClusterIP vs NodePort vs LoadBalancer in Kubernetes, when managing 'node-proxy-svc', which statement accurately reflects the standard network architecture?",
+    "question_kr": "쿠버네티스 네트워킹에서 Service Types: ClusterIP vs NodePort vs LoadBalancer와 관련하여 'node-proxy-svc' 구성 시 공식 표준 동작을 가장 정확하게 설명한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It complies with the Kubernetes networking model for Service Types: ClusterIP vs NodePort vs LoadBalancer and routes traffic predictably",
+        "text_kr": "Service Types: ClusterIP vs NodePort vs LoadBalancer에 대한 쿠버네티스 네트워크 표준 모델을 준수하여 트래픽을 예측 가능하게 라우팅한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It requires disablement of CoreDNS and manual host file edits",
+        "text_kr": "CoreDNS를 비활성화하고 노드마다 수동 host 파일 편집이 필요하다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all TCP traffic into unencrypted UDP packets unconditionally",
+        "text_kr": "모든 TCP 트래픽을 무조건 암호화되지 않은 UDP 패킷으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It completely prevents all pods from communicating across nodes",
+        "text_kr": "모든 파드가 노드 간 통신을 수행하지 못하도록 완전히 차단한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 네트워크 모델은 모든 파드가 NAT 없이 서로 고유한 IP로 통신할 수 있는 플랫 네트워크(Flat Network)를 제공합니다.",
+    "key_concept": "Service Types: ClusterIP vs NodePort vs LoadBalancer"
+  },
+  {
+    "id": "D3-Q003",
+    "domain": "Domain 3",
+    "domain_name": "서비스 & 네트워크 (Services & Networking)",
+    "sub_topic": "service_types_overview",
+    "question_en": "Regarding Service Types: ClusterIP vs NodePort vs LoadBalancer in Kubernetes, when managing 'cloud-lb-svc', which statement accurately reflects the standard network architecture?",
+    "question_kr": "쿠버네티스 네트워킹에서 Service Types: ClusterIP vs NodePort vs LoadBalancer와 관련하여 'cloud-lb-svc' 구성 시 공식 표준 동작을 가장 정확하게 설명한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It complies with the Kubernetes networking model for Service Types: ClusterIP vs NodePort vs LoadBalancer and routes traffic predictably",
+        "text_kr": "Service Types: ClusterIP vs NodePort vs LoadBalancer에 대한 쿠버네티스 네트워크 표준 모델을 준수하여 트래픽을 예측 가능하게 라우팅한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It requires disablement of CoreDNS and manual host file edits",
+        "text_kr": "CoreDNS를 비활성화하고 노드마다 수동 host 파일 편집이 필요하다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all TCP traffic into unencrypted UDP packets unconditionally",
+        "text_kr": "모든 TCP 트래픽을 무조건 암호화되지 않은 UDP 패킷으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It completely prevents all pods from communicating across nodes",
+        "text_kr": "모든 파드가 노드 간 통신을 수행하지 못하도록 완전히 차단한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 네트워크 모델은 모든 파드가 NAT 없이 서로 고유한 IP로 통신할 수 있는 플랫 네트워크(Flat Network)를 제공합니다.",
+    "key_concept": "Service Types: ClusterIP vs NodePort vs LoadBalancer"
+  },
+  {
+    "id": "D3-Q004",
+    "domain": "Domain 3",
+    "domain_name": "서비스 & 네트워크 (Services & Networking)",
+    "sub_topic": "service_types_overview",
+    "question_en": "Regarding Service Types: ClusterIP vs NodePort vs LoadBalancer in Kubernetes, when managing 'db-external-cname', which statement accurately reflects the standard network architecture?",
+    "question_kr": "쿠버네티스 네트워킹에서 Service Types: ClusterIP vs NodePort vs LoadBalancer와 관련하여 'db-external-cname' 구성 시 공식 표준 동작을 가장 정확하게 설명한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It complies with the Kubernetes networking model for Service Types: ClusterIP vs NodePort vs LoadBalancer and routes traffic predictably",
+        "text_kr": "Service Types: ClusterIP vs NodePort vs LoadBalancer에 대한 쿠버네티스 네트워크 표준 모델을 준수하여 트래픽을 예측 가능하게 라우팅한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It requires disablement of CoreDNS and manual host file edits",
+        "text_kr": "CoreDNS를 비활성화하고 노드마다 수동 host 파일 편집이 필요하다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all TCP traffic into unencrypted UDP packets unconditionally",
+        "text_kr": "모든 TCP 트래픽을 무조건 암호화되지 않은 UDP 패킷으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It completely prevents all pods from communicating across nodes",
+        "text_kr": "모든 파드가 노드 간 통신을 수행하지 못하도록 완전히 차단한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 네트워크 모델은 모든 파드가 NAT 없이 서로 고유한 IP로 통신할 수 있는 플랫 네트워크(Flat Network)를 제공합니다.",
+    "key_concept": "Service Types: ClusterIP vs NodePort vs LoadBalancer"
+  },
+  {
+    "id": "D3-Q005",
+    "domain": "Domain 3",
+    "domain_name": "서비스 & 네트워크 (Services & Networking)",
+    "sub_topic": "service_types_overview",
+    "question_en": "Regarding Service Types: ClusterIP vs NodePort vs LoadBalancer in Kubernetes, when managing 'internal-api-svc', which statement accurately reflects the standard network architecture?",
+    "question_kr": "쿠버네티스 네트워킹에서 Service Types: ClusterIP vs NodePort vs LoadBalancer와 관련하여 'internal-api-svc' 구성 시 공식 표준 동작을 가장 정확하게 설명한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It complies with the Kubernetes networking model for Service Types: ClusterIP vs NodePort vs LoadBalancer and routes traffic predictably",
+        "text_kr": "Service Types: ClusterIP vs NodePort vs LoadBalancer에 대한 쿠버네티스 네트워크 표준 모델을 준수하여 트래픽을 예측 가능하게 라우팅한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It requires disablement of CoreDNS and manual host file edits",
+        "text_kr": "CoreDNS를 비활성화하고 노드마다 수동 host 파일 편집이 필요하다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all TCP traffic into unencrypted UDP packets unconditionally",
+        "text_kr": "모든 TCP 트래픽을 무조건 암호화되지 않은 UDP 패킷으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It completely prevents all pods from communicating across nodes",
+        "text_kr": "모든 파드가 노드 간 통신을 수행하지 못하도록 완전히 차단한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 네트워크 모델은 모든 파드가 NAT 없이 서로 고유한 IP로 통신할 수 있는 플랫 네트워크(Flat Network)를 제공합니다.",
+    "key_concept": "Service Types: ClusterIP vs NodePort vs LoadBalancer"
+  },
+  {
+    "id": "D4-Q001",
     "domain": "Domain 4",
     "domain_name": "스토리지 (Storage)",
-    "question_en": "A PersistentVolume (PV) is created with a capacity of 10Gi, `accessModes: [ReadWriteOnce]`, and `storageClassName: manual`. A user creates a PersistentVolumeClaim (PVC) requesting 5Gi with `accessModes: [ReadWriteMany]` and `storageClassName: manual`. Why does the PVC remain in the 'Pending' status?",
-    "question_kr": "용량 10Gi, `accessModes: [ReadWriteOnce]`, `storageClassName: manual`로 생성된 PersistentVolume(PV)이 있습니다. 사용자가 5Gi 용량, `accessModes: [ReadWriteMany]`, `storageClassName: manual`을 요청하는 PersistentVolumeClaim(PVC)을 생성했습니다. 이 PVC가 'Pending' 상태로 머무르는 이유는 무엇입니까?",
+    "sub_topic": "pv_pvc_binding_criteria",
+    "question_en": "A PersistentVolume named 'pv-prod-data' has 'capacity: 100Gi', 'accessModes: [ReadWriteOnce]', and 'storageClassName: fast-ssd'. Which PersistentVolumeClaim (PVC) will successfully bind to this PV?",
+    "question_kr": "PersistentVolume 'pv-prod-data'이(가) 'capacity: 100Gi', 'accessModes: [ReadWriteOnce]', 'storageClassName: fast-ssd' 속성으로 생성되어 있습니다. 어떤 PersistentVolumeClaim(PVC)이 이 PV에 정상적으로 바인딩될 수 있습니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "The requested storage capacity is smaller than the PV capacity.",
-        "text_kr": "요청된 스토리지 용량이 PV 용량보다 작기 때문입니다."
+        "text_en": "A PVC requesting accessMode 'ReadWriteOnce', storageClassName 'fast-ssd', and capacity less than or equal to '100Gi'",
+        "text_kr": "accessMode 'ReadWriteOnce', storageClassName 'fast-ssd'을 요구하고 용량이 '100Gi' 이하인 PVC"
       },
       {
         "key": "B",
-        "text_en": "The accessModes between the PV (ReadWriteOnce) and the PVC (ReadWriteMany) do not match.",
-        "text_kr": "PV의 접근 모드(ReadWriteOnce)와 PVC의 요청 접근 모드(ReadWriteMany)가 일치하지 않기 때문입니다."
+        "text_en": "A PVC requesting double the capacity of '100Gi' with any access mode",
+        "text_kr": "용량을 '100Gi'의 2배로 요청하고 임의의 접근 모드를 가진 PVC"
       },
       {
         "key": "C",
-        "text_en": "StorageClassName 'manual' is a reserved keyword in Kubernetes.",
-        "text_kr": "StorageClassName 'manual'이 쿠버네티스 예약어이기 때문입니다."
+        "text_en": "A PVC with storageClassName: 'different-class' and capacity '100Gi'",
+        "text_kr": "storageClassName이 'different-class'이고 용량이 '100Gi'인 PVC"
       },
       {
         "key": "D",
-        "text_en": "PVCs cannot bind to PVs without an active Pod attached.",
-        "text_kr": "활성 파드가 연결되지 않으면 PVC가 PV에 바인딩될 수 없기 때문입니다."
+        "text_en": "Any PVC regardless of accessModes as long as it is in the kube-system namespace",
+        "text_kr": "kube-system 네임스페이스에 있기만 하면 접근 모드와 무관하게 모든 PVC"
       }
     ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• PVC가 PV에 정상적으로 바인딩(Bound)되려면 **StorageClassName**, **AccessModes**, 그리고 **요청 용량(Capacity <= PV 용량)**이 모두 호환되어야 합니다.\n• PV는 단일 노드 전용(`ReadWriteOnce`)인 반면 PVC는 다중 노드 동시 쓰기(`ReadWriteMany`)를 요구하고 있으므로 바인딩되지 못하고 Pending 상태로 대기합니다.",
-    "key_concept": "PV and PVC Binding Requirements, AccessModes Mismatch"
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• PVC가 PV에 바인딩되기 위한 3대 필수 일치 조건은 다음과 같습니다:\n  1. `storageClassName`이 일치해야 합니다.\n  2. `accessModes`가 호환되어야 합니다.\n  3. PV의 용량이 PVC의 요청 용량 이상이어야 합니다 (PV $\\ge$ PVC).",
+    "key_concept": "PV & PVC Binding 3 Match Conditions"
   },
   {
-    "id": "D4-Q02",
+    "id": "D4-Q002",
     "domain": "Domain 4",
     "domain_name": "스토리지 (Storage)",
-    "question_en": "Which PersistentVolumeReclaimPolicy preserves the underlying storage volume and its data when the bound PersistentVolumeClaim (PVC) is deleted, requiring an administrator to manually reclaim or clean up the resource?",
-    "question_kr": "바인딩된 PersistentVolumeClaim(PVC)이 삭제되었을 때 기본 스토리지 볼륨과 데이터를 그대로 보존하여, 관리자가 수동으로 리소스를 회수하거나 정리하도록 요구하는 PersistentVolumeReclaimPolicy는 무엇입니까?",
+    "sub_topic": "pv_pvc_binding_criteria",
+    "question_en": "A PersistentVolume named 'pv-shared-nfs' has 'capacity: 500Gi', 'accessModes: [ReadWriteMany]', and 'storageClassName: nfs-storage'. Which PersistentVolumeClaim (PVC) will successfully bind to this PV?",
+    "question_kr": "PersistentVolume 'pv-shared-nfs'이(가) 'capacity: 500Gi', 'accessModes: [ReadWriteMany]', 'storageClassName: nfs-storage' 속성으로 생성되어 있습니다. 어떤 PersistentVolumeClaim(PVC)이 이 PV에 정상적으로 바인딩될 수 있습니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Delete",
-        "text_kr": "Delete"
+        "text_en": "A PVC requesting accessMode 'ReadWriteMany', storageClassName 'nfs-storage', and capacity less than or equal to '500Gi'",
+        "text_kr": "accessMode 'ReadWriteMany', storageClassName 'nfs-storage'을 요구하고 용량이 '500Gi' 이하인 PVC"
       },
       {
         "key": "B",
-        "text_en": "Retain",
-        "text_kr": "Retain"
+        "text_en": "A PVC requesting double the capacity of '500Gi' with any access mode",
+        "text_kr": "용량을 '500Gi'의 2배로 요청하고 임의의 접근 모드를 가진 PVC"
       },
       {
         "key": "C",
-        "text_en": "Recycle",
-        "text_kr": "Recycle"
+        "text_en": "A PVC with storageClassName: 'different-class' and capacity '500Gi'",
+        "text_kr": "storageClassName이 'different-class'이고 용량이 '500Gi'인 PVC"
       },
       {
         "key": "D",
-        "text_en": "Archive",
-        "text_kr": "Archive"
+        "text_en": "Any PVC regardless of accessModes as long as it is in the kube-system namespace",
+        "text_kr": "kube-system 네임스페이스에 있기만 하면 접근 모드와 무관하게 모든 PVC"
       }
     ],
-    "correct_answer": "B",
-    "explanation_kr": "정답은 B입니다.\n\n• `persistentVolumeReclaimPolicy: Retain`은 PVC가 삭제되어도 PV와 실제 백엔드 데이터를 삭제하지 않고 `Released` 상태로 유지하여 데이터 유실을 방지합니다.\n• `Delete`는 PVC 삭제 시 실제 스토리지 에셋까지 함께 자동 삭제합니다.",
-    "key_concept": "Reclaim Policy: Retain vs Delete"
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• PVC가 PV에 바인딩되기 위한 3대 필수 일치 조건은 다음과 같습니다:\n  1. `storageClassName`이 일치해야 합니다.\n  2. `accessModes`가 호환되어야 합니다.\n  3. PV의 용량이 PVC의 요청 용량 이상이어야 합니다 (PV $\\ge$ PVC).",
+    "key_concept": "PV & PVC Binding 3 Match Conditions"
   },
   {
-    "id": "D4-Q03",
+    "id": "D4-Q003",
     "domain": "Domain 4",
     "domain_name": "스토리지 (Storage)",
-    "question_en": "What is the purpose of setting `volumeBindingMode: WaitForFirstConsumer` on a StorageClass?",
-    "question_kr": "StorageClass에서 `volumeBindingMode: WaitForFirstConsumer`를 설정하는 주된 목적은 무엇입니까?",
+    "sub_topic": "pv_pvc_binding_criteria",
+    "question_en": "A PersistentVolume named 'pv-backup-vol' has 'capacity: 1Ti', 'accessModes: [ReadOnlyMany]', and 'storageClassName: cold-storage'. Which PersistentVolumeClaim (PVC) will successfully bind to this PV?",
+    "question_kr": "PersistentVolume 'pv-backup-vol'이(가) 'capacity: 1Ti', 'accessModes: [ReadOnlyMany]', 'storageClassName: cold-storage' 속성으로 생성되어 있습니다. 어떤 PersistentVolumeClaim(PVC)이 이 PV에 정상적으로 바인딩될 수 있습니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "It delays volume provisioning and binding until a Pod using the PVC is created and scheduled to a specific node.",
-        "text_kr": "해당 PVC를 사용하는 파드가 실제로 생성되어 특정 노드에 스케줄링될 때까지 볼륨 프로비저닝과 바인딩을 지연시킵니다."
+        "text_en": "A PVC requesting accessMode 'ReadOnlyMany', storageClassName 'cold-storage', and capacity less than or equal to '1Ti'",
+        "text_kr": "accessMode 'ReadOnlyMany', storageClassName 'cold-storage'을 요구하고 용량이 '1Ti' 이하인 PVC"
       },
       {
         "key": "B",
-        "text_en": "It ensures only one container can consume the storage volume at any time.",
-        "text_kr": "항상 단 하나의 컨테이너만 볼륨을 사용할 수 있도록 보장합니다."
+        "text_en": "A PVC requesting double the capacity of '1Ti' with any access mode",
+        "text_kr": "용량을 '1Ti'의 2배로 요청하고 임의의 접근 모드를 가진 PVC"
       },
       {
         "key": "C",
-        "text_en": "It compresses data before writing to disk.",
-        "text_kr": "디스크에 쓰기 전에 데이터를 자동 압축합니다."
+        "text_en": "A PVC with storageClassName: 'different-class' and capacity '1Ti'",
+        "text_kr": "storageClassName이 'different-class'이고 용량이 '1Ti'인 PVC"
       },
       {
         "key": "D",
-        "text_en": "It prevents the volume from being expanded in size.",
-        "text_kr": "볼륨 크기가 확장되는 것을 방지합니다."
+        "text_en": "Any PVC regardless of accessModes as long as it is in the kube-system namespace",
+        "text_kr": "kube-system 네임스페이스에 있기만 하면 접근 모드와 무관하게 모든 PVC"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• 기본값인 `Immediate`는 PVC가 생성되는 즉시 볼륨을 프로비저닝하여, 특정 가용영역(AZ)이나 로컬 디스크에 종속된 볼륨의 경우 파드가 다른 노드에 배정되었을 때 볼륨을 마운트하지 못하는 문제가 발생할 수 있습니다.\n• `WaitForFirstConsumer`는 파드의 토폴로지 제약(NodeSelector, Affinity 등)을 먼저 평가하여 파드가 위치할 노드가 확정된 후에 볼륨을 프로비저닝하므로 이러한 문제를 방지합니다.",
-    "key_concept": "StorageClass volumeBindingMode: WaitForFirstConsumer"
+    "explanation_kr": "정답은 A입니다.\n\n• PVC가 PV에 바인딩되기 위한 3대 필수 일치 조건은 다음과 같습니다:\n  1. `storageClassName`이 일치해야 합니다.\n  2. `accessModes`가 호환되어야 합니다.\n  3. PV의 용량이 PVC의 요청 용량 이상이어야 합니다 (PV $\\ge$ PVC).",
+    "key_concept": "PV & PVC Binding 3 Match Conditions"
   },
   {
-    "id": "D4-Q04",
-    "domain": "Domain 4",
-    "domain_name": "스토리지 (Storage)",
-    "question_en": "Which AccessMode allows a volume to be mounted simultaneously as read-write by multiple pods running across multiple distinct worker nodes?",
-    "question_kr": "서로 다른 여러 워커 노드에서 실행 중인 여러 파드가 동시에 읽기/쓰기(read-write)로 볼륨을 마운트할 수 있도록 허용하는 AccessMode는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "ReadWriteOnce (RWO)",
-        "text_kr": "ReadWriteOnce (RWO)"
-      },
-      {
-        "key": "B",
-        "text_en": "ReadOnlyMany (ROX)",
-        "text_kr": "ReadOnlyMany (ROX)"
-      },
-      {
-        "key": "C",
-        "text_en": "ReadWriteMany (RWX)",
-        "text_kr": "ReadWriteMany (RWX)"
-      },
-      {
-        "key": "D",
-        "text_en": "ReadWriteOncePod (RWOP)",
-        "text_kr": "ReadWriteOncePod (RWOP)"
-      }
-    ],
-    "correct_answer": "C",
-    "explanation_kr": "정답은 C입니다.\n\n• `ReadWriteMany (RWX)`는 여러 노드에서 동시에 읽기/쓰기가 가능한 모드로, NFS, AWS EFS, GlusterFS 등의 네트워크 파일시스템에서 지원됩니다.",
-    "key_concept": "AccessModes: ReadWriteMany (RWX)"
-  },
-  {
-    "id": "D4-Q05",
-    "domain": "Domain 4",
-    "domain_name": "스토리지 (Storage)",
-    "question_en": "To enable dynamic expansion of PersistentVolumeClaim capacity in Kubernetes, what property must be explicitly set to `true` in the referenced StorageClass?",
-    "question_kr": "쿠버네티스에서 PersistentVolumeClaim의 용량을 동적으로 확장(Resize)할 수 있도록 허용하려면 참조하는 StorageClass에서 어떤 속성을 명시적으로 `true`로 설정해야 합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "allowVolumeExpansion",
-        "text_kr": "allowVolumeExpansion"
-      },
-      {
-        "key": "B",
-        "text_en": "dynamicResizeEnabled",
-        "text_kr": "dynamicResizeEnabled"
-      },
-      {
-        "key": "C",
-        "text_en": "autoScaleStorage",
-        "text_kr": "autoScaleStorage"
-      },
-      {
-        "key": "D",
-        "text_en": "expandablePVC",
-        "text_kr": "expandablePVC"
-      }
-    ],
-    "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• `StorageClass` 매니페스트에 `allowVolumeExpansion: true`가 설정되어 있어야 사용자가 기존 PVC의 `spec.resources.requests.storage` 값을 더 큰 값으로 편집하여 볼륨을 온라인으로 확장할 수 있습니다.",
-    "key_concept": "StorageClass allowVolumeExpansion"
-  },
-  {
-    "id": "D5-Q01",
+    "id": "D5-Q001",
     "domain": "Domain 5",
-    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
-    "question_en": "A worker node 'worker-1' shows a status of 'NotReady' in `kubectl get nodes`. You SSH into the node to investigate. Which Linux system commands are most effective to diagnose why the Kubernetes node agent is failing?",
-    "question_kr": "`kubectl get nodes` 실행 시 워커 노드 'worker-1'이 'NotReady' 상태로 표시됩니다. 원인을 조사하기 위해 해당 노드에 SSH로 접속했습니다. 쿠버네티스 노드 에이전트의 실패 원인을 진단하는 데 가장 효과적인 리눅스 시스템 명령어 조합은 무엇입니까?",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'web-frontend-pod' is trapped in 'CrashLoopBackOff' (exit code 1). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'web-frontend-pod'이(가) 'CrashLoopBackOff'(exit code 1) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "systemctl status kubelet and journalctl -u kubelet -n 50 --no-pager",
-        "text_kr": "systemctl status kubelet 및 journalctl -u kubelet -n 50 --no-pager"
+        "text_en": "kubectl logs web-frontend-pod --previous (or -p)",
+        "text_kr": "kubectl logs web-frontend-pod --previous (또는 -p)"
       },
       {
         "key": "B",
-        "text_en": "top and netstat -tuln",
-        "text_kr": "top 및 netstat -tuln"
+        "text_en": "kubectl describe pod web-frontend-pod --show-logs",
+        "text_kr": "kubectl describe pod web-frontend-pod --show-logs"
       },
       {
         "key": "C",
-        "text_en": "cat /var/log/syslog | grep docker",
-        "text_kr": "cat /var/log/syslog | grep docker"
+        "text_en": "kubectl get pod web-frontend-pod --status=crashed",
+        "text_kr": "kubectl get pod web-frontend-pod --status=crashed"
       },
       {
         "key": "D",
-        "text_en": "kubeadm reset --force",
-        "text_kr": "kubeadm reset --force"
+        "text_en": "kubectl exec -it web-frontend-pod -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it web-frontend-pod -- cat /var/log/last-crash.log"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• 워커 노드가 NotReady 상태일 때는 노드의 `kubelet` 서비스 상태를 확인하는 것이 1순위입니다.\n• `systemctl status kubelet`으로 실행 여부를 확인하고, 비정상 종료된 경우 `journalctl -u kubelet -n 50 --no-pager`를 통해 인증서 만료, 설정 파일 오탈자, 컨테이너 런타임 통신 장애 등의 구체적 에러 로그를 확인합니다.",
-    "key_concept": "Node NotReady Diagnosis, kubelet troubleshooting with systemctl & journalctl"
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(syntax error in server configuration)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
   },
   {
-    "id": "D5-Q02",
+    "id": "D5-Q002",
     "domain": "Domain 5",
-    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
-    "question_en": "A newly deployed Pod 'payment-app' immediately crashes and enters the `CrashLoopBackOff` state. How can you inspect the termination log of the container that just crashed prior to the restart?",
-    "question_kr": "새로 배포된 'payment-app' 파드가 기동 직후 비정상 종료되며 `CrashLoopBackOff` 상태로 전환되었습니다. 컨테이너가 재시작되기 직전에 발생하여 비정상 종료를 유발한 이전 컨테이너의 로그를 확인하는 명령어는 무엇입니까?",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'payment-gateway' is trapped in 'CrashLoopBackOff' (exit code 2). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'payment-gateway'이(가) 'CrashLoopBackOff'(exit code 2) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "kubectl logs payment-app --previous",
-        "text_kr": "kubectl logs payment-app --previous"
+        "text_en": "kubectl logs payment-gateway --previous (or -p)",
+        "text_kr": "kubectl logs payment-gateway --previous (또는 -p)"
       },
       {
         "key": "B",
-        "text_en": "kubectl get pod payment-app --watch-crashes",
-        "text_kr": "kubectl get pod payment-app --watch-crashes"
+        "text_en": "kubectl describe pod payment-gateway --show-logs",
+        "text_kr": "kubectl describe pod payment-gateway --show-logs"
       },
       {
         "key": "C",
-        "text_en": "kubectl describe pod payment-app --history",
-        "text_kr": "kubectl describe pod payment-app --history"
+        "text_en": "kubectl get pod payment-gateway --status=crashed",
+        "text_kr": "kubectl get pod payment-gateway --status=crashed"
       },
       {
         "key": "D",
-        "text_en": "cat /var/log/pods/payment-app/crash.log",
-        "text_kr": "cat /var/log/pods/payment-app/crash.log"
+        "text_en": "kubectl exec -it payment-gateway -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it payment-gateway -- cat /var/log/last-crash.log"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 크래시되어 계속 재시작되는 루프에 빠져 있을 때, `kubectl logs <pod-name> --previous` (또는 `-p`) 옵션을 주면 직전에 크래시된 컨테이너의 마지막 표준 출력/에러 로그를 즉시 열람할 수 있습니다.",
-    "key_concept": "CrashLoopBackOff Debugging, kubectl logs --previous (-p)"
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(missing database connection string)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
   },
   {
-    "id": "D5-Q03",
+    "id": "D5-Q003",
     "domain": "Domain 5",
-    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
-    "question_en": "After editing `/etc/kubernetes/manifests/kube-apiserver.yaml` to add a new flag, the control plane stops responding completely and all `kubectl` commands fail with 'The connection to the server was refused'. How can you inspect the API server container errors on the master node?",
-    "question_kr": "새로운 플래그를 추가하기 위해 `/etc/kubernetes/manifests/kube-apiserver.yaml`을 수정한 후, 컨트롤 플레인이 완전히 응답을 멈추고 모든 `kubectl` 명령어가 'The connection to the server was refused' 에러를 반환합니다. 마스터 노드에서 API 서버 컨테이너의 에러 로그를 확인하는 가장 적절한 방법은 무엇입니까?",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'auth-core-pod' is trapped in 'CrashLoopBackOff' (exit code 137). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'auth-core-pod'이(가) 'CrashLoopBackOff'(exit code 137) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Use the container runtime CLI directly, e.g., `crictl ps -a` to find the stopped container ID, followed by `crictl logs <container-id>`.",
-        "text_kr": "컨테이너 런타임 CLI를 직접 사용하여 `crictl ps -a`로 중지된 컨테이너 ID를 확인한 후 `crictl logs <container-id>`를 실행합니다."
+        "text_en": "kubectl logs auth-core-pod --previous (or -p)",
+        "text_kr": "kubectl logs auth-core-pod --previous (또는 -p)"
       },
       {
         "key": "B",
-        "text_en": "Run `kubectl logs kube-apiserver -n kube-system --force`.",
-        "text_kr": "`kubectl logs kube-apiserver -n kube-system --force`를 실행합니다."
+        "text_en": "kubectl describe pod auth-core-pod --show-logs",
+        "text_kr": "kubectl describe pod auth-core-pod --show-logs"
       },
       {
         "key": "C",
-        "text_en": "Reboot the control plane node using `shutdown -r now`.",
-        "text_kr": "`shutdown -r now`로 컨트롤 플레인 노드를 재부팅합니다."
+        "text_en": "kubectl get pod auth-core-pod --status=crashed",
+        "text_kr": "kubectl get pod auth-core-pod --status=crashed"
       },
       {
         "key": "D",
-        "text_en": "Re-run `kubeadm init` over the existing cluster.",
-        "text_kr": "기존 클러스터 위에 `kubeadm init`을 다시 실행합니다."
+        "text_en": "kubectl exec -it auth-core-pod -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it auth-core-pod -- cat /var/log/last-crash.log"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• API 서버 자체가 다운되어 있을 때는 API 서버에 의존하는 `kubectl` 명령어가 전혀 동작하지 않습니다.\n• 따라서 노드 수준의 컨테이너 런타임 인터페이스인 `crictl` 명령(`crictl ps -a`, `crictl logs <ID>`)을 사용하여 API 서버 컨테이너가 어떤 플래그나 문법 오류로 인해 기동 실패했는지 직접 확인해야 합니다.",
-    "key_concept": "API Server Down Diagnosis, Container Runtime crictl ps/logs"
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(out of memory during initialization)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
   },
   {
-    "id": "D5-Q04",
+    "id": "D5-Q004",
     "domain": "Domain 5",
-    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
-    "question_en": "You notice that a Service named 'auth-service' has an active ClusterIP, but any request directed to this service times out. Running `kubectl get endpoints auth-service` shows `<none>`. What is the most likely root cause?",
-    "question_kr": "'auth-service'라는 서비스에 유효한 ClusterIP가 할당되어 있으나, 이 서비스로 보내는 모든 요청이 타임아웃됩니다. `kubectl get endpoints auth-service`를 실행해보니 `<none>`으로 표시됩니다. 가장 유력한 근본 원인은 무엇입니까?",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'api-backend' is trapped in 'CrashLoopBackOff' (exit code 1). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'api-backend'이(가) 'CrashLoopBackOff'(exit code 1) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "The Service's `spec.selector` labels do not match the labels defined in the target Pods' metadata.",
-        "text_kr": "서비스의 `spec.selector` 라벨이 대상 파드의 메타데이터에 정의된 라벨과 일치하지 않습니다."
+        "text_en": "kubectl logs api-backend --previous (or -p)",
+        "text_kr": "kubectl logs api-backend --previous (또는 -p)"
       },
       {
         "key": "B",
-        "text_en": "The node running the pods has run out of disk space.",
-        "text_kr": "파드를 실행 중인 노드의 디스크 공간이 부족합니다."
+        "text_en": "kubectl describe pod api-backend --show-logs",
+        "text_kr": "kubectl describe pod api-backend --show-logs"
       },
       {
         "key": "C",
-        "text_en": "CoreDNS is not running.",
-        "text_kr": "CoreDNS가 실행 중이지 않습니다."
+        "text_en": "kubectl get pod api-backend --status=crashed",
+        "text_kr": "kubectl get pod api-backend --status=crashed"
       },
       {
         "key": "D",
-        "text_en": "ClusterIP services cannot have endpoints.",
-        "text_kr": "ClusterIP 서비스는 엔드포인트를 가질 수 없습니다."
+        "text_en": "kubectl exec -it api-backend -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it api-backend -- cat /var/log/last-crash.log"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 서비스는 `spec.selector`에 정의된 라벨과 일치하는 정상(Ready) 상태의 파드 IP들을 자동으로 수집하여 `Endpoints` 리소스를 구성합니다.\n• 엔드포인트가 `<none>`이라는 것은 서비스의 셀렉터와 파드의 라벨이 불일치(오탈자)하거나, 파드들의 준비성 프로브(Readiness Probe)가 실패하여 트래픽 대상에서 제외되었음을 의미합니다.",
-    "key_concept": "Empty Endpoints (<none>), Service Selector Label Mismatch"
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(port already in use by another process)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
   },
   {
-    "id": "D5-Q05",
+    "id": "D5-Q005",
     "domain": "Domain 5",
-    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
-    "question_en": "A Pod stays in the `ImagePullBackOff` state. In `kubectl describe pod`, the Events section indicates `Failed to pull image ... repository does not exist or may require 'docker login'`. What is required to resolve this issue if the image is stored in a private container registry?",
-    "question_kr": "파드가 `ImagePullBackOff` 상태에 머물러 있습니다. `kubectl describe pod`의 Events 섹션에 `Failed to pull image ... repository does not exist or may require 'docker login'` 메시지가 나타납니다. 해당 이미지가 프라이빗 컨테이너 레지스트리에 저장되어 있는 경우 이 문제를 해결하기 위해 필요한 조치는 무엇입니까?",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'worker-daemon' is trapped in 'CrashLoopBackOff' (exit code 255). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'worker-daemon'이(가) 'CrashLoopBackOff'(exit code 255) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Create a docker-registry Secret containing authentication credentials and reference it in the Pod's `spec.imagePullSecrets`.",
-        "text_kr": "인증 자격 증명을 포함하는 docker-registry Secret을 생성하고 파드의 `spec.imagePullSecrets`에 참조합니다."
+        "text_en": "kubectl logs worker-daemon --previous (or -p)",
+        "text_kr": "kubectl logs worker-daemon --previous (또는 -p)"
       },
       {
         "key": "B",
-        "text_en": "Disable TLS verification in kubelet.",
-        "text_kr": "kubelet의 TLS 검증을 비활성화합니다."
+        "text_en": "kubectl describe pod worker-daemon --show-logs",
+        "text_kr": "kubectl describe pod worker-daemon --show-logs"
       },
       {
         "key": "C",
-        "text_en": "Change the image pull policy to Always.",
-        "text_kr": "이미지 풀 정책(imagePullPolicy)을 Always로 변경합니다."
+        "text_en": "kubectl get pod worker-daemon --status=crashed",
+        "text_kr": "kubectl get pod worker-daemon --status=crashed"
       },
       {
         "key": "D",
-        "text_en": "Grant cluster-admin permissions to the default ServiceAccount.",
-        "text_kr": "default ServiceAccount에 cluster-admin 권한을 부여합니다."
+        "text_en": "kubectl exec -it worker-daemon -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it worker-daemon -- cat /var/log/last-crash.log"
       }
     ],
     "correct_answer": "A",
-    "explanation_kr": "정답은 A입니다.\n\n• 프라이빗 레지스트리 이미지를 가져오려면 `kubectl create secret docker-registry <이름> --docker-server=... --docker-username=... --docker-password=...`로 시크릿을 생성한 후,\n• 파드 스펙의 `spec.imagePullSecrets: [{name: <시크릿이름>}]`에 등록해야 정상적으로 인증 후 이미지를 풀(Pull)할 수 있습니다.",
-    "key_concept": "ImagePullBackOff, Private Registry Secret, imagePullSecrets"
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(failed to acquire distributed redis lock)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
+  },
+  {
+    "id": "D5-Q006",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'catalog-indexer' is trapped in 'CrashLoopBackOff' (exit code 1). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'catalog-indexer'이(가) 'CrashLoopBackOff'(exit code 1) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl logs catalog-indexer --previous (or -p)",
+        "text_kr": "kubectl logs catalog-indexer --previous (또는 -p)"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl describe pod catalog-indexer --show-logs",
+        "text_kr": "kubectl describe pod catalog-indexer --show-logs"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl get pod catalog-indexer --status=crashed",
+        "text_kr": "kubectl get pod catalog-indexer --status=crashed"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl exec -it catalog-indexer -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it catalog-indexer -- cat /var/log/last-crash.log"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(corrupt local Lucene index file)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
+  },
+  {
+    "id": "D5-Q007",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 (Troubleshooting)",
+    "sub_topic": "troubleshoot_crashloopbackoff",
+    "question_en": "A pod named 'notification-hub' is trapped in 'CrashLoopBackOff' (exit code 1). The container restarts immediately after starting. Which command allows you to view the logs of the container from its PREVIOUS crashed instance?",
+    "question_kr": "파드 'notification-hub'이(가) 'CrashLoopBackOff'(exit code 1) 상태에 빠져 기동 직후 즉시 재시작을 반복하고 있습니다. 직전에 크래시가 발생했던 인스턴스의 에러 로그를 확인하기 위한 올바른 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl logs notification-hub --previous (or -p)",
+        "text_kr": "kubectl logs notification-hub --previous (또는 -p)"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl describe pod notification-hub --show-logs",
+        "text_kr": "kubectl describe pod notification-hub --show-logs"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl get pod notification-hub --status=crashed",
+        "text_kr": "kubectl get pod notification-hub --status=crashed"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl exec -it notification-hub -- cat /var/log/last-crash.log",
+        "text_kr": "kubectl exec -it notification-hub -- cat /var/log/last-crash.log"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 기동 직후 종료되어 재시작 루프에 빠진 경우, 현재 실행 중인 컨테이너 로그는 비어있을 수 있습니다.\n• 따라서 `kubectl logs <파드명> -p` (또는 `--previous`) 플래그를 사용하여 직전에 비정상 종료된 컨테이너의 마지막 출력 로그를 확인해야 근본 원인(invalid SSL certificate path)을 파악할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff & previous logs kubectl logs -p"
   }
 ]

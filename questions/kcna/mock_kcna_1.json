@@ -1,1922 +1,1982 @@
 [
   {
-    "id": "kcna-d2-030",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
-    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "kube-proxy",
-        "text_kr": "kube-proxy"
-      },
-      {
-        "key": "B",
-        "text_en": "kubelet",
-        "text_kr": "kubelet"
-      },
-      {
-        "key": "C",
-        "text_en": "containerd-shim",
-        "text_kr": "containerd-shim"
-      },
-      {
-        "key": "D",
-        "text_en": "systemd-networkd",
-        "text_kr": "systemd-networkd"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "kubelet Role",
-    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
-  },
-  {
-    "id": "kcna-d3-026",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
-      },
-      {
-        "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
-      },
-      {
-        "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
-      },
-      {
-        "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
-  },
-  {
-    "id": "kcna-d2-097",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
-    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "The Service is deleted automatically",
-        "text_kr": "서비스가 자동으로 삭제됨"
-      },
-      {
-        "key": "B",
-        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
-        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
-      },
-      {
-        "key": "C",
-        "text_en": "The Service can only be accessed from outside the cluster",
-        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
-      },
-      {
-        "key": "D",
-        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
-        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Headless Service",
-    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
-  },
-  {
-    "id": "kcna-d2-085",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
-    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Deployment",
-        "text_kr": "Deployment"
-      },
-      {
-        "key": "B",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
-      },
-      {
-        "key": "C",
-        "text_en": "CronJob",
-        "text_kr": "CronJob"
-      },
-      {
-        "key": "D",
-        "text_en": "ReplicationController",
-        "text_kr": "ReplicationController"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "StatefulSet Controller",
-    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
-  },
-  {
-    "id": "kcna-d2-015",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
-    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Deployment",
-        "text_kr": "Deployment"
-      },
-      {
-        "key": "B",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
-      },
-      {
-        "key": "C",
-        "text_en": "CronJob",
-        "text_kr": "CronJob"
-      },
-      {
-        "key": "D",
-        "text_en": "ReplicationController",
-        "text_kr": "ReplicationController"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "StatefulSet Controller",
-    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
-  },
-  {
-    "id": "kcna-d4-022",
-    "domain": "Domain 4",
-    "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
-      },
-      {
-        "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
-      },
-      {
-        "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
-      },
-      {
-        "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
-  },
-  {
-    "id": "kcna-d1-050",
+    "id": "kcna-d1-001",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
-  },
-  {
-    "id": "kcna-d5-016",
-    "domain": "Domain 5",
-    "domain_name": "Application Delivery & GitOps (8%)",
-    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
-    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
-      },
-      {
-        "key": "B",
-        "text_en": "Trivy",
-        "text_kr": "Trivy"
-      },
-      {
-        "key": "C",
-        "text_en": "Helm",
-        "text_kr": "Helm"
-      },
-      {
-        "key": "D",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Harbor Registry",
-    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
-    "id": "kcna-d1-042",
+    "id": "kcna-d1-002",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
-    "id": "kcna-d2-064",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
-    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "id": "kcna-d1-003",
+    "domain": "Domain 1",
+    "domain_name": "Cloud Native Architecture (16%)",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "ReplicaSet",
-        "text_kr": "ReplicaSet"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "DaemonSet",
-        "text_kr": "DaemonSet"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Job",
-        "text_kr": "Job"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "DaemonSet Controller",
-    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
-    "id": "kcna-d3-044",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
+    "id": "kcna-d1-004",
+    "domain": "Domain 1",
+    "domain_name": "Cloud Native Architecture (16%)",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-005",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
-  },
-  {
-    "id": "kcna-d2-005",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
-    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Deployment",
-        "text_kr": "Deployment"
-      },
-      {
-        "key": "B",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
-      },
-      {
-        "key": "C",
-        "text_en": "CronJob",
-        "text_kr": "CronJob"
-      },
-      {
-        "key": "D",
-        "text_en": "ReplicationController",
-        "text_kr": "ReplicationController"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "StatefulSet Controller",
-    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
-  },
-  {
-    "id": "kcna-d3-004",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
-      },
-      {
-        "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
-      },
-      {
-        "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
-      },
-      {
-        "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
-  },
-  {
-    "id": "kcna-d2-020",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
-    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "kube-proxy",
-        "text_kr": "kube-proxy"
-      },
-      {
-        "key": "B",
-        "text_en": "kubelet",
-        "text_kr": "kubelet"
-      },
-      {
-        "key": "C",
-        "text_en": "containerd-shim",
-        "text_kr": "containerd-shim"
-      },
-      {
-        "key": "D",
-        "text_en": "systemd-networkd",
-        "text_kr": "systemd-networkd"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "kubelet Role",
-    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
-  },
-  {
-    "id": "kcna-d1-046",
-    "domain": "Domain 1",
-    "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
-      },
-      {
-        "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
-      },
-      {
-        "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
-      },
-      {
-        "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
-  },
-  {
-    "id": "kcna-d2-089",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
-    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
-        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
-      },
-      {
-        "key": "B",
-        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
-        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
-      },
-      {
-        "key": "C",
-        "text_en": "Role is for authentication, while ClusterRole is for encryption",
-        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
-      },
-      {
-        "key": "D",
-        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
-        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "RBAC Scope",
-    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
-  },
-  {
-    "id": "kcna-d2-037",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
-    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "The Service is deleted automatically",
-        "text_kr": "서비스가 자동으로 삭제됨"
-      },
-      {
-        "key": "B",
-        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
-        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
-      },
-      {
-        "key": "C",
-        "text_en": "The Service can only be accessed from outside the cluster",
-        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
-      },
-      {
-        "key": "D",
-        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
-        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Headless Service",
-    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
-  },
-  {
-    "id": "kcna-d3-039",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
-      },
-      {
-        "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
-      },
-      {
-        "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
-      },
-      {
-        "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
-  },
-  {
-    "id": "kcna-d3-013",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
-      },
-      {
-        "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
-      },
-      {
-        "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
-      },
-      {
-        "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
-  },
-  {
-    "id": "kcna-d1-011",
-    "domain": "Domain 1",
-    "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
-      },
-      {
-        "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
-      },
-      {
-        "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
-      },
-      {
-        "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
-  },
-  {
-    "id": "kcna-d2-016",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
-    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "NodePort",
-        "text_kr": "NodePort"
-      },
-      {
-        "key": "B",
-        "text_en": "ClusterIP",
-        "text_kr": "ClusterIP"
-      },
-      {
-        "key": "C",
-        "text_en": "LoadBalancer",
-        "text_kr": "LoadBalancer"
-      },
-      {
-        "key": "D",
-        "text_en": "ExternalName",
-        "text_kr": "ExternalName"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Service ClusterIP",
-    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
-  },
-  {
-    "id": "kcna-d3-017",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux namespace provides an isolated view of the network stack, including network interfaces, IP routing tables, and firewall rules for a container?",
-    "question_kr": "컨테이너에게 네트워크 인터페이스, IP 라우팅 테이블, 방화벽 규칙을 포함한 독립된 네트워크 스택 뷰를 제공하는 리눅스 네임스페이스는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "PID Namespace",
-        "text_kr": "PID 네임스페이스"
-      },
-      {
-        "key": "B",
-        "text_en": "Network (NET) Namespace",
-        "text_kr": "Network (NET) 네임스페이스"
-      },
-      {
-        "key": "C",
-        "text_en": "Mount (MNT) Namespace",
-        "text_kr": "Mount (MNT) 네임스페이스"
-      },
-      {
-        "key": "D",
-        "text_en": "IPC Namespace",
-        "text_kr": "IPC 네임스페이스"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Network Namespace",
-    "explanation_kr": "NET 네임스페이스는 프로세스별로 독립적인 네트워크 디바이스, IP 주소 및 포트 바인딩 공간을 분리하여 컨테이너가 고유한 네트워크 환경을 갖도록 격리합니다."
-  },
-  {
-    "id": "kcna-d2-061",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
-    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "kube-scheduler",
-        "text_kr": "kube-scheduler"
-      },
-      {
-        "key": "B",
-        "text_en": "kube-controller-manager",
-        "text_kr": "kube-controller-manager"
-      },
-      {
-        "key": "C",
-        "text_en": "kube-apiserver",
-        "text_kr": "kube-apiserver"
-      },
-      {
-        "key": "D",
-        "text_en": "kubelet",
-        "text_kr": "kubelet"
-      }
-    ],
-    "correct_answer": "C",
-    "key_concept": "Control Plane Architecture",
-    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
-  },
-  {
-    "id": "kcna-d2-041",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
-    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "kube-scheduler",
-        "text_kr": "kube-scheduler"
-      },
-      {
-        "key": "B",
-        "text_en": "kube-controller-manager",
-        "text_kr": "kube-controller-manager"
-      },
-      {
-        "key": "C",
-        "text_en": "kube-apiserver",
-        "text_kr": "kube-apiserver"
-      },
-      {
-        "key": "D",
-        "text_en": "kubelet",
-        "text_kr": "kubelet"
-      }
-    ],
-    "correct_answer": "C",
-    "key_concept": "Control Plane Architecture",
-    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
-  },
-  {
-    "id": "kcna-d2-018",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes storage object acts as a 'request for storage' with specific capacity and access modes submitted by developers?",
-    "question_kr": "개발자가 특정 용량과 접근 모드를 지정하여 스토리지를 요청하는 '스토리지 요청서' 역할을 하는 쿠버네티스 객체는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "PersistentVolume (PV)",
-        "text_kr": "PersistentVolume (PV)"
-      },
-      {
-        "key": "B",
-        "text_en": "PersistentVolumeClaim (PVC)",
-        "text_kr": "PersistentVolumeClaim (PVC)"
-      },
-      {
-        "key": "C",
-        "text_en": "StorageClass",
-        "text_kr": "StorageClass"
-      },
-      {
-        "key": "D",
-        "text_en": "VolumeAttachment",
-        "text_kr": "VolumeAttachment"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "PVC Concept",
-    "explanation_kr": "PVC(PersistentVolumeClaim)는 사용자의 스토리지 요청서이며, 쿠버네티스는 이를 기반으로 적절한 PV에 자동으로 바인딩합니다."
-  },
-  {
-    "id": "kcna-d2-065",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
-    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Deployment",
-        "text_kr": "Deployment"
-      },
-      {
-        "key": "B",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
-      },
-      {
-        "key": "C",
-        "text_en": "CronJob",
-        "text_kr": "CronJob"
-      },
-      {
-        "key": "D",
-        "text_en": "ReplicationController",
-        "text_kr": "ReplicationController"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "StatefulSet Controller",
-    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
-  },
-  {
-    "id": "kcna-d2-059",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What is the primary difference between a Kubernetes Role and a ClusterRole?",
-    "question_kr": "쿠버네티스 Role과 ClusterRole의 가장 핵심적인 차이점은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Role applies only to nodes, while ClusterRole applies to pods",
-        "text_kr": "Role은 노드에만 적용되고, ClusterRole은 파드에만 적용됨"
-      },
-      {
-        "key": "B",
-        "text_en": "Role is scoped to a specific namespace, whereas ClusterRole is non-namespaced and applies cluster-wide",
-        "text_kr": "Role은 특정 네임스페이스에만 유효한 반면, ClusterRole은 네임스페이스에 국한되지 않고 클러스터 전체에 적용됨"
-      },
-      {
-        "key": "C",
-        "text_en": "Role is for authentication, while ClusterRole is for encryption",
-        "text_kr": "Role은 인증용이고 ClusterRole은 암호화용임"
-      },
-      {
-        "key": "D",
-        "text_en": "ClusterRole cannot be bound to ServiceAccounts",
-        "text_kr": "ClusterRole은 ServiceAccount에 바인딩될 수 없음"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "RBAC Scope",
-    "explanation_kr": "Role은 특정 단일 네임스페이스 내의 권한을 정의하며, ClusterRole은 노드, PV 등의 클러스터 수준 리소스나 모든 네임스페이스에 걸친 권한을 정의합니다."
-  },
-  {
-    "id": "kcna-d2-007",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
-    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "The Service is deleted automatically",
-        "text_kr": "서비스가 자동으로 삭제됨"
-      },
-      {
-        "key": "B",
-        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
-        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
-      },
-      {
-        "key": "C",
-        "text_en": "The Service can only be accessed from outside the cluster",
-        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
-      },
-      {
-        "key": "D",
-        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
-        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Headless Service",
-    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
-  },
-  {
-    "id": "kcna-d4-012",
-    "domain": "Domain 4",
-    "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
-      },
-      {
-        "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
-      },
-      {
-        "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
-      },
-      {
-        "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
-  },
-  {
-    "id": "kcna-d4-027",
-    "domain": "Domain 4",
-    "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "What is OpenTelemetry (OTel) within the CNCF ecosystem?",
-    "question_kr": "CNCF 생태계에서 OpenTelemetry (OTel)는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "A cloud-based relational database engine",
-        "text_kr": "클라우드 기반 관계형 데이터베이스 엔진"
-      },
-      {
-        "key": "B",
-        "text_en": "A vendor-agnostic framework providing unified APIs, SDKs, and tooling to generate and export telemetry data (metrics, logs, traces)",
-        "text_kr": "원격 측정 데이터(메트릭, 로그, 분산 추적)를 수집 및 내보내기 위한 벤더 중립적 통합 API, SDK 및 도구 프레임워크"
-      },
-      {
-        "key": "C",
-        "text_en": "A replacement for the Linux kernel network stack",
-        "text_kr": "리눅스 커널 네트워크 스택의 대체재"
-      },
-      {
-        "key": "D",
-        "text_en": "A container packaging tool similar to Docker buildx",
-        "text_kr": "Docker buildx와 유사한 컨테이너 패키징 도구"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "OpenTelemetry Scope",
-    "explanation_kr": "OpenTelemetry(OTel)는 OpenTracing과 OpenCensus가 통합된 CNCF 프로젝트로, 언어 독립적 방식으로 메트릭/로그/추적 데이터를 수집하는 단일 표준 규격 및 SDK입니다."
-  },
-  {
-    "id": "kcna-d2-022",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
-    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Paxos",
-        "text_kr": "Paxos"
-      },
-      {
-        "key": "B",
-        "text_en": "Raft",
-        "text_kr": "Raft"
-      },
-      {
-        "key": "C",
-        "text_en": "Proof of Work",
-        "text_kr": "Proof of Work"
-      },
-      {
-        "key": "D",
-        "text_en": "Two-Phase Commit (2PC)",
-        "text_kr": "2단계 커밋 (2PC)"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "etcd Consensus",
-    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
-  },
-  {
-    "id": "kcna-d1-023",
-    "domain": "Domain 1",
-    "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
-      },
-      {
-        "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
-      },
-      {
-        "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
-      },
-      {
-        "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
-  },
-  {
-    "id": "kcna-d1-030",
-    "domain": "Domain 1",
-    "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
-      },
-      {
-        "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
-      },
-      {
-        "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
-      },
-      {
-        "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
-  },
-  {
-    "id": "kcna-d3-025",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "What does the acronym CRI stand for in the Kubernetes architecture?",
-    "question_kr": "쿠버네티스 아키텍처에서 CRI의 약어는 무엇을 의미합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Container Routing Interface",
-        "text_kr": "Container Routing Interface"
-      },
-      {
-        "key": "B",
-        "text_en": "Container Runtime Interface",
-        "text_kr": "Container Runtime Interface"
-      },
-      {
-        "key": "C",
-        "text_en": "Cluster Resource Indicator",
-        "text_kr": "Cluster Resource Indicator"
-      },
-      {
-        "key": "D",
-        "text_en": "Cloud Recovery Interface",
-        "text_kr": "Cloud Recovery Interface"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "CRI Definition",
-    "explanation_kr": "CRI는 Container Runtime Interface의 약자로, kubelet이 containerd, CRI-O 등 다양한 컨테이너 런타임과 표준화된 방식으로 통신할 수 있게 해주는 플러그인 API입니다."
-  },
-  {
-    "id": "kcna-d2-021",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes control plane component is the ONLY one that communicates directly with the etcd datastore?",
-    "question_kr": "쿠버네티스 컨트롤 플레인 컴포넌트 중 etcd 데이터 저장소와 직접 통신하는 유일한 컴포넌트는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "kube-scheduler",
-        "text_kr": "kube-scheduler"
-      },
-      {
-        "key": "B",
-        "text_en": "kube-controller-manager",
-        "text_kr": "kube-controller-manager"
-      },
-      {
-        "key": "C",
-        "text_en": "kube-apiserver",
-        "text_kr": "kube-apiserver"
-      },
-      {
-        "key": "D",
-        "text_en": "kubelet",
-        "text_kr": "kubelet"
-      }
-    ],
-    "correct_answer": "C",
-    "key_concept": "Control Plane Architecture",
-    "explanation_kr": "kube-apiserver만이 etcd와 직접 통신하며, 다른 모든 컴포넌트(스케줄러, 컨트롤러, kubelet)는 반드시 apiserver를 경유하여 클러스터 상태를 읽고 씁니다."
-  },
-  {
-    "id": "kcna-d2-082",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
-    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Paxos",
-        "text_kr": "Paxos"
-      },
-      {
-        "key": "B",
-        "text_en": "Raft",
-        "text_kr": "Raft"
-      },
-      {
-        "key": "C",
-        "text_en": "Proof of Work",
-        "text_kr": "Proof of Work"
-      },
-      {
-        "key": "D",
-        "text_en": "Two-Phase Commit (2PC)",
-        "text_kr": "2단계 커밋 (2PC)"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "etcd Consensus",
-    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
-  },
-  {
-    "id": "kcna-d5-012",
-    "domain": "Domain 5",
-    "domain_name": "Application Delivery & GitOps (8%)",
-    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
-    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
-      },
-      {
-        "key": "B",
-        "text_en": "Trivy",
-        "text_kr": "Trivy"
-      },
-      {
-        "key": "C",
-        "text_en": "Helm",
-        "text_kr": "Helm"
-      },
-      {
-        "key": "D",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
-      }
-    ],
-    "correct_answer": "A",
-    "key_concept": "Harbor Registry",
-    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
-  },
-  {
-    "id": "kcna-d2-017",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What happens when a Kubernetes Service is configured with 'clusterIP: None' (Headless Service)?",
-    "question_kr": "쿠버네티스 서비스가 'clusterIP: None' (헤드리스 서비스)으로 설정되면 어떤 현상이 발생합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "The Service is deleted automatically",
-        "text_kr": "서비스가 자동으로 삭제됨"
-      },
-      {
-        "key": "B",
-        "text_en": "No virtual IP is allocated; DNS queries return the individual A/AAAA records of backend Pod IPs directly",
-        "text_kr": "가상 VIP가 할당되지 않으며, DNS 쿼리 시 백엔드 파드들의 개별 IP 주소가 직접 반환됨"
-      },
-      {
-        "key": "C",
-        "text_en": "The Service can only be accessed from outside the cluster",
-        "text_kr": "클러스터 외부에서만 서비스에 접근할 수 있게 됨"
-      },
-      {
-        "key": "D",
-        "text_en": "kube-proxy load balances traffic using round-robin TCP sockets",
-        "text_kr": "kube-proxy가 라운드로빈 TCP 소켓으로 트래픽을 분산함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Headless Service",
-    "explanation_kr": "Headless Service는 가상 IP 없이 DNS 질의 시 엔드포인트 파드들의 실제 IP를 직접 응답하므로, StatefulSet의 피어 검색 및 분산 클러스터링에 필수적입니다."
-  },
-  {
-    "id": "kcna-d5-011",
-    "domain": "Domain 5",
-    "domain_name": "Application Delivery & GitOps (8%)",
-    "question_en": "Which CNCF Graduated projects are widely used as declarative, GitOps continuous delivery tools for Kubernetes?",
-    "question_kr": "쿠버네티스를 위한 선언적 GitOps 지속적 배포(CD) 도구로 널리 사용되는 CNCF Graduated 프로젝트는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Jenkins and TravisCI",
-        "text_kr": "Jenkins 및 TravisCI"
-      },
-      {
-        "key": "B",
-        "text_en": "Argo CD and Flux",
-        "text_kr": "Argo CD 및 Flux"
-      },
-      {
-        "key": "C",
-        "text_en": "Prometheus and Thanos",
-        "text_kr": "Prometheus 및 Thanos"
-      },
-      {
-        "key": "D",
-        "text_en": "Calico and Flannel",
-        "text_kr": "Calico 및 Flannel"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "GitOps Tools",
-    "explanation_kr": "Argo CD와 Flux는 Git 저장소의 매니페스트와 클러스터의 실제 상태를 자동으로 동기화(Reconcile)해주는 CNCF의 대표적인 GitOps 도구입니다."
-  },
-  {
-    "id": "kcna-d5-004",
-    "domain": "Domain 5",
-    "domain_name": "Application Delivery & GitOps (8%)",
-    "question_en": "Which CNCF Graduated project provides an open-source, trusted cloud native container image registry with role-based access control, scanning, and replication?",
-    "question_kr": "역할 기반 접근 제어(RBAC), 취약점 스캐닝, 이미지 복제 기능을 제공하는 CNCF Graduated 오픈소스 컨테이너 이미지 레지스트리는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
-      },
-      {
-        "key": "B",
-        "text_en": "Trivy",
-        "text_kr": "Trivy"
-      },
-      {
-        "key": "C",
-        "text_en": "Helm",
-        "text_kr": "Helm"
-      },
-      {
-        "key": "D",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
-      }
-    ],
-    "correct_answer": "A",
-    "key_concept": "Harbor Registry",
-    "explanation_kr": "Harbor는 엔터프라이즈 환경에서 컨테이너 이미지와 OCI 아티팩트를 안전하게 저장, 스캔 및 관리할 수 있도록 지원하는 CNCF Graduated 레지스트리입니다."
-  },
-  {
-    "id": "kcna-d4-020",
-    "domain": "Domain 4",
-    "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "Which CNCF Graduated project is specifically focused on distributed tracing for monitoring and troubleshooting microservices transactions?",
-    "question_kr": "마이크로서비스 트랜잭션의 모니터링 및 트러블슈팅을 위해 분산 추적(Distributed Tracing)에 특화된 CNCF Graduated 프로젝트는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Jaeger",
-        "text_kr": "Jaeger"
-      },
-      {
-        "key": "B",
-        "text_en": "Fluentd",
-        "text_kr": "Fluentd"
-      },
-      {
-        "key": "C",
-        "text_en": "Grafana",
-        "text_kr": "Grafana"
-      },
-      {
-        "key": "D",
-        "text_en": "Harbor",
-        "text_kr": "Harbor"
-      }
-    ],
-    "correct_answer": "A",
-    "key_concept": "Jaeger Distributed Tracing",
-    "explanation_kr": "Jaeger는 Uber에서 개발되어 CNCF에 기증된 대표적인 오픈소스 분산 추적(Distributed Tracing) 시스템입니다."
-  },
-  {
-    "id": "kcna-d3-006",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
-      },
-      {
-        "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
-      },
-      {
-        "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
-      },
-      {
-        "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-006",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
   },
   {
-    "id": "kcna-d2-092",
+    "id": "kcna-d1-007",
+    "domain": "Domain 1",
+    "domain_name": "Cloud Native Architecture (16%)",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
+      },
+      {
+        "key": "B",
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
+      },
+      {
+        "key": "C",
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
+      },
+      {
+        "key": "D",
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
+  },
+  {
+    "id": "kcna-d1-008",
+    "domain": "Domain 1",
+    "domain_name": "Cloud Native Architecture (16%)",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
+      },
+      {
+        "key": "B",
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
+      },
+      {
+        "key": "C",
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
+      },
+      {
+        "key": "D",
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
+  },
+  {
+    "id": "kcna-d1-009",
+    "domain": "Domain 1",
+    "domain_name": "Cloud Native Architecture (16%)",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
+      },
+      {
+        "key": "B",
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
+      },
+      {
+        "key": "C",
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
+      },
+      {
+        "key": "D",
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
+  },
+  {
+    "id": "kcna-d1-010",
+    "domain": "Domain 1",
+    "domain_name": "Cloud Native Architecture (16%)",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
+      },
+      {
+        "key": "B",
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
+      },
+      {
+        "key": "C",
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
+      },
+      {
+        "key": "D",
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
+  },
+  {
+    "id": "kcna-d2-001",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
-    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 1), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 1)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Paxos",
-        "text_kr": "Paxos"
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
       },
       {
         "key": "B",
-        "text_en": "Raft",
-        "text_kr": "Raft"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "Proof of Work",
-        "text_kr": "Proof of Work"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "Two-Phase Commit (2PC)",
-        "text_kr": "2단계 커밋 (2PC)"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "etcd Consensus",
-    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
-  },
-  {
-    "id": "kcna-d2-090",
-    "domain": "Domain 2",
-    "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which node-level daemon is responsible for registering the node with the API server and executing PodSpecs via the container runtime?",
-    "question_kr": "API 서버에 노드를 등록하고 컨테이너 런타임을 통해 PodSpec에 기술된 컨테이너를 실행 및 관리하는 노드 데몬은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "kube-proxy",
-        "text_kr": "kube-proxy"
-      },
-      {
-        "key": "B",
-        "text_en": "kubelet",
-        "text_kr": "kubelet"
-      },
-      {
-        "key": "C",
-        "text_en": "containerd-shim",
-        "text_kr": "containerd-shim"
-      },
-      {
-        "key": "D",
-        "text_en": "systemd-networkd",
-        "text_kr": "systemd-networkd"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "kubelet Role",
-    "explanation_kr": "kubelet은 각 워커 노드에서 실행되는 핵심 에이전트로, apiserver와 통신하여 파드의 생성, 실행, 상태 보고 및 프로브 점검을 수행합니다."
-  },
-  {
-    "id": "kcna-d4-026",
-    "domain": "Domain 4",
-    "domain_name": "Cloud Native Observability (8%)",
-    "question_en": "By default, which data collection model does Prometheus utilize to collect metrics from target applications?",
-    "question_kr": "기본적으로 프로메테우스(Prometheus)는 대상 애플리케이션으로부터 메트릭을 수집하기 위해 어떤 데이터 수집 모델을 사용합니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Push model (Targets send metrics to Prometheus)",
-        "text_kr": "Push 모델 (대상이 프로메테우스로 메트릭을 능동적으로 전송)"
-      },
-      {
-        "key": "B",
-        "text_en": "Pull model (Prometheus scrapes HTTP endpoints on targets)",
-        "text_kr": "Pull 모델 (프로메테우스가 대상의 HTTP 엔드포인트를 주기적으로 스크랩)"
-      },
-      {
-        "key": "C",
-        "text_en": "Database replication triggers",
-        "text_kr": "데이터베이스 복제 트리거"
-      },
-      {
-        "key": "D",
-        "text_en": "Log file tailing over SSH",
-        "text_kr": "SSH를 통한 로그 파일 테일링"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Prometheus Pull Model",
-    "explanation_kr": "프로메테우스는 중앙 서버가 각 대상의 `/metrics` HTTP 엔드포인트를 주기적으로 호출하여 수집하는 Pull 모델을 기본으로 사용합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
   },
   {
     "id": "kcna-d2-002",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
-    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 2), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 2)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Paxos",
-        "text_kr": "Paxos"
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
       },
       {
         "key": "B",
-        "text_en": "Raft",
-        "text_kr": "Raft"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "Proof of Work",
-        "text_kr": "Proof of Work"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "Two-Phase Commit (2PC)",
-        "text_kr": "2단계 커밋 (2PC)"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "etcd Consensus",
-    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
-  },
-  {
-    "id": "kcna-d3-034",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Linux kernel feature is primarily responsible for limiting the amount of CPU, memory, and I/O resources that a container process can consume?",
-    "question_kr": "컨테이너 프로세스가 소비할 수 있는 CPU, 메모리, I/O 자원의 한도를 제한하는 데 사용되는 리눅스 커널 기능은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Namespaces",
-        "text_kr": "Namespaces (네임스페이스)"
-      },
-      {
-        "key": "B",
-        "text_en": "cgroups (Control Groups)",
-        "text_kr": "cgroups (컨트롤 그룹)"
-      },
-      {
-        "key": "C",
-        "text_en": "Chroot jail",
-        "text_kr": "Chroot jail"
-      },
-      {
-        "key": "D",
-        "text_en": "AppArmor profiles",
-        "text_kr": "AppArmor 프로필"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "Linux cgroups",
-    "explanation_kr": "cgroups(Control Groups)는 프로세스 그룹의 CPU, 메모리, I/O 대역폭 등 하드웨어 자원 상한선을 제어하고 강제하는 리눅스 커널 기술입니다."
-  },
-  {
-    "id": "kcna-d1-044",
-    "domain": "Domain 1",
-    "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which of the following CNCF projects is a Graduated open-source high-performance edge/middle/service proxy designed for cloud native applications?",
-    "question_kr": "다음 CNCF 프로젝트 중 클라우드 네이티브 애플리케이션을 위해 설계된 Graduated 단계의 고성능 에지/서비스 프록시는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
-      },
-      {
-        "key": "B",
-        "text_en": "Apache Tomcat",
-        "text_kr": "Apache Tomcat"
-      },
-      {
-        "key": "C",
-        "text_en": "HAProxy Core",
-        "text_kr": "HAProxy Core"
-      },
-      {
-        "key": "D",
-        "text_en": "SQUID",
-        "text_kr": "SQUID"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Envoy Proxy",
-    "explanation_kr": "Envoy는 C++로 작성된 고성능 서비스 프록시로, 서비스 메시(Istio 등)의 데이터 플레인 및 인그레스 게이트웨이로 널리 사용되는 CNCF Graduated 프로젝트입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
   },
   {
-    "id": "kcna-d3-008",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Which Kubernetes standard plugin interface is responsible for configuring network interfaces, connecting Pods to network namespaces, and assigning IP addresses?",
-    "question_kr": "네트워크 인터페이스를 구성하고 파드를 네트워크 네임스페이스에 연결하며 IP 주소를 할당하는 쿠버네티스 표준 플러그인 인터페이스는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "CSI (Container Storage Interface)",
-        "text_kr": "CSI"
-      },
-      {
-        "key": "B",
-        "text_en": "CNI (Container Network Interface)",
-        "text_kr": "CNI"
-      },
-      {
-        "key": "C",
-        "text_en": "CRI (Container Runtime Interface)",
-        "text_kr": "CRI"
-      },
-      {
-        "key": "D",
-        "text_en": "CPI (Cloud Provider Interface)",
-        "text_kr": "CPI"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "CNI Responsibility",
-    "explanation_kr": "CNI(Container Network Interface)는 파드 생성/삭제 시 네트워크 가상 인터페이스를 연결하고 IPAM(IP 주소 할당)을 수행하는 표준 규격입니다."
-  },
-  {
-    "id": "kcna-d2-056",
+    "id": "kcna-d2-003",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes Service type assigns a virtual cluster-internal IP address that is only reachable from within the cluster?",
-    "question_kr": "클러스터 내부에서만 접근 가능한 가상 내부 IP 주소를 할당하는 쿠버네티스 기본 서비스 유형은 무엇입니까?",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 3), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 3)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "NodePort",
-        "text_kr": "NodePort"
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
       },
       {
         "key": "B",
-        "text_en": "ClusterIP",
-        "text_kr": "ClusterIP"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "LoadBalancer",
-        "text_kr": "LoadBalancer"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "ExternalName",
-        "text_kr": "ExternalName"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Service ClusterIP",
-    "explanation_kr": "ClusterIP는 쿠버네티스 서비스의 기본 유형으로, 클러스터 내부의 마이크로서비스 간 통신을 위한 가상 VIP를 제공합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
   },
   {
-    "id": "kcna-d2-052",
+    "id": "kcna-d2-004",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "What algorithm does etcd use to maintain distributed data consistency across its cluster members?",
-    "question_kr": "etcd가 클러스터 멤버들 간의 분산 데이터 일관성을 유지하기 위해 사용하는 합의 알고리즘은 무엇입니까?",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 4), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 4)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Paxos",
-        "text_kr": "Paxos"
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
       },
       {
         "key": "B",
-        "text_en": "Raft",
-        "text_kr": "Raft"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "Proof of Work",
-        "text_kr": "Proof of Work"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "Two-Phase Commit (2PC)",
-        "text_kr": "2단계 커밋 (2PC)"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "etcd Consensus",
-    "explanation_kr": "etcd는 이해하기 쉽고 장애 복구에 강력한 Raft 합의(Consensus) 알고리즘을 사용하여 분산 일관성을 유지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
   },
   {
-    "id": "kcna-d3-018",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
+    "id": "kcna-d2-005",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 5), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 5)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
       },
       {
         "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
+  },
+  {
+    "id": "kcna-d2-006",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 6), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 6)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
+  },
+  {
+    "id": "kcna-d2-007",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 7), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 7)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
+  },
+  {
+    "id": "kcna-d2-008",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 8), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 8)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
+  },
+  {
+    "id": "kcna-d2-009",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 9), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 9)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
+  },
+  {
+    "id": "kcna-d2-010",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "apiserver_gateway",
+    "question_en": "In Kubernetes Fundamentals (Variant 10), which statement correctly characterizes the role and architecture of 'kube-apiserver'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 10)에서 'kube-apiserver'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It acts as the central REST gatekeeper and the ONLY component communicating with etcd",
+        "text_kr": "acts as the central REST gatekeeper and the ONLY component communicating with etcd"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-apiserver은(는) acts as the central REST gatekeeper and the ONLY component communicating with etcd 역할을 수행합니다.",
+    "key_concept": "kube-apiserver"
+  },
+  {
+    "id": "kcna-d2-011",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 1), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 1)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-012",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 2), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 2)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-013",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 3), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 3)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-014",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 4), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 4)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-015",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 5), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 5)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-016",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 6), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 6)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-017",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 7), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 7)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-018",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 8), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 8)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-019",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 9), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 9)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-020",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "etcd_raft_consensus",
+    "question_en": "In Kubernetes Fundamentals (Variant 10), which statement correctly characterizes the role and architecture of 'etcd Distributed Key-Value Store'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 10)에서 'etcd Distributed Key-Value Store'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1",
+        "text_kr": "uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 etcd Distributed Key-Value Store은(는) uses Raft consensus algorithm requiring quorum Q = floor(N/2) + 1 역할을 수행합니다.",
+    "key_concept": "etcd Distributed Key-Value Store"
+  },
+  {
+    "id": "kcna-d2-021",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 1), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 1)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
+  },
+  {
+    "id": "kcna-d2-022",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 2), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 2)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
+  },
+  {
+    "id": "kcna-d2-023",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 3), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 3)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
   },
   {
     "id": "kcna-d2-024",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
-    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 4), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 4)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "ReplicaSet",
-        "text_kr": "ReplicaSet"
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
       },
       {
         "key": "B",
-        "text_en": "DaemonSet",
-        "text_kr": "DaemonSet"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "Job",
-        "text_kr": "Job"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "DaemonSet Controller",
-    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
   },
   {
-    "id": "kcna-d2-045",
+    "id": "kcna-d2-025",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which workload controller is specifically designed for stateful applications requiring unique network identities, ordered deployment, and dedicated persistent storage?",
-    "question_kr": "고유한 네트워크 식별자, 순차적 배포/종료, 전용 영구 스토리지가 필요한 유상태 애플리케이션을 위해 특별히 설계된 컨트롤러는 무엇입니까?",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 5), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 5)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Deployment",
-        "text_kr": "Deployment"
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
       },
       {
         "key": "B",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "CronJob",
-        "text_kr": "CronJob"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "ReplicationController",
-        "text_kr": "ReplicationController"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "StatefulSet Controller",
-    "explanation_kr": "StatefulSet은 데이터베이스, Kafka, Elasticsearch와 같이 파드 순서(web-0, web-1)와 안정적인 호스트명 및 PV 바인딩이 보존되어야 하는 워크로드에 적합합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
   },
   {
-    "id": "kcna-d3-021",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "Why was the Container Storage Interface (CSI) introduced into Kubernetes?",
-    "question_kr": "쿠버네티스에 Container Storage Interface (CSI)가 도입된 핵심 이유는 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "To replace all local disks with cloud storage",
-        "text_kr": "모든 로컬 디스크를 클라우드 스토리지로 강제 교체하기 위해"
-      },
-      {
-        "key": "B",
-        "text_en": "To allow third-party storage vendors to develop storage drivers out-of-tree without modifying core Kubernetes source code",
-        "text_kr": "서드파티 스토리지 벤더가 쿠버네티스 코어 소스코드를 수정하지 않고도 외부에서 독립적으로 볼륨 드라이버를 개발/배포할 수 있게 하기 위해"
-      },
-      {
-        "key": "C",
-        "text_en": "To speed up container image download times",
-        "text_kr": "컨테이너 이미지 다운로드 속도를 가속하기 위해"
-      },
-      {
-        "key": "D",
-        "text_en": "To eliminate the need for PersistentVolumeClaims",
-        "text_kr": "PersistentVolumeClaim의 필요성을 없애기 위해"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "CSI Out-of-tree Drivers",
-    "explanation_kr": "CSI 이전의 In-tree 스토리지 드라이버는 쿠버네티스 코어에 포함되어 배포 주기가 묶여 있었으나, CSI 도입을 통해 서드파티 벤더가 독립적으로 스토리지 드라이버를 개발할 수 있게 되었습니다."
-  },
-  {
-    "id": "kcna-d3-036",
-    "domain": "Domain 3",
-    "domain_name": "Container Orchestration (22%)",
-    "question_en": "What is the primary role of the Open Container Initiative (OCI)?",
-    "question_kr": "Open Container Initiative (OCI)의 핵심적인 역할은 무엇입니까?",
-    "options": [
-      {
-        "key": "A",
-        "text_en": "To manage commercial cloud computing pricing models",
-        "text_kr": "상용 클라우드 컴퓨팅 가격 정책을 관리함"
-      },
-      {
-        "key": "B",
-        "text_en": "To establish vendor-neutral open industry standards for container image formats and runtime specifications",
-        "text_kr": "컨테이너 이미지 형식 및 런타임 실행 규격에 대한 벤더 중립적 오픈 산업 표준을 제정함"
-      },
-      {
-        "key": "C",
-        "text_en": "To develop the official Kubernetes documentation",
-        "text_kr": "쿠버네티스 공식 문서를 작성함"
-      },
-      {
-        "key": "D",
-        "text_en": "To certify cloud engineers for DevOps positions",
-        "text_kr": "DevOps 엔지니어 자격증을 인증함"
-      }
-    ],
-    "correct_answer": "B",
-    "key_concept": "OCI Standards",
-    "explanation_kr": "OCI는 컨테이너 이미지 형식(Image Spec)과 컨테이너 실행 방식(Runtime Spec)의 글로벌 개방형 표준을 수립하는 조직입니다."
-  },
-  {
-    "id": "kcna-d2-094",
+    "id": "kcna-d2-026",
     "domain": "Domain 2",
     "domain_name": "Kubernetes Fundamentals (46%)",
-    "question_en": "Which Kubernetes controller ensures that a single copy of a Pod is running on every (or selected) worker node in the cluster?",
-    "question_kr": "클러스터의 모든(또는 특정) 워커 노드마다 정확히 하나의 파드가 실행되도록 보장하는 쿠버네티스 컨트롤러는 무엇입니까?",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 6), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 6)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "ReplicaSet",
-        "text_kr": "ReplicaSet"
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
       },
       {
         "key": "B",
-        "text_en": "DaemonSet",
-        "text_kr": "DaemonSet"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "StatefulSet",
-        "text_kr": "StatefulSet"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "Job",
-        "text_kr": "Job"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "DaemonSet Controller",
-    "explanation_kr": "DaemonSet은 로그 수집기(Fluentd), 모니터링 에이전트, 네트워킹 플러그인과 같이 모든 노드에 하나씩 배치되어야 하는 시스템 데몬에 사용됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
   },
   {
-    "id": "kcna-d1-024",
-    "domain": "Domain 1",
-    "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "id": "kcna-d2-027",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 7), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 7)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
+  },
+  {
+    "id": "kcna-d2-028",
+    "domain": "Domain 2",
+    "domain_name": "Kubernetes Fundamentals (46%)",
+    "sub_topic": "kube_scheduler_binding",
+    "question_en": "In Kubernetes Fundamentals (Variant 8), which statement correctly characterizes the role and architecture of 'kube-scheduler'?",
+    "question_kr": "쿠버네티스 핵심 원리(변형 8)에서 'kube-scheduler'의 역할과 아키텍처 특성을 가장 올바르게 기술한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It evaluates filtering and scoring predicates to bind unscheduled pods to nodes",
+        "text_kr": "evaluates filtering and scoring predicates to bind unscheduled pods to nodes"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an optional third-party tool not part of the standard Kubernetes architecture",
+        "text_kr": "표준 쿠버네티스 아키텍처에 포함되지 않는 선택적 서드파티 도구이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It is executed exclusively inside user browser sessions",
+        "text_kr": "오직 사용자 웹 브라우저 세션 내부에서만 실행된다"
+      },
+      {
+        "key": "D",
+        "text_en": "It requires manual intervention for every pod scheduling decision",
+        "text_kr": "모든 파드 스케줄링 결정마다 수동 개입을 필수로 요구한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 핵심 아키텍처에서 kube-scheduler은(는) evaluates filtering and scoring predicates to bind unscheduled pods to nodes 역할을 수행합니다.",
+    "key_concept": "kube-scheduler"
+  },
+  {
+    "id": "kcna-d3-001",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
+  },
+  {
+    "id": "kcna-d3-002",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
+  },
+  {
+    "id": "kcna-d3-003",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
+  },
+  {
+    "id": "kcna-d3-004",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
+  },
+  {
+    "id": "kcna-d3-005",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cri_definition",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Container Runtime Interface (CRI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Container Runtime Interface (CRI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides gRPC interface between kubelet and container runtimes like containerd and CRI-O",
+        "text_kr": "gRPC interface between kubelet and container runtimes like containerd and CRI-O 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Runtime Interface (CRI)은(는) gRPC interface between kubelet and container runtimes like containerd and CRI-O 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Runtime Interface (CRI)"
+  },
+  {
+    "id": "kcna-d3-006",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
+  },
+  {
+    "id": "kcna-d3-007",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
+  },
+  {
+    "id": "kcna-d3-008",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
+  },
+  {
+    "id": "kcna-d3-009",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 4), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 4)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
+  },
+  {
+    "id": "kcna-d3-010",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "oci_standards",
+    "question_en": "In Container Orchestration (Question 5), what is the primary architectural purpose of 'Open Container Initiative (OCI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 5)에서 'Open Container Initiative (OCI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides industry standards for container runtime-spec (runc) and image-spec",
+        "text_kr": "industry standards for container runtime-spec (runc) and image-spec 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Open Container Initiative (OCI)은(는) industry standards for container runtime-spec (runc) and image-spec 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Open Container Initiative (OCI)"
+  },
+  {
+    "id": "kcna-d3-011",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 1), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 1)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
+  },
+  {
+    "id": "kcna-d3-012",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 2), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 2)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
+  },
+  {
+    "id": "kcna-d3-013",
+    "domain": "Domain 3",
+    "domain_name": "Container Orchestration (22%)",
+    "sub_topic": "cni_networking",
+    "question_en": "In Container Orchestration (Question 3), what is the primary architectural purpose of 'Container Network Interface (CNI)'?",
+    "question_kr": "컨테이너 오케스트레이션(문항 3)에서 'Container Network Interface (CNI)'의 주된 아키텍처 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It provides configures pod IP allocation and cross-node overlay network connectivity",
+        "text_kr": "configures pod IP allocation and cross-node overlay network connectivity 기능을 제공한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is used solely for backing up Git source code repositories",
+        "text_kr": "오직 Git 소스 코드 저장소를 백업하기 위해서만 사용된다"
+      },
+      {
+        "key": "C",
+        "text_en": "It converts all container images into monolithic virtual machines",
+        "text_kr": "모든 컨테이너 이미지를 모놀리식 가상 머신으로 변환한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It disables network policies across the entire cluster",
+        "text_kr": "클러스터 전체의 네트워크 정책을 일괄 비활성화한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Container Network Interface (CNI)은(는) configures pod IP allocation and cross-node overlay network connectivity 목적으로 쿠버네티스 및 CNCF 표준에서 사용됩니다.",
+    "key_concept": "Container Network Interface (CNI)"
+  },
+  {
+    "id": "kcna-d4-001",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 1), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 1)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
+  },
+  {
+    "id": "kcna-d4-002",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 2), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 2)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
+  },
+  {
+    "id": "kcna-d4-003",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 3), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 3)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
+  },
+  {
+    "id": "kcna-d4-004",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 4), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 4)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
+  },
+  {
+    "id": "kcna-d4-005",
+    "domain": "Domain 4",
+    "domain_name": "Cloud Native Observability (8%)",
+    "sub_topic": "three_pillars",
+    "question_en": "In Cloud Native Observability (Item 5), which statement accurately defines 'Three Pillars of Observability'?",
+    "question_kr": "클라우드 네이티브 관측 가능성(항목 5)에서 'Three Pillars of Observability'을(를) 가장 정확하게 정의한 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It encompasses Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)",
+        "text_kr": "Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys)을(를) 포괄한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It is an unmonitored system that relies purely on user complaints",
+        "text_kr": "오직 사용자 불만에만 의존하는 모니터링 없는 시스템이다"
+      },
+      {
+        "key": "C",
+        "text_en": "It deletes all system logs automatically every 5 minutes",
+        "text_kr": "5분마다 모든 시스템 로그를 자동으로 영구 삭제한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It only measures the temperature of physical server CPU chips",
+        "text_kr": "물리 서버 CPU 칩의 하드웨어 온도만 측정한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 관측 가능성(Observability) 영역에서 Three Pillars of Observability은(는) Metrics (numerical time-series), Logs (timestamped events), and Traces (request journeys) 핵심 역할을 수행합니다.",
+    "key_concept": "Three Pillars of Observability"
+  },
+  {
+    "id": "kcna-d5-001",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery (8%)",
+    "sub_topic": "gitops_single_source",
+    "question_en": "In Application Delivery & GitOps (Scenario 1), what is the primary role of 'GitOps Single Source of Truth'?",
+    "question_kr": "애플리케이션 배포 및 GitOps(시나리오 1)에서 'GitOps Single Source of Truth'의 핵심 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It ensures Git repository holds the entire declarative desired state of the system",
+        "text_kr": "Git repository holds the entire declarative desired state of the system을(를) 보장한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It bypasses version control and applies changes via manual SSH",
+        "text_kr": "버전 관리를 건너뛰고 수동 SSH 접속을 통해 변경 사항을 적용한다"
+      },
+      {
+        "key": "C",
+        "text_en": "It compiles Java source code directly inside the production Linux kernel",
+        "text_kr": "운영 리눅스 커널 내부에서 Java 코드를 직접 컴파일한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It deletes all Git commit history after every deployment",
+        "text_kr": "배포가 완료될 때마다 모든 Git 커밋 히스토리를 강제 삭제한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• GitOps 및 최신 애플리케이션 배포 파이프라인에서 GitOps Single Source of Truth은(는) Git repository holds the entire declarative desired state of the system 핵심 원칙을 실현합니다.",
+    "key_concept": "GitOps Single Source of Truth"
+  },
+  {
+    "id": "kcna-d5-002",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery (8%)",
+    "sub_topic": "gitops_single_source",
+    "question_en": "In Application Delivery & GitOps (Scenario 2), what is the primary role of 'GitOps Single Source of Truth'?",
+    "question_kr": "애플리케이션 배포 및 GitOps(시나리오 2)에서 'GitOps Single Source of Truth'의 핵심 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It ensures Git repository holds the entire declarative desired state of the system",
+        "text_kr": "Git repository holds the entire declarative desired state of the system을(를) 보장한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It bypasses version control and applies changes via manual SSH",
+        "text_kr": "버전 관리를 건너뛰고 수동 SSH 접속을 통해 변경 사항을 적용한다"
+      },
+      {
+        "key": "C",
+        "text_en": "It compiles Java source code directly inside the production Linux kernel",
+        "text_kr": "운영 리눅스 커널 내부에서 Java 코드를 직접 컴파일한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It deletes all Git commit history after every deployment",
+        "text_kr": "배포가 완료될 때마다 모든 Git 커밋 히스토리를 강제 삭제한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• GitOps 및 최신 애플리케이션 배포 파이프라인에서 GitOps Single Source of Truth은(는) Git repository holds the entire declarative desired state of the system 핵심 원칙을 실현합니다.",
+    "key_concept": "GitOps Single Source of Truth"
+  },
+  {
+    "id": "kcna-d5-003",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery (8%)",
+    "sub_topic": "gitops_single_source",
+    "question_en": "In Application Delivery & GitOps (Scenario 3), what is the primary role of 'GitOps Single Source of Truth'?",
+    "question_kr": "애플리케이션 배포 및 GitOps(시나리오 3)에서 'GitOps Single Source of Truth'의 핵심 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It ensures Git repository holds the entire declarative desired state of the system",
+        "text_kr": "Git repository holds the entire declarative desired state of the system을(를) 보장한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It bypasses version control and applies changes via manual SSH",
+        "text_kr": "버전 관리를 건너뛰고 수동 SSH 접속을 통해 변경 사항을 적용한다"
+      },
+      {
+        "key": "C",
+        "text_en": "It compiles Java source code directly inside the production Linux kernel",
+        "text_kr": "운영 리눅스 커널 내부에서 Java 코드를 직접 컴파일한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It deletes all Git commit history after every deployment",
+        "text_kr": "배포가 완료될 때마다 모든 Git 커밋 히스토리를 강제 삭제한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• GitOps 및 최신 애플리케이션 배포 파이프라인에서 GitOps Single Source of Truth은(는) Git repository holds the entire declarative desired state of the system 핵심 원칙을 실현합니다.",
+    "key_concept": "GitOps Single Source of Truth"
+  },
+  {
+    "id": "kcna-d5-004",
+    "domain": "Domain 5",
+    "domain_name": "Application Delivery (8%)",
+    "sub_topic": "gitops_single_source",
+    "question_en": "In Application Delivery & GitOps (Scenario 4), what is the primary role of 'GitOps Single Source of Truth'?",
+    "question_kr": "애플리케이션 배포 및 GitOps(시나리오 4)에서 'GitOps Single Source of Truth'의 핵심 역할은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It ensures Git repository holds the entire declarative desired state of the system",
+        "text_kr": "Git repository holds the entire declarative desired state of the system을(를) 보장한다"
+      },
+      {
+        "key": "B",
+        "text_en": "It bypasses version control and applies changes via manual SSH",
+        "text_kr": "버전 관리를 건너뛰고 수동 SSH 접속을 통해 변경 사항을 적용한다"
+      },
+      {
+        "key": "C",
+        "text_en": "It compiles Java source code directly inside the production Linux kernel",
+        "text_kr": "운영 리눅스 커널 내부에서 Java 코드를 직접 컴파일한다"
+      },
+      {
+        "key": "D",
+        "text_en": "It deletes all Git commit history after every deployment",
+        "text_kr": "배포가 완료될 때마다 모든 Git 커밋 히스토리를 강제 삭제한다"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• GitOps 및 최신 애플리케이션 배포 파이프라인에서 GitOps Single Source of Truth은(는) Git repository holds the entire declarative desired state of the system 핵심 원칙을 실현합니다.",
+    "key_concept": "GitOps Single Source of Truth"
   }
 ]

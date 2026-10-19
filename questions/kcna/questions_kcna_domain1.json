@@ -3,1600 +3,1650 @@
     "id": "kcna-d1-001",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-002",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-003",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-004",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is a major trade-off and challenge when transitioning from a Monolithic architecture to a Microservices architecture?",
-    "question_kr": "모놀리식 아키텍처에서 마이크로서비스 아키텍처로 전환할 때 마주하게 되는 주요 트레이드오프이자 해결 과제는 무엇입니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Inability to scale individual services independently",
-        "text_kr": "개별 서비스를 독립적으로 확장할 수 없게 됨"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Increased complexity in distributed networking, data consistency, and observability",
-        "text_kr": "분산 네트워크 통신, 분산 데이터 일관성 및 관측 가능성의 복잡성 증가"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Requirement to use a single programming language across all teams",
-        "text_kr": "모든 팀이 단일 프로그래밍 언어를 사용해야 하는 제약"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Longer release cycles for minor bug fixes",
-        "text_kr": "경미한 버그 수정에 소요되는 릴리즈 주기의 장기화"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Microservices Complexity",
-    "explanation_kr": "마이크로서비스는 독립적 확장과 빠른 배포의 장점이 있는 반면, 분산 네트워크 지연, 서비스 간 통신 장애, 분산 트랜잭션 및 모니터링 복잡성이 급격히 증가합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-005",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "12factor_config",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor III (Config)', how should 'storing database credentials and API keys in environment variables' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor III (Config)' 원칙에 따를 때 'storing database credentials and API keys in environment variables'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement storing database credentials and API keys in environment variables using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 storing database credentials and API keys in environment variables을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor III (Config)"
   },
   {
     "id": "kcna-d1-006",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
   },
   {
     "id": "kcna-d1-007",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the CNCF Cloud Native Definition, which of the following is NOT typically considered a foundational cloud native attribute?",
-    "question_kr": "CNCF의 클라우드 네이티브 정의에 따를 때, 다음 중 일반적으로 클라우드 네이티브의 핵심 속성으로 간주되지 않는 것은 무엇입니까?",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Containers and Microservices",
-        "text_kr": "컨테이너 및 마이크로서비스"
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Imperative manual configuration changes on production bare-metal servers",
-        "text_kr": "운영 베어메탈 서버에 대한 명령형 수동 설정 변경"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Declarative APIs and Service Meshes",
-        "text_kr": "선언적 API 및 서비스 메시"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Resilient, manageable, and observable systems",
-        "text_kr": "복원력 있고 관리 및 관측 가능한 시스템"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Cloud Native Attributes",
-    "explanation_kr": "클라우드 네이티브는 수동 변경을 배제하고 자동화된 도구와 선언적 API, 불변 인프라를 지향합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
   },
   {
     "id": "kcna-d1-008",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which of the following CNCF projects is a Graduated open-source high-performance edge/middle/service proxy designed for cloud native applications?",
-    "question_kr": "다음 CNCF 프로젝트 중 클라우드 네이티브 애플리케이션을 위해 설계된 Graduated 단계의 고성능 에지/서비스 프록시는 무엇입니까?",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Apache Tomcat",
-        "text_kr": "Apache Tomcat"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "HAProxy Core",
-        "text_kr": "HAProxy Core"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "SQUID",
-        "text_kr": "SQUID"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Envoy Proxy",
-    "explanation_kr": "Envoy는 C++로 작성된 고성능 서비스 프록시로, 서비스 메시(Istio 등)의 데이터 플레인 및 인그레스 게이트웨이로 널리 사용되는 CNCF Graduated 프로젝트입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
   },
   {
     "id": "kcna-d1-009",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF project provides a vendor-neutral specification for describing event data in common formats to provide interoperability across cloud and serverless platforms?",
-    "question_kr": "클라우드 및 서버리스 플랫폼 간의 상호 운용성을 위해 공통 형식으로 이벤트 데이터를 기술하는 벤더 중립적 규격을 제공하는 CNCF 프로젝트는 무엇입니까?",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CloudEvents",
-        "text_kr": "CloudEvents"
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Kafka Connect",
-        "text_kr": "Kafka Connect"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "RabbitMQ Protocol",
-        "text_kr": "RabbitMQ Protocol"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "gRPC Event Bus",
-        "text_kr": "gRPC Event Bus"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "CloudEvents",
-    "explanation_kr": "CloudEvents는 분산 시스템 및 서버리스 아키텍처에서 이벤트를 일관되게 생성, 라우팅, 소비할 수 있도록 돕는 CNCF 표준 규격입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
   },
   {
     "id": "kcna-d1-010",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
+    "sub_topic": "12factor_disposability",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor IX (Disposability)', how should 'fast startup and graceful shutdown with SIGTERM' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor IX (Disposability)' 원칙에 따를 때 'fast startup and graceful shutdown with SIGTERM'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
+        "text_en": "Implement fast startup and graceful shutdown with SIGTERM using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 fast startup and graceful shutdown with SIGTERM을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IX (Disposability)"
   },
   {
     "id": "kcna-d1-011",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
+    "sub_topic": "12factor_backing_services",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor IV (Backing Services)', how should 'treating databases and queues as attached resources via URL/credentials' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor IV (Backing Services)' 원칙에 따를 때 'treating databases and queues as attached resources via URL/credentials'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
+        "text_en": "Implement treating databases and queues as attached resources via URL/credentials using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 treating databases and queues as attached resources via URL/credentials을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IV (Backing Services)"
   },
   {
     "id": "kcna-d1-012",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
+    "sub_topic": "12factor_backing_services",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor IV (Backing Services)', how should 'treating databases and queues as attached resources via URL/credentials' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor IV (Backing Services)' 원칙에 따를 때 'treating databases and queues as attached resources via URL/credentials'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
+        "text_en": "Implement treating databases and queues as attached resources via URL/credentials using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 treating databases and queues as attached resources via URL/credentials을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IV (Backing Services)"
   },
   {
     "id": "kcna-d1-013",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is a major trade-off and challenge when transitioning from a Monolithic architecture to a Microservices architecture?",
-    "question_kr": "모놀리식 아키텍처에서 마이크로서비스 아키텍처로 전환할 때 마주하게 되는 주요 트레이드오프이자 해결 과제는 무엇입니까?",
+    "sub_topic": "12factor_backing_services",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor IV (Backing Services)', how should 'treating databases and queues as attached resources via URL/credentials' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor IV (Backing Services)' 원칙에 따를 때 'treating databases and queues as attached resources via URL/credentials'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Inability to scale individual services independently",
-        "text_kr": "개별 서비스를 독립적으로 확장할 수 없게 됨"
+        "text_en": "Implement treating databases and queues as attached resources via URL/credentials using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 treating databases and queues as attached resources via URL/credentials을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Increased complexity in distributed networking, data consistency, and observability",
-        "text_kr": "분산 네트워크 통신, 분산 데이터 일관성 및 관측 가능성의 복잡성 증가"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Requirement to use a single programming language across all teams",
-        "text_kr": "모든 팀이 단일 프로그래밍 언어를 사용해야 하는 제약"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Longer release cycles for minor bug fixes",
-        "text_kr": "경미한 버그 수정에 소요되는 릴리즈 주기의 장기화"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Microservices Complexity",
-    "explanation_kr": "마이크로서비스는 독립적 확장과 빠른 배포의 장점이 있는 반면, 분산 네트워크 지연, 서비스 간 통신 장애, 분산 트랜잭션 및 모니터링 복잡성이 급격히 증가합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IV (Backing Services)"
   },
   {
     "id": "kcna-d1-014",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "12factor_backing_services",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor IV (Backing Services)', how should 'treating databases and queues as attached resources via URL/credentials' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor IV (Backing Services)' 원칙에 따를 때 'treating databases and queues as attached resources via URL/credentials'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement treating databases and queues as attached resources via URL/credentials using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 treating databases and queues as attached resources via URL/credentials을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IV (Backing Services)"
   },
   {
     "id": "kcna-d1-015",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "12factor_backing_services",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor IV (Backing Services)', how should 'treating databases and queues as attached resources via URL/credentials' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor IV (Backing Services)' 원칙에 따를 때 'treating databases and queues as attached resources via URL/credentials'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement treating databases and queues as attached resources via URL/credentials using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 treating databases and queues as attached resources via URL/credentials을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor IV (Backing Services)"
   },
   {
     "id": "kcna-d1-016",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the CNCF Cloud Native Definition, which of the following is NOT typically considered a foundational cloud native attribute?",
-    "question_kr": "CNCF의 클라우드 네이티브 정의에 따를 때, 다음 중 일반적으로 클라우드 네이티브의 핵심 속성으로 간주되지 않는 것은 무엇입니까?",
+    "sub_topic": "12factor_build_release_run",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor V (Build, Release, Run)', how should 'strict separation between build, release, and run stages' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor V (Build, Release, Run)' 원칙에 따를 때 'strict separation between build, release, and run stages'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Containers and Microservices",
-        "text_kr": "컨테이너 및 마이크로서비스"
+        "text_en": "Implement strict separation between build, release, and run stages using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 strict separation between build, release, and run stages을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Imperative manual configuration changes on production bare-metal servers",
-        "text_kr": "운영 베어메탈 서버에 대한 명령형 수동 설정 변경"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Declarative APIs and Service Meshes",
-        "text_kr": "선언적 API 및 서비스 메시"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Resilient, manageable, and observable systems",
-        "text_kr": "복원력 있고 관리 및 관측 가능한 시스템"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Cloud Native Attributes",
-    "explanation_kr": "클라우드 네이티브는 수동 변경을 배제하고 자동화된 도구와 선언적 API, 불변 인프라를 지향합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor V (Build, Release, Run)"
   },
   {
     "id": "kcna-d1-017",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which of the following CNCF projects is a Graduated open-source high-performance edge/middle/service proxy designed for cloud native applications?",
-    "question_kr": "다음 CNCF 프로젝트 중 클라우드 네이티브 애플리케이션을 위해 설계된 Graduated 단계의 고성능 에지/서비스 프록시는 무엇입니까?",
+    "sub_topic": "12factor_build_release_run",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor V (Build, Release, Run)', how should 'strict separation between build, release, and run stages' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor V (Build, Release, Run)' 원칙에 따를 때 'strict separation between build, release, and run stages'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
+        "text_en": "Implement strict separation between build, release, and run stages using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 strict separation between build, release, and run stages을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Apache Tomcat",
-        "text_kr": "Apache Tomcat"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "HAProxy Core",
-        "text_kr": "HAProxy Core"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "SQUID",
-        "text_kr": "SQUID"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Envoy Proxy",
-    "explanation_kr": "Envoy는 C++로 작성된 고성능 서비스 프록시로, 서비스 메시(Istio 등)의 데이터 플레인 및 인그레스 게이트웨이로 널리 사용되는 CNCF Graduated 프로젝트입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor V (Build, Release, Run)"
   },
   {
     "id": "kcna-d1-018",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF project provides a vendor-neutral specification for describing event data in common formats to provide interoperability across cloud and serverless platforms?",
-    "question_kr": "클라우드 및 서버리스 플랫폼 간의 상호 운용성을 위해 공통 형식으로 이벤트 데이터를 기술하는 벤더 중립적 규격을 제공하는 CNCF 프로젝트는 무엇입니까?",
+    "sub_topic": "12factor_build_release_run",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor V (Build, Release, Run)', how should 'strict separation between build, release, and run stages' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor V (Build, Release, Run)' 원칙에 따를 때 'strict separation between build, release, and run stages'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CloudEvents",
-        "text_kr": "CloudEvents"
+        "text_en": "Implement strict separation between build, release, and run stages using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 strict separation between build, release, and run stages을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Kafka Connect",
-        "text_kr": "Kafka Connect"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "RabbitMQ Protocol",
-        "text_kr": "RabbitMQ Protocol"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "gRPC Event Bus",
-        "text_kr": "gRPC Event Bus"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "CloudEvents",
-    "explanation_kr": "CloudEvents는 분산 시스템 및 서버리스 아키텍처에서 이벤트를 일관되게 생성, 라우팅, 소비할 수 있도록 돕는 CNCF 표준 규격입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor V (Build, Release, Run)"
   },
   {
     "id": "kcna-d1-019",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
+    "sub_topic": "12factor_build_release_run",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor V (Build, Release, Run)', how should 'strict separation between build, release, and run stages' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor V (Build, Release, Run)' 원칙에 따를 때 'strict separation between build, release, and run stages'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
+        "text_en": "Implement strict separation between build, release, and run stages using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 strict separation between build, release, and run stages을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor V (Build, Release, Run)"
   },
   {
     "id": "kcna-d1-020",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
+    "sub_topic": "12factor_build_release_run",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor V (Build, Release, Run)', how should 'strict separation between build, release, and run stages' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor V (Build, Release, Run)' 원칙에 따를 때 'strict separation between build, release, and run stages'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
+        "text_en": "Implement strict separation between build, release, and run stages using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 strict separation between build, release, and run stages을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor V (Build, Release, Run)"
   },
   {
     "id": "kcna-d1-021",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
+    "sub_topic": "12factor_stateless_processes",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor VI (Processes)', how should 'executing app as stateless processes sharing nothing' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor VI (Processes)' 원칙에 따를 때 'executing app as stateless processes sharing nothing'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
+        "text_en": "Implement executing app as stateless processes sharing nothing using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 executing app as stateless processes sharing nothing을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VI (Processes)"
   },
   {
     "id": "kcna-d1-022",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is a major trade-off and challenge when transitioning from a Monolithic architecture to a Microservices architecture?",
-    "question_kr": "모놀리식 아키텍처에서 마이크로서비스 아키텍처로 전환할 때 마주하게 되는 주요 트레이드오프이자 해결 과제는 무엇입니까?",
+    "sub_topic": "12factor_stateless_processes",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor VI (Processes)', how should 'executing app as stateless processes sharing nothing' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor VI (Processes)' 원칙에 따를 때 'executing app as stateless processes sharing nothing'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Inability to scale individual services independently",
-        "text_kr": "개별 서비스를 독립적으로 확장할 수 없게 됨"
+        "text_en": "Implement executing app as stateless processes sharing nothing using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 executing app as stateless processes sharing nothing을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Increased complexity in distributed networking, data consistency, and observability",
-        "text_kr": "분산 네트워크 통신, 분산 데이터 일관성 및 관측 가능성의 복잡성 증가"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Requirement to use a single programming language across all teams",
-        "text_kr": "모든 팀이 단일 프로그래밍 언어를 사용해야 하는 제약"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Longer release cycles for minor bug fixes",
-        "text_kr": "경미한 버그 수정에 소요되는 릴리즈 주기의 장기화"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Microservices Complexity",
-    "explanation_kr": "마이크로서비스는 독립적 확장과 빠른 배포의 장점이 있는 반면, 분산 네트워크 지연, 서비스 간 통신 장애, 분산 트랜잭션 및 모니터링 복잡성이 급격히 증가합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VI (Processes)"
   },
   {
     "id": "kcna-d1-023",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "12factor_stateless_processes",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor VI (Processes)', how should 'executing app as stateless processes sharing nothing' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor VI (Processes)' 원칙에 따를 때 'executing app as stateless processes sharing nothing'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement executing app as stateless processes sharing nothing using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 executing app as stateless processes sharing nothing을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VI (Processes)"
   },
   {
     "id": "kcna-d1-024",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "12factor_stateless_processes",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor VI (Processes)', how should 'executing app as stateless processes sharing nothing' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor VI (Processes)' 원칙에 따를 때 'executing app as stateless processes sharing nothing'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement executing app as stateless processes sharing nothing using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 executing app as stateless processes sharing nothing을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VI (Processes)"
   },
   {
     "id": "kcna-d1-025",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the CNCF Cloud Native Definition, which of the following is NOT typically considered a foundational cloud native attribute?",
-    "question_kr": "CNCF의 클라우드 네이티브 정의에 따를 때, 다음 중 일반적으로 클라우드 네이티브의 핵심 속성으로 간주되지 않는 것은 무엇입니까?",
+    "sub_topic": "12factor_stateless_processes",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor VI (Processes)', how should 'executing app as stateless processes sharing nothing' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor VI (Processes)' 원칙에 따를 때 'executing app as stateless processes sharing nothing'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Containers and Microservices",
-        "text_kr": "컨테이너 및 마이크로서비스"
+        "text_en": "Implement executing app as stateless processes sharing nothing using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 executing app as stateless processes sharing nothing을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Imperative manual configuration changes on production bare-metal servers",
-        "text_kr": "운영 베어메탈 서버에 대한 명령형 수동 설정 변경"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Declarative APIs and Service Meshes",
-        "text_kr": "선언적 API 및 서비스 메시"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Resilient, manageable, and observable systems",
-        "text_kr": "복원력 있고 관리 및 관측 가능한 시스템"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Cloud Native Attributes",
-    "explanation_kr": "클라우드 네이티브는 수동 변경을 배제하고 자동화된 도구와 선언적 API, 불변 인프라를 지향합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VI (Processes)"
   },
   {
     "id": "kcna-d1-026",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which of the following CNCF projects is a Graduated open-source high-performance edge/middle/service proxy designed for cloud native applications?",
-    "question_kr": "다음 CNCF 프로젝트 중 클라우드 네이티브 애플리케이션을 위해 설계된 Graduated 단계의 고성능 에지/서비스 프록시는 무엇입니까?",
+    "sub_topic": "12factor_port_binding",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor VII (Port Binding)', how should 'exporting services via self-contained port binding' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor VII (Port Binding)' 원칙에 따를 때 'exporting services via self-contained port binding'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
+        "text_en": "Implement exporting services via self-contained port binding using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 exporting services via self-contained port binding을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Apache Tomcat",
-        "text_kr": "Apache Tomcat"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "HAProxy Core",
-        "text_kr": "HAProxy Core"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "SQUID",
-        "text_kr": "SQUID"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Envoy Proxy",
-    "explanation_kr": "Envoy는 C++로 작성된 고성능 서비스 프록시로, 서비스 메시(Istio 등)의 데이터 플레인 및 인그레스 게이트웨이로 널리 사용되는 CNCF Graduated 프로젝트입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VII (Port Binding)"
   },
   {
     "id": "kcna-d1-027",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF project provides a vendor-neutral specification for describing event data in common formats to provide interoperability across cloud and serverless platforms?",
-    "question_kr": "클라우드 및 서버리스 플랫폼 간의 상호 운용성을 위해 공통 형식으로 이벤트 데이터를 기술하는 벤더 중립적 규격을 제공하는 CNCF 프로젝트는 무엇입니까?",
+    "sub_topic": "12factor_port_binding",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor VII (Port Binding)', how should 'exporting services via self-contained port binding' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor VII (Port Binding)' 원칙에 따를 때 'exporting services via self-contained port binding'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CloudEvents",
-        "text_kr": "CloudEvents"
+        "text_en": "Implement exporting services via self-contained port binding using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 exporting services via self-contained port binding을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Kafka Connect",
-        "text_kr": "Kafka Connect"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "RabbitMQ Protocol",
-        "text_kr": "RabbitMQ Protocol"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "gRPC Event Bus",
-        "text_kr": "gRPC Event Bus"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "CloudEvents",
-    "explanation_kr": "CloudEvents는 분산 시스템 및 서버리스 아키텍처에서 이벤트를 일관되게 생성, 라우팅, 소비할 수 있도록 돕는 CNCF 표준 규격입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VII (Port Binding)"
   },
   {
     "id": "kcna-d1-028",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
+    "sub_topic": "12factor_port_binding",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor VII (Port Binding)', how should 'exporting services via self-contained port binding' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor VII (Port Binding)' 원칙에 따를 때 'exporting services via self-contained port binding'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
+        "text_en": "Implement exporting services via self-contained port binding using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 exporting services via self-contained port binding을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VII (Port Binding)"
   },
   {
     "id": "kcna-d1-029",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
+    "sub_topic": "12factor_port_binding",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor VII (Port Binding)', how should 'exporting services via self-contained port binding' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor VII (Port Binding)' 원칙에 따를 때 'exporting services via self-contained port binding'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
+        "text_en": "Implement exporting services via self-contained port binding using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 exporting services via self-contained port binding을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VII (Port Binding)"
   },
   {
     "id": "kcna-d1-030",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
+    "sub_topic": "12factor_port_binding",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor VII (Port Binding)', how should 'exporting services via self-contained port binding' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor VII (Port Binding)' 원칙에 따를 때 'exporting services via self-contained port binding'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
+        "text_en": "Implement exporting services via self-contained port binding using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 exporting services via self-contained port binding을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VII (Port Binding)"
   },
   {
     "id": "kcna-d1-031",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is a major trade-off and challenge when transitioning from a Monolithic architecture to a Microservices architecture?",
-    "question_kr": "모놀리식 아키텍처에서 마이크로서비스 아키텍처로 전환할 때 마주하게 되는 주요 트레이드오프이자 해결 과제는 무엇입니까?",
+    "sub_topic": "12factor_concurrency",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of '12-Factor App Factor VIII (Concurrency)', how should 'scaling out via process model (horizontal scaling)' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 '12-Factor App Factor VIII (Concurrency)' 원칙에 따를 때 'scaling out via process model (horizontal scaling)'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Inability to scale individual services independently",
-        "text_kr": "개별 서비스를 독립적으로 확장할 수 없게 됨"
+        "text_en": "Implement scaling out via process model (horizontal scaling) using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 scaling out via process model (horizontal scaling)을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Increased complexity in distributed networking, data consistency, and observability",
-        "text_kr": "분산 네트워크 통신, 분산 데이터 일관성 및 관측 가능성의 복잡성 증가"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Requirement to use a single programming language across all teams",
-        "text_kr": "모든 팀이 단일 프로그래밍 언어를 사용해야 하는 제약"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Longer release cycles for minor bug fixes",
-        "text_kr": "경미한 버그 수정에 소요되는 릴리즈 주기의 장기화"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Microservices Complexity",
-    "explanation_kr": "마이크로서비스는 독립적 확장과 빠른 배포의 장점이 있는 반면, 분산 네트워크 지연, 서비스 간 통신 장애, 분산 트랜잭션 및 모니터링 복잡성이 급격히 증가합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VIII (Concurrency)"
   },
   {
     "id": "kcna-d1-032",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "12factor_concurrency",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of '12-Factor App Factor VIII (Concurrency)', how should 'scaling out via process model (horizontal scaling)' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 '12-Factor App Factor VIII (Concurrency)' 원칙에 따를 때 'scaling out via process model (horizontal scaling)'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement scaling out via process model (horizontal scaling) using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 scaling out via process model (horizontal scaling)을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VIII (Concurrency)"
   },
   {
     "id": "kcna-d1-033",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "12factor_concurrency",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of '12-Factor App Factor VIII (Concurrency)', how should 'scaling out via process model (horizontal scaling)' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 '12-Factor App Factor VIII (Concurrency)' 원칙에 따를 때 'scaling out via process model (horizontal scaling)'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement scaling out via process model (horizontal scaling) using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 scaling out via process model (horizontal scaling)을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VIII (Concurrency)"
   },
   {
     "id": "kcna-d1-034",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the CNCF Cloud Native Definition, which of the following is NOT typically considered a foundational cloud native attribute?",
-    "question_kr": "CNCF의 클라우드 네이티브 정의에 따를 때, 다음 중 일반적으로 클라우드 네이티브의 핵심 속성으로 간주되지 않는 것은 무엇입니까?",
+    "sub_topic": "12factor_concurrency",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of '12-Factor App Factor VIII (Concurrency)', how should 'scaling out via process model (horizontal scaling)' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 '12-Factor App Factor VIII (Concurrency)' 원칙에 따를 때 'scaling out via process model (horizontal scaling)'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Containers and Microservices",
-        "text_kr": "컨테이너 및 마이크로서비스"
+        "text_en": "Implement scaling out via process model (horizontal scaling) using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 scaling out via process model (horizontal scaling)을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Imperative manual configuration changes on production bare-metal servers",
-        "text_kr": "운영 베어메탈 서버에 대한 명령형 수동 설정 변경"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Declarative APIs and Service Meshes",
-        "text_kr": "선언적 API 및 서비스 메시"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Resilient, manageable, and observable systems",
-        "text_kr": "복원력 있고 관리 및 관측 가능한 시스템"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Cloud Native Attributes",
-    "explanation_kr": "클라우드 네이티브는 수동 변경을 배제하고 자동화된 도구와 선언적 API, 불변 인프라를 지향합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VIII (Concurrency)"
   },
   {
     "id": "kcna-d1-035",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which of the following CNCF projects is a Graduated open-source high-performance edge/middle/service proxy designed for cloud native applications?",
-    "question_kr": "다음 CNCF 프로젝트 중 클라우드 네이티브 애플리케이션을 위해 설계된 Graduated 단계의 고성능 에지/서비스 프록시는 무엇입니까?",
+    "sub_topic": "12factor_concurrency",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of '12-Factor App Factor VIII (Concurrency)', how should 'scaling out via process model (horizontal scaling)' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 '12-Factor App Factor VIII (Concurrency)' 원칙에 따를 때 'scaling out via process model (horizontal scaling)'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
+        "text_en": "Implement scaling out via process model (horizontal scaling) using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 scaling out via process model (horizontal scaling)을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Apache Tomcat",
-        "text_kr": "Apache Tomcat"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "HAProxy Core",
-        "text_kr": "HAProxy Core"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "SQUID",
-        "text_kr": "SQUID"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Envoy Proxy",
-    "explanation_kr": "Envoy는 C++로 작성된 고성능 서비스 프록시로, 서비스 메시(Istio 등)의 데이터 플레인 및 인그레스 게이트웨이로 널리 사용되는 CNCF Graduated 프로젝트입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "12-Factor App Factor VIII (Concurrency)"
   },
   {
     "id": "kcna-d1-036",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF project provides a vendor-neutral specification for describing event data in common formats to provide interoperability across cloud and serverless platforms?",
-    "question_kr": "클라우드 및 서버리스 플랫폼 간의 상호 운용성을 위해 공통 형식으로 이벤트 데이터를 기술하는 벤더 중립적 규격을 제공하는 CNCF 프로젝트는 무엇입니까?",
+    "sub_topic": "cncf_definition",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of 'CNCF Cloud Native Definition', how should 'resilient, manageable, and observable systems using declarative APIs and automation' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 'CNCF Cloud Native Definition' 원칙에 따를 때 'resilient, manageable, and observable systems using declarative APIs and automation'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CloudEvents",
-        "text_kr": "CloudEvents"
+        "text_en": "Implement resilient, manageable, and observable systems using declarative APIs and automation using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 resilient, manageable, and observable systems using declarative APIs and automation을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Kafka Connect",
-        "text_kr": "Kafka Connect"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "RabbitMQ Protocol",
-        "text_kr": "RabbitMQ Protocol"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "gRPC Event Bus",
-        "text_kr": "gRPC Event Bus"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "CloudEvents",
-    "explanation_kr": "CloudEvents는 분산 시스템 및 서버리스 아키텍처에서 이벤트를 일관되게 생성, 라우팅, 소비할 수 있도록 돕는 CNCF 표준 규격입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "CNCF Cloud Native Definition"
   },
   {
     "id": "kcna-d1-037",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
+    "sub_topic": "cncf_definition",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of 'CNCF Cloud Native Definition', how should 'resilient, manageable, and observable systems using declarative APIs and automation' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 'CNCF Cloud Native Definition' 원칙에 따를 때 'resilient, manageable, and observable systems using declarative APIs and automation'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
+        "text_en": "Implement resilient, manageable, and observable systems using declarative APIs and automation using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 resilient, manageable, and observable systems using declarative APIs and automation을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "CNCF Cloud Native Definition"
   },
   {
     "id": "kcna-d1-038",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
+    "sub_topic": "cncf_definition",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of 'CNCF Cloud Native Definition', how should 'resilient, manageable, and observable systems using declarative APIs and automation' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 'CNCF Cloud Native Definition' 원칙에 따를 때 'resilient, manageable, and observable systems using declarative APIs and automation'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
+        "text_en": "Implement resilient, manageable, and observable systems using declarative APIs and automation using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 resilient, manageable, and observable systems using declarative APIs and automation을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "CNCF Cloud Native Definition"
   },
   {
     "id": "kcna-d1-039",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
+    "sub_topic": "cncf_definition",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of 'CNCF Cloud Native Definition', how should 'resilient, manageable, and observable systems using declarative APIs and automation' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 'CNCF Cloud Native Definition' 원칙에 따를 때 'resilient, manageable, and observable systems using declarative APIs and automation'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
+        "text_en": "Implement resilient, manageable, and observable systems using declarative APIs and automation using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 resilient, manageable, and observable systems using declarative APIs and automation을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "CNCF Cloud Native Definition"
   },
   {
     "id": "kcna-d1-040",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is a major trade-off and challenge when transitioning from a Monolithic architecture to a Microservices architecture?",
-    "question_kr": "모놀리식 아키텍처에서 마이크로서비스 아키텍처로 전환할 때 마주하게 되는 주요 트레이드오프이자 해결 과제는 무엇입니까?",
+    "sub_topic": "cncf_definition",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of 'CNCF Cloud Native Definition', how should 'resilient, manageable, and observable systems using declarative APIs and automation' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 'CNCF Cloud Native Definition' 원칙에 따를 때 'resilient, manageable, and observable systems using declarative APIs and automation'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Inability to scale individual services independently",
-        "text_kr": "개별 서비스를 독립적으로 확장할 수 없게 됨"
+        "text_en": "Implement resilient, manageable, and observable systems using declarative APIs and automation using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 resilient, manageable, and observable systems using declarative APIs and automation을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Increased complexity in distributed networking, data consistency, and observability",
-        "text_kr": "분산 네트워크 통신, 분산 데이터 일관성 및 관측 가능성의 복잡성 증가"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Requirement to use a single programming language across all teams",
-        "text_kr": "모든 팀이 단일 프로그래밍 언어를 사용해야 하는 제약"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Longer release cycles for minor bug fixes",
-        "text_kr": "경미한 버그 수정에 소요되는 릴리즈 주기의 장기화"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Microservices Complexity",
-    "explanation_kr": "마이크로서비스는 독립적 확장과 빠른 배포의 장점이 있는 반면, 분산 네트워크 지연, 서비스 간 통신 장애, 분산 트랜잭션 및 모니터링 복잡성이 급격히 증가합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "CNCF Cloud Native Definition"
   },
   {
     "id": "kcna-d1-041",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "immutable_infrastructure",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of 'Immutable Infrastructure', how should 'replacing servers/containers entirely rather than patching in-place' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 'Immutable Infrastructure' 원칙에 따를 때 'replacing servers/containers entirely rather than patching in-place'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement replacing servers/containers entirely rather than patching in-place using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 replacing servers/containers entirely rather than patching in-place을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Immutable Infrastructure"
   },
   {
     "id": "kcna-d1-042",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF maturity level indicates that a project has achieved formal security audits, widespread industry adoption, and the highest level of governance?",
-    "question_kr": "어떤 CNCF 성숙도 단계가 해당 프로젝트가 공식 보안 감사를 통과하고, 광범위한 산업 채택을 달성했으며, 최고 수준의 거버넌스를 갖추었음을 나타냅니까?",
+    "sub_topic": "immutable_infrastructure",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of 'Immutable Infrastructure', how should 'replacing servers/containers entirely rather than patching in-place' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 'Immutable Infrastructure' 원칙에 따를 때 'replacing servers/containers entirely rather than patching in-place'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Sandbox",
-        "text_kr": "Sandbox (샌드박스)"
+        "text_en": "Implement replacing servers/containers entirely rather than patching in-place using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 replacing servers/containers entirely rather than patching in-place을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Incubating",
-        "text_kr": "Incubating (인큐베이팅)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Graduated",
-        "text_kr": "Graduated (정식 졸업)"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Archived",
-        "text_kr": "Archived (보관됨)"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "C",
-    "key_concept": "CNCF Graduated Level",
-    "explanation_kr": "CNCF의 Graduated 단계는 프로덕션 환경에서 엄격히 검증되고 거버넌스와 보안 감사를 통과한 최상위 성숙도 프로젝트(Kubernetes, Prometheus, Envoy 등)에 부여됩니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Immutable Infrastructure"
   },
   {
     "id": "kcna-d1-043",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the CNCF Cloud Native Definition, which of the following is NOT typically considered a foundational cloud native attribute?",
-    "question_kr": "CNCF의 클라우드 네이티브 정의에 따를 때, 다음 중 일반적으로 클라우드 네이티브의 핵심 속성으로 간주되지 않는 것은 무엇입니까?",
+    "sub_topic": "immutable_infrastructure",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of 'Immutable Infrastructure', how should 'replacing servers/containers entirely rather than patching in-place' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 'Immutable Infrastructure' 원칙에 따를 때 'replacing servers/containers entirely rather than patching in-place'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Containers and Microservices",
-        "text_kr": "컨테이너 및 마이크로서비스"
+        "text_en": "Implement replacing servers/containers entirely rather than patching in-place using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 replacing servers/containers entirely rather than patching in-place을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Imperative manual configuration changes on production bare-metal servers",
-        "text_kr": "운영 베어메탈 서버에 대한 명령형 수동 설정 변경"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Declarative APIs and Service Meshes",
-        "text_kr": "선언적 API 및 서비스 메시"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Resilient, manageable, and observable systems",
-        "text_kr": "복원력 있고 관리 및 관측 가능한 시스템"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Cloud Native Attributes",
-    "explanation_kr": "클라우드 네이티브는 수동 변경을 배제하고 자동화된 도구와 선언적 API, 불변 인프라를 지향합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Immutable Infrastructure"
   },
   {
     "id": "kcna-d1-044",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which of the following CNCF projects is a Graduated open-source high-performance edge/middle/service proxy designed for cloud native applications?",
-    "question_kr": "다음 CNCF 프로젝트 중 클라우드 네이티브 애플리케이션을 위해 설계된 Graduated 단계의 고성능 에지/서비스 프록시는 무엇입니까?",
+    "sub_topic": "immutable_infrastructure",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of 'Immutable Infrastructure', how should 'replacing servers/containers entirely rather than patching in-place' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 'Immutable Infrastructure' 원칙에 따를 때 'replacing servers/containers entirely rather than patching in-place'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Envoy",
-        "text_kr": "Envoy"
+        "text_en": "Implement replacing servers/containers entirely rather than patching in-place using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 replacing servers/containers entirely rather than patching in-place을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Apache Tomcat",
-        "text_kr": "Apache Tomcat"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "HAProxy Core",
-        "text_kr": "HAProxy Core"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "SQUID",
-        "text_kr": "SQUID"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "Envoy Proxy",
-    "explanation_kr": "Envoy는 C++로 작성된 고성능 서비스 프록시로, 서비스 메시(Istio 등)의 데이터 플레인 및 인그레스 게이트웨이로 널리 사용되는 CNCF Graduated 프로젝트입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Immutable Infrastructure"
   },
   {
     "id": "kcna-d1-045",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which CNCF project provides a vendor-neutral specification for describing event data in common formats to provide interoperability across cloud and serverless platforms?",
-    "question_kr": "클라우드 및 서버리스 플랫폼 간의 상호 운용성을 위해 공통 형식으로 이벤트 데이터를 기술하는 벤더 중립적 규격을 제공하는 CNCF 프로젝트는 무엇입니까?",
+    "sub_topic": "immutable_infrastructure",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of 'Immutable Infrastructure', how should 'replacing servers/containers entirely rather than patching in-place' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 'Immutable Infrastructure' 원칙에 따를 때 'replacing servers/containers entirely rather than patching in-place'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "CloudEvents",
-        "text_kr": "CloudEvents"
+        "text_en": "Implement replacing servers/containers entirely rather than patching in-place using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 replacing servers/containers entirely rather than patching in-place을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Kafka Connect",
-        "text_kr": "Kafka Connect"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "RabbitMQ Protocol",
-        "text_kr": "RabbitMQ Protocol"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "gRPC Event Bus",
-        "text_kr": "gRPC Event Bus"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
     "correct_answer": "A",
-    "key_concept": "CloudEvents",
-    "explanation_kr": "CloudEvents는 분산 시스템 및 서버리스 아키텍처에서 이벤트를 일관되게 생성, 라우팅, 소비할 수 있도록 돕는 CNCF 표준 규격입니다."
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Immutable Infrastructure"
   },
   {
     "id": "kcna-d1-046",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "According to the 12-Factor App methodology, where should application configurations such as database credentials and API endpoints be stored?",
-    "question_kr": "12-Factor App 방법론에 따르면 데이터베이스 자격 증명 및 API 엔드포인트와 같은 애플리케이션 설정은 어디에 저장되어야 합니까?",
+    "sub_topic": "serverless_knative",
+    "question_en": "In Cloud Native Architecture (Scenario 1), according to the principles of 'Serverless & Knative Architecture', how should 'event-driven architecture with scale-to-zero capability' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 1)에서 'Serverless & Knative Architecture' 원칙에 따를 때 'event-driven architecture with scale-to-zero capability'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Hardcoded inside the application source code files",
-        "text_kr": "애플리케이션 소스 코드 파일 내부에 하드코딩"
+        "text_en": "Implement event-driven architecture with scale-to-zero capability using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 event-driven architecture with scale-to-zero capability을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "In environment variables injected into the execution environment",
-        "text_kr": "실행 환경에 주입되는 환경 변수 (ConfigMap/Secret)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "In a local configuration file committed to the Git repository",
-        "text_kr": "Git 저장소에 커밋된 로컬 설정 파일"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Directly inside the container image layer during Docker build",
-        "text_kr": "Docker 빌드 시 컨테이너 이미지 레이어 내부에 직접 기록"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "12-Factor Config (Factor III)",
-    "explanation_kr": "12-Factor의 Factor III(Config)에 따르면 환경마다 달라질 수 있는 모든 설정은 코드와 엄격히 분리되어 환경 변수를 통해 주입되어야 합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Serverless & Knative Architecture"
   },
   {
     "id": "kcna-d1-047",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "Which 12-Factor principle states that applications should maximize robustness with fast startup and graceful shutdown?",
-    "question_kr": "빠른 시작과 우아한 종료(Graceful Shutdown)를 통해 애플리케이션의 견고성을 극대화해야 한다고 명시하는 12-Factor 원칙은 무엇입니까?",
+    "sub_topic": "serverless_knative",
+    "question_en": "In Cloud Native Architecture (Scenario 2), according to the principles of 'Serverless & Knative Architecture', how should 'event-driven architecture with scale-to-zero capability' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 2)에서 'Serverless & Knative Architecture' 원칙에 따를 때 'event-driven architecture with scale-to-zero capability'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Factor VI: Stateless Processes",
-        "text_kr": "Factor VI: 무상태 프로세스"
+        "text_en": "Implement event-driven architecture with scale-to-zero capability using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 event-driven architecture with scale-to-zero capability을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Factor IX: Disposability",
-        "text_kr": "Factor IX: 폐기 가능성 (Disposability)"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Factor VII: Port Binding",
-        "text_kr": "Factor VII: 포트 바인딩"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Factor IV: Backing Services",
-        "text_kr": "Factor IV: 지원 서비스"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Disposability (Factor IX)",
-    "explanation_kr": "Factor IX(폐기 가능성)는 프로세스가 SIGTERM 수신 시 진행 중인 작업을 정리하고 신속하게 종료될 수 있어야 함을 요구합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Serverless & Knative Architecture"
   },
   {
     "id": "kcna-d1-048",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is the primary defining characteristic of an 'Immutable Infrastructure' approach in Cloud Native environments?",
-    "question_kr": "클라우드 네이티브 환경에서 '불변 인프라(Immutable Infrastructure)' 접근 방식의 가장 핵심적인 정의 특징은 무엇입니까?",
+    "sub_topic": "serverless_knative",
+    "question_en": "In Cloud Native Architecture (Scenario 3), according to the principles of 'Serverless & Knative Architecture', how should 'event-driven architecture with scale-to-zero capability' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 3)에서 'Serverless & Knative Architecture' 원칙에 따를 때 'event-driven architecture with scale-to-zero capability'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Running servers and containers are patched directly in-place via SSH",
-        "text_kr": "실행 중인 서버 및 컨테이너를 SSH를 통해 인플레이스로 직접 패치함"
+        "text_en": "Implement event-driven architecture with scale-to-zero capability using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 event-driven architecture with scale-to-zero capability을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Infrastructure and containers are never modified after deployment; updates require deploying completely new images",
-        "text_kr": "배포 후 인프라와 컨테이너를 직접 수정하지 않으며, 변경 필요 시 완전히 새로운 이미지를 배포하여 교체함"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Data in databases cannot be updated or deleted",
-        "text_kr": "데이터베이스의 데이터는 절대 업데이트되거나 삭제될 수 없음"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Source code is compiled into binaries that cannot be reversed",
-        "text_kr": "소스 코드가 역컴파일되지 않는 바이너리로 컴파일됨"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Immutable Infrastructure",
-    "explanation_kr": "불변 인프라는 운영 중인 인스턴스를 수정하지 않고, 항상 새로운 이미지/컨테이너로 전체를 대체 배포하여 형상 불일치(Configuration Drift)를 원천 방지합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Serverless & Knative Architecture"
   },
   {
     "id": "kcna-d1-049",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What is a major trade-off and challenge when transitioning from a Monolithic architecture to a Microservices architecture?",
-    "question_kr": "모놀리식 아키텍처에서 마이크로서비스 아키텍처로 전환할 때 마주하게 되는 주요 트레이드오프이자 해결 과제는 무엇입니까?",
+    "sub_topic": "serverless_knative",
+    "question_en": "In Cloud Native Architecture (Scenario 4), according to the principles of 'Serverless & Knative Architecture', how should 'event-driven architecture with scale-to-zero capability' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 4)에서 'Serverless & Knative Architecture' 원칙에 따를 때 'event-driven architecture with scale-to-zero capability'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Inability to scale individual services independently",
-        "text_kr": "개별 서비스를 독립적으로 확장할 수 없게 됨"
+        "text_en": "Implement event-driven architecture with scale-to-zero capability using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 event-driven architecture with scale-to-zero capability을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Increased complexity in distributed networking, data consistency, and observability",
-        "text_kr": "분산 네트워크 통신, 분산 데이터 일관성 및 관측 가능성의 복잡성 증가"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Requirement to use a single programming language across all teams",
-        "text_kr": "모든 팀이 단일 프로그래밍 언어를 사용해야 하는 제약"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Longer release cycles for minor bug fixes",
-        "text_kr": "경미한 버그 수정에 소요되는 릴리즈 주기의 장기화"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Microservices Complexity",
-    "explanation_kr": "마이크로서비스는 독립적 확장과 빠른 배포의 장점이 있는 반면, 분산 네트워크 지연, 서비스 간 통신 장애, 분산 트랜잭션 및 모니터링 복잡성이 급격히 증가합니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Serverless & Knative Architecture"
   },
   {
     "id": "kcna-d1-050",
     "domain": "Domain 1",
     "domain_name": "Cloud Native Architecture (16%)",
-    "question_en": "What does the 'Scale-to-Zero' capability in a Serverless (FaaS) platform refer to?",
-    "question_kr": "서버리스(FaaS) 플랫폼에서 'Scale-to-Zero (0으로 축소)' 기능이 의미하는 것은 무엇입니까?",
+    "sub_topic": "serverless_knative",
+    "question_en": "In Cloud Native Architecture (Scenario 5), according to the principles of 'Serverless & Knative Architecture', how should 'event-driven architecture with scale-to-zero capability' be implemented?",
+    "question_kr": "클라우드 네이티브 아키텍처(시나리오 5)에서 'Serverless & Knative Architecture' 원칙에 따를 때 'event-driven architecture with scale-to-zero capability'을(를) 어떻게 구현해야 합니까?",
     "options": [
       {
         "key": "A",
-        "text_en": "Scaling container CPU usage to 0% while keeping instances alive",
-        "text_kr": "인스턴스를 유지한 상태에서 컨테이너의 CPU 사용량을 0%로 줄임"
+        "text_en": "Implement event-driven architecture with scale-to-zero capability using declarative configurations decoupled from code",
+        "text_kr": "코드와 분리된 선언적 설정을 사용하여 event-driven architecture with scale-to-zero capability을(를) 구현한다"
       },
       {
         "key": "B",
-        "text_en": "Automatically terminating all active instances when there is no incoming traffic to eliminate idle costs",
-        "text_kr": "유입되는 트래픽이 없을 때 유휴 비용을 없애기 위해 모든 활성 인스턴스를 자동으로 종료하여 0개로 만듦"
+        "text_en": "Hardcode all credentials directly into the application binary",
+        "text_kr": "모든 자격 증명을 애플리케이션 바이너리 내부에 직접 하드코딩한다"
       },
       {
         "key": "C",
-        "text_en": "Reducing storage usage to zero by deleting database records",
-        "text_kr": "데이터베이스 레코드를 삭제하여 스토리지 사용량을 0으로 줄임"
+        "text_en": "Rely on manual SSH logins to modify server configurations in production",
+        "text_kr": "운영 환경에서 수동 SSH 접속을 통해 서버 설정을 직접 수정한다"
       },
       {
         "key": "D",
-        "text_en": "Scaling network bandwidth down to zero bits per second",
-        "text_kr": "네트워크 대역폭을 초당 0비트로 축소함"
+        "text_en": "Deploy as a monolithic single-instance server that cannot be scaled",
+        "text_kr": "스케일링이 불가능한 단일 모놀리식 서버로 배포한다"
       }
     ],
-    "correct_answer": "B",
-    "key_concept": "Scale-to-Zero",
-    "explanation_kr": "서버리스 환경에서 Scale-to-Zero는 요청이 없을 때 컨테이너 인스턴스를 0개로 축소하여 유휴 리소스 비용을 0으로 만드는 핵심 메커니즘입니다."
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 클라우드 네이티브 12-Factor 및 CNCF 표준에서는 환경 간 독립성, 선언적 명세, 불변 인프라(Immutable Infrastructure)를 엄격히 준수합니다.",
+    "key_concept": "Serverless & Knative Architecture"
   }
 ]

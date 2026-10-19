@@ -53,6 +53,7 @@ class K8sCBTSimulator {
     // 문제 표시 컴포넌트
     this.qCounter = document.getElementById('q-counter');
     this.qDomain = document.getElementById('q-domain');
+    this.qSubTopic = document.getElementById('q-subtopic');
     this.toggleFlagBtn = document.getElementById('toggle-flag-btn');
     this.flagText = document.getElementById('flag-text');
     this.toggleTransBtn = document.getElementById('toggle-trans-btn');
@@ -235,6 +236,61 @@ class K8sCBTSimulator {
     };
   }
 
+  /**
+   * 세부 문제 유형(sub_topic)별로 1문항씩 균등 분배 추출하여
+   * 유사 문제나 동일 질문/답 중복 출제를 원천 차단하는 알고리즘
+   */
+  sampleDiverseQuestions(pool, targetCount) {
+    if (!pool || pool.length === 0) return [];
+    if (targetCount === 'all' || pool.length <= targetCount) {
+      return this.shuffleArray(pool);
+    }
+
+    const count = parseInt(targetCount, 10);
+
+    // 1. sub_topic 별로 문제 그룹화
+    const topicMap = {};
+    pool.forEach(q => {
+      const topic = q.sub_topic || q.key_concept || 'general';
+      if (!topicMap[topic]) topicMap[topic] = [];
+      topicMap[topic].push(q);
+    });
+
+    // 각 sub_topic 내의 문제들을 셔플
+    Object.keys(topicMap).forEach(k => {
+      topicMap[k] = this.shuffleArray(topicMap[k]);
+    });
+
+    const topics = this.shuffleArray(Object.keys(topicMap));
+    const selected = [];
+    const seenQuestionTexts = new Set();
+    const seenIds = new Set();
+
+    // 2. 라운드로빈 방식으로 각 sub_topic 당 1문제씩만 우선 추출 (항목별 1개 원칙)
+    let round = 0;
+    while (selected.length < count) {
+      let addedInThisRound = 0;
+      for (const topic of topics) {
+        if (selected.length >= count) break;
+        const qList = topicMap[topic];
+        if (qList && qList.length > round) {
+          const q = qList[round];
+          const textKey = (q.question_en || '').trim();
+          if (!seenIds.has(q.id) && !seenQuestionTexts.has(textKey)) {
+            selected.push(q);
+            seenIds.add(q.id);
+            seenQuestionTexts.add(textKey);
+            addedInThisRound++;
+          }
+        }
+      }
+      round++;
+      if (addedInThisRound === 0) break;
+    }
+
+    return this.shuffleArray(selected);
+  }
+
   sampleMockExam(examCount) {
     const data = window.EXAM_DATA || {};
 
@@ -257,13 +313,13 @@ class K8sCBTSimulator {
       const c4 = Math.round(count * 0.08);
       const c5 = count - (c2 + c3 + c1 + c4);
 
-      const s1 = this.shuffleArray(d1).slice(0, c1);
-      const s2 = this.shuffleArray(d2).slice(0, c2);
-      const s3 = this.shuffleArray(d3).slice(0, c3);
-      const s4 = this.shuffleArray(d4).slice(0, c4);
-      const s5 = this.shuffleArray(d5).slice(0, c5);
+      const s1 = this.sampleDiverseQuestions(d1, c1);
+      const s2 = this.sampleDiverseQuestions(d2, c2);
+      const s3 = this.sampleDiverseQuestions(d3, c3);
+      const s4 = this.sampleDiverseQuestions(d4, c4);
+      const s5 = this.sampleDiverseQuestions(d5, c5);
 
-      return [...s1, ...s2, ...s3, ...s4, ...s5];
+      return this.shuffleArray([...s1, ...s2, ...s3, ...s4, ...s5]);
     }
 
     // CKA 샘플링 (D1: 25%, D2: 15%, D3: 20%, D4: 10%, D5: 30%)
@@ -284,13 +340,13 @@ class K8sCBTSimulator {
     const c4 = Math.round(count * 0.10);
     const c5 = count - (c1 + c2 + c3 + c4);
 
-    const s1 = this.shuffleArray(d1).slice(0, c1);
-    const s2 = this.shuffleArray(d2).slice(0, c2);
-    const s3 = this.shuffleArray(d3).slice(0, c3);
-    const s4 = this.shuffleArray(d4).slice(0, c4);
-    const s5 = this.shuffleArray(d5).slice(0, c5);
+    const s1 = this.sampleDiverseQuestions(d1, c1);
+    const s2 = this.sampleDiverseQuestions(d2, c2);
+    const s3 = this.sampleDiverseQuestions(d3, c3);
+    const s4 = this.sampleDiverseQuestions(d4, c4);
+    const s5 = this.sampleDiverseQuestions(d5, c5);
 
-    return [...s1, ...s2, ...s3, ...s4, ...s5];
+    return this.shuffleArray([...s1, ...s2, ...s3, ...s4, ...s5]);
   }
 
   async startExamFromSettings() {
@@ -310,20 +366,17 @@ class K8sCBTSimulator {
     let questionList = [];
     const isGitHubPages = window.location.hostname.includes('github.io');
 
-    // 1순위: window.EXAM_DATA 가 로드되어 있는 경우 즉시 번들에서 추출 (0ms 지연 없이 오픈)
+    // 1순위: window.EXAM_DATA 가 로드되어 있는 경우 즉시 세부 유형별 균등 추출 (중복 출제 0% 보장)
     if (window.EXAM_DATA) {
       if (this.selectedExamSet === 'mock_random' || this.selectedExamSet === 'mock1' || this.selectedExamSet === 'kcna_mock_random' || this.selectedExamSet === 'kcna_mock1') {
         questionList = this.sampleMockExam(examCount);
       } else if (window.EXAM_DATA[this.selectedExamSet]) {
         let pool = [...window.EXAM_DATA[this.selectedExamSet]];
-        if (shouldShuffleQuestions) {
-          pool = this.shuffleArray(pool);
-        }
         if (examCount !== 'all') {
           const limit = parseInt(examCount, 10) || (this.currentTrack === 'kcna' ? 60 : 25);
-          questionList = pool.slice(0, limit);
+          questionList = this.sampleDiverseQuestions(pool, limit);
         } else {
-          questionList = pool;
+          questionList = shouldShuffleQuestions ? this.shuffleArray(pool) : pool;
         }
       }
     }
@@ -510,6 +563,11 @@ class K8sCBTSimulator {
 
     this.qCounter.textContent = `Question ${this.currentIndex + 1} of ${this.questions.length}`;
     this.qDomain.textContent = q.domain_name || q.domain || 'Domain';
+
+    if (this.qSubTopic) {
+      const topicText = q.sub_topic ? `📌 유형: ${q.sub_topic}` : (q.key_concept ? `📌 ${q.key_concept}` : '핵심 유형');
+      this.qSubTopic.textContent = topicText;
+    }
 
     // 플래그 상태
     if (this.flaggedQuestions.has(q.id)) {
