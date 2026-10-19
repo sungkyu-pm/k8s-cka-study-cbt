@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes Administrator (CKA) CBT Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 최상단 글로벌 헤더 -->
+  <header class="app-header">
+    <div class="logo-area">
+      <span class="k8s-badge">CNCF CERTIFIED</span>
+      <h1 class="exam-title">Kubernetes Administrator (CKA)</h1>
+      <span class="sub-title">CBT Practice & Exam Simulator</span>
+    </div>
+    <div class="header-controls">
+      <div id="timer-box" class="timer-box hidden">
+        <span class="timer-icon">⏱️</span>
+        <span id="time-display">00:00</span>
+      </div>
+      <button id="mode-toggle-btn" class="btn btn-secondary">
+        <span id="mode-icon">💡</span>
+        <span id="mode-label">학습 모드</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <!-- 시작 대시보드 화면 -->
+    <section id="start-screen" class="view-panel active">
+      <div class="welcome-card">
+        <h2>Kubernetes Certified Administrator (CKA) CBT 실습</h2>
+        <p class="welcome-desc">
+          본 시뮬레이터는 영어 원문 시험 지문 및 실무 시나리오에 익숙해지면서, 한국어로 핵심 원리와 상세 해설을 체계적으로 학습할 수 있도록 설계되었습니다.
+        </p>
+
+        <div class="mode-selection-grid">
+          <div class="card selection-card">
+            <h3>1. 학습 범위 선택</h3>
+            <div class="select-group">
+              <label><input type="radio" name="examSet" value="mock1" checked> <strong>종합 실전 모의고사 (전 도메인 20문항 엄선)</strong></label>
+              <label><input type="radio" name="examSet" value="domain1"> 도메인 1: 아키텍처, 설치 및 구성 (10문항)</label>
+              <label><input type="radio" name="examSet" value="domain2"> 도메인 2: 워크로드 및 스케줄링 (10문항)</label>
+              <label><input type="radio" name="examSet" value="domain3"> 도메인 3: 서비스 및 네트워킹 (10문항)</label>
+              <label><input type="radio" name="examSet" value="domain4"> 도메인 4: 스토리지 (10문항)</label>
+              <label><input type="radio" name="examSet" value="domain5"> 도메인 5: 문제 해결 및 장애 진단 (10문항)</label>
+            </div>
+          </div>
+
+          <div class="card selection-card">
+            <h3>2. 응시 모드 선택</h3>
+            <div class="select-group">
+              <label>
+                <input type="radio" name="examMode" value="study" checked>
+                <strong>💡 학습 모드 (Study Mode)</strong>
+                <p class="mode-desc">문제를 풀면서 즉시 한글 번역 토글과 상세 한국어 해설을 확인할 수 있는 자율 학습 모드입니다.</p>
+              </label>
+              <label>
+                <input type="radio" name="examMode" value="exam">
+                <strong>⏱️ 실전 모드 (Exam Mode)</strong>
+                <p class="mode-desc">실제 시험과 같이 영문 지문 중심, 120분 카운트다운 타이머 작동, 시험 제출 후 최종 성적 및 오답 리포트를 제공합니다.</p>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-center">
+          <button id="start-exam-btn" class="btn btn-primary btn-large">시뮬레이션 시작하기 (Start Test)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 시험 진행 화면 -->
+    <section id="exam-screen" class="view-panel">
+      <div class="exam-layout">
+        <!-- 왼쪽: 문제 메인 영역 -->
+        <main class="question-main">
+          <div class="question-header-bar">
+            <div class="q-meta">
+              <span id="q-counter" class="badge badge-primary">Question 1 of 20</span>
+              <span id="q-domain" class="badge badge-secondary">Domain 1</span>
+            </div>
+            <div class="q-actions">
+              <button id="toggle-flag-btn" class="btn btn-outline btn-sm">
+                <span class="flag-icon">🚩</span> <span id="flag-text">나중에 검토 (Flag)</span>
+              </button>
+              <button id="toggle-trans-btn" class="btn btn-secondary btn-sm">
+                <span>🌐 한국어 번역 보기</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 문제 지문 -->
+          <div class="question-box">
+            <div id="q-text-en" class="question-text-en"></div>
+            <div id="q-text-kr" class="question-text-kr hidden"></div>
+          </div>
+
+          <!-- 보기 선택지 (A, B, C, D) -->
+          <div id="options-container" class="options-container"></div>
+
+          <!-- 학습 모드 전용 즉시 해설 영역 -->
+          <div id="study-feedback-box" class="feedback-box hidden">
+            <div class="feedback-header">
+              <span id="feedback-badge" class="badge"></span>
+              <span id="feedback-key-concept" class="key-concept"></span>
+            </div>
+            <div id="feedback-explanation" class="feedback-explanation"></div>
+          </div>
+
+          <!-- 하단 버튼 바 -->
+          <div class="exam-nav-bar">
+            <button id="prev-btn" class="btn btn-outline">◀ 이전 문제</button>
+            <div class="nav-center-actions">
+              <button id="check-answer-btn" class="btn btn-secondary hidden">정답 확인</button>
+            </div>
+            <button id="next-btn" class="btn btn-outline">다음 문제 ▶</button>
+          </div>
+        </main>
+
+        <!-- 오른쪽: 문제 네비게이터 사이드바 -->
+        <aside class="exam-sidebar">
+          <div class="sidebar-header">
+            <h3>문제 네비게이터</h3>
+            <span id="answered-count-badge" class="badge badge-info">0 / 20 풀이완료</span>
+          </div>
+          <div id="question-nav-grid" class="nav-grid"></div>
+
+          <div class="sidebar-legend">
+            <div class="legend-item"><span class="dot dot-current"></span> 현재 문제</div>
+            <div class="legend-item"><span class="dot dot-answered"></span> 답안 선택</div>
+            <div class="legend-item"><span class="dot dot-flagged"></span> 검토 표시(🚩)</div>
+          </div>
+
+          <div class="sidebar-footer">
+            <button id="finish-exam-btn" class="btn btn-danger btn-block">최종 시험 제출</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 결과 리포트 화면 -->
+    <section id="result-screen" class="view-panel">
+      <div class="result-card">
+        <div class="result-header">
+          <div id="pass-fail-badge" class="result-badge">PASS</div>
+          <h2 id="result-title">시험 결과 요약</h2>
+          <p id="result-subtitle">합격 기준: 66% 이상</p>
+        </div>
+
+        <div class="score-summary-grid">
+          <div class="stat-card">
+            <span class="stat-label">최종 점수</span>
+            <span id="score-percentage" class="stat-value">85%</span>
+            <span id="score-raw" class="stat-sub">17 / 20 문항</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">총 소요 시간</span>
+            <span id="total-time-spent" class="stat-value">25:12</span>
+            <span class="stat-sub">시간 제한: 120분</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">정답률</span>
+            <span id="accuracy-rate" class="stat-value">85%</span>
+            <span class="stat-sub">CKA 합격선: 66%</span>
+          </div>
+        </div>
+
+        <!-- 도메인별 성취도 분석 바 -->
+        <div class="domain-breakdown-card">
+          <h3>📊 도메인별 성취도 분석</h3>
+          <div id="domain-stats-list" class="domain-stats-list"></div>
+        </div>
+
+        <div class="result-actions">
+          <button id="review-wrong-btn" class="btn btn-warning btn-large">❌ 틀린 문제만 오답노트 복습</button>
+          <button id="restart-btn" class="btn btn-primary btn-large">🔄 새로운 모의고사 시작</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 문제 데이터 로드 -->
+  <script src="questions-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

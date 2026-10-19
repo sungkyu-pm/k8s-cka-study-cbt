@@ -1,0 +1,322 @@
+[
+  {
+    "id": "D4-Q01",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "A PersistentVolume (PV) is created with a capacity of 10Gi, `accessModes: [ReadWriteOnce]`, and `storageClassName: manual`. A user creates a PersistentVolumeClaim (PVC) requesting 5Gi with `accessModes: [ReadWriteMany]` and `storageClassName: manual`. Why does the PVC remain in the 'Pending' status?",
+    "question_kr": "용량 10Gi, `accessModes: [ReadWriteOnce]`, `storageClassName: manual`로 생성된 PersistentVolume(PV)이 있습니다. 사용자가 5Gi 용량, `accessModes: [ReadWriteMany]`, `storageClassName: manual`을 요청하는 PersistentVolumeClaim(PVC)을 생성했습니다. 이 PVC가 'Pending' 상태로 머무르는 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The requested storage capacity is smaller than the PV capacity.",
+        "text_kr": "요청된 스토리지 용량이 PV 용량보다 작기 때문입니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The accessModes between the PV (ReadWriteOnce) and the PVC (ReadWriteMany) do not match.",
+        "text_kr": "PV의 접근 모드(ReadWriteOnce)와 PVC의 요청 접근 모드(ReadWriteMany)가 일치하지 않기 때문입니다."
+      },
+      {
+        "key": "C",
+        "text_en": "StorageClassName 'manual' is a reserved keyword in Kubernetes.",
+        "text_kr": "StorageClassName 'manual'이 쿠버네티스 예약어이기 때문입니다."
+      },
+      {
+        "key": "D",
+        "text_en": "PVCs cannot bind to PVs without an active Pod attached.",
+        "text_kr": "활성 파드가 연결되지 않으면 PVC가 PV에 바인딩될 수 없기 때문입니다."
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• PVC가 PV에 정상적으로 바인딩(Bound)되려면 **StorageClassName**, **AccessModes**, 그리고 **요청 용량(Capacity <= PV 용량)**이 모두 호환되어야 합니다.\n• PV는 단일 노드 전용(`ReadWriteOnce`)인 반면 PVC는 다중 노드 동시 쓰기(`ReadWriteMany`)를 요구하고 있으므로 바인딩되지 못하고 Pending 상태로 대기합니다.",
+    "key_concept": "PV and PVC Binding Requirements, AccessModes Mismatch"
+  },
+  {
+    "id": "D4-Q02",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Which PersistentVolumeReclaimPolicy preserves the underlying storage volume and its data when the bound PersistentVolumeClaim (PVC) is deleted, requiring an administrator to manually reclaim or clean up the resource?",
+    "question_kr": "바인딩된 PersistentVolumeClaim(PVC)이 삭제되었을 때 기본 스토리지 볼륨과 데이터를 그대로 보존하여, 관리자가 수동으로 리소스를 회수하거나 정리하도록 요구하는 PersistentVolumeReclaimPolicy는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Delete",
+        "text_kr": "Delete"
+      },
+      {
+        "key": "B",
+        "text_en": "Retain",
+        "text_kr": "Retain"
+      },
+      {
+        "key": "C",
+        "text_en": "Recycle",
+        "text_kr": "Recycle"
+      },
+      {
+        "key": "D",
+        "text_en": "Archive",
+        "text_kr": "Archive"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• `persistentVolumeReclaimPolicy: Retain`은 PVC가 삭제되어도 PV와 실제 백엔드 데이터를 삭제하지 않고 `Released` 상태로 유지하여 데이터 유실을 방지합니다.\n• `Delete`는 PVC 삭제 시 실제 스토리지 에셋까지 함께 자동 삭제합니다.",
+    "key_concept": "Reclaim Policy: Retain vs Delete"
+  },
+  {
+    "id": "D4-Q03",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What is the purpose of setting `volumeBindingMode: WaitForFirstConsumer` on a StorageClass?",
+    "question_kr": "StorageClass에서 `volumeBindingMode: WaitForFirstConsumer`를 설정하는 주된 목적은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It delays volume provisioning and binding until a Pod using the PVC is created and scheduled to a specific node.",
+        "text_kr": "해당 PVC를 사용하는 파드가 실제로 생성되어 특정 노드에 스케줄링될 때까지 볼륨 프로비저닝과 바인딩을 지연시킵니다."
+      },
+      {
+        "key": "B",
+        "text_en": "It ensures only one container can consume the storage volume at any time.",
+        "text_kr": "항상 단 하나의 컨테이너만 볼륨을 사용할 수 있도록 보장합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "It compresses data before writing to disk.",
+        "text_kr": "디스크에 쓰기 전에 데이터를 자동 압축합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "It prevents the volume from being expanded in size.",
+        "text_kr": "볼륨 크기가 확장되는 것을 방지합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 기본값인 `Immediate`는 PVC가 생성되는 즉시 볼륨을 프로비저닝하여, 특정 가용영역(AZ)이나 로컬 디스크에 종속된 볼륨의 경우 파드가 다른 노드에 배정되었을 때 볼륨을 마운트하지 못하는 문제가 발생할 수 있습니다.\n• `WaitForFirstConsumer`는 파드의 토폴로지 제약(NodeSelector, Affinity 등)을 먼저 평가하여 파드가 위치할 노드가 확정된 후에 볼륨을 프로비저닝하므로 이러한 문제를 방지합니다.",
+    "key_concept": "StorageClass volumeBindingMode: WaitForFirstConsumer"
+  },
+  {
+    "id": "D4-Q04",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Which AccessMode allows a volume to be mounted simultaneously as read-write by multiple pods running across multiple distinct worker nodes?",
+    "question_kr": "서로 다른 여러 워커 노드에서 실행 중인 여러 파드가 동시에 읽기/쓰기(read-write)로 볼륨을 마운트할 수 있도록 허용하는 AccessMode는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ReadWriteOnce (RWO)",
+        "text_kr": "ReadWriteOnce (RWO)"
+      },
+      {
+        "key": "B",
+        "text_en": "ReadOnlyMany (ROX)",
+        "text_kr": "ReadOnlyMany (ROX)"
+      },
+      {
+        "key": "C",
+        "text_en": "ReadWriteMany (RWX)",
+        "text_kr": "ReadWriteMany (RWX)"
+      },
+      {
+        "key": "D",
+        "text_en": "ReadWriteOncePod (RWOP)",
+        "text_kr": "ReadWriteOncePod (RWOP)"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation_kr": "정답은 C입니다.\n\n• `ReadWriteMany (RWX)`는 여러 노드에서 동시에 읽기/쓰기가 가능한 모드로, NFS, AWS EFS, GlusterFS 등의 네트워크 파일시스템에서 지원됩니다.",
+    "key_concept": "AccessModes: ReadWriteMany (RWX)"
+  },
+  {
+    "id": "D4-Q05",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "To enable dynamic expansion of PersistentVolumeClaim capacity in Kubernetes, what property must be explicitly set to `true` in the referenced StorageClass?",
+    "question_kr": "쿠버네티스에서 PersistentVolumeClaim의 용량을 동적으로 확장(Resize)할 수 있도록 허용하려면 참조하는 StorageClass에서 어떤 속성을 명시적으로 `true`로 설정해야 합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "allowVolumeExpansion",
+        "text_kr": "allowVolumeExpansion"
+      },
+      {
+        "key": "B",
+        "text_en": "dynamicResizeEnabled",
+        "text_kr": "dynamicResizeEnabled"
+      },
+      {
+        "key": "C",
+        "text_en": "autoScaleStorage",
+        "text_kr": "autoScaleStorage"
+      },
+      {
+        "key": "D",
+        "text_en": "expandablePVC",
+        "text_kr": "expandablePVC"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `StorageClass` 매니페스트에 `allowVolumeExpansion: true`가 설정되어 있어야 사용자가 기존 PVC의 `spec.resources.requests.storage` 값을 더 큰 값으로 편집하여 볼륨을 온라인으로 확장할 수 있습니다.",
+    "key_concept": "StorageClass allowVolumeExpansion"
+  },
+  {
+    "id": "D4-Q06",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Which configuration snippet in a Pod manifest correctly mounts an existing PersistentVolumeClaim named 'data-claim' to the container path `/var/www/html`?",
+    "question_kr": "파드 매니페스트에서 'data-claim'이라는 기존 PersistentVolumeClaim을 컨테이너 내부 경로 `/var/www/html`에 올바르게 마운트하는 설정은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "spec.containers[].volumeMounts: [{name: web-data, mountPath: /var/www/html}] and spec.volumes: [{name: web-data, persistentVolumeClaim: {claimName: data-claim}}]",
+        "text_kr": "spec.containers[].volumeMounts: [{name: web-data, mountPath: /var/www/html}] 및 spec.volumes: [{name: web-data, persistentVolumeClaim: {claimName: data-claim}}]"
+      },
+      {
+        "key": "B",
+        "text_en": "spec.containers[].pvcMount: {name: data-claim, path: /var/www/html}",
+        "text_kr": "spec.containers[].pvcMount: {name: data-claim, path: /var/www/html}"
+      },
+      {
+        "key": "C",
+        "text_en": "spec.volumes: [{pvcName: data-claim, containerPath: /var/www/html}]",
+        "text_kr": "spec.volumes: [{pvcName: data-claim, containerPath: /var/www/html}]"
+      },
+      {
+        "key": "D",
+        "text_en": "spec.mounts: [{claim: data-claim, target: /var/www/html}]",
+        "text_kr": "spec.mounts: [{claim: data-claim, target: /var/www/html}]"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 파드 스펙의 `volumes` 블록에서 PVC 이름(`claimName`)과 볼륨 식별자(`name`)를 정의하고,\n• 컨테이너의 `volumeMounts` 블록에서 해당 볼륨 식별자(`name`)와 마운트할 디렉토리 경로(`mountPath`)를 연결합니다.",
+    "key_concept": "Pod Volume Mount Syntax (volumes and volumeMounts)"
+  },
+  {
+    "id": "D4-Q07",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What status does a PersistentVolume (PV) enter immediately after its bound PersistentVolumeClaim (PVC) is deleted, when the PV's reclaim policy is set to 'Retain'?",
+    "question_kr": "PersistentVolume(PV)의 반환 정책(reclaim policy)이 'Retain'으로 설정되어 있을 때, 바인딩되어 있던 PVC가 삭제된 직후 PV는 어떤 상태(Status)로 전환됩니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Available",
+        "text_kr": "Available"
+      },
+      {
+        "key": "B",
+        "text_en": "Released",
+        "text_kr": "Released"
+      },
+      {
+        "key": "C",
+        "text_en": "Pending",
+        "text_kr": "Pending"
+      },
+      {
+        "key": "D",
+        "text_en": "Failed",
+        "text_kr": "Failed"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• `Retain` 정책 하에서 PVC가 삭제되면 PV는 즉시 `Released` 상태가 됩니다.\n• 이 상태의 PV에는 이전 클레임의 데이터가 남아있으므로, 다른 신규 PVC가 자동으로 바인딩되지 못하며 관리자의 수동 조치(정제 후 claimRef 제거 등)가 필요합니다.",
+    "key_concept": "PersistentVolume Lifecycle: Released Status"
+  },
+  {
+    "id": "D4-Q08",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "Why is the use of `hostPath` volumes generally discouraged for production applications running across multi-node clusters?",
+    "question_kr": "다중 노드 클러스터에서 실행되는 프로덕션 애플리케이션에 `hostPath` 볼륨의 사용이 일반적으로 권장되지 않는 이유는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Data is tied to a specific node's local filesystem; if the pod is rescheduled to another node, it cannot access the data.",
+        "text_kr": "데이터가 특정 노드의 로컬 파일시스템에 종속되므로, 파드가 다른 노드로 재스케줄링되면 기존 데이터에 접근할 수 없습니다."
+      },
+      {
+        "key": "B",
+        "text_en": "hostPath volumes can only hold read-only data.",
+        "text_kr": "hostPath 볼륨은 읽기 전용 데이터만 저장할 수 있기 때문입니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Kubernetes automatically deletes hostPath directories on container restart.",
+        "text_kr": "쿠버네티스가 컨테이너 재시작 시 hostPath 디렉토리를 자동으로 삭제하기 때문입니다."
+      },
+      {
+        "key": "D",
+        "text_en": "hostPath requires root access inside the pod.",
+        "text_kr": "hostPath는 파드 내부의 루트 권한을 강제하기 때문입니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `hostPath` 볼륨은 파드가 실행 중인 특정 노드의 로컬 디스크 파일/디렉토리를 마운트하므로 노드 장애 발생 시 데이터 격리 및 가용성을 보장할 수 없습니다.",
+    "key_concept": "hostPath Limitations and Node Affinity"
+  },
+  {
+    "id": "D4-Q09",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "What is the Container Storage Interface (CSI) specification in Kubernetes designed to achieve?",
+    "question_kr": "쿠버네티스의 컨테이너 스토리지 인터페이스(CSI) 사양은 무엇을 달성하기 위해 설계되었습니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To enable third-party storage vendors to develop storage plugins out-of-tree without modifying core Kubernetes source code.",
+        "text_kr": "서드파티 스토리지 벤더가 핵심 쿠버네티스 소스 코드를 수정하지 않고 외부(Out-of-tree) 플러그인 형태로 스토리지 드라이버를 개발할 수 있도록 하기 위함입니다."
+      },
+      {
+        "key": "B",
+        "text_en": "To replace Linux filesystem drivers with WebAssembly modules.",
+        "text_kr": "리눅스 파일시스템 드라이버를 WebAssembly 모듈로 교체하기 위함입니다."
+      },
+      {
+        "key": "C",
+        "text_en": "To encrypt all persistent data automatically in memory.",
+        "text_kr": "모든 영구 데이터를 메모리에서 자동으로 암호화하기 위함입니다."
+      },
+      {
+        "key": "D",
+        "text_en": "To eliminate the need for PVC objects.",
+        "text_kr": "PVC 오브젝트의 필요성을 완전히 없애기 위함입니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 과거의 In-tree 볼륨 플러그인 방식은 스토리지 코드 수정 시 쿠버네티스 자체를 재배포해야 했습니다.\n• CSI는 표준 인터페이스를 제공하여 벤더들이 독립적인 out-of-tree 컨트롤러/노드 플러그인으로 스토리지를 연동할 수 있도록 혁신했습니다.",
+    "key_concept": "CSI (Container Storage Interface) Architecture"
+  },
+  {
+    "id": "D4-Q10",
+    "domain": "Domain 4",
+    "domain_name": "스토리지 (Storage)",
+    "question_en": "If a user attempts to delete a PersistentVolumeClaim (PVC) that is currently mounted and being actively used by a running Pod, what is the expected Kubernetes behavior?",
+    "question_kr": "현재 실행 중인 파드에 의해 마운트되어 활발히 사용 중인 PersistentVolumeClaim(PVC)을 사용자가 삭제(`kubectl delete pvc`)하려고 시도할 때 쿠버네티스의 예상 동작은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The PVC deletion is postponed (status shows Terminating) until the Pod using it is terminated (Storage Object in Use Protection).",
+        "text_kr": "해당 볼륨을 사용 중인 파드가 종료될 때까지 PVC 삭제가 보류(Terminating 상태)됩니다 (Storage Object in Use Protection)."
+      },
+      {
+        "key": "B",
+        "text_en": "The Pod is killed immediately and the data is purged instantly.",
+        "text_kr": "파드가 즉시 강제 종료되고 데이터가 즉시 영구 삭제됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "The delete command errors out immediately with exit code 1.",
+        "text_kr": "삭제 명령이 종료 코드 1과 함께 즉시 거부 에러를 반환합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The volume unmounts while the container continues running without filesystem access.",
+        "text_kr": "볼륨만 언마운트되고 컨테이너는 파일시스템 접근 없이 계속 실행됩니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스의 **Storage Object in Use Protection** 기능(Finalizer: `kubernetes.io/pvc-protection`)으로 인해, 실행 중인 파드가 마운트 중인 PVC는 즉시 삭제되지 않고 `Terminating` 상태로 머물며 안전하게 데이터와 파드를 보호합니다.",
+    "key_concept": "Storage Object in Use Protection, Finalizers"
+  }
+]

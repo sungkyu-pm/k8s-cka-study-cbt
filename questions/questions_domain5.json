@@ -1,0 +1,322 @@
+[
+  {
+    "id": "D5-Q01",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A worker node 'worker-1' shows a status of 'NotReady' in `kubectl get nodes`. You SSH into the node to investigate. Which Linux system commands are most effective to diagnose why the Kubernetes node agent is failing?",
+    "question_kr": "`kubectl get nodes` 실행 시 워커 노드 'worker-1'이 'NotReady' 상태로 표시됩니다. 원인을 조사하기 위해 해당 노드에 SSH로 접속했습니다. 쿠버네티스 노드 에이전트의 실패 원인을 진단하는 데 가장 효과적인 리눅스 시스템 명령어 조합은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "systemctl status kubelet and journalctl -u kubelet -n 50 --no-pager",
+        "text_kr": "systemctl status kubelet 및 journalctl -u kubelet -n 50 --no-pager"
+      },
+      {
+        "key": "B",
+        "text_en": "top and netstat -tuln",
+        "text_kr": "top 및 netstat -tuln"
+      },
+      {
+        "key": "C",
+        "text_en": "cat /var/log/syslog | grep docker",
+        "text_kr": "cat /var/log/syslog | grep docker"
+      },
+      {
+        "key": "D",
+        "text_en": "kubeadm reset --force",
+        "text_kr": "kubeadm reset --force"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 워커 노드가 NotReady 상태일 때는 노드의 `kubelet` 서비스 상태를 확인하는 것이 1순위입니다.\n• `systemctl status kubelet`으로 실행 여부를 확인하고, 비정상 종료된 경우 `journalctl -u kubelet -n 50 --no-pager`를 통해 인증서 만료, 설정 파일 오탈자, 컨테이너 런타임 통신 장애 등의 구체적 에러 로그를 확인합니다.",
+    "key_concept": "Node NotReady Diagnosis, kubelet troubleshooting with systemctl & journalctl"
+  },
+  {
+    "id": "D5-Q02",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A newly deployed Pod 'payment-app' immediately crashes and enters the `CrashLoopBackOff` state. How can you inspect the termination log of the container that just crashed prior to the restart?",
+    "question_kr": "새로 배포된 'payment-app' 파드가 기동 직후 비정상 종료되며 `CrashLoopBackOff` 상태로 전환되었습니다. 컨테이너가 재시작되기 직전에 발생하여 비정상 종료를 유발한 이전 컨테이너의 로그를 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl logs payment-app --previous",
+        "text_kr": "kubectl logs payment-app --previous"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl get pod payment-app --watch-crashes",
+        "text_kr": "kubectl get pod payment-app --watch-crashes"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl describe pod payment-app --history",
+        "text_kr": "kubectl describe pod payment-app --history"
+      },
+      {
+        "key": "D",
+        "text_en": "cat /var/log/pods/payment-app/crash.log",
+        "text_kr": "cat /var/log/pods/payment-app/crash.log"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 컨테이너가 크래시되어 계속 재시작되는 루프에 빠져 있을 때, `kubectl logs <pod-name> --previous` (또는 `-p`) 옵션을 주면 직전에 크래시된 컨테이너의 마지막 표준 출력/에러 로그를 즉시 열람할 수 있습니다.",
+    "key_concept": "CrashLoopBackOff Debugging, kubectl logs --previous (-p)"
+  },
+  {
+    "id": "D5-Q03",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "After editing `/etc/kubernetes/manifests/kube-apiserver.yaml` to add a new flag, the control plane stops responding completely and all `kubectl` commands fail with 'The connection to the server was refused'. How can you inspect the API server container errors on the master node?",
+    "question_kr": "새로운 플래그를 추가하기 위해 `/etc/kubernetes/manifests/kube-apiserver.yaml`을 수정한 후, 컨트롤 플레인이 완전히 응답을 멈추고 모든 `kubectl` 명령어가 'The connection to the server was refused' 에러를 반환합니다. 마스터 노드에서 API 서버 컨테이너의 에러 로그를 확인하는 가장 적절한 방법은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Use the container runtime CLI directly, e.g., `crictl ps -a` to find the stopped container ID, followed by `crictl logs <container-id>`.",
+        "text_kr": "컨테이너 런타임 CLI를 직접 사용하여 `crictl ps -a`로 중지된 컨테이너 ID를 확인한 후 `crictl logs <container-id>`를 실행합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Run `kubectl logs kube-apiserver -n kube-system --force`.",
+        "text_kr": "`kubectl logs kube-apiserver -n kube-system --force`를 실행합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Reboot the control plane node using `shutdown -r now`.",
+        "text_kr": "`shutdown -r now`로 컨트롤 플레인 노드를 재부팅합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Re-run `kubeadm init` over the existing cluster.",
+        "text_kr": "기존 클러스터 위에 `kubeadm init`을 다시 실행합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• API 서버 자체가 다운되어 있을 때는 API 서버에 의존하는 `kubectl` 명령어가 전혀 동작하지 않습니다.\n• 따라서 노드 수준의 컨테이너 런타임 인터페이스인 `crictl` 명령(`crictl ps -a`, `crictl logs <ID>`)을 사용하여 API 서버 컨테이너가 어떤 플래그나 문법 오류로 인해 기동 실패했는지 직접 확인해야 합니다.",
+    "key_concept": "API Server Down Diagnosis, Container Runtime crictl ps/logs"
+  },
+  {
+    "id": "D5-Q04",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "You notice that a Service named 'auth-service' has an active ClusterIP, but any request directed to this service times out. Running `kubectl get endpoints auth-service` shows `<none>`. What is the most likely root cause?",
+    "question_kr": "'auth-service'라는 서비스에 유효한 ClusterIP가 할당되어 있으나, 이 서비스로 보내는 모든 요청이 타임아웃됩니다. `kubectl get endpoints auth-service`를 실행해보니 `<none>`으로 표시됩니다. 가장 유력한 근본 원인은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Service's `spec.selector` labels do not match the labels defined in the target Pods' metadata.",
+        "text_kr": "서비스의 `spec.selector` 라벨이 대상 파드의 메타데이터에 정의된 라벨과 일치하지 않습니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The node running the pods has run out of disk space.",
+        "text_kr": "파드를 실행 중인 노드의 디스크 공간이 부족합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "CoreDNS is not running.",
+        "text_kr": "CoreDNS가 실행 중이지 않습니다."
+      },
+      {
+        "key": "D",
+        "text_en": "ClusterIP services cannot have endpoints.",
+        "text_kr": "ClusterIP 서비스는 엔드포인트를 가질 수 없습니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 쿠버네티스 서비스는 `spec.selector`에 정의된 라벨과 일치하는 정상(Ready) 상태의 파드 IP들을 자동으로 수집하여 `Endpoints` 리소스를 구성합니다.\n• 엔드포인트가 `<none>`이라는 것은 서비스의 셀렉터와 파드의 라벨이 불일치(오탈자)하거나, 파드들의 준비성 프로브(Readiness Probe)가 실패하여 트래픽 대상에서 제외되었음을 의미합니다.",
+    "key_concept": "Empty Endpoints (<none>), Service Selector Label Mismatch"
+  },
+  {
+    "id": "D5-Q05",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod stays in the `ImagePullBackOff` state. In `kubectl describe pod`, the Events section indicates `Failed to pull image ... repository does not exist or may require 'docker login'`. What is required to resolve this issue if the image is stored in a private container registry?",
+    "question_kr": "파드가 `ImagePullBackOff` 상태에 머물러 있습니다. `kubectl describe pod`의 Events 섹션에 `Failed to pull image ... repository does not exist or may require 'docker login'` 메시지가 나타납니다. 해당 이미지가 프라이빗 컨테이너 레지스트리에 저장되어 있는 경우 이 문제를 해결하기 위해 필요한 조치는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Create a docker-registry Secret containing authentication credentials and reference it in the Pod's `spec.imagePullSecrets`.",
+        "text_kr": "인증 자격 증명을 포함하는 docker-registry Secret을 생성하고 파드의 `spec.imagePullSecrets`에 참조합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Disable TLS verification in kubelet.",
+        "text_kr": "kubelet의 TLS 검증을 비활성화합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Change the image pull policy to Always.",
+        "text_kr": "이미지 풀 정책(imagePullPolicy)을 Always로 변경합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Grant cluster-admin permissions to the default ServiceAccount.",
+        "text_kr": "default ServiceAccount에 cluster-admin 권한을 부여합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 프라이빗 레지스트리 이미지를 가져오려면 `kubectl create secret docker-registry <이름> --docker-server=... --docker-username=... --docker-password=...`로 시크릿을 생성한 후,\n• 파드 스펙의 `spec.imagePullSecrets: [{name: <시크릿이름>}]`에 등록해야 정상적으로 인증 후 이미지를 풀(Pull)할 수 있습니다.",
+    "key_concept": "ImagePullBackOff, Private Registry Secret, imagePullSecrets"
+  },
+  {
+    "id": "D5-Q06",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "Applications across the cluster are failing to resolve external domain names as well as internal service names. You inspect the `kube-system` namespace and see CoreDNS pods in `CrashLoopBackOff` state with logs showing `Loop (127.0.0.1:53 ... -> :53): loop detected`. What is the typical cause of this error?",
+    "question_kr": "클러스터 전역의 애플리케이션들이 내부 서비스 이름 및 외부 도메인 이름을 해석하지 못하고 있습니다. `kube-system` 네임스페이스를 확인하니 CoreDNS 파드가 `CrashLoopBackOff` 상태이고 로그에 `Loop (127.0.0.1:53 ... -> :53): loop detected` 에러가 기록되어 있습니다. 이 에러의 전형적인 원인은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Host node's /etc/resolv.conf points nameserver to a loopback address (127.0.0.53/127.0.0.1), creating a forwarding loop inside the CoreDNS forward plugin.",
+        "text_kr": "호스트 노드의 /etc/resolv.conf 네임서버가 루프백 주소(127.0.0.53/127.0.0.1)를 가리키고 있어 CoreDNS 포워드 플러그인 내부에서 무한 순환 루프가 발생했기 때문입니다."
+      },
+      {
+        "key": "B",
+        "text_en": "The CoreDNS image is corrupt.",
+        "text_kr": "CoreDNS 컨테이너 이미지가 손상되었기 때문입니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Kubelet is blocking port 53 traffic.",
+        "text_kr": "kubelet이 53번 포트 트래픽을 차단하고 있기 때문입니다."
+      },
+      {
+        "key": "D",
+        "text_en": "NetworkPolicy is missing a cluster-wide ingress allow.",
+        "text_kr": "NetworkPolicy에 클러스터 전역 인그레스 허용 규칙이 누락되었기 때문입니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• CoreDNS는 업스트림 DNS 해석을 위해 기본적으로 호스트 노드의 `/etc/resolv.conf`를 참조합니다.\n• 호스트가 systemd-resolved(127.0.0.53)를 사용할 때 CoreDNS가 자기 자신에게 다시 DNS 질의를 포워딩하면서 루프(Loop)가 발생합니다.\n• kubelet의 `--resolv-conf` 경로를 실제 외부 DNS(8.8.8.8 등)가 정의된 파일로 지정하거나 CoreDNS Corefile의 loop 플러그인/포워딩 설정을 수정하여 해결합니다.",
+    "key_concept": "CoreDNS Loop Detected Troubleshooting"
+  },
+  {
+    "id": "D5-Q07",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A Pod's status displays `Pending`. Running `kubectl describe pod` displays an Event: `0/3 nodes are available: 1 node(s) had untolerated taint {node-role.kubernetes.io/control-plane: }, 2 node(s) had insufficient cpu`. What action will allow this Pod to run?",
+    "question_kr": "파드의 상태가 `Pending`으로 표시됩니다. `kubectl describe pod`를 실행하니 `0/3 nodes are available: 1 node(s) had untolerated taint {node-role.kubernetes.io/control-plane: }, 2 node(s) had insufficient cpu` 이벤트가 발생했습니다. 이 파드가 정상 실행되도록 조치할 수 있는 방법은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Decrease the Pod's `resources.requests.cpu` or scale down/delete unnecessary workloads on worker nodes to free up CPU.",
+        "text_kr": "해당 파드의 `resources.requests.cpu`를 낮추거나, 워커 노드의 불필요한 워크로드를 축소/삭제하여 가용 CPU를 확보합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Restart kube-scheduler.",
+        "text_kr": "kube-scheduler를 재시작합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Remove the control-plane node from the cluster.",
+        "text_kr": "클러스터에서 컨트롤 플레인 노드를 제거합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Add a toleration for memory pressure.",
+        "text_kr": "메모리 압박에 대한 toleration을 추가합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• 이벤트 로그 분석 결과: 1개 마스터 노드는 마스터 전용 테인트로 인해 거부되었고, 나머지 2개 워커 노드는 파드가 요구하는 CPU request를 충족시킬 여유 용량이 부족합니다.\n• 따라서 파드의 CPU request 요구량을 낮추거나 워커 노드의 여유 CPU를 확보해야 스케줄러가 노드를 배정할 수 있습니다.",
+    "key_concept": "Pod Pending Diagnosis, Insufficient CPU / Resource Requests"
+  },
+  {
+    "id": "D5-Q08",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "How can you quickly check the real-time resource utilization (CPU and Memory) of all worker nodes in the cluster?",
+    "question_kr": "클러스터 내 모든 워커 노드의 실시간 리소스(CPU 및 메모리) 사용량을 신속하게 확인하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl top nodes",
+        "text_kr": "kubectl top nodes"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl stats cluster",
+        "text_kr": "kubectl stats cluster"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl get nodes --metrics",
+        "text_kr": "kubectl get nodes --metrics"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl monitor nodes",
+        "text_kr": "kubectl monitor nodes"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• Metrics Server가 설치된 환경에서 `kubectl top nodes`와 `kubectl top pods` 명령을 사용하면 노드와 파드의 실시간 CPU(cores/m) 및 메모리(bytes/Mi) 사용량을 확인할 수 있습니다.",
+    "key_concept": "kubectl top nodes/pods, Metrics Server"
+  },
+  {
+    "id": "D5-Q09",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "A worker node suddenly transitions into 'NotReady' state with the condition `DiskPressure: True`. What behavior will the kubelet exhibit regarding workloads running on this node?",
+    "question_kr": "워커 노드가 갑자기 `DiskPressure: True` 상태 조건과 함께 'NotReady' 또는 불안정한 상태로 전환되었습니다. kubelet은 이 노드에서 실행 중인 워크로드에 대해 어떤 조치를 취합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubelet immediately starts reclaiming disk space by deleting unused container images and evicting pods according to their QoS class.",
+        "text_kr": "kubelet이 미사용 컨테이너 이미지를 삭제하고 QoS 클래스 우선순위에 따라 파드들을 노드에서 퇴거(Eviction)시켜 디스크 공간 확보를 시도합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet crashes and halts the server.",
+        "text_kr": "kubelet이 비정상 종료되고 서버가 다운됩니다."
+      },
+      {
+        "key": "C",
+        "text_en": "All persistent volumes are unmounted immediately.",
+        "text_kr": "모든 영구 볼륨이 즉시 강제 언마운트됩니다."
+      },
+      {
+        "key": "D",
+        "text_en": "The node automatically formats its root filesystem.",
+        "text_kr": "노드가 루트 파일시스템을 자동으로 포맷합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `DiskPressure` 조건이 발동하면 노드 보호를 위해 kubelet이 데드 컨테이너와 캐시된 미사용 이미지를 가비지 컬렉션(GC)하고, 여전히 부족할 경우 BestEffort -> Burstable 우선순위로 파드를 Evict(축출)합니다.",
+    "key_concept": "Node DiskPressure Condition and Pod Eviction"
+  },
+  {
+    "id": "D5-Q10",
+    "domain": "Domain 5",
+    "domain_name": "문제 해결 및 장애 진단 (Troubleshooting)",
+    "question_en": "You execute `kubectl get events -n prod --sort-by='.metadata.creationTimestamp'` and notice multiple warnings: `FailedScheduling: 0/4 nodes are available: 4 node(s) had taint {tier: backend}, that the pod didn't tolerate`. What is the fastest command to remove this taint from node 'node-1'?",
+    "question_kr": "`kubectl get events -n prod --sort-by='.metadata.creationTimestamp'` 실행 결과 `FailedScheduling: 0/4 nodes are available: 4 node(s) had taint {tier: backend}, that the pod didn't tolerate` 경고가 다수 발생했습니다. 'node-1' 노드에서 이 테인트를 제거하는 가장 빠른 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl taint nodes node-1 tier:backend-",
+        "text_kr": "kubectl taint nodes node-1 tier:backend-"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl taint nodes node-1 tier-",
+        "text_kr": "kubectl taint nodes node-1 tier-"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl untaint node-1 tier=backend",
+        "text_kr": "kubectl untaint node-1 tier=backend"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl delete taint tier from node-1",
+        "text_kr": "kubectl delete taint tier from node-1"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• 쿠버네티스에서 Taint를 제거할 때는 `kubectl taint nodes <노드이름> <키>-` 또는 `kubectl taint nodes <노드이름> <키>=<값>:<이펙트>-`처럼 맨 뒤에 대시(`-`) 기호를 붙여 제거합니다.\n• `tier-` 또는 `tier=backend:NoSchedule-` 형식이 올바릅니다.",
+    "key_concept": "Removing Taints with kubectl taint nodes <node> <key>-"
+  }
+]

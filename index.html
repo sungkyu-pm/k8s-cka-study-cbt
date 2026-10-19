@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes Certification (CKA / CKAD) 올인원 학습 & CBT 포털</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <!-- 상단 글로벌 헤더 -->
+  <header class="portal-header">
+    <div class="header-left">
+      <span class="badge-k8s">CNCF & K8S CERTIFIED</span>
+      <div class="title-group">
+        <h1>Kubernetes Administrator (CKA)</h1>
+        <span class="portal-subtitle">한·영 듀얼트랙 학습 & 실전 CBT 시뮬레이션 포털</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div id="server-status-box" class="server-status-box">
+        <span class="status-indicator-dot online"></span>
+        <span id="server-status-text">로컬 서버 모드 (8080)</span>
+      </div>
+      <button class="nav-tab-btn highlight-cbt" data-tab="cbt">
+        <span>💻 실전 CBT 모의고사</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 메인 네비게이션 탭 바 -->
+  <nav class="portal-nav">
+    <div class="nav-container">
+      <button class="nav-tab active" data-tab="overview">
+        <span class="tab-icon">🏠</span> 시험 개요 & 로드맵
+      </button>
+      <button class="nav-tab" data-tab="glossary">
+        <span class="tab-icon">🔤</span> 한·영 필수 용어사전
+      </button>
+      <button class="nav-tab" data-tab="domain1">
+        <span class="tab-icon">🏗️</span> 도메인 1: 아키텍처 & 설치 (25%)
+      </button>
+      <button class="nav-tab" data-tab="domain2">
+        <span class="tab-icon">📦</span> 도메인 2: 워크로드 & 스케줄링 (15%)
+      </button>
+      <button class="nav-tab" data-tab="domain3">
+        <span class="tab-icon">🌐</span> 도메인 3: 서비스 & 네트워크 (20%)
+      </button>
+      <button class="nav-tab" data-tab="domain4">
+        <span class="tab-icon">💾</span> 도메인 4: 스토리지 (10%)
+      </button>
+      <button class="nav-tab" data-tab="domain5">
+        <span class="tab-icon">🔧</span> 도메인 5: 문제 해결 (30%)
+      </button>
+      <button class="nav-tab" data-tab="kubectl_cheat">
+        <span class="tab-icon">⚡</span> Kubectl 치트시트
+      </button>
+      <button class="nav-tab" data-tab="cbt">
+        <span class="tab-icon">💻</span> CBT 가상 실습
+      </button>
+    </div>
+  </nav>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main class="portal-content">
+
+    <!-- 1. 시험 개요 & 로드맵 탭 -->
+    <section id="tab-overview" class="tab-panel active">
+      <div class="content-wrapper">
+        <div id="overview-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 2. 한·영 필수 용어사전 탭 -->
+    <section id="tab-glossary" class="tab-panel">
+      <div class="content-wrapper">
+        <div class="search-banner">
+          <h2>🔤 CKA 필수 한·영 쿠버네티스 용어사전</h2>
+          <p>공식 문서 및 에러 로그에 등장하는 핵심 키워드와 한국어 개념을 실시간으로 검색해보세요.</p>
+          <div class="search-input-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="glossary-search" placeholder="용어 검색 (예: etcd, Pod, CNI, Headless, Ingress, Toleration, PVC, CrashLoopBackOff 등)...">
+            <button id="glossary-clear-btn" class="clear-btn">✕</button>
+          </div>
+        </div>
+        <div id="glossary-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 3. 도메인 1 탭 -->
+    <section id="tab-domain1" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="domain1-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 4. 도메인 2 탭 -->
+    <section id="tab-domain2" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="domain2-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 5. 도메인 3 탭 -->
+    <section id="tab-domain3" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="domain3-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 6. 도메인 4 탭 -->
+    <section id="tab-domain4" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="domain4-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 7. 도메인 5 탭 -->
+    <section id="tab-domain5" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="domain5-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 8. Kubectl 치트시트 탭 -->
+    <section id="tab-kubectl_cheat" class="tab-panel">
+      <div class="content-wrapper">
+        <div id="kubectl_cheat-content" class="markdown-body"></div>
+      </div>
+    </section>
+
+    <!-- 9. CBT 가상 실습 탭 -->
+    <section id="tab-cbt" class="tab-panel">
+      <div class="cbt-frame-container">
+        <iframe id="cbt-iframe" class="cbt-iframe" src="cbt-app/index.html" title="CKA CBT Simulator"></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 데이터 스크립트 로드 (오프라인/정적 서빙 대비) -->
+  <script src="portal-docs-data.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>

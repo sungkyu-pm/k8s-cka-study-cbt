@@ -1,0 +1,322 @@
+[
+  {
+    "id": "D1-Q01",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to create a snapshot backup of an existing etcd instance running as a static pod. The etcd client certificates are located at /etc/kubernetes/pki/etcd/server.crt and /etc/kubernetes/pki/etcd/server.key, and the CA certificate is at /etc/kubernetes/pki/etcd/ca.crt. Which command correctly creates the snapshot at /var/lib/etcd-snapshot.db?",
+    "question_kr": "스태틱 파드로 실행 중인 기존 etcd 인스턴스의 스냅샷 백업을 생성해야 합니다. etcd 클라이언트 인증서는 /etc/kubernetes/pki/etcd/server.crt 및 server.key에 위치하고, CA 인증서는 ca.crt에 위치합니다. /var/lib/etcd-snapshot.db 경로에 스냅샷을 올바르게 생성하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "etcdctl backup save --endpoints=https://127.0.0.1:2379 /var/lib/etcd-snapshot.db",
+        "text_kr": "etcdctl backup save --endpoints=https://127.0.0.1:2379 /var/lib/etcd-snapshot.db"
+      },
+      {
+        "key": "B",
+        "text_en": "ETCDCTL_API=3 etcdctl snapshot save /var/lib/etcd-snapshot.db --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key",
+        "text_kr": "ETCDCTL_API=3 etcdctl snapshot save /var/lib/etcd-snapshot.db --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl snapshot etcd /var/lib/etcd-snapshot.db --all-certificates",
+        "text_kr": "kubectl snapshot etcd /var/lib/etcd-snapshot.db --all-certificates"
+      },
+      {
+        "key": "D",
+        "text_en": "kubeadm backup etcd --output=/var/lib/etcd-snapshot.db",
+        "text_kr": "kubeadm backup etcd --output=/var/lib/etcd-snapshot.db"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• etcd v3 API를 사용할 때는 환경변수 `ETCDCTL_API=3`을 지정해야 하며, `snapshot save <경로>` 명령어를 사용합니다.\n• 보안이 활성화된 etcd 클러스터 통신을 위해 `--cacert`, `--cert`, `--key` 옵션으로 유효한 인증서와 키를 반드시 함께 전달해야 합니다.\n• A는 인증서 플래그와 snapshot save 문법이 누락되었습니다.\n• C와 D는 존재하지 않는 명령어입니다.",
+    "key_concept": "etcdctl snapshot save, TLS Authentication Flags (--cacert, --cert, --key)"
+  },
+  {
+    "id": "D1-Q02",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You are tasked with upgrading the control plane node of a Kubernetes cluster using kubeadm from version 1.30.0 to 1.31.0. Before performing the package upgrade, what is the recommended procedure to ensure running workloads on the control plane node are safely evicted or ignored?",
+    "question_kr": "kubeadm을 사용하여 쿠버네티스 컨트롤 플레인 노드를 버전 1.30.0에서 1.31.0으로 업그레이드해야 합니다. 패키지 업그레이드를 수행하기 전에 컨트롤 플레인 노드에서 실행 중인 워크로드를 안전하게 퇴거하거나 무시하도록 조치하는 권장 절차는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl delete node controlplane --force",
+        "text_kr": "kubectl delete node controlplane --force"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl drain controlplane --ignore-daemonsets",
+        "text_kr": "kubectl drain controlplane --ignore-daemonsets"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl cordon controlplane --delete-emptydir-data",
+        "text_kr": "kubectl cordon controlplane --delete-emptydir-data"
+      },
+      {
+        "key": "D",
+        "text_en": "kubeadm upgrade prepare controlplane",
+        "text_kr": "kubeadm upgrade prepare controlplane"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• 노드 유지보수 및 업그레이드 전에는 `kubectl drain <노드이름> --ignore-daemonsets`를 실행하여 노드를 스케줄링 불능(cordon) 상태로 만들고 기존 파드들을 안전하게 다른 노드로 축출(evict)해야 합니다.\n• DaemonSet 파드는 노드에서 배출될 수 없으므로 `--ignore-daemonsets` 플래그를 붙여야 drain 명령이 정상 완료됩니다.\n• 업그레이드가 완료된 후에는 `kubectl uncordon <노드이름>`으로 복구합니다.",
+    "key_concept": "kubectl drain, Node Maintenance, Cluster Upgrade Procedure"
+  },
+  {
+    "id": "D1-Q03",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "A junior administrator needs read-only access to view and list Pods only within the 'development' namespace. Which set of RBAC resources must be created to achieve this without granting cluster-wide permissions?",
+    "question_kr": "주니어 관리자가 'development' 네임스페이스 내에서만 파드를 조회(get)하고 목록화(list)할 수 있는 읽기 전용 권한이 필요합니다. 클러스터 전체 권한을 부여하지 않고 이를 달성하기 위해 생성해야 하는 RBAC 리소스 조합은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A ClusterRole in the development namespace and a ClusterRoleBinding",
+        "text_kr": "development 네임스페이스의 ClusterRole 및 ClusterRoleBinding"
+      },
+      {
+        "key": "B",
+        "text_en": "A Role defined in the development namespace and a RoleBinding in the development namespace",
+        "text_kr": "development 네임스페이스에 정의된 Role과 development 네임스페이스의 RoleBinding"
+      },
+      {
+        "key": "C",
+        "text_en": "A ServiceAccount bound directly to the PodSpec without RBAC",
+        "text_kr": "RBAC 없이 PodSpec에 직접 바인딩된 ServiceAccount"
+      },
+      {
+        "key": "D",
+        "text_en": "A ClusterRoleBinding scoped with a namespace filter flag",
+        "text_kr": "네임스페이스 필터 플래그가 지정된 ClusterRoleBinding"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• 특정 네임스페이스로 범위를 제한할 때는 반드시 네임스페이스 리소스인 `Role`과 `RoleBinding`을 해당 네임스페이스(`development`) 내에 생성해야 합니다.\n• ClusterRole은 클러스터 전역 범위이며, ClusterRoleBinding을 사용하면 모든 네임스페이스에 권한이 전파되므로 최소 권한 원칙(Principle of Least Privilege)에 위배됩니다.",
+    "key_concept": "RBAC Role vs ClusterRole, RoleBinding Scope"
+  },
+  {
+    "id": "D1-Q04",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "How does kubelet know to start and manage static pods such as kube-apiserver and kube-controller-manager on a control plane node?",
+    "question_kr": "kubelet은 컨트롤 플레인 노드에서 kube-apiserver 및 kube-controller-manager와 같은 스태틱 파드(Static Pods)를 어떻게 인식하고 시작 및 관리합니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The API server sends a webhook request to kubelet on boot.",
+        "text_kr": "API 서버가 부팅 시 kubelet에 웹훅 요청을 보냅니다."
+      },
+      {
+        "key": "B",
+        "text_en": "kubelet watches the staticPodPath directory (default: /etc/kubernetes/manifests) defined in its configuration file.",
+        "text_kr": "kubelet이 설정 파일에 정의된 staticPodPath 디렉토리(기본값: /etc/kubernetes/manifests)를 직접 감시합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "systemd launches static pods using docker run commands directly.",
+        "text_kr": "systemd가 docker run 명령어로 스태틱 파드를 직접 실행합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "kube-scheduler assigns static pods to node-0 based on affinity.",
+        "text_kr": "kube-scheduler가 어피니티에 따라 스태틱 파드를 node-0에 할당합니다."
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• 스태틱 파드는 API 서버의 개입 없이 노드의 `kubelet` 데몬이 특정 로컬 디렉토리(기본: `/etc/kubernetes/manifests`)에 위치한 YAML 매니페스트 파일을 주기적으로 스캔하여 직접 띄우고 라이프사이클을 관리합니다.\n• 컨트롤 플레인의 핵심 컴포넌트(apiserver, etcd, scheduler, controller-manager)는 모두 스태틱 파드로 구동됩니다.",
+    "key_concept": "Static Pods, kubelet staticPodPath, Control Plane Bootstrap"
+  },
+  {
+    "id": "D1-Q05",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "An etcd cluster consists of 5 members. According to the Raft consensus algorithm, what is the minimum quorum required, and how many node failures can this cluster tolerate while remaining operational?",
+    "question_kr": "5개의 멤버로 구성된 etcd 클러스터가 있습니다. Raft 분산 합의 알고리즘에 따를 때, 필요한 최소 쿼럼(Quorum) 수와 정상 작동을 유지하면서 허용할 수 있는 최대 노드 장애 대수는 각각 얼마입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Quorum: 2, Tolerated Failures: 3",
+        "text_kr": "쿼럼: 2, 허용 장애 대수: 3"
+      },
+      {
+        "key": "B",
+        "text_en": "Quorum: 3, Tolerated Failures: 2",
+        "text_kr": "쿼럼: 3, 허용 장애 대수: 2"
+      },
+      {
+        "key": "C",
+        "text_en": "Quorum: 4, Tolerated Failures: 1",
+        "text_kr": "쿼럼: 4, 허용 장애 대수: 1"
+      },
+      {
+        "key": "D",
+        "text_en": "Quorum: 5, Tolerated Failures: 0",
+        "text_kr": "쿼럼: 5, 허용 장애 대수: 0"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• etcd의 쿼럼 공식은 $(N/2) + 1$ (과반수)입니다.\n• 5개 노드의 경우 과반수는 3개 노드입니다.\n• 따라서 $5 - 3 = 2$대의 노드가 다운되더라도 3대가 살아있으므로 정상적으로 쓰기 및 합의 작업이 가능합니다.",
+    "key_concept": "etcd Quorum, Raft Consensus, High Availability"
+  },
+  {
+    "id": "D1-Q06",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "Which command allows an administrator to verify if user 'developer-jane' has permission to delete deployments in the 'staging' namespace?",
+    "question_kr": "관리자가 'staging' 네임스페이스에서 'developer-jane' 사용자가 디플로이먼트를 삭제(delete)할 수 있는 권한이 있는지 신속하게 검증할 수 있는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl auth can-i delete deployments --as=developer-jane -n staging",
+        "text_kr": "kubectl auth can-i delete deployments --as=developer-jane -n staging"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl get permissions --user=developer-jane --namespace=staging",
+        "text_kr": "kubectl get permissions --user=developer-jane --namespace=staging"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl describe rbac --user=developer-jane -n staging",
+        "text_kr": "kubectl describe rbac --user=developer-jane -n staging"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl check-access delete deployments -u developer-jane",
+        "text_kr": "kubectl check-access delete deployments -u developer-jane"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `kubectl auth can-i <동사> <리소스> [--as=<사용자>] [-n <네임스페이스>]` 명령어를 사용하면 특정 사용자나 서비스어카운트의 권한 여부를 `yes` 또는 `no`로 즉시 테스트할 수 있어 CKA 시험에서 권한 부여 후 셀프 검증 시 필수적입니다.",
+    "key_concept": "kubectl auth can-i, Impersonation (--as), RBAC Verification"
+  },
+  {
+    "id": "D1-Q07",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "After initializing a single-node control plane using `kubeadm init`, what is the critical component that must be deployed before worker nodes can join and CoreDNS pods can transition from Pending to Running?",
+    "question_kr": "`kubeadm init`을 사용하여 싱글 노드 컨트롤 플레인을 초기화한 직후, 워커 노드가 조인하고 CoreDNS 파드가 Pending에서 Running 상태로 전환되기 위해 반드시 배포해야 하는 핵심 컴포넌트는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Metrics Server",
+        "text_kr": "Metrics Server"
+      },
+      {
+        "key": "B",
+        "text_en": "A Container Network Interface (CNI) plugin (e.g., Calico, Flannel, Cilium)",
+        "text_kr": "컨테이너 네트워크 인터페이스(CNI) 플러그인 (예: Calico, Flannel, Cilium)"
+      },
+      {
+        "key": "C",
+        "text_en": "Ingress Controller",
+        "text_kr": "인그레스 컨트롤러 (Ingress Controller)"
+      },
+      {
+        "key": "D",
+        "text_en": "MetalLB LoadBalancer",
+        "text_kr": "MetalLB 로드밸런서"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• kubeadm으로 클러스터를 초기화하면 기본적으로 네트워크 플러그인이 설치되지 않은 상태입니다.\n• CNI 플러그인(Calico, Flannel 등)이 설치되어 노드에 IP 대역이 할당되고 파드 간 통신 오버레이가 설정되어야 노드가 Ready 상태가 되고 CoreDNS 파드가 구동됩니다.",
+    "key_concept": "CNI Plugin Installation, Cluster Bootstrap, CoreDNS Pending State"
+  },
+  {
+    "id": "D1-Q08",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "You need to restore etcd from a backup snapshot to a new data directory /var/lib/etcd-new. After running `etcdctl snapshot restore /tmp/backup.db --data-dir=/var/lib/etcd-new`, what final step is required to make the etcd static pod use the new data?",
+    "question_kr": "백업 스냅샷으로부터 새로운 데이터 디렉토리 /var/lib/etcd-new로 etcd를 복원해야 합니다. `etcdctl snapshot restore /tmp/backup.db --data-dir=/var/lib/etcd-new`를 실행한 후, etcd 스태틱 파드가 새 데이터를 사용하도록 만들기 위해 수행해야 하는 마지막 필수 작업은 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Update the hostPath volume in /etc/kubernetes/manifests/etcd.yaml to point to /var/lib/etcd-new.",
+        "text_kr": "/etc/kubernetes/manifests/etcd.yaml 파일의 hostPath 볼륨 경로를 /var/lib/etcd-new로 수정합니다."
+      },
+      {
+        "key": "B",
+        "text_en": "Run `kubectl rollout restart pod etcd -n kube-system`.",
+        "text_kr": "`kubectl rollout restart pod etcd -n kube-system`을 실행합니다."
+      },
+      {
+        "key": "C",
+        "text_en": "Restart docker using `systemctl restart docker`.",
+        "text_kr": "`systemctl restart docker`로 도커를 재시작합니다."
+      },
+      {
+        "key": "D",
+        "text_en": "Re-run `kubeadm init phase etcd local`.",
+        "text_kr": "`kubeadm init phase etcd local`을 다시 실행합니다."
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• etcdctl로 스냅샷을 새 디렉토리에 복원한 후에는 etcd 스태틱 파드 매니페스트(`/etc/kubernetes/manifests/etcd.yaml`)에서 hostPath 볼륨의 `path`를 기존 `/var/lib/etcd`에서 복원된 새 디렉토리(`/var/lib/etcd-new`)로 변경해야 합니다.\n• kubelet이 파일 수정을 감지하고 자동으로 etcd 파드를 새 볼륨으로 재시작합니다.",
+    "key_concept": "etcd Snapshot Restore, Static Pod Manifest HostPath Modification"
+  },
+  {
+    "id": "D1-Q09",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "Which command safely removes the cordon restriction from 'node-2' after scheduled hardware maintenance is completed, allowing new pods to be scheduled onto it again?",
+    "question_kr": "예정된 하드웨어 유지보수가 완료된 후 'node-2' 노드에 적용된 스케줄링 제한(cordon)을 안전하게 해제하여 신규 파드가 다시 스케줄될 수 있도록 허용하는 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubectl uncordon node-2",
+        "text_kr": "kubectl uncordon node-2"
+      },
+      {
+        "key": "B",
+        "text_en": "kubectl resume node node-2",
+        "text_kr": "kubectl resume node node-2"
+      },
+      {
+        "key": "C",
+        "text_en": "kubectl enable node-2",
+        "text_kr": "kubectl enable node-2"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl undrain node-2",
+        "text_kr": "kubectl undrain node-2"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation_kr": "정답은 A입니다.\n\n• `kubectl cordon <node>`는 노드를 SchedulingDisabled 상태로 만들고,\n• `kubectl uncordon <node>`는 노드를 다시 정상 스케줄링 가능 상태로 복귀시킵니다.\n• undrain이나 resume 명령어는 존재하지 않습니다.",
+    "key_concept": "kubectl uncordon, Node Maintenance Lifecycle"
+  },
+  {
+    "id": "D1-Q10",
+    "domain": "Domain 1",
+    "domain_name": "클러스터 아키텍처, 설치 및 구성 (Cluster Architecture, Installation & Configuration)",
+    "question_en": "When upgrading a worker node with kubeadm, what is the correct command executed on the worker node to perform the upgrade planning and configuration step?",
+    "question_kr": "kubeadm으로 워커 노드를 업그레이드할 때, 워커 노드에 직접 접속하여 업그레이드 설정 및 구성을 적용하기 위해 실행하는 올바른 명령어는 무엇입니까?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "kubeadm upgrade apply v1.31.0",
+        "text_kr": "kubeadm upgrade apply v1.31.0"
+      },
+      {
+        "key": "B",
+        "text_en": "kubeadm upgrade node",
+        "text_kr": "kubeadm upgrade node"
+      },
+      {
+        "key": "C",
+        "text_en": "kubeadm worker update",
+        "text_kr": "kubeadm worker update"
+      },
+      {
+        "key": "D",
+        "text_en": "kubectl upgrade worker-node",
+        "text_kr": "kubectl upgrade worker-node"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation_kr": "정답은 B입니다.\n\n• 컨트롤 플레인(마스터) 노드에서는 `kubeadm upgrade apply v<버전>` 명령을 사용하지만,\n• 워커 노드에서는 컨트롤 플레인 설정을 건드리지 않고 로컬 kubelet 구성을 갱신하기 위해 `kubeadm upgrade node` 명령어를 사용합니다. (CKA 시험 필수 구분 포인트!)",
+    "key_concept": "kubeadm upgrade node vs kubeadm upgrade apply"
+  }
+]
