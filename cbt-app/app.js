@@ -98,19 +98,91 @@ class K8sCBTSimulator {
     this.timerBox.classList.add('hidden');
   }
 
+  shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  shuffleQuestionOptions(q) {
+    if (!q || !q.options) return q;
+    const opts = q.options.map(o => ({ ...o }));
+    const correctOpt = opts.find(o => o.key === q.correct_answer);
+    const correctEn = correctOpt ? correctOpt.text_en : '';
+
+    const shuffled = this.shuffleArray(opts);
+    const keys = ['A', 'B', 'C', 'D'];
+    let newCorrectKey = q.correct_answer;
+
+    const newOptions = shuffled.map((opt, idx) => {
+      const key = keys[idx] || opt.key;
+      if (opt.text_en === correctEn) {
+        newCorrectKey = key;
+      }
+      return {
+        key: key,
+        text_en: opt.text_en,
+        text_kr: opt.text_kr
+      };
+    });
+
+    return {
+      ...q,
+      options: newOptions,
+      correct_answer: newCorrectKey
+    };
+  }
+
+  sampleMockExam(examCount) {
+    const data = window.EXAM_DATA || {};
+    const d1 = data.domain1 || [];
+    const d2 = data.domain2 || [];
+    const d3 = data.domain3 || [];
+    const d4 = data.domain4 || [];
+    const d5 = data.domain5 || [];
+
+    if (examCount === 'all') {
+      return [...d1, ...d2, ...d3, ...d4, ...d5];
+    }
+
+    const count = parseInt(examCount, 10) || 25;
+    const c1 = Math.round(count * 0.25);
+    const c2 = Math.round(count * 0.15);
+    const c3 = Math.round(count * 0.20);
+    const c4 = Math.round(count * 0.10);
+    const c5 = count - (c1 + c2 + c3 + c4);
+
+    const s1 = this.shuffleArray(d1).slice(0, c1);
+    const s2 = this.shuffleArray(d2).slice(0, c2);
+    const s3 = this.shuffleArray(d3).slice(0, c3);
+    const s4 = this.shuffleArray(d4).slice(0, c4);
+    const s5 = this.shuffleArray(d5).slice(0, c5);
+
+    return [...s1, ...s2, ...s3, ...s4, ...s5];
+  }
+
   async startExamFromSettings() {
     const examSetRadio = document.querySelector('input[name="examSet"]:checked');
     const examModeRadio = document.querySelector('input[name="examMode"]:checked');
+    const examCountRadio = document.querySelector('input[name="examCount"]:checked');
+    const shuffleQCheck = document.getElementById('shuffle-questions-check');
+    const shuffleOptCheck = document.getElementById('shuffle-options-check');
 
-    this.selectedExamSet = examSetRadio ? examSetRadio.value : 'mock1';
+    this.selectedExamSet = examSetRadio ? examSetRadio.value : 'mock_random';
     this.mode = examModeRadio ? examModeRadio.value : 'study';
+    const examCount = examCountRadio ? examCountRadio.value : '25';
+    const shouldShuffleQuestions = shuffleQCheck ? shuffleQCheck.checked : true;
+    const shouldShuffleOptions = shuffleOptCheck ? shuffleOptCheck.checked : true;
 
     // 문제 데이터 로드
     let questionList = [];
 
     // 1차: 로컬 서버 API 시도
     try {
-      const res = await fetch(`/api/questions?set=${this.selectedExamSet}`);
+      const res = await fetch(`/api/questions?set=${this.selectedExamSet}&limit=${examCount}&shuffle=${shouldShuffleQuestions}`);
       if (res.ok) {
         const json = await res.json();
         questionList = json.questions;
@@ -119,16 +191,37 @@ class K8sCBTSimulator {
       // 오프라인 폴백
     }
 
-    // 2차: window.EXAM_DATA 폴백
+    // 2차: window.EXAM_DATA 폴백 (GitHub Pages 또는 로컬 오프라인 모드)
     if (!questionList || questionList.length === 0) {
-      if (window.EXAM_DATA && window.EXAM_DATA[this.selectedExamSet]) {
-        questionList = window.EXAM_DATA[this.selectedExamSet];
+      if (this.selectedExamSet === 'mock_random' || this.selectedExamSet === 'mock1') {
+        questionList = this.sampleMockExam(examCount);
+      } else if (window.EXAM_DATA && window.EXAM_DATA[this.selectedExamSet]) {
+        let pool = [...window.EXAM_DATA[this.selectedExamSet]];
+        if (shouldShuffleQuestions) {
+          pool = this.shuffleArray(pool);
+        }
+        if (examCount !== 'all') {
+          const limit = parseInt(examCount, 10) || 25;
+          questionList = pool.slice(0, limit);
+        } else {
+          questionList = pool;
+        }
       }
     }
 
     if (!questionList || questionList.length === 0) {
-      alert('문제 데이터를 불러오지 못했습니다.');
+      alert('문제 데이터를 불러오지 못했습니다. 데이터 파일을 확인해주세요.');
       return;
+    }
+
+    // 문항 셔플 적용 (서버 응답 미셔플 대비 추가 확인)
+    if (shouldShuffleQuestions) {
+      questionList = this.shuffleArray(questionList);
+    }
+
+    // 선택지(A~D) 셔플 적용
+    if (shouldShuffleOptions) {
+      questionList = questionList.map(q => this.shuffleQuestionOptions(q));
     }
 
     this.questions = [...questionList];
@@ -140,10 +233,11 @@ class K8sCBTSimulator {
 
     this.updateModeUI();
 
-    // 타이머 설정 (실전 모드: 120분, 학습 모드: 카운트업)
+    // 타이머 설정 (실전 모드: 문항 수에 맞춤 계산)
     clearInterval(this.timerInterval);
     if (this.mode === 'exam') {
-      this.totalSeconds = 120 * 60; // 120분 (CKA 공식)
+      const totalMinutes = this.questions.length <= 25 ? 120 : (this.questions.length <= 50 ? 180 : 240);
+      this.totalSeconds = totalMinutes * 60;
       this.secondsRemaining = this.totalSeconds;
       this.timerBox.classList.remove('hidden');
       this.updateTimerDisplay();

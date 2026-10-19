@@ -10,6 +10,7 @@ import os
 import sys
 import json
 import time
+import random
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -130,8 +131,58 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
             self.send_json_response({"error": f"Doc file not found: {doc_mapping[doc_key]}"}, 404)
 
     def handle_api_questions(self, query):
-        """문제 세트 조회 (mock1 또는 domain1~5)"""
-        q_set = query.get('set', ['mock1'])[0]
+        """문제 세트 조회 (mock_random, mock1, 또는 domain1~5)"""
+        q_set = query.get('set', ['mock_random'])[0]
+        limit = query.get('limit', [None])[0]
+        should_shuffle = query.get('shuffle', ['true'])[0].lower() == 'true'
+
+        if q_set in ['mock_random', 'all']:
+            # 5개 도메인에서 가중치에 맞춰 랜덤 추출
+            domain_pools = {}
+            for i in range(1, 6):
+                fpath = os.path.join(QUESTIONS_DIR, f'questions_domain{i}.json')
+                if os.path.exists(fpath):
+                    with open(fpath, 'r', encoding='utf-8') as f:
+                        domain_pools[f'domain{i}'] = json.load(f)
+                else:
+                    domain_pools[f'domain{i}'] = []
+
+            # 목표 문항 수 결정
+            try:
+                target_count = int(limit) if limit and limit != 'all' else 25
+            except ValueError:
+                target_count = 25
+
+            if limit == 'all':
+                # 전체 문항 반환 (1,250개)
+                all_q = []
+                for pool in domain_pools.values():
+                    all_q.extend(pool)
+                if should_shuffle:
+                    random.shuffle(all_q)
+                self.send_json_response({"set": q_set, "count": len(all_q), "questions": all_q})
+                return
+
+            # CKA 공식 비중에 맞춘 샘플링 (D1: 25%, D2: 15%, D3: 20%, D4: 10%, D5: 30%)
+            c1 = round(target_count * 0.25)
+            c2 = round(target_count * 0.15)
+            c3 = round(target_count * 0.20)
+            c4 = round(target_count * 0.10)
+            c5 = target_count - (c1 + c2 + c3 + c4)
+
+            selected = []
+            for d_name, cnt in [('domain1', c1), ('domain2', c2), ('domain3', c3), ('domain4', c4), ('domain5', c5)]:
+                pool = domain_pools.get(d_name, [])
+                if pool:
+                    k = min(cnt, len(pool))
+                    selected.extend(random.sample(pool, k))
+
+            if should_shuffle:
+                random.shuffle(selected)
+
+            self.send_json_response({"set": q_set, "count": len(selected), "questions": selected})
+            return
+
         file_map = {
             'mock1': 'mock_exam_1.json',
             'domain1': 'questions_domain1.json',
@@ -147,6 +198,18 @@ class K8sExamServerHandler(SimpleHTTPRequestHandler):
         if os.path.exists(file_path):
             with open(file_path, 'r', encoding='utf-8') as f:
                 questions = json.load(f)
+
+            if should_shuffle:
+                questions = list(questions)
+                random.shuffle(questions)
+
+            if limit and limit != 'all':
+                try:
+                    num_limit = int(limit)
+                    questions = questions[:num_limit]
+                except ValueError:
+                    pass
+
             self.send_json_response({"set": q_set, "count": len(questions), "questions": questions})
         else:
             self.send_json_response({"error": f"Question set not found: {q_set}"}, 404)

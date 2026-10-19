@@ -1,101 +1,125 @@
-# 도메인 5: 문제 해결 및 장애 진단 (Troubleshooting)
+# 도메인 5: 문제 해결 및 장애 진단 심층 가이드 (Troubleshooting)
 
-> **출제 비중**: **30% (합격을 가르는 최대 비중 도메인)**  
-> **핵심 키워드**: 노드 NotReady 진단, kubelet 데몬 복구(`journalctl`), 제어 평면 컴포넌트(Static Pod) 디버깅, 파드 장애(CrashLoopBackOff, Pending, ImagePullBackOff, OOMKilled), CoreDNS 진단
+> **출제 비중**: **30% (합격을 결정짓는 최상위 배점 도메인)**  
+> **핵심 세부 영역**: 노드 NotReady 및 kubelet 데몬 복구, 제어 평면 Static Pods 장애 디버깅, Pod 4대 장애(CrashLoopBackOff, Pending, ImagePullBackOff, OOMKilled), CoreDNS 루프 진단, 네트워크 통신 복구
 
 ---
 
-## 1. 4단계 체계적 트러블슈팅 워크플로우
+## 5.1 4단계 표준 트러블슈팅 워크플로우
 
-장애가 발생했을 때 당황하지 않고 아래 4단계를 순서대로 진행합니다:
+시험장에서 장애 문제를 마주했을 때 당황하지 않고 체계적으로 진단하는 순서도입니다:
 
 ```
-[1단계: 리소스 상태 확인]
+[1단계: 리소스 상태 및 광역 스캔]
   $ kubectl get nodes
   $ kubectl get pods -A -o wide
 
-[2단계: 상세 이벤트 및 상태 확인]
+[2단계: 상세 이벤트 및 상태 플래그 확인]
   $ kubectl describe pod <pod-name> -n <ns>
   $ kubectl describe node <node-name>
+  ──> 하단 Events 섹션에서 근본 원인 80% 식별!
 
-[3단계: 애플리케이션 및 시스템 로그 확인]
-  $ kubectl logs <pod-name> [-c <container-name>] [--previous]
+[3단계: 애플리케이션 및 시스템 데몬 로그 분석]
+  $ kubectl logs <pod-name> [-c <container>] [--previous]
   $ journalctl -u kubelet -n 100 --no-pager
 
-[4단계: 컨테이너 런타임 직접 점검 (노드 내부)]
+[4단계: 저수준 컨테이너 런타임 직접 점검 (노드 내부)]
+  $ ssh <node>
   $ crictl ps -a
   $ crictl logs <container-id>
 ```
 
 ---
 
-## 2. 노드 장애 (Node NotReady) 진단 및 복구
+## 5.2 노드 장애 (Node NotReady) 진단 및 복구 절차
 
-### 2.1 원인 파악 및 kubelet 점검
-워커 노드가 `NotReady` 상태인 주원인은 **kubelet 서비스 중단** 또는 **인증서/설정 오탈자**입니다.
+### 1. `kubelet` 서비스 상태 확인 및 로그 추적
 ```bash
-# 1. 문제 노드로 SSH 접속
-ssh node-1
+# 1. 문제 발생 워커 노드로 SSH 접속
+ssh worker-1
 
-# 2. kubelet 서비스 상태 확인
+# 2. 서비스 실행 상태 확인
 systemctl status kubelet
 
-# 3. 실패 로그 확인 (원인 파악의 핵심)
-journalctl -u kubelet -n 50 -e --no-pager
+# 3. 비정상 종료 시 에러 원인 추적
+journalctl -u kubelet -n 100 -e --no-pager
 
-# 4. 서비스 활성화 및 재시작
+# 4. 서비스 재시작
 systemctl daemon-reload
 systemctl restart kubelet
 systemctl enable kubelet
 ```
 
-### 2.2 kubelet 설정 파일 오탈자 검사
-`/var/lib/kubelet/config.yaml` 또는 `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` 파일 내의 경로 오탈자, 잘못된 클러스터 DNS IP(`clusterDNS`), 만료된 인증서 경로를 확인합니다.
+### 2. 자주 발생하는 3대 kubelet 장애 원인 및 조치
+1. **설정 파일 오탈자**:
+   - `/var/lib/kubelet/config.yaml` 내부의 들여쓰기 오류, 잘못된 클러스터 DNS IP(`clusterDNS: [10.96.0.10]`)
+2. **systemd 드롭인 인자 오류**:
+   - `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` 파일 내 플래그 오탈자
+3. **인증서 경로 또는 만료 오류**:
+   - `/var/lib/kubelet/pki/kubelet-client-current.pem` 심볼릭 링크 손상
 
 ---
 
-## 3. 제어 평면 (Control Plane) 컴포넌트 디버깅
+## 5.3 제어 평면(Control Plane) Static Pods 디버깅
 
-마스터 노드의 핵심 컴포넌트(API Server, Scheduler, Controller Manager, etcd)는 **Static Pod**로 실행됩니다.
+마스터 노드의 핵심 컴포넌트(API Server, etcd, Scheduler, Controller-Manager)는 kubelet이 `/etc/kubernetes/manifests`를 감시하여 스태틱 파드로 구동합니다.
 
-* **매니페스트 디렉토리**: `/etc/kubernetes/manifests/`
-* **주요 장애 유형**:
-  * YAML 파일의 오탈자(typo)나 잘못된 플래그 옵션
-  * 인증서 파일명이나 경로 오류
-* **해결 팁**:
-  * API 서버가 죽어 `kubectl` 명령 자체가 먹히지 않을 때는 **컨테이너 런타임 CLI(`crictl`)**를 사용합니다:
-  ```bash
-  # 실행 중이거나 종료된 컨테이너 조회
-  crictl ps -a
-  
-  # API 서버 컨테이너 로그 직접 확인
-  crictl logs <kube-apiserver-container-id>
-  ```
-
----
-
-## 4. 파드(Pod) 장애 유형별 원인 및 해결책
-
-| 파드 상태 | 주 원인 | 확인 및 해결 방법 |
-| :--- | :--- | :--- |
-| **`Pending`** | • 노드 리소스(CPU/Memory) 부족<br>• Taint를 견디지 못함 (Toleration 누락)<br>• NodeSelector/Affinity 불일치 | `kubectl describe pod` 하단의 `Events:` 섹션 확인.<br>노드 용량 확보 또는 스케줄링 제약 수정. |
-| **`ImagePullBackOff` / `ErrImagePull`** | • 이미지 이름/태그 오탈자<br>• 프라이빗 레지스트리 인증 시크릿(imagePullSecrets) 누락<br>• 네트워크 격리 | 이미지 이름 및 태그 확인.<br>`kubectl describe pod`에서 실패한 이미지 URL 점검. |
-| **`CrashLoopBackOff`** | • 애플리케이션 시작 코드 오류(종료 코드 1 등)<br>• 필수 환경변수 또는 마운트 파일 누락<br>• 컨테이너의 포그라운드 프로세스 부재 | 이전 실행 로그 확인:<br>`kubectl logs <pod> --previous`<br>`kubectl describe pod`에서 Exit Code 확인. |
-| **`OOMKilled`** (Exit Code 137) | • 컨테이너가 지정된 `resources.limits.memory` 초과 | `kubectl describe pod`에서 `Last State: Terminated, Reason: OOMKilled` 확인.<br>Memory Limit 상향 조정. |
-
----
-
-## 5. 네트워크 및 DNS 트러블슈팅
-
-클러스터 내부에서 도메인 이름 해석이 안 될 때:
+### ⚡ API 서버가 죽어 `kubectl` 명령이 전혀 먹히지 않을 때의 대처법
 ```bash
-# 1. CoreDNS 파드 상태 및 엔드포인트 확인
-kubectl get pods -n kube-system -l k8s-app=kube-dns
-kubectl get ep -n kube-system kube-dns
+# 1. 컨테이너 런타임 CLI(crictl)를 직접 사용
+crictl ps -a | grep kube-apiserver
 
-# 2. 임시 디버깅 파드를 띄워 DNS 질의 테스트
-kubectl run dns-test --image=busybox:1.28 --restart=Never --rm -it -- nslookup kubernetes.default
+# 2. 크래시된 컨테이너의 에러 로그 직접 열람
+crictl logs <kube-apiserver-container-id>
 
-# 3. CoreDNS 로그 실시간 확인
-kubectl logs -n kube-system -l k8s-app=kube-dns -f
+# 3. 매니페스트 파일의 잘못된 플래그 또는 인증서 경로 수정
+vi /etc/kubernetes/manifests/kube-apiserver.yaml
+# 파일을 저장하면 kubelet이 파일 변경을 자동 감지(inotify)하여 수초 내 재기동함!
+```
+
+---
+
+## 5.4 파드(Pod) 장애 유형별 원인 및 해결 매트릭스
+
+| 장애 상태 | 주 원인 (Root Cause) | 해결 방법 (Remedy) |
+| :--- | :--- | :--- |
+| **`CrashLoopBackOff`** | • 컨테이너 내부 애플리케이션 시작 오류 (Exit Code 1)<br>• 필수 환경변수 또는 설정 파일 부재<br>• 포그라운드 프로세스 부재로 즉시 종료 | `kubectl logs <pod> --previous` 로 직전 에러 로그 확인.<br>`kubectl describe pod`에서 `Last State: Terminated, Exit Code` 분석 후 매니페스트 수정. |
+| **`ImagePullBackOff`** / `ErrImagePull` | • 이미지 이름 또는 태그 오탈자 (예: `ngnix:latest`)<br>• 프라이빗 레지스트리 인증 시크릿 누락<br>• 노드 외부 인터넷 네트워크 단절 | `kubectl describe pod`의 Events에서 이미지 URL 확인.<br>`kubectl create secret docker-registry` 후 `spec.imagePullSecrets`에 등록. |
+| **`Pending`** | • 노드 CPU/메모리 부족 (`Insufficient cpu/memory`)<br>• Taint를 견디지 못함 (`untolerated taint`)<br>• NodeSelector/Affinity 불일치 | 파드의 `requests`를 낮추거나 불필요한 파드 정리.<br>파드 스펙에 일치하는 `tolerations` 또는 `nodeSelector` 추가. |
+| **`OOMKilled`** (Exit Code 137) | • 컨테이너가 `limits.memory` 한도 초과 | `kubectl describe pod`에서 `Reason: OOMKilled` 확인.<br>파드의 `resources.limits.memory` 값을 상향 조정. |
+| **`ContainerCreating`** (장기 지연) | • 참조하는 Secret 또는 ConfigMap이 존재하지 않음<br>• PVC 볼륨 마운트 지연 또는 네트워크 스토리지 연결 실패 | `kubectl describe pod` Events에서 `MountVolume.SetUp failed` 확인.<br>누락된 Secret/ConfigMap 생성 또는 PVC 상태 점검. |
+
+---
+
+## 5.5 서비스 및 네트워크 통신 장애 디버깅
+
+### 1. 서비스 VIP로 요청 시 타임아웃 ➔ 엔드포인트 누락 확인
+```bash
+# 1. 서비스 엔드포인트 목록 조회
+kubectl get endpoints <service-name>
+
+# 만약 <none>으로 나온다면?
+# ➔ 원인 1: Service의 spec.selector 라벨과 Pod의 metadata.labels 불일치 (오탈자 확인)
+# ➔ 원인 2: 백엔드 파드의 readinessProbe가 실패하여 엔드포인트에서 제외됨
+```
+
+### 2. CoreDNS 순환 루프 에러 (`Loop detected`) 복구
+* **증상**: 클러스터 내부의 모든 도메인 해석 불가, CoreDNS 파드가 `CrashLoopBackOff` 상태.
+* **원인**: 호스트 노드의 `/etc/resolv.conf` 네임서버가 `127.0.0.53` 또는 `127.0.0.1`로 설정되어 CoreDNS가 자기 자신에게 재귀 포워딩 루프 발생.
+* **해결**: CoreDNS ConfigMap(`kubectl edit cm coredns -n kube-system`)에서 `loop` 플러그인을 주석 처리하거나, kubelet 설정의 `resolvConf` 경로를 실제 외부 DNS(8.8.8.8 등)가 정의된 파일로 변경.
+
+---
+
+## 5.6 실전 긴급 복구 명령어
+
+```bash
+# 1. 멈춘 파드 유예 시간 없이 즉시 강제 삭제
+kubectl delete pod <pod-name> --force --grace-period=0
+
+# 2. 임시 대화형 네트워크 테스트 파드 구동
+kubectl run net-debug --image=busybox:1.28 --rm -it --restart=Never -- nslookup kubernetes.default
+kubectl run net-debug --image=curlimages/curl --rm -it --restart=Never -- curl -v http://order-service:8080
+
+# 3. 전체 네임스페이스의 경고(Warning) 이벤트 실시간 감시
+kubectl get events -A --field-selector type=Warning --sort-by='.metadata.creationTimestamp'
 ```
