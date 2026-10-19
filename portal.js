@@ -34,27 +34,59 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabNavigation();
   initGlossarySearch();
 
-  // 초기 트랙 감지 (URL param -> hash -> localStorage 순)
+  // 초기 트랙 및 탭 감지 (URL param -> hash -> localStorage 순)
   const urlParams = new URLSearchParams(window.location.search);
   const paramTrack = urlParams.get('track');
-  const hashTrack = window.location.hash.replace('#', '').toLowerCase();
+  const rawHash = (window.location.hash || '').replace('#', '').trim().toLowerCase();
   const savedTrack = localStorage.getItem('k8s_cert_track');
 
   let initialTrack = 'cka';
-  if (paramTrack === 'kcna' || hashTrack === 'kcna' || savedTrack === 'kcna') {
+  let initialTab = null;
+
+  if (rawHash === 'kcna' || paramTrack === 'kcna' || (!rawHash && savedTrack === 'kcna')) {
     initialTrack = 'kcna';
+    initialTab = 'kcna_overview'; // KCNA 기본값: 개요 & 전략
+  } else if (rawHash === 'cka' || paramTrack === 'cka' || (!rawHash && savedTrack === 'cka')) {
+    initialTrack = 'cka';
+    initialTab = 'overview'; // CKA 기본값: 개요 & 로드맵
+  } else if (rawHash) {
+    // 특정 서브 탭 해시 (예: #domain1, #cbt, #kcna_domain2 등)
+    if (rawHash.startsWith('kcna_')) {
+      initialTrack = 'kcna';
+      initialTab = rawHash;
+    } else {
+      initialTrack = 'cka';
+      initialTab = rawHash;
+    }
+  } else {
+    initialTrack = 'cka';
+    initialTab = 'overview';
   }
 
-  // 트랙 적용
-  switchCertTrack(initialTrack, false);
+  // 초기 트랙 및 탭 적용
+  switchCertTrack(initialTrack, false, initialTab);
 
-  // 해시 변경 감지
+  // 해시 변경 감지 (뒤로가기/앞으로가기 또는 외부 딥링크)
   window.addEventListener('hashchange', () => {
-    const currentHash = window.location.hash.replace('#', '').toLowerCase();
-    if (currentHash === 'kcna' && activeTrack !== 'kcna') {
-      switchCertTrack('kcna');
-    } else if (currentHash === 'cka' && activeTrack !== 'cka') {
-      switchCertTrack('cka');
+    const currentHash = (window.location.hash || '').replace('#', '').trim().toLowerCase();
+    if (currentHash === 'kcna') {
+      switchCertTrack('kcna', false, 'kcna_overview');
+    } else if (currentHash === 'cka') {
+      switchCertTrack('cka', false, 'overview');
+    } else if (currentHash) {
+      if (currentHash.startsWith('kcna_')) {
+        if (activeTrack !== 'kcna') {
+          switchCertTrack('kcna', false, currentHash);
+        } else {
+          switchTab(currentHash, false);
+        }
+      } else {
+        if (activeTrack !== 'cka') {
+          switchCertTrack('cka', false, currentHash);
+        } else {
+          switchTab(currentHash, false);
+        }
+      }
     }
   });
 });
@@ -96,35 +128,33 @@ function initTrackSwitching() {
   const btnKcna = document.getElementById('track-kcna-btn');
 
   if (btnCka) {
-    btnCka.addEventListener('click', (e) => {
+    btnCka.onclick = (e) => {
       e.preventDefault();
-      switchCertTrack('cka');
-    });
+      switchCertTrack('cka', true, 'overview');
+    };
   }
 
   if (btnKcna) {
-    btnKcna.addEventListener('click', (e) => {
+    btnKcna.onclick = (e) => {
       e.preventDefault();
-      switchCertTrack('kcna');
-    });
+      switchCertTrack('kcna', true, 'kcna_overview');
+    };
   }
 }
 
 /**
- * 전역 트랙 전환 함수 (HTML onclick에서도 직접 호출 가능)
+ * 전역 트랙 전환 함수 (상단 탭 누를 시 항상 default '개요 & 로드맵' 선택)
  */
-window.switchCertTrack = function(track, shouldUpdateHistory = true) {
+window.switchCertTrack = function(track, shouldUpdateHistory = true, targetTab = null) {
   activeTrack = track === 'kcna' ? 'kcna' : 'cka';
   localStorage.setItem('k8s_cert_track', activeTrack);
-
-  if (shouldUpdateHistory && history.replaceState) {
-    history.replaceState(null, '', `#${activeTrack}`);
-  }
 
   const btnCka = document.getElementById('track-cka-btn');
   const btnKcna = document.getElementById('track-kcna-btn');
   const navCka = document.getElementById('nav-cka');
   const navKcna = document.getElementById('nav-kcna');
+  const portalTitle = document.getElementById('portal-title');
+  const portalSubtitle = document.getElementById('portal-subtitle');
   const cbtIframe = document.getElementById('cbt-iframe');
   const cbtQuickBtnLabel = document.getElementById('cbt-quick-btn-label');
   const cbtFullscreenLink = document.getElementById('cbt-fullscreen-link');
@@ -133,65 +163,51 @@ window.switchCertTrack = function(track, shouldUpdateHistory = true) {
 
   if (activeTrack === 'kcna') {
     // 버튼 상태
-    if (btnCka) {
-      btnCka.classList.remove('active');
-    }
-    if (btnKcna) {
-      btnKcna.classList.add('active', 'kcna-active');
-    }
+    if (btnCka) btnCka.classList.remove('active');
+    if (btnKcna) btnKcna.classList.add('active', 'kcna-active');
 
     // 네비게이션 표시
     if (navCka) navCka.style.display = 'none';
     if (navKcna) navKcna.style.display = 'block';
 
-    // 타이틀 갱신
+    // 헤더 타이틀 갱신
     if (portalTitle) portalTitle.textContent = 'KCNA Cloud Native Associate Certification';
     if (portalSubtitle) portalSubtitle.textContent = 'CNCF 공식 필기 가이드 (5대 영역 심층 학습 & 260문항 CBT)';
     if (cbtQuickBtnLabel) cbtQuickBtnLabel.textContent = '💻 KCNA 실전 CBT (260문항)';
 
     if (cbtToolbarTitle) cbtToolbarTitle.textContent = 'KCNA 클라우드 네이티브 어소시에이트 실전 CBT 시뮬레이터';
     if (cbtToolbarDesc) cbtToolbarDesc.textContent = 'CNCF 공식 출제 기준 260문항 풀 · 90분 타이머 · 75% 합격 기준 · 실시간 한/영 번역 및 개념 해설';
-    if (cbtFullscreenLink) cbtFullscreenLink.href = `./cbt-app/index.html?track=kcna&v=20261019_1545`;
+    if (cbtFullscreenLink) cbtFullscreenLink.href = `./cbt-app/index.html?track=kcna&v=20261019_1705`;
 
-    // KCNA 첫 번째 탭 열기 (만약 현재 탭이 cbt가 아니면)
-    if (activeTab === 'cbt') {
-      if (cbtIframe) cbtIframe.src = `./cbt-app/index.html?track=kcna&v=20261019_1545`;
-    } else {
-      switchTab('kcna_overview');
-    }
+    // 상단 탭 클릭 시 default는 무조건 'KCNA 시험 안내 & 전략'(kcna_overview)
+    const nextTab = targetTab || 'kcna_overview';
+    switchTab(nextTab, shouldUpdateHistory);
   } else {
     // CKA 트랙
-    if (btnCka) {
-      btnCka.classList.add('active');
-    }
-    if (btnKcna) {
-      btnKcna.classList.remove('active', 'kcna-active');
-    }
+    if (btnCka) btnCka.classList.add('active');
+    if (btnKcna) btnKcna.classList.remove('active', 'kcna-active');
 
     // 네비게이션 표시
     if (navCka) navCka.style.display = 'block';
     if (navKcna) navKcna.style.display = 'none';
 
-    // 타이틀 갱신
+    // 헤더 타이틀 갱신
     if (portalTitle) portalTitle.textContent = 'Kubernetes Administrator (CKA) Certification';
     if (portalSubtitle) portalSubtitle.textContent = 'Linux Foundation & CNCF 공식 실기 대비 (1,250문항 CBT & 5대 도메인 심층 가이드)';
     if (cbtQuickBtnLabel) cbtQuickBtnLabel.textContent = '💻 CKA 실전 CBT (1,250문항)';
 
     if (cbtToolbarTitle) cbtToolbarTitle.textContent = 'CKA 쿠버네티스 공인 관리자 실전 CBT 시뮬레이터';
     if (cbtToolbarDesc) cbtToolbarDesc.textContent = '5대 도메인 1,250문항 풀 · 120분 타이머 · 66% 합격 기준 · 실기 시나리오 중심 무작위 추출';
-    if (cbtFullscreenLink) cbtFullscreenLink.href = `./cbt-app/index.html?track=cka&v=20261019_1545`;
+    if (cbtFullscreenLink) cbtFullscreenLink.href = `./cbt-app/index.html?track=cka&v=20261019_1705`;
 
-    // CKA 첫 번째 탭 열기 (만약 현재 탭이 cbt가 아니면)
-    if (activeTab === 'cbt') {
-      if (cbtIframe) cbtIframe.src = `./cbt-app/index.html?track=cka&v=20261019_1545`;
-    } else {
-      switchTab('overview');
-    }
+    // 상단 탭 클릭 시 default는 무조건 'CKA 개요 & 로드맵'(overview)
+    const nextTab = targetTab || 'overview';
+    switchTab(nextTab, shouldUpdateHistory);
   }
 
   // CBT Iframe src 동기화
   if (cbtIframe && activeTab !== 'cbt') {
-    cbtIframe.src = `./cbt-app/index.html?track=${activeTrack}&v=20261019_1545`;
+    cbtIframe.src = `./cbt-app/index.html?track=${activeTrack}&v=20261019_1705`;
   }
 };
 
@@ -206,12 +222,12 @@ function initTabNavigation() {
       const targetTab = tab.getAttribute('data-tab');
       if (!targetTab) return;
 
-      switchTab(targetTab);
+      switchTab(targetTab, true);
     });
   });
 }
 
-window.switchTab = function(tabId) {
+window.switchTab = function(tabId, updateHistory = true) {
   activeTab = tabId;
 
   // 탭 버튼 스타일 갱신
@@ -229,6 +245,17 @@ window.switchTab = function(tabId) {
     targetPanel.classList.add('active');
   }
 
+  // URL 해시 동기화
+  if (updateHistory && history.replaceState) {
+    if (tabId === 'overview' && activeTrack === 'cka') {
+      history.replaceState(null, '', '#cka');
+    } else if (tabId === 'kcna_overview' && activeTrack === 'kcna') {
+      history.replaceState(null, '', '#kcna');
+    } else {
+      history.replaceState(null, '', `#${tabId}`);
+    }
+  }
+
   // 콘텐츠 로드 (CBT 탭 제외)
   if (tabId !== 'cbt') {
     loadCurrentTabContent(tabId);
@@ -236,7 +263,7 @@ window.switchTab = function(tabId) {
     // CBT iframe 동기화
     const cbtIframe = document.getElementById('cbt-iframe');
     if (cbtIframe) {
-      const expectedSrc = `./cbt-app/index.html?track=${activeTrack}&v=20261019_1545`;
+      const expectedSrc = `./cbt-app/index.html?track=${activeTrack}&v=20261019_1705`;
       if (!cbtIframe.src || !cbtIframe.src.includes(`track=${activeTrack}`)) {
         cbtIframe.src = expectedSrc;
       }
